@@ -15,9 +15,7 @@ long long calculateFileSize(const char *filename) {
 
 int main() {
     char *currentPath = "."; // Current directory path
-
     printf("Sizes of the files in this directory:\n");
-
     struct dirent *dp;
     DIR *dir = opendir(currentPath);
 
@@ -38,6 +36,5 @@ int main() {
     }
 
     closedir(dir);
-
     return 0;
 }
