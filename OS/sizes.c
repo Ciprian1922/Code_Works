@@ -3,7 +3,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
-//
+
 // Function that computes the size of a file
 long long calculateFileSize(const char *filename) {
     struct stat st;
