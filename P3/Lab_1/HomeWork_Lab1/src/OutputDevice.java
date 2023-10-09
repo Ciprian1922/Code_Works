@@ -1,6 +1,6 @@
 public class OutputDevice {
     public void writeMessage(String mess){
-        System.out.println(mess);
+        System.out.println(mess+"he");
     }
     public void writeMessage(int mess){
         String number = Integer.toString(mess);
