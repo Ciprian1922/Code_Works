@@ -6,7 +6,11 @@ public class Application {
         this.inputDevice = inp;
         this.outputDevice = out;
     }
+    
+    public void playGame(){
 
+
+    }
     public void run() {
         outputDevice.writeMessage("Application started");
         outputDevice.writeMessage("Today’s lucky numbers are: ");
