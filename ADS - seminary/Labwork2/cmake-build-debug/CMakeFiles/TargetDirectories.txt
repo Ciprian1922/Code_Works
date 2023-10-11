@@ -1,0 +1,3 @@
+C:/Users/Ciprian/Desktop/GitHub_UVT/Code_Works/ADS - seminary/Labwork2/cmake-build-debug/CMakeFiles/Labwork2.dir
+C:/Users/Ciprian/Desktop/GitHub_UVT/Code_Works/ADS - seminary/Labwork2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Ciprian/Desktop/GitHub_UVT/Code_Works/ADS - seminary/Labwork2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
