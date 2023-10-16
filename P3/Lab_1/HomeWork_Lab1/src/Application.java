@@ -1,25 +1,26 @@
+import java.util.Random;
+
 public class Application {
     private InputDevice inputDevice;
     private OutputDevice outputDevice;
+    private Player playerH;
+    private Player playerS;
 
-    public Application(InputDevice inp, OutputDevice out) {
-        this.inputDevice = inp;
-        this.outputDevice = out;
+    public Application(InputDevice inputDevice, OutputDevice outputDevice) {
+        this.inputDevice = inputDevice;
+        this.outputDevice = outputDevice;
+        this.playerH = new Player();
+        this.playerS = new Player();
     }
-    
-    public void playGame(){
 
-
-    }
-    public void run() {
-        outputDevice.writeMessage("Application started");
-        outputDevice.writeMessage("Today’s lucky numbers are: ");
+    public void playGame() {
         int p1 = 0;
         int p2 = 0;
+        Random random = new Random();
 
         while (p1 < 5 && p2 < 5) {
-            int H = inputDevice.nextInt();
-            int S = inputDevice.nextInt();
+            int H = random.nextInt(100) + 1;
+            int S = random.nextInt(100) + 1;
 
             if (H == S) {
                 p1 += 2;
@@ -42,5 +43,11 @@ public class Application {
         } else {
             outputDevice.writeMessage("Player S won!");
         }
+    }
+
+    public void run() {
+        outputDevice.writeMessage("Application started");
+        outputDevice.writeMessage("Today’s lucky numbers are: ");
+        playGame();
     }
 }
