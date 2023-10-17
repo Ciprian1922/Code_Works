@@ -1,0 +1,71 @@
+1. 
+SELECT TO_CHAR(SYSDATE, 'DD-MON-YY')
+AS
+"Date" FROM DUAL;
+
+2.
+SELECT
+    empno,
+    ename,
+    sal,
+    ROUND(sal * 1.15) AS "New Salary"
+FROM
+    emp;
+3.
+just save and run 2
+4.
+SELECT
+    empno,
+    ename,
+    sal,
+    ROUND(sal * 1.15) AS "New Salary",
+    ROUND(sal * 15/100) AS "Increase"
+
+FROM
+    emp;
+7.
+SELECT
+    ename || ' earns $' || TO_CHAR(sal, '9999.00') || ' monthly but wants $' || TO_CHAR(sal * 3, '9999999.00') AS "Dream Salaries"
+FROM
+    emp;
+8.
+SELECT
+    ename AS ENAME,
+    RPAD('$', 15, '$') || TO_CHAR(sal, '99999.99') AS "SALARY"
+FROM
+    emp;
+
+*FOUND OUT THAT IT WORKS WITHOUT "AS" *
+
+9.
+SELECT
+    INITCAP(ename) AS "Name",
+    LENGTH(ename) AS "Length"
+FROM
+    emp
+WHERE
+    ename LIKE 'J%' OR ename LIKE 'A%' OR ename LIKE 'M%';
+
+10.
+SELECT
+    ename AS "ENAME",
+    TO_CHAR(HIREDATE, 'DD-MON-YY') AS "HIREDATE",
+    TO_CHAR(HIREDATE, 'DAY') AS DAY
+FROM
+    emp
+ORDER BY
+    DAY asc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
