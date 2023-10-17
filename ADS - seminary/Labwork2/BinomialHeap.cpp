@@ -1,11 +1,3 @@
-//============================================================================
-// Name        : BinomialHeap.cpp
-// Author      : Mircea Marin
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
 #include <iostream>
 #include <sstream>
 #include <climits>
@@ -46,7 +38,7 @@ void binomialLink(Node* y, Node* z) {
 
 /*
  * creates an empty binomial heap and returns a pointer to it.
- * This function is a friend of the class BinomialHeap
+ * This function is a friend of the class BinomialHeap.
  */
 BinomialHeap* makeBinomialHeap() {
     return new BinomialHeap();

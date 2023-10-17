@@ -10,16 +10,19 @@ using namespace std;
 
 BinomialHeap* makeBinomialHeap();
 Node* binomialHeapExtractMin(BinomialHeap*);
+Node* reverseList(Node*);
+Node* findMinRoot(Node*);
 unsigned int current_heap;
 
 int chooseOption(int max) {
     int option;
     while (true) {
         if (!(cin >> option)) {
-            cout << "Integer between 1 and "<< max << " expected. Try again: ";
+            cout << "Integer between 1 and " << max << " expected. Try again: ";
             cin.clear();
             cin.ignore(10000, '\n');
-        } else break;
+        } else
+            break;
     }
     cin.clear();
     cin.ignore(10000, '\n');
@@ -35,10 +38,11 @@ void showMenu() {
          << "\t4 Create a new binomial heap" << endl
          << "\t5 Insert node in current heap" << endl
          << "\t6 Merge binomial heaps" << endl
-         << "\t7 Extract the node with minimum key from the current heap" << endl
-         << "\t8 ..." << endl
-         << "\t9 Stop " << endl << endl
-         << "Choose (1-9): ";
+         << "\t7 Extract the node with the minimum key from the current heap" << endl
+         << "\t8 Reverse a list" << endl
+         << "\t9 Find the minimum node in a list" << endl
+         << "\t10 Stop " << endl
+         << "Choose (1-10): ";
 }
 
 int main() {
@@ -52,7 +56,7 @@ int main() {
 
     while (true) {
         showMenu();
-        switch (chooseOption(9)) {
+        switch (chooseOption(10)) {
             case 1:    // Show number of available heaps
                 cout << "There are " << heaps.size() << " heaps" << endl;
                 break;
@@ -62,11 +66,11 @@ int main() {
                 else {
                     cout << "Choose a number between 1 and " << heaps.size() << ": ";
                     cin >> tmp;
-                    if (1 << tmp && tmp <= heaps.size())
+                    if (tmp >= 1 && tmp <= heaps.size())
                         current_heap = tmp;
                 }
                 break;
-            case 3:    // Show content of current heap
+            case 3:    // Show content of the current heap
                 if (current_heap > 0) {
                     h = heaps[current_heap - 1];
                     h->showContent();
@@ -79,7 +83,7 @@ int main() {
                 if (current_heap > 0) {
                     cout << "Input key and data (a string) separated by whitespace: ";
                     cin >> k >> s;
-                    heaps[current_heap - 1] = insert(heaps[current_heap - 1], new Node(k,s));
+                    heaps[current_heap - 1] = insert(heaps[current_heap - 1], new Node(k, s));
                 } else {
                     cout << "Select current heap" << endl;
                 }
@@ -102,7 +106,7 @@ int main() {
                 }
                 // The user assumes heap indexes are between 1 and heaps.size().
                 // In C++ heap indexes should be between 0 and heaps.size() - 1
-                // Therefore, we decrement the the index values introduced by the user.
+                // Therefore, we decrement the index values introduced by the user.
                 idx1--;
                 idx2--;
                 h = binomialHeapUnion(heaps[idx1], heaps[idx2]);
@@ -110,20 +114,36 @@ int main() {
                 heaps[idx1] = h;
                 // Erase the heap heaps[idx2] from heaps.
                 // This operation will also resize the vector of heaps accordingly.
-                heaps.erase(heaps.begin() + (idx2 - 1));
+                heaps.erase(heaps.begin() + idx2);
                 if (current_heap - 1 >= idx2)
                     current_heap--;
                 break;
-            case 7:    // Extract the minimum element from current heap
+            case 7:    // Extract the minimum element from the current heap
                 if (current_heap > 0) {
                     x = binomialHeapExtractMin(heaps[current_heap - 1]);
                     if (x)
                         cout << x->toString() << " was removed" << endl;
                 }
                 break;
-            case 8:    // ...
+            case 8:    // Reverse a list
+                if (current_heap > 0) {
+                    BinomialHeap* heapToReverse = heaps[current_heap - 1];
+                    if (heapToReverse->head) {
+                        Node* reversed = reverseList(heapToReverse->head);
+                        heapToReverse->head = reversed;
+                        cout << "List in the current heap has been reversed" << endl;
+                    }
+                }
                 break;
-            case 9:    // Stop
+            case 9:    // Find the minimum node in a list
+                if (current_heap > 0) {
+                    BinomialHeap* heapToSearch = heaps[current_heap - 1];
+                    Node* minNode = findMinRoot(heapToSearch->head);
+                    if (minNode)
+                        cout << "Minimum node in the current heap: " << minNode->toString() << endl;
+                }
+                break;
+            case 10:    // Stop
                 n = heaps.size();
                 for (int i = 0; i < n; i++) {
                     if (heaps[i]->head)
@@ -135,5 +155,3 @@ int main() {
         }
     }
 }
-
-
