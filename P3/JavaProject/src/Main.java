@@ -88,8 +88,8 @@ public class ProductManagementSystem {
 
     public static void addItem() {
         Product st = new Product();
-        int index, valid;
-        char c;
+        int index, valid = 0;
+        char c = 0;
 
         do {
             System.out.println("Enter Product Details:");
