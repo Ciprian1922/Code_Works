@@ -22,7 +22,7 @@ public class EmployeeManagementGUI {
     public void createAndShowGUI() {
         JFrame frame = new JFrame("Employee Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
+        frame.setSize(InputDevice.width, InputDevice.height);
 
         frame.setLayout(new BorderLayout());
 

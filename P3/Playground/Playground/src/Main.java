@@ -8,6 +8,8 @@ public class Main {
         ManagementSystem system = new ManagementSystem();
         system.addEmployees(InputDevice.defaultEmployees);
         system.addEmployees(InputDevice.defaultEmployees);
+        system.addEmployees(InputDevice.defaultEmployees);
+        system.addEmployees(InputDevice.defaultEmployees);
 
         // Check if "dev" mode is enabled
         boolean isDev = isDevEnabled(args);
