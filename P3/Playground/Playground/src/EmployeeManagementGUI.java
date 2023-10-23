@@ -11,10 +11,10 @@ public class EmployeeManagementGUI {
 
     public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled) {
         this.system = system;
-        this.tableModel = new DefaultTableModel(new Object[]{"Name", "Age", "Function", "Married"}, 0);
+        this.tableModel = new DefaultTableModel(new Object[]{"ID","Name", "Age", "Function", "Married"}, 0);
         // Populate the table model with the employees from the ManagementSystem
         for (Employee employee : system.getEmployees()) {
-            tableModel.addRow(new Object[]{employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried()});
+            tableModel.addRow(new Object[]{employee.getId(), employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried()});
         }
         this.isDevEnabled = isDevEnabled;
     }
@@ -33,6 +33,7 @@ public class EmployeeManagementGUI {
         addEmployeeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Create input fields for employee details
+                JTextField idField = new JTextField();
                 JTextField nameField = new JTextField();
                 JTextField ageField = new JTextField();
                 JTextField functionField = new JTextField();
@@ -40,6 +41,8 @@ public class EmployeeManagementGUI {
                 JComboBox<String> maritalStatusCombo = new JComboBox<>(maritalStatusOptions);
 
                 JPanel panel = new JPanel(new GridLayout(5, 2));
+                panel.add(new JLabel("ID:"));
+                panel.add(idField);
                 panel.add(new JLabel("Name:"));
                 panel.add(nameField);
                 panel.add(new JLabel("Age:"));
@@ -53,17 +56,18 @@ public class EmployeeManagementGUI {
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
                 if (result == JOptionPane.OK_OPTION) {
+                    int id = Integer.parseInt(idField.getText());
                     String name = nameField.getText();
                     int age = Integer.parseInt(ageField.getText());
                     String function = functionField.getText();
                     boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
 
                     // Create a new employee and add it to the system
-                    Employee newEmployee = new Employee(name, age, function, isMarried);
+                    Employee newEmployee = new Employee(id, name, age, function, isMarried);
                     system.addEmployee(newEmployee);
 
                     // Add the new employee to the table
-                    tableModel.addRow(new Object[]{name, age, function, isMarried});
+                    tableModel.addRow(new Object[]{id, name, age, function, isMarried});
                 }
             }
         });

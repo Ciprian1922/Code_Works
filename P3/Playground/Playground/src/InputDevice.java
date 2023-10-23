@@ -11,12 +11,12 @@ public class InputDevice {
     public static List<Employee> defaultEmployees = new ArrayList<>();
 
     static {
-        defaultEmployees.add(new Employee("John", 30, "Manager", true));
-        defaultEmployees.add(new Employee("Alice", 25, "Developer", false));
-        defaultEmployees.add(new Employee("Berna", 21, "Slaav", false));
-        defaultEmployees.add(new Employee("Andrei", 28, "Designer", true));
-        defaultEmployees.add(new Employee("Elena", 23, "Marketing", false));
-        defaultEmployees.add(new Employee("Mihai", 31, "HR", true));
+        defaultEmployees.add(new Employee(1, "John", 30, "Manager", true));
+        defaultEmployees.add(new Employee(2, "Alice", 25, "Developer", false));
+        defaultEmployees.add(new Employee(3, "Berna", 21, "Slaav", false));
+        defaultEmployees.add(new Employee(4, "Andrei", 28, "Designer", true));
+        defaultEmployees.add(new Employee(5, "Elena", 23, "Marketing", false));
+        defaultEmployees.add(new Employee(6, "Mihai", 31, "HR", true));
     }
 
 }

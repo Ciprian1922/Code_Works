@@ -1,16 +1,21 @@
 class Employee {
+    private int id;
     private String name;
     private int age;
     private String function;
     private boolean married;
 
-    public Employee(String name, int age, String function, boolean married) {
+    public Employee(int id, String name, int age, String function, boolean married) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.function = function;
         this.married = married;
     }
 
+    public int getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }
