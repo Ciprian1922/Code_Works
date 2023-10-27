@@ -1,0 +1,8 @@
+1. Consider the pattern P = aabab. Compute the prefix function
+π : {1, 2, 3, 4, 5} → {0, 1, 2, 3, 4}
+
+π[1] = 0	a
+π[2] = 1	aa	
+π[3] = 0	aab
+π[4] = 1	aaba
+π[5] = 0	aabab
