@@ -14,4 +14,14 @@ public class Banana extends Fruit implements Peelable {
     public void peelOff() {
         hasPeel = false;
     }
+
+    @Override
+    public boolean hasSeeds() {
+        return false;
+    }
+
+    @Override
+    public void removeSeeds() {
+
+    }
 }

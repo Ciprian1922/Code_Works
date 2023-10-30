@@ -1,42 +1,34 @@
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+
 public class Application {
-    public static void prepareFruit(Fruit[] fruits) {
-        for (Fruit fruit : fruits) {
-            if (fruit instanceof Peelable) {
-                Peelable peelableFruit = (Peelable) fruit;
-                if (peelableFruit.hasPeel()) {
-                    peelableFruit.peelOff();
-                }
-            }
-            if (fruit instanceof SeedRemovable) {
-                SeedRemovable seedRemovableFruit = (SeedRemovable) fruit;
-                if (seedRemovableFruit.hasSeeds()) {
-                    seedRemovableFruit.removeSeeds();
-                }
-            }
-        }
+    private List<Fruit> fruits;
+    private InputDevice inputDevice;
+    private OutputDevice outputDevice;
+    private String[] args;
+
+    public Application(InputDevice inputDevice, OutputDevice outputDevice, String[] args) {
+        this.fruits = new ArrayList<>();
+        this.inputDevice = inputDevice;
+        this.outputDevice = outputDevice;
+        this.args = args;
     }
 
-    public static double computeWeight(Fruit[] fruits) {
-        double totalWeight = 0;
+    public void run() {
+        inputDevice.readFruit(fruits, args);
 
-        for (Fruit fruit : fruits) {
-            // Parse the weight from the String to a double
-            double weight = Double.parseDouble(fruit.getWeight());
-            totalWeight += weight;
+        double totalWeight = Fruit.computeWeight(fruits);
+        double totalSugar = Fruit.computeSugarContent(fruits);
+
+        Fruit.prepareFruit(fruits);
+
+        outputDevice.writeMessage("Total Weight of Fruits: " + totalWeight + " grams");
+        outputDevice.writeMessage("Total Sugar Content: " + totalSugar + " grams");
+
+        Map<Class<? extends Fruit>, Integer> fruitCounts = Fruit.countFruit(fruits);
+        for (Map.Entry<Class<? extends Fruit>, Integer> entry : fruitCounts.entrySet()) {
+            outputDevice.writeMessage(entry.getKey().getSimpleName() + ": " + entry.getValue());
         }
-
-        return totalWeight;
-    }
-
-    public static double computeSugarContent(Fruit[] fruits) {
-        double totalSugarContent = 0;
-
-        for (Fruit fruit : fruits) {
-            // Parse the sugar content from the String to a double
-            double sugarContent = Double.parseDouble(fruit.getSugar());
-            totalSugarContent += sugarContent;
-        }
-
-        return totalSugarContent;
     }
 }
