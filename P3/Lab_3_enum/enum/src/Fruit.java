@@ -34,14 +34,6 @@ public abstract class Fruit {
         return weight;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public String getWater() {
-        return water;
-    }
-
     public abstract boolean hasPeel();
 
     public abstract void peelOff();
