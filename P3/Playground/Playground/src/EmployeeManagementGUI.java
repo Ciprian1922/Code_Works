@@ -11,7 +11,7 @@ public class EmployeeManagementGUI {
 
     public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled) {
         this.system = system;
-        this.tableModel = new DefaultTableModel(new Object[]{"ID","Name", "Age", "Function", "Married"}, 0);
+        this.tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Function", "Married"}, 0);
         // Populate the table model with the employees from the ManagementSystem
         for (Employee employee : system.getEmployees()) {
             tableModel.addRow(new Object[]{employee.getId(), employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried()});
@@ -22,7 +22,7 @@ public class EmployeeManagementGUI {
     public void createAndShowGUI() {
         JFrame frame = new JFrame("Employee Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(InputDevice.width, InputDevice.height);
+        frame.setSize(InputDevice.width, InputDevice.height); // Adjusted window height
 
         frame.setLayout(new BorderLayout());
 
@@ -40,9 +40,25 @@ public class EmployeeManagementGUI {
                 String[] maritalStatusOptions = {"Married", "Single"};
                 JComboBox<String> maritalStatusCombo = new JComboBox<>(maritalStatusOptions);
 
-                JPanel panel = new JPanel(new GridLayout(5, 2));
+                JPanel panel = new JPanel(new GridLayout(6, 2));
                 panel.add(new JLabel("ID:"));
                 panel.add(idField);
+
+                JButton autoGenerateIDButton = new JButton("Auto");
+                autoGenerateIDButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        // Generate an ID automatically
+                        int maxID = 0;
+                        for (Employee employee : system.getEmployees()) {
+                            if (employee.getId() > maxID) {
+                                maxID = employee.getId();
+                            }
+                        }
+                        idField.setText(String.valueOf(maxID + 1));
+                    }
+                });
+
+                panel.add(autoGenerateIDButton);
                 panel.add(new JLabel("Name:"));
                 panel.add(nameField);
                 panel.add(new JLabel("Age:"));
@@ -81,9 +97,9 @@ public class EmployeeManagementGUI {
                 int selectedRow = employeeTable.getSelectedRow();
                 if (selectedRow != -1) {
                     // Remove the selected employee from the system and the table
-                    String name = (String) tableModel.getValueAt(selectedRow, 0);
+                    int id = (int) tableModel.getValueAt(selectedRow, 0);
                     for (Employee employee : system.getEmployees()) {
-                        if (employee.getName().equals(name)) {
+                        if (employee.getId() == id) {
                             system.removeEmployee(employee);
                             tableModel.removeRow(selectedRow);
                             break;
@@ -92,7 +108,6 @@ public class EmployeeManagementGUI {
                 }
             }
         });
-
 
         frame.add(tableScrollPane, BorderLayout.CENTER);
 
