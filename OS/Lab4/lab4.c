@@ -7,11 +7,11 @@
 #include <unistd.h>
 
 long long int ListFiles(const char *dirPath);
-void DisplayFileSize(const char *filePath);
+void displayFileDetails(const char *filePath);
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        printf("Usage: %s <director>\n", argv[0]);
+        printf("Usage: %s <directory>\n", argv[0]);
         return 1;
     }
 
@@ -23,26 +23,47 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-   ListFiles(dirPath);
+    long long int totalSize = ListFiles(dirPath);
+
+    printf("Total size of regular files in directory '%s': %lld bytes\n", dirPath, totalSize);
 
     return 0;
 }
 
-void displayFileSize(const char* file) {
+void displayFileDetails(const char *filePath) {
     struct stat st;
-    if (stat(file, &st) == 0) {
+    if (stat(filePath, &st) == 0) {
         if (S_ISREG(st.st_mode)) {
-            printf("File: %s  Size: %lld bytes\n", file, (long long)st.st_size);
+            printf("File Name: %s\n", filePath);
+            printf("File Type: Regular File\n");
+        } else if (S_ISDIR(st.st_mode)) {
+            printf("File Name: %s\n", filePath);
+            printf("File Type: Directory\n");
+        } else {
+            printf("File Name: %s\n", filePath);
+            printf("File Type: Unknown\n");
         }
+
+        // Print file permissions
+        printf("File Permissions: ");
+        printf((st.st_mode & S_IRUSR) ? "r" : "-");
+        printf((st.st_mode & S_IWUSR) ? "w" : "-");
+        printf((st.st_mode & S_IXUSR) ? "x" : "-");
+        printf((st.st_mode & S_IRGRP) ? "r" : "-");
+        printf((st.st_mode & S_IWGRP) ? "w" : "-");
+        printf((st.st_mode & S_IXGRP) ? "x" : "-");
+        printf((st.st_mode & S_IROTH) ? "r" : "-");
+        printf((st.st_mode & S_IWOTH) ? "w" : "-");
+        printf((st.st_mode & S_IXOTH) ? "x" : "-");
+        printf("\n");
     }
 }
 
-
 long long int ListFiles(const char *dirPath) {
     struct dirent *dp;
+    long long int totalSize = 0;
 
     DIR *dir = opendir(dirPath);
-
 
     if (!dir) {
         perror("Can't open the directory");
@@ -54,16 +75,16 @@ long long int ListFiles(const char *dirPath) {
             if (strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0) {
                 char path[512];
                 snprintf(path, sizeof(path), "%s/%s", dirPath, dp->d_name);
-                ListFiles(path);
-                }
-            } else {
-                char path[512];
-                snprintf(path, sizeof(path), "%s/%s", dirPath, dp->d_name);
-                displayFileSize(path);
+                totalSize += ListFiles(path);
             }
-
+        } else {
+            char path[512];
+            snprintf(path, sizeof(path), "%s/%s", dirPath, dp->d_name);
+            displayFileDetails(path);
         }
+    }
 
     closedir(dir);
 
+    return totalSize;
 }
