@@ -1,0 +1,102 @@
+Determine the validity of the following statements. Circle either True or False.
+1.  Group functions work across many rows to produce one result.
+  True
+	Group functions summarize data from multiple rows into a single result, often used with the GROUP BY clause in SQL.
+2.  Group functions include nulls in calculations.
+  True
+	Group functions consider NULL values when performing calculations, ensuring comprehensive results.
+3.  The WHERE clause restricts rows prior to inclusion in a group calculation.
+  True
+	The WHERE clause filters rows before they are aggregated, controlling which data is included in group-level calculations.
+4. Display the highest, lowest, sum, and average salary of all employees. Label the columns
+  Maximum, Minimum, Sum, and Average, respectively. Round your results to the decimal
+  position. Save your SQL statement in a file called p5q4.sql.
+    Maximum  Minimum	Sum Average
+    -------  ------- ------ -------
+   	5000      800  29025	2073
+	============
+SELECT
+    ROUND(MAX(sal), 2) AS "Maximum",
+    ROUND(MIN(sal), 2) AS "Minimum",
+    ROUND(SUM(sal), 2) AS "Sum",
+    ROUND(AVG(sal), 2) AS "Average"
+FROM
+    emp;
+	============
+5. Modify p5q4.sql to display the minimum, maximum, sum, and average salary for each job type.
+  Resave to a file called p5q5.sql.  Rerun your query.
+    JOB   	Maximum  Minimum 	Sum  Average
+    ---------- -------- -------- ------- --------
+    ANALYST    	3000 	3000    6000 	3000
+    CLERK      	1300  	800    4150 	1038
+    MANAGER    	2975 	2450    8275 	2758
+    PRESIDENT  	5000 	5000    5000 	5000
+    SALESMAN   	1600 	1250    5600 	1400
+	============
+SELECT
+    e.job AS "JOB",
+    ROUND(MAX(e.sal), 2) AS "Maximum",
+    ROUND(MIN(e.sal), 2) AS "Minimum",
+    ROUND(SUM(e.sal), 2) AS "Sum",
+    ROUND(AVG(e.sal), 2) AS "Average"
+FROM
+    emp e
+GROUP BY
+    e.job
+ORDER BY
+    e.job;
+	============
+6.  Write a query to display the number of people with the same job.
+    JOB      COUNT(*)
+    ---------- --------
+    ANALYST  2
+    CLERK  4
+    MANAGER  3
+    PRESIDENT  1
+    SALESMAN  4
+	============
+SELECT
+    e.job AS "JOB",
+    COUNT(*) AS "COUNT(*)"
+FROM
+    emp e
+GROUP BY
+    e.job
+ORDER BY
+    e.job;
+	============
+
+ 7.  Determine the number of managers without listing them. Label the column Number of
+  Managers.
+    Number of Managers
+    ------------------
+             	6
+
+	============
+SELECT
+    COUNT(DISTINCT mgr) AS "Number of Managers"
+FROM
+    emp
+WHERE
+    mgr IS NOT NULL;
+	============
+8.  Write a query that will display the difference between the highest and lowest salaries. Label
+  the column DIFFERENCE.
+    DIFFERENCE
+    ----------
+          4200
+	============
+SELECT
+    (MAX(sal) - MIN(sal)) AS "DIFFERENCE"
+FROM
+    emp;
+	============
+OPTIONAL --- 
+9.
+
+
+
+
+
+
+
