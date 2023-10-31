@@ -92,10 +92,41 @@ FROM
     emp;
 	============
 OPTIONAL --- 
-9.
+9.  Display the manager number and the salary of the lowest paid employee for that manager.
+  Exclude anyone where the manager id is not known. Exclude any groups where the minimum
+  salary is less than $1000. Sort the output in descending order of salary.
 
 
-
+      	MGR  MIN(SAL)
+    ---------  --------
+         7566  	3000
+         7839  	2450
+         7782  	1300
+         7788  	1100
+	============
+SELECT
+    e.mgr AS "MGR",
+    MIN(e.sal) AS "MIN(SAL)"
+FROM
+    emp e
+WHERE
+    e.mgr IS NOT NULL
+GROUP BY
+    e.mgr
+HAVING
+    MIN(e.sal) >= 1000
+ORDER BY
+    "MIN(SAL)" DESC;
+	============
+10.  Write a query to display the department name, location name, number of employees, and the
+  average salary for all employees in that department. Label the columns’ dname, loc,
+  Number of People, and Salary, respectively.
+    DNAME        LOC   	Number of People  Salary
+    ------------ --------- ---------------- -------
+    ACCOUNTING   NEW YORK              3 2916.67
+    RESEARCH 	DALLAS              5	2175
+    SALES    	CHICAGO              6 1566.67
+	============
 
 
 
