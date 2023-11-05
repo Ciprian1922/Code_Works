@@ -11,10 +11,10 @@ public class EmployeeManagementGUI {
 
     public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled) {
         this.system = system;
-        this.tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Function", "Married"}, 0);
+        this.tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Function", "Married", "Region"}, 0);
         // Populate the table model with the employees from the ManagementSystem
         for (Employee employee : system.getEmployees()) {
-            tableModel.addRow(new Object[]{employee.getId(), employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried()});
+            tableModel.addRow(new Object[]{employee.getId(), employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried(), employee.getRegion()});
         }
         this.isDevEnabled = isDevEnabled;
     }
@@ -39,8 +39,9 @@ public class EmployeeManagementGUI {
                 JTextField functionField = new JTextField();
                 String[] maritalStatusOptions = {"Married", "Single"};
                 JComboBox<String> maritalStatusCombo = new JComboBox<>(maritalStatusOptions);
+                JComboBox<Region> regionCombo = new JComboBox<>(Region.values()); // Dropdown for selecting region
 
-                JPanel panel = new JPanel(new GridLayout(6, 2));
+                JPanel panel = new JPanel(new GridLayout(7, 2)); // Adjusted to accommodate the region field
                 panel.add(new JLabel("ID:"));
                 panel.add(idField);
 
@@ -67,6 +68,8 @@ public class EmployeeManagementGUI {
                 panel.add(functionField);
                 panel.add(new JLabel("Marital Status:"));
                 panel.add(maritalStatusCombo);
+                panel.add(new JLabel("Region:"));
+                panel.add(regionCombo);
 
                 int result = JOptionPane.showConfirmDialog(frame, panel, "Add Employee",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -77,13 +80,14 @@ public class EmployeeManagementGUI {
                     int age = Integer.parseInt(ageField.getText());
                     String function = functionField.getText();
                     boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
+                    Region region = (Region) regionCombo.getSelectedItem(); // Get the selected region
 
                     // Create a new employee and add it to the system
-                    Employee newEmployee = new Employee(id, name, age, function, isMarried);
+                    Employee newEmployee = new Employee(id, name, age, function, isMarried, region);
                     system.addEmployee(newEmployee);
 
                     // Add the new employee to the table
-                    tableModel.addRow(new Object[]{id, name, age, function, isMarried});
+                    tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
                 }
             }
         });
@@ -118,4 +122,5 @@ public class EmployeeManagementGUI {
 
         frame.setVisible(true);
     }
+    // ... existing code ...
 }
