@@ -122,5 +122,4 @@ public class EmployeeManagementGUI {
 
         frame.setVisible(true);
     }
-    // ... existing code ...
 }
