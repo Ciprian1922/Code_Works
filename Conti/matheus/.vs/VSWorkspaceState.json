@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\build",
+    "\\cmake",
+    "\\src",
+    "\\src\\include",
+    "\\src\\include\\multiply",
+    "\\src\\multiply",
+    "\\tests",
+    "\\tests\\mock"
+  ],
+  "SelectedNode": "\\cmake\\gtest_common.cmake",
+  "PreviewInSolutionExplorer": false
+}
