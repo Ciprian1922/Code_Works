@@ -51,6 +51,35 @@ public class Employee {
         return married;
     }
 
+    public boolean isUpgradable() {
+        return !this.getFunction().equalsIgnoreCase("Ceo");
+    }
+
+    public boolean upgrade() {
+        String currentRole = this.getFunction();
+        Role role = Role.valueOf(currentRole);
+
+        // Get the next role
+        Role nextRole = getNextRole(role);
+
+        if (nextRole != null) {
+            this.setFunction(nextRole.toString());
+            return true; // Upgrade successful
+        }
+
+        return false; // Cannot upgrade further
+    }
+
+    public static Role getNextRole(Role currentRole) {
+        Role[] roles = Role.values();
+        for (int i = 0; i < roles.length - 1; i++) {
+            if (roles[i] == currentRole) {
+                return roles[i + 1];
+            }
+        }
+        return null; // If the current role is the highest, return null
+    }
+
     public void setMarried(boolean married) {
         this.married = married;
     }

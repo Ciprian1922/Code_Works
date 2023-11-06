@@ -18,7 +18,7 @@ public class EmployeeManagementGUI {
         }
         this.isDevEnabled = isDevEnabled;
     }
-    private Role getNextRole(Role currentRole) {
+    public Role getNextRole(Role currentRole) {
         Role[] roles = Role.values();
         for (int i = 0; i < roles.length - 1; i++) {
             if (roles[i] == currentRole) {
@@ -195,31 +195,20 @@ public class EmployeeManagementGUI {
                     Employee selectedEmployee = system.getEmployeeById(id);
 
                     if (selectedEmployee != null) {
-                        // Get the employee's current role (Function)
-                        Role currentRole = Role.valueOf(selectedEmployee.getFunction());
-
-                        // Determine the next role
-                        Role nextRole = getNextRole(currentRole);
-
-                        if (nextRole != null) {
-                            // Update the employee's role
-                            selectedEmployee.setFunction(String.valueOf(nextRole));
+                        // Check if the employee is upgradable
+                        if (selectedEmployee.isUpgradable()) {
+                            // Perform the upgrade
+                            selectedEmployee.upgrade();
 
                             // Update the table to reflect the change
-                            tableModel.setValueAt(nextRole, selectedRow, 3); // Assuming the column index for Function is 3
+                            tableModel.setValueAt(selectedEmployee.getFunction(), selectedRow, 3); // Assuming the column index for Function is 3
                         } else {
-                            JOptionPane.showMessageDialog(frame, "The employee has reached the highest role.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(frame, "The employee cannot be upgraded.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
             }
         });
-
-        // Function to get the next role (Function)
-
-
-        // Rest of your code...
-
 
 
         frame.add(tableScrollPane, BorderLayout.CENTER);
