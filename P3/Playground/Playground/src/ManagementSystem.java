@@ -24,4 +24,13 @@ class ManagementSystem {
     public void addEmployees(List<Employee> employeesToAdd) {
         employees.addAll(employeesToAdd);
     }
+
+    public Employee getEmployeeById(int id) {
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null; // If no employee with the given ID is found
+    }
 }

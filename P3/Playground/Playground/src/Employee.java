@@ -6,11 +6,11 @@ public class Employee {
     private boolean married;
     private Region region;
 
-    public Employee(int id, String name, int age, String function, boolean married, Region region) {
+    public Employee(int id, String name, int age, Role function, boolean married, Region region) {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.function = function;
+        this.function = String.valueOf(function);
         this.married = married;
         this.region = region;
     }
