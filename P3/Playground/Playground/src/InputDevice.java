@@ -5,8 +5,8 @@ public class InputDevice {
     public static final int ceva = 10;
     public final int altcevaceva = 11;
     // Define window size
-    public static final int width = 600;
-    public static final int height = 400;
+    public static final int width = 800;
+    public static final int height = 600;
     // Define a list of default employees with regions
     public static List<Employee> defaultEmployees = new ArrayList<>();
 

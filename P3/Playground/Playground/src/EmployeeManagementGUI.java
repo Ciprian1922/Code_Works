@@ -30,7 +30,51 @@ public class EmployeeManagementGUI {
         JScrollPane tableScrollPane = new JScrollPane(employeeTable);
 
         JButton addEmployeeButton = new JButton("Add Employee");
-        // ... (previous code for "Add Employee" button)
+        addEmployeeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Create input fields for employee details
+                JTextField idField = new JTextField();
+                JTextField nameField = new JTextField();
+                JTextField ageField = new JTextField();
+                JTextField functionField = new JTextField();
+                String[] maritalStatusOptions = {"Married", "Single"};
+                JComboBox<String> maritalStatusCombo = new JComboBox<>(maritalStatusOptions);
+                JComboBox<Region> regionCombo = new JComboBox<>(Region.values());
+
+                JPanel panel = new JPanel(new GridLayout(7, 2));
+                panel.add(new JLabel("ID:"));
+                panel.add(idField);
+                panel.add(new JLabel("Name:"));
+                panel.add(nameField);
+                panel.add(new JLabel("Age:"));
+                panel.add(ageField);
+                panel.add(new JLabel("Function:"));
+                panel.add(functionField);
+                panel.add(new JLabel("Marital Status:"));
+                panel.add(maritalStatusCombo);
+                panel.add(new JLabel("Region:"));
+                panel.add(regionCombo);
+
+                int result = JOptionPane.showConfirmDialog(frame, panel, "Add Employee",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    int id = Integer.parseInt(idField.getText());
+                    String name = nameField.getText();
+                    int age = Integer.parseInt(ageField.getText());
+                    String function = functionField.getText();
+                    boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
+                    Region region = (Region) regionCombo.getSelectedItem();
+
+                    // Create a new employee and add it to the system
+                    Employee newEmployee = new Employee(id, name, age, function, isMarried, region);
+                    system.addEmployee(newEmployee);
+
+                    // Add the new employee to the table
+                    tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
+                }
+            }
+        });
 
         // Clone the "Add Employee" button to create the "Edit Employee" button
         JButton editEmployeeButton = new JButton("Edit Employee");
