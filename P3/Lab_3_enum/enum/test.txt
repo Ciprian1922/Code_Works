@@ -1,0 +1,5 @@
+Total Weight of Fruits: 555.0 grams
+Total Sugar Content: 278.0 grams
+Mango: 1
+Banana: 1
+Apple: 3

@@ -14,7 +14,7 @@ public class Application {
         this.outputDevice = outputDevice;
         this.args = args;
     }
-
+    //OutputDevice outputDevice = new OutputDevice(outputStream);
     public void run() {
         inputDevice.readFruit(fruits, args);
 

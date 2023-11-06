@@ -1,10 +1,26 @@
+import java.io.InputStream;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class InputDevice {
+    private InputStream inputStream;
+    private Scanner scanner;
+
+    public InputDevice(InputStream inputStream) {
+        this.inputStream = inputStream;
+        this.scanner = new Scanner(inputStream);
+    }
+
+    public String readLine(){
+        return this.scanner.nextLine();
+    }
+
     public List<Fruit> readFruit(List<Fruit> fruitList, String[] args) {
         Random random = new Random();
         int numFruits = 5; // Change this to the desired number of fruits
+
+        Scanner scanner = new Scanner(inputStream);
 
         for (int i = 0; i < numFruits; i++) {
             int sugar = random.nextInt(100);
