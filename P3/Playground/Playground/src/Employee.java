@@ -4,7 +4,7 @@ public class Employee {
     private int age;
     private String function;
     private boolean married;
-    private Region region; // Added region field
+    private Region region;
 
     public Employee(int id, String name, int age, String function, boolean married, Region region) {
         this.id = id;
@@ -12,30 +12,49 @@ public class Employee {
         this.age = age;
         this.function = function;
         this.married = married;
-        this.region = region; // Initialize the region
+        this.region = region;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getFunction() {
         return function;
+    }
+
+    public void setFunction(String function) {
+        this.function = function;
     }
 
     public boolean isMarried() {
         return married;
     }
 
-    // Getter and setter methods for the region
+    public void setMarried(boolean married) {
+        this.married = married;
+    }
+
     public Region getRegion() {
         return region;
     }
