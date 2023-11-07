@@ -1,0 +1,90 @@
+1.Write a SQL statement that finds out each order number followed by the name of the customers who made the order.
+Select * from orders, OEHR_customers where customers.id = order.customer.id
+======================
+SELECT
+    o.ORDER_TOTAL,
+    c.CUST_FIRST_NAME,
+    c.CUST_LAST_NAME
+FROM
+    OEHR_orders o
+JOIN
+    OEHR_customers c
+ON
+    o.CUSTOMER_ID = c.CUSTOMER_ID;
+======================
+EMPLOYEE_ID,FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTAMENT_ID
+2.
+
+
+
+
+
+
+
+4.Exercise 4: Display the employee name, department number, and job title for all employees whose department location is Dallas.
+ENAME    DEPTNO  JOB
+JONES    20     MANAGER
+FORD     20     ANALYST
+SMITH    20     CLERK
+SCOTT    20     ANALYST
+ADAMS    20     CLERK
+======================
+SELECT
+    e.ename AS "ENAME",
+    e.deptno AS "DEPTNO",
+    e.job AS "JOB"
+FROM
+    emp e
+JOIN
+    dept d
+ON
+    e.deptno = d.deptno
+WHERE
+    d.loc = 'DALLAS';
+======================
+
+5.Display the employee name and salary of all employees who report to King.
+ENAME    SAL
+BLAKE    2850
+CLARK    2450
+JONES    2975
+======================
+SELECT
+    e.ename AS "ENAME",
+    e.sal AS "SAL"
+FROM
+    emp e
+WHERE
+    e.mgr = (SELECT empno FROM emp WHERE ename = 'KING');
+======================
+
+6.Display the department number, name, and job for all employees in the Sales department.
+DEPTNO  ENAME    JOB
+30      BLAKE    MANAGER
+30      MARTIN   SALESMAN
+30      ALLEN    SALESMAN
+30      TURNER   SALESMAN
+30      JAMES    SALESMAN
+30      WARD     SALESMAN
+======================
+
+======================
+
+7.Modify p6g3.sqi to display the employee number, name, and salary for all employees who earn more than the average salary and who work in a department with any employee with a 'T' in their name. Resave as p6q7.sqi and rerun your query.
+EMPNO  ENAME   SAL
+7566   JONES   2975
+7788   SCOTT   3000
+7902   FORD    3000
+7698   BLAKE   2850
+======================
+SELECT
+    e.empno AS "EMPNO",
+    e.ename AS "ENAME",
+    e.sal AS "SAL"
+FROM
+    emp e
+WHERE
+    e.sal > (SELECT AVG(sal) FROM emp)
+    AND e.deptno IN (SELECT deptno FROM emp WHERE ename LIKE '%T%');
+
+======================
