@@ -1,6 +1,5 @@
 # ninja log v5
-604	735	7201429533835726	Homework.exe	56b42ca40cd8db07
-1	602	7201429532525532	CMakeFiles/Homework.dir/main.cpp.obj	9fb9cb1788801772
-3	271	7201438255333886	build.ninja	9269c6c349ffb1d1
-1	660	7201438262936222	CMakeFiles/Homework.dir/computePrefixFunction.cpp.obj	bc02bc1215cc30c1
 661	816	7201438264444355	Homework.exe	1d28a6459002db79
+1	602	7201429532525532	CMakeFiles/Homework.dir/main.cpp.obj	9fb9cb1788801772
+3	271	7211315138423484	build.ninja	9269c6c349ffb1d1
+1	660	7201438262936222	CMakeFiles/Homework.dir/computePrefixFunction.cpp.obj	bc02bc1215cc30c1
