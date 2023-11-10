@@ -1,0 +1,3 @@
+C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/Conti/matheus/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-k09eay/CMakeFiles/cmTC_7a710.dir
+C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/Conti/matheus/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-k09eay/CMakeFiles/edit_cache.dir
+C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/Conti/matheus/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-k09eay/CMakeFiles/rebuild_cache.dir
