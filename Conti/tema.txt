@@ -1,0 +1,17 @@
+din 1000 de linii cu care sa facem test pe el
+fisierul/ fisierele trebuie sa contina
+ 
+-variabile globale statice si nonstatice
+-functii statice si non statice (toate fuctiile statice trebuie sa fie apelate cel putin odata in fisierul testat)
+ 
+ 
+functii cu if-uri, switch-uri
+functii cu operatori logici
+functii cu parametrii de iesire (inclusiv cu array-uri ca parametrii de iesire)
+functii care primesc ca parametrii structuri
+functii cu variabile interne statice
+functii ce returneaza adrese
+functii ce contin bucle
+functii ce contin apeluri de functii externe (unele dintre ele trebuie sa aibe parametrii de iesire, sa returneze o valoare, sa returneze un pointer)
+ 
+combinatii intre cele de mai sus

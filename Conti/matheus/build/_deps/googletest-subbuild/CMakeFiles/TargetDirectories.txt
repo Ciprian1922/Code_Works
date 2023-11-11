@@ -1,3 +1,0 @@
-C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/Conti/matheus/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
-C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/Conti/matheus/build/_deps/googletest-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/Conti/matheus/build/_deps/googletest-subbuild/CMakeFiles/ZERO_CHECK.dir
