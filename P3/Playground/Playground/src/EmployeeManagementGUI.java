@@ -9,7 +9,7 @@ public class EmployeeManagementGUI {
     private DefaultTableModel tableModel;
     private boolean isDevEnabled;
 
-    public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled) {
+    public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled, boolean isLoadEnabled) {
         this.system = system;
         this.tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Function", "Married", "Region"}, 0);
         // Populate the table model with the employees from the ManagementSystem
@@ -18,6 +18,7 @@ public class EmployeeManagementGUI {
         }
         this.isDevEnabled = isDevEnabled;
     }
+
     public Role getNextRole(Role currentRole) {
         Role[] roles = Role.values();
         for (int i = 0; i < roles.length - 1; i++) {
@@ -209,7 +210,6 @@ public class EmployeeManagementGUI {
                 }
             }
         });
-
 
         frame.add(tableScrollPane, BorderLayout.CENTER);
 

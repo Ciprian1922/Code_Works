@@ -1,13 +1,15 @@
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class InputDevice {
     public static final int ceva = 10;
     public final int altcevaceva = 11;
-    // Define window size
+
     public static final int width = 800;
     public static final int height = 600;
-    // Define a list of default employees with regions
+
     public static List<Employee> defaultEmployees = new ArrayList<>();
 
     static {
@@ -25,7 +27,51 @@ public class InputDevice {
         defaultEmployees.add(new Employee(12, "Robert", 32, Role.Team_Lead, true, Region.Romania));
         defaultEmployees.add(new Employee(13, "Sophia", 29, Role.Associate, true, Region.Italy));
         defaultEmployees.add(new Employee(14, "Daniel", 26, Role.Director, false, Region.Germany));
-
-
     }
+
+    public static List<Employee> loadEmployeesFromFile() {
+        List<Employee> employees = new ArrayList<>();
+        String fileName = "C:\\Users\\popa_\\Desktop\\GitHub_UVT\\Code_Works\\P3\\Playground\\Playground\\src\\emp.txt";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 6) {
+                    int id = Integer.parseInt(data[0]);
+                    String name = data[1];
+                    int age = Integer.parseInt(data[2]);
+                    Role function = Role.valueOf(data[3]);
+                    boolean isMarried = Boolean.parseBoolean(data[4]);
+                    Region region = Region.valueOf(data[5]);
+
+                    employees.add(new Employee(id, name, age, function, isMarried, region));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return employees;
+    }
+
+    public static void saveEmployeesToFile(List<Employee> employees, boolean wasLoaded) {
+        if (wasLoaded) {
+            String fileName = "C:\\Users\\popa_\\Desktop\\GitHub_UVT\\Code_Works\\P3\\Playground\\Playground\\src\\emp.txt";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                for (Employee employee : employees) {
+                    writer.write(
+                            employee.getId() + "," +
+                                    employee.getName() + "," +
+                                    employee.getAge() + "," +
+                                    employee.getFunction() + "," +
+                                    employee.isMarried() + "," +
+                                    employee.getRegion() + "\n"
+                    );
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

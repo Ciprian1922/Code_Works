@@ -6,18 +6,28 @@ import java.awt.event.ActionListener;
 public class Main {
     public static void main(String[] args) {
         ManagementSystem system = new ManagementSystem();
-        system.addEmployees(InputDevice.defaultEmployees);
-        system.addEmployees(InputDevice.defaultEmployees);
-        system.addEmployees(InputDevice.defaultEmployees);
-        system.addEmployees(InputDevice.defaultEmployees);
-
-        // Check if "dev" mode is enabled
+        boolean isLoadEnabled = isLoadEnabled(args);
         boolean isDev = isDevEnabled(args);
 
+        if (isLoadEnabled) {
+            system.addEmployees(InputDevice.loadEmployeesFromFile()); // Load employees from file
+        } else {
+            system.addEmployees(InputDevice.defaultEmployees);
+            //system.addEmployees(InputDevice.defaultEmployees);
+            //system.addEmployees(InputDevice.defaultEmployees);
+            //system.addEmployees(InputDevice.defaultEmployees);
+        }
+
         SwingUtilities.invokeLater(() -> {
-            EmployeeManagementGUI gui = new EmployeeManagementGUI(system, isDev);
+            EmployeeManagementGUI gui = new EmployeeManagementGUI(system, isDev, isLoadEnabled);
             gui.createAndShowGUI();
         });
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (isLoadEnabled) {
+                InputDevice.saveEmployeesToFile(system.getEmployees(), isLoadEnabled);
+            }
+        }));
     }
 
     public static void aici(String[] args) {
@@ -38,4 +48,14 @@ public class Main {
         }
         return false;
     }
+
+    private static boolean isLoadEnabled(String[] args) {
+        for (String arg : args) {
+            if (arg.equals("load")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
