@@ -31,7 +31,7 @@ public class InputDevice {
 
     public static List<Employee> loadEmployeesFromFile() {
         List<Employee> employees = new ArrayList<>();
-        String fileName = "C:\\Users\\popa_\\Desktop\\GitHub_UVT\\Code_Works\\P3\\Playground\\Playground\\src\\emp.txt";
+        String fileName = "src/emp.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -56,7 +56,7 @@ public class InputDevice {
 
     public static void saveEmployeesToFile(List<Employee> employees, boolean wasLoaded) {
         if (wasLoaded) {
-            String fileName = "C:\\Users\\popa_\\Desktop\\GitHub_UVT\\Code_Works\\P3\\Playground\\Playground\\src\\emp.txt";
+            String fileName = "src/emp.txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
                 for (Employee employee : employees) {
                     writer.write(
