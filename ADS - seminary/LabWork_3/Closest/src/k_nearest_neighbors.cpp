@@ -1,148 +1,88 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <queue>
-#include <algorithm>
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Scanner;
 
-struct Point {
-    double x, y, z;
-    double distance;
+class Point {
+    double x, y;
 
-    Point(double x, double y, double z) : x(x), y(y), z(z), distance(0) {}
-
-    Point(double x, y, z, dist) : x(x), y(y), z(z), distance(dist) {}
-
-    double distanceTo(double qx, double qy, double qz) const {
-        return (x - qx) * (x - qx) + (y - qy) * (y - qy) + (z - qz) * (z - qz);
+    Point(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
+}
 
-    bool operator<(const Point& other) const {
-        return distance < other.distance;
-    }
-};
+class KNN {
+    static class DistanceComparator implements Comparator<Point> {
+        private final double qx, qy;
 
-struct Node {
-    double x, y, z;
-    Node* left;
-    Node* right;
-
-    Node(double x, double y, double z) : x(x), y(y), z(z), left(nullptr), right(nullptr) {}
-};
-
-class KDTree {
-public:
-    KDTree(const std::vector<Point>& points) {
-        root = buildTree(points, 0);
-    }
-
-    std::priority_queue<Point> findNearestNeighbors(const Point& queryPoint, int k) {
-        std::priority_queue<Point> nearestNeighbors;
-
-        findNearestNeighbors(root, queryPoint, k, nearestNeighbors, 0);
-
-        return nearestNeighbors;
-    }
-
-private:
-    Node* root;
-
-    Node* buildTree(const std::vector<Point>& points, int depth) {
-        if (points.empty()) {
-            return nullptr;
+        DistanceComparator(double qx, double qy) {
+            this.qx = qx;
+            this.qy = qy;
         }
 
-        int axis = depth % 3;
-        if (axis == 0) {
-            std::sort(points.begin(), points.end(), [](const Point& a, const Point& b) {
-                return a.x < b.x;
-            });
-        } else if (axis == 1) {
-            std::sort(points.begin(), points.end(), [](const Point& a, const Point& b) {
-                return a.y < b.y;
-            });
-        } else {
-            std::sort(points.begin(), points.end(), [](const Point& a, const Point& b) {
-                return a.z < b.z;
-            });
+        @Override
+        public int compare(Point p1, Point p2) {
+            double dist1 = distance(p1.x, p1.y, qx, qy);
+            double dist2 = distance(p2.x, p2.y, qx, qy);
+
+            return Double.compare(dist1, dist2);
         }
 
-        int median = points.size() / 2;
-        Node* node = new Node(points[median].x, points[median].y, points[median].z);
-        node->left = buildTree(std::vector<Point>(points.begin(), points.begin() + median), depth + 1);
-        node->right = buildTree(std::vector<Point>(points.begin() + median + 1, points.end()), depth + 1);
-
-        return node;
+        private double distance(double x1, double y1, double x2, double y2) {
+            return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+        }
     }
 
-    void findNearestNeighbors(Node* node, const Point& queryPoint, int k, std::priority_queue<Point>& nearestNeighbors, int depth) {
-        if (!node) {
-            return;
+public static void main(String[] args) {
+        try {
+            File inputFile = new File("input.txt");
+            Scanner scanner = new Scanner(inputFile);
+
+            int n = scanner.nextInt();
+            int k = scanner.nextInt();
+
+            List<Point> points = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                double x = scanner.nextDouble();
+                double y = scanner.nextDouble();
+                points.add(new Point(x, y));
+            }
+
+            double qx = scanner.nextDouble();
+            double qy = scanner.nextDouble();
+            Point queryPoint = new Point(qx, qy);
+
+            List<Point> nearestNeighbors = findNearestNeighbors(points, queryPoint, k);
+
+            for (Point p : nearestNeighbors) {
+                System.out.println(p.x + " " + p.y);
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+    }
 
-        double distance = node->distanceTo(queryPoint.x, queryPoint.y, queryPoint.z);
-        Point point(node->x, node->y, node->z, distance);
+private static List<Point> findNearestNeighbors(List<Point> points, Point queryPoint, int k) {
+        PriorityQueue<Point> nearestNeighbors = new PriorityQueue<>(new DistanceComparator(queryPoint.x, queryPoint.y));
 
-        if (nearestNeighbors.size() < k || distance < nearestNeighbors.top().distance) {
-            nearestNeighbors.push(point);
+        for (Point point : points) {
+            nearestNeighbors.offer(point);
             if (nearestNeighbors.size() > k) {
-                nearestNeighbors.pop();
-            }
-
-            int axis = depth % 3;
-            if (axis == 0) {
-                if (queryPoint.x < node->x) {
-                    findNearestNeighbors(node->left, queryPoint, k, nearestNeighbors, depth + 1);
-                } else {
-                    findNearestNeighbors(node->right, queryPoint, k, nearestNeighbors, depth + 1);
-                }
-            } else if (axis == 1) {
-                if (queryPoint.y < node->y) {
-                    findNearestNeighbors(node->left, queryPoint, k, nearestNeighbors, depth + 1);
-                } else {
-                    findNearestNeighbors(node->right, queryPoint, k, nearestNeighbors, depth + 1);
-                }
-            } else {
-                if (queryPoint.z < node->z) {
-                    findNearestNeighbors(node->left, queryPoint, k, nearestNeighbors, depth + 1);
-                } else {
-                    findNearestNeighbors(node->right, queryPoint, k, nearestNeighbors, depth + 1);
-                }
+                nearestNeighbors.poll();
             }
         }
+
+        List<Point> result = new ArrayList<>();
+        while (!nearestNeighbors.isEmpty()) {
+            result.add(nearestNeighbors.poll());
+        }
+
+        return result;
     }
-};
-
-int main() {
-    std::ifstream inputFile("input.txt");
-    if (!inputFile) {
-        std::cerr << "Failed to open input.txt" << std::endl;
-        return 1;
-    }
-
-    int n, k;
-    inputFile >> n >> k;
-    std::vector<Point> points;
-
-    for (int i = 0; i < n; i++) {
-        double x, y, z;
-        inputFile >> x >> y >> z;
-        points.emplace_back(x, y, z);
-    }
-
-    double xQuery, yQuery, zQuery;
-    inputFile >> xQuery >> yQuery >> zQuery;
-    Point queryPoint(xQuery, yQuery, zQuery);
-
-    KDTree kdTree(points);
-    std::priority_queue<Point> nearestNeighbors = kdTree.findNearestNeighbors(queryPoint, k);
-
-    while (!nearestNeighbors.empty()) {
-        Point p = nearestNeighbors.top();
-        std::cout << p.x << " " << p.y << " " << p.z << std::endl;
-        nearestNeighbors.pop();
-    }
-
-    inputFile.close();
-
-    return 0;
 }

@@ -58,6 +58,7 @@ public class InputDevice {
         if (wasLoaded) {
             String fileName = "src/emp.txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                employees.sort(Comparator.comparingInt(Employee::getId));
                 for (Employee employee : employees) {
                     writer.write(
                             employee.getId() + "," +

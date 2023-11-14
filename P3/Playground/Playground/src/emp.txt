@@ -1,5 +1,6 @@
 1,John,30,Ceo,true,Romania
 2,Alice,25,Lead,false,Germany
+2,Marcelica,32,Intern,true,Romania
 3,Popa,5,Junior,true,Romania
 4,Andrei,28,Director,true,Spain
 5,Roxana,21,Ceo,true,Romania
