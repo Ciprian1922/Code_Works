@@ -1,0 +1,104 @@
+1. Write a query to display the name, department number, and salary of any employee whose department number and salary match both the department number and salary of any employee who earns a commission.
+
+ENAME   DEPTNO   SAL
+MARTIN  30       1250
+WARD    30       1250
+TURNER  30       1500
+ALLEN   30       1600
+
+   ============================
+SELECT
+    ENAME,
+    DEPTNO,
+    SAL
+FROM
+    emp
+WHERE
+    (DEPTNO, SAL) IN (SELECT DEPTNO, SAL FROM emp WHERE COMM IS NOT NULL);
+   ============================
+
+2. Display the name, department name, and salary of any employee whose salary and commission match both the salary and commission of any employee located in Dallas.
+
+ENAME   DNAME      SAL
+SMITH   RESEARCH   800
+ADAMS   RESEARCH   1100
+JONES   RESEARCH   2975
+FORD    RESEARCH   3000
+SCOTT   RESEARCH   3000
+
+   ============================
+
+   ============================
+3. Create a query to display the name, hire date, and salary for all employees who have both the same salary and commission as Scott.
+
+ENAME   HIREDATE    SAL
+FORD    03-DEC-81   3000
+
+   ============================
+   ============================
+4. Create a query to display the employees that earn a salary higher than the salary of any of the CLERKS. Sort the results on salary from highest to lowest.
+
+ENAME      JOB          SAL
+KING       PRESIDENT    5000
+FORD       ANALYST      3000
+SCOTT      ANALYST      3000
+JONES      MANAGER      2975
+BLAKE      MANAGER      2850
+CLARK      MANAGER      2450
+ALLEN      SALESMAN     1600
+TURNER     SALESMAN     1500
+
+   ============================
+   ============================
+
+
+5. Write a query in SQL to list the employees who are senior to Greenberg (LASTNAME) - longer time since employment .
+   ============================
+SELECT
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    HIRE_DATE
+FROM
+    OEHR_EMPLOYEES
+WHERE
+    HIRE_DATE < (SELECT HIRE_DATE FROM OEHR_EMPLOYEES WHERE LAST_NAME = 'Greenberg')
+ORDER BY
+    HIRE_DATE DESC;
+   ============================
+6. Write a query in SQL to list the employees whose salary is the same as the salary of FRANK or SANDRINE. List the result in descending order of salary.
+   ============================
+SELECT
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    SALARY
+FROM
+    OEHR_EMPLOYEES
+WHERE
+    SALARY = (SELECT SALARY FROM OEHR_EMPLOYEES WHERE FIRST_NAME = 'FRANK')
+    OR SALARY = (SELECT SALARY FROM OEHR_EMPLOYEES WHERE FIRST_NAME = 'SANDRINE')
+ORDER BY
+    SALARY DESC;
+   ============================
+7. Write a query in SQL to list the employees whose salary is more than the total remuneration of the SALESMAN.
+   ============================
+SELECT
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    SALARY
+FROM
+    OEHR_EMPLOYEES
+WHERE
+    SALARY > (SELECT SUM(SALARY + NVL(COMMISSION_PCT, 0)) FROM OEHR_EMPLOYEES WHERE JOB_ID = 'SALESMAN');
+   ============================
+8. Write a query in SQL to find the total salary given to the MANAGER.
+   ============================
+SELECT
+    SUM(SALARY) AS TOTAL_MANAGER_SALARY
+FROM
+    OEHR_EMPLOYEES
+WHERE
+    JOB_ID = 'MANAGER';
+   ============================
