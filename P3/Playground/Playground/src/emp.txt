@@ -2,9 +2,7 @@
 2,Marcelica,32,Intern,true,Romania
 3,Popa,5,Associate,true,Romania
 4,Andrei,28,Director,true,Spain
-7,Marcel,34,Intern,true,Romania
 7,puliaaca,23,Intern,false,Romania
-8,David,21,Director,false,Romania
 8,miii,9,Intern,false,Romania
 9,Ionut,88,Junior,false,Italy
 10,Ghita,32,Ceo,false,Sweden
