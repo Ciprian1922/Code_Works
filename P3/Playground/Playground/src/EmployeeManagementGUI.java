@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
 public class EmployeeManagementGUI {
@@ -211,6 +212,42 @@ public class EmployeeManagementGUI {
             }
         });
 
+
+
+        JButton readFromConsoleButton = new JButton("Read from console");
+        readFromConsoleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Read employee details from the console
+                    int id = readIntFromConsole("Provide the ID of the employee: ");
+                    String name = readNameFromConsole("Provide the name of the employee: ");
+                    int age = readAgeFromConsole("Provide the age of the employee: ");
+                    Role function = Role.valueOf(readRoleFromConsole("Provide the Function of the employee: (Intern, Junior, Associate, Intermediate, Senior, Lead, Team_Lead, Director, Ceo) "));
+                    boolean isMarried = readYesNoFromConsole("Is the employee married? (y/n): ");
+                    Region region = readLocationFromConsole("Provide the Region of the employee: (Romania, Germany, Italy, Spain, Sweden)");
+
+                    // Create a new employee and add it to the system
+                    Employee newEmployee = new Employee(id, name, age, function, isMarried, region);
+                    system.addEmployee(newEmployee);
+
+                    // Add the new employee to the table
+                    tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
+
+                    // Notify that the employee has been read successfully
+                    System.out.println("Employee read successfully");
+
+                    // Disable the button after reading the employee
+                    readFromConsoleButton.setEnabled(false);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Error: Invalid input. Please enter a valid number.");
+                } catch (IllegalArgumentException ex) {
+                    System.out.println("Error: Invalid input. Please enter a valid value.");
+                }
+            }
+        });
+
+
         frame.add(tableScrollPane, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
@@ -218,8 +255,94 @@ public class EmployeeManagementGUI {
         buttonPanel.add(editEmployeeButton); // Add the "Edit Employee" button
         buttonPanel.add(removeEmployeeButton);
         buttonPanel.add(promoteEmployeeButton);
+        buttonPanel.add(readFromConsoleButton);
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         frame.setVisible(true);
     }
+    private String readFromConsole(String prompt) {
+        System.out.print(prompt);
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        System.out.println("User input: " + input); // Print the input to the output console
+        return input;
+    }
+
+    private boolean readYesNoFromConsole(String prompt) {
+        while (true) {
+            String response = readFromConsole(prompt).toLowerCase();
+
+            if (response.equals("y") || response.equals("n")) {
+                return response.equals("Yes");
+            } else {
+                System.out.println("Error: Invalid input. Please enter 'y' or 'n'.");
+            }
+        }
+    }
+
+    private int readIntFromConsole(String prompt) {
+        while (true) {
+            try {
+                return Integer.parseInt(readFromConsole(prompt));
+            } catch (NumberFormatException ex) {
+                System.out.println("Error: Invalid input. Please enter a valid number.");
+            }
+        }
+    }
+
+    private String readNameFromConsole(String prompt) {
+        while (true) {
+            String name = readFromConsole(prompt);
+            if (name.matches("[a-zA-Z]+")) {
+                return name;
+            } else {
+                System.out.println("Error: Why would you have numbers in your name? =)");
+            }
+        }
+    }
+
+    private int readAgeFromConsole(String prompt) {
+        while (true) {
+            try {
+                int age = Integer.parseInt(readFromConsole(prompt));
+                if (age >= 1 && age <= 200) {
+                    return age;
+                } else {
+                    System.out.println("Error: Invalid input. Please enter an age between 1 and 200.");
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Error: Invalid input. Please enter a valid number for the age.");
+            }
+        }
+    }
+
+    private String readRoleFromConsole(String prompt) {
+        while (true) {
+            String function = readFromConsole(prompt);
+
+            // Check if the function is present in the Role enum
+            try {
+                Role.valueOf(function);
+                return function;
+            } catch (IllegalArgumentException ex) {
+                System.out.println("Error: " + ex.getMessage() +
+                        "\nAllowed values: (Intern, Junior, Associate, Intermediate, Senior, Lead, Team_Lead, Director, Ceo)");
+            }
+        }
+    }
+
+    private Region readLocationFromConsole(String prompt) {
+        while (true) {
+            String location = readFromConsole(prompt);
+
+            // Check if the location is present in the Region enum
+            try {
+                return Region.valueOf(location);
+            } catch (IllegalArgumentException ex) {
+                System.out.println("Error: " + ex.getMessage() +
+                        "\nAllowed values: (Romania, Germany, Italy, Spain, Sweden)");
+            }
+        }
+    }
+
 }

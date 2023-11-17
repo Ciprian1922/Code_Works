@@ -43,7 +43,14 @@ public class InputDevice {
                     int age = Integer.parseInt(data[2]);
                     Role function = Role.valueOf(data[3]);
                     boolean isMarried = Boolean.parseBoolean(data[4]);
-                    Region region = Region.valueOf(data[5]);
+                    Region region;
+
+                    if ("null".equalsIgnoreCase(data[5])) {
+                        // Handle the case where the region is specified as "null"
+                        region = Region.Romania; // Replace with an appropriate default region
+                    } else {
+                        region = Region.valueOf(data[5]);
+                    }
 
                     employees.add(new Employee(id, name, age, function, isMarried, region));
                 }
@@ -53,6 +60,7 @@ public class InputDevice {
         }
         return employees;
     }
+
 
     public static void saveEmployeesToFile(List<Employee> employees, boolean wasLoaded) {
         if (wasLoaded) {
