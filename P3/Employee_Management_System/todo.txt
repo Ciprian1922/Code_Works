@@ -1,4 +1,0 @@
-implement:
--enum
--like in the salad - upgradable
--homework from lab 4
