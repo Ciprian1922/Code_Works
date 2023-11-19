@@ -1,0 +1,11 @@
+1,John,30,Ceo,true,Romania
+2,Marcelica,32,Intern,true,Romania
+3,Popa,5,Associate,true,Romania
+4,Andrei,28,Director,true,Spain
+9,Ionut,88,Junior,false,Italy
+10,Ghita,32,Ceo,false,Sweden
+23,Mortadela,34,Ceo,true,Romania
+55,Roxanica,21,Associate,false,Romania
+77,Cocor,90,Intern,false,Romania
+88,Max,23,Lead,false,Romania
+90,Rotofei,90,Junior,false,Sweden
