@@ -1,4 +1,4 @@
-public class Employee {
+public class Employee implements Upgradable {
     private int id;
     private String name;
     private int age;
@@ -55,7 +55,7 @@ public class Employee {
         return !this.getFunction().equalsIgnoreCase("Ceo");
     }
 
-    public boolean upgrade() {
+    public void upgrade() {
         String currentRole = this.getFunction();
         Role role = Role.valueOf(currentRole);
 
@@ -64,10 +64,7 @@ public class Employee {
 
         if (nextRole != null) {
             this.setFunction(nextRole.toString());
-            return true; // Upgrade successful
         }
-
-        return false; // Cannot upgrade further
     }
 
     public static Role getNextRole(Role currentRole) {

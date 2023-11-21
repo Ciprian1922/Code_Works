@@ -29,6 +29,7 @@ public class InputDevice {
         defaultEmployees.add(new Employee(14, "Daniel", 26, Role.Director, false, Region.Germany));
     }
 
+
     public static List<Employee> loadEmployeesFromFile() {
         List<Employee> employees = new ArrayList<>();
         String fileName = "src/emp.txt";
@@ -55,12 +56,33 @@ public class InputDevice {
                     employees.add(new Employee(id, name, age, function, isMarried, region));
                 }
             }
+        } catch (FileNotFoundException e) {
+            // File not found, create the default file with default employees
+            createDefaultFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return employees;
     }
 
+    private static void createDefaultFile() {
+        String fileName = "src/emp.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            defaultEmployees.sort(Comparator.comparingInt(Employee::getId));
+            for (Employee employee : defaultEmployees) {
+                writer.write(
+                        employee.getId() + "," +
+                                employee.getName() + "," +
+                                employee.getAge() + "," +
+                                employee.getFunction() + "," +
+                                employee.isMarried() + "," +
+                                employee.getRegion() + "\n"
+                );
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void saveEmployeesToFile(List<Employee> employees, boolean wasLoaded) {
         if (wasLoaded) {
