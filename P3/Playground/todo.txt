@@ -2,3 +2,9 @@ implement:
 -enum
 -like in the salad - upgradable
 -homework from lab 4
+
+EXCEPTION HANDLING
+	FILE NOT FOUND
+	TABLE READING
+
+INTERFACE WORKING? -> UPGRADABLE
