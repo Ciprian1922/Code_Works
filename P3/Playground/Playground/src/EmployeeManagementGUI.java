@@ -77,7 +77,7 @@ public class EmployeeManagementGUI implements Addable {
                 panel.add(new JLabel("Region:"));
                 panel.add(regionCombo);
 
-                int result = JOptionPane.showConfirmDialog(frame, panel, "Promote Employee",
+                int result = JOptionPane.showConfirmDialog(frame, panel, "Add employee",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
                 // Inside the "Add Employee" button ActionListener

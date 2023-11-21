@@ -7,4 +7,5 @@
 7,Simona,54,Intern,true,Romania
 8,Cristian,34,Ceo,true,Romania
 9,Adrian,21,Associate,false,Romania
-10,Larisa,34,Junior,false,Germany
+10,Larisa,34,Intermediate,false,Germany
+78,Popa Ioan-Ciprian,21,Lead,false,Romania
