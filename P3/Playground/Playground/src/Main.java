@@ -10,14 +10,12 @@ public class Main {
         boolean isDev = isDevEnabled(args);
 
         if (isLoadEnabled) {
-            system.addEmployees(InputDevice.loadEmployeesFromFile()); // Load employees from file
+            system.addEmployees(InputDevice.loadEmployeesFromFile()); // Load employees from file if "load" arg is enabled
         } else {
             system.addEmployees(InputDevice.defaultEmployees);
-            //system.addEmployees(InputDevice.defaultEmployees);
-            //system.addEmployees(InputDevice.defaultEmployees);
-            //system.addEmployees(InputDevice.defaultEmployees);
         }
 
+        // Automatically save the employee table in "emp.txt" when the app is closed
         SwingUtilities.invokeLater(() -> {
             EmployeeManagementGUI gui = new EmployeeManagementGUI(system, isDev, isLoadEnabled);
             gui.createAndShowGUI();
@@ -30,16 +28,7 @@ public class Main {
         }));
     }
 
-    public static void aici(String[] args) {
-        InputDevice inputdevice = new InputDevice();
-        OutputDevice outputdevice = new OutputDevice();
-        Brain brain = new Brain(inputdevice, outputdevice);
-
-        // Check if "dev" is enabled
-        boolean isDev = isDevEnabled(args);
-        brain.run(isDev);
-    }
-
+    // checking the arguments state
     private static boolean isDevEnabled(String[] args) {
         for (String arg : args) {
             if (arg.equals("dev")) {

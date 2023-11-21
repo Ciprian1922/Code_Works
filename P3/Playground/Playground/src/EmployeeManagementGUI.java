@@ -5,10 +5,21 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
-public class EmployeeManagementGUI {
+public class EmployeeManagementGUI implements Addable {
     private ManagementSystem system;
     private DefaultTableModel tableModel;
     private boolean isDevEnabled;
+    public boolean validateEmployeeInput(int id, String name, int age, Role function, boolean isMarried, Region region) {
+        // Your validation logic here
+        if (id <= 0) {
+            JOptionPane.showMessageDialog(null, "Invalid ID. Please enter a positive integer.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        // Validate other fields as needed
+
+        return true; // If all validations pass
+    }
 
     public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled, boolean isLoadEnabled) {
         this.system = system;
@@ -47,7 +58,7 @@ public class EmployeeManagementGUI {
                 JTextField idField = new JTextField();
                 JTextField nameField = new JTextField();
                 JTextField ageField = new JTextField();
-                JComboBox<Role> functionCombo = new JComboBox<>(Role.values()); // Use JComboBox<Role> for Function
+                JComboBox<Role> functionCombo = new JComboBox<>(Role.values());
                 String[] maritalStatusOptions = {"Married", "Single"};
                 JComboBox<String> maritalStatusCombo = new JComboBox<>(maritalStatusOptions);
                 JComboBox<Region> regionCombo = new JComboBox<>(Region.values());
@@ -69,6 +80,7 @@ public class EmployeeManagementGUI {
                 int result = JOptionPane.showConfirmDialog(frame, panel, "Promote Employee",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
+                // Inside the "Add Employee" button ActionListener
                 if (result == JOptionPane.OK_OPTION) {
                     String idText = idField.getText();
                     String ageText = ageField.getText();
@@ -78,23 +90,49 @@ public class EmployeeManagementGUI {
                         return; // Exit the method early
                     }
 
-                    int id = Integer.parseInt(idText);
-                    String name = nameField.getText();
-                    int age = Integer.parseInt(ageText);
-                    Role function = (Role) functionCombo.getSelectedItem();
-                    boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
-                    Region region = (Region) regionCombo.getSelectedItem();
+                    boolean isValidInput = true;
 
-                    // Create a new employee and add it to the system
-                    Employee newEmployee = new Employee(id, name, age, function, isMarried, region);
-                    system.addEmployee(newEmployee);
+                    try {
+                        int id = Integer.parseInt(idText);
 
-                    // Add the new employee to the table
-                    tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
+                        // Check if an employee with the given ID already exists
+                        if (system.employeeExists(id)) {
+                            JOptionPane.showMessageDialog(frame, "An employee with the same ID already exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                            return; // Exit the method early
+                        }
+
+                        String name = readNameFromGui(frame, nameField.getText());
+                        int age = Integer.parseInt(ageText);
+                        Role function = (Role) functionCombo.getSelectedItem();
+                        boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
+                        Region region = (Region) regionCombo.getSelectedItem();
+
+                        // Use the validateEmployeeInput method for validation
+                        isValidInput = validateEmployeeInput(id, name, age, function, isMarried, region);
+
+                        if (isValidInput) {
+                            // Create a new employee and add it to the system
+                            Employee newEmployee = new Employee(id, name, age, function, isMarried, region);
+                            system.addEmployee(newEmployee);
+
+                            // Add the new employee to the table
+                            tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
+                        }
+
+                    } catch (NumberFormatException ex) {
+                        isValidInput = false;
+                        JOptionPane.showMessageDialog(frame, "Invalid input for ID or Age. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    if (!isValidInput) {
+                        JOptionPane.showMessageDialog(frame, "Invalid input. Please check the entered values.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
 
+
+        // Clone the "Add Employee" button to create the "Edit Employee" button
         // Clone the "Add Employee" button to create the "Edit Employee" button
         JButton editEmployeeButton = new JButton("Edit Employee");
         editEmployeeButton.addActionListener(new ActionListener() {
@@ -118,7 +156,8 @@ public class EmployeeManagementGUI {
                         JTextField idField = new JTextField(String.valueOf(selectedEmployee.getId()));
                         JTextField nameField = new JTextField(selectedEmployee.getName());
                         JTextField ageField = new JTextField(String.valueOf(selectedEmployee.getAge()));
-                        JTextField functionField = new JTextField(selectedEmployee.getFunction());
+                        JComboBox<Role> functionCombo = new JComboBox<>(Role.values());
+                        functionCombo.setSelectedItem(selectedEmployee.getFunction());
                         String[] maritalStatusOptions = {"Married", "Single"};
                         JComboBox<String> maritalStatusCombo = new JComboBox<>(maritalStatusOptions);
                         maritalStatusCombo.setSelectedItem(selectedEmployee.isMarried() ? "Married" : "Single");
@@ -133,7 +172,7 @@ public class EmployeeManagementGUI {
                         panel.add(new JLabel("Age:"));
                         panel.add(ageField);
                         panel.add(new JLabel("Function:"));
-                        panel.add(functionField);
+                        panel.add(functionCombo);
                         panel.add(new JLabel("Marital Status:"));
                         panel.add(maritalStatusCombo);
                         panel.add(new JLabel("Region:"));
@@ -143,26 +182,60 @@ public class EmployeeManagementGUI {
                                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
                         if (result == JOptionPane.OK_OPTION) {
-                            // Update the selected employee's details
-                            selectedEmployee.setId(Integer.parseInt(idField.getText()));
-                            selectedEmployee.setName(nameField.getText());
-                            selectedEmployee.setAge(Integer.parseInt(ageField.getText()));
-                            selectedEmployee.setFunction(functionField.getText());
-                            selectedEmployee.setMarried(maritalStatusCombo.getSelectedItem().equals("Married"));
-                            selectedEmployee.setRegion((Region) regionCombo.getSelectedItem());
+                            String idText = idField.getText();
+                            String ageText = ageField.getText();
 
-                            // Update the table
-                            tableModel.setValueAt(selectedEmployee.getId(), selectedRow, 0);
-                            tableModel.setValueAt(selectedEmployee.getName(), selectedRow, 1);
-                            tableModel.setValueAt(selectedEmployee.getAge(), selectedRow, 2);
-                            tableModel.setValueAt(selectedEmployee.getFunction(), selectedRow, 3);
-                            tableModel.setValueAt(selectedEmployee.isMarried(), selectedRow, 4);
-                            tableModel.setValueAt(selectedEmployee.getRegion(), selectedRow, 5);
+                            if (idText.isEmpty() || ageText.isEmpty()) {
+                                JOptionPane.showMessageDialog(frame, "ID and Age must not be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+                                return; // Exit the method early
+                            }
+
+                            boolean isValidInput = true;
+
+                            try {
+                                int editedId = Integer.parseInt(idText);
+                                String editedName = readNameFromGui(frame, nameField.getText());
+                                int editedAge = Integer.parseInt(ageText);
+                                Role editedFunction = (Role) functionCombo.getSelectedItem();
+                                boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
+                                Region editedRegion = (Region) regionCombo.getSelectedItem();
+
+                                // Check if any of the fields are invalid
+                                if (editedName == null) {
+                                    isValidInput = false;
+                                }
+
+                                if (isValidInput) {
+                                    // Update the selected employee's details
+                                    selectedEmployee.setId(editedId);
+                                    selectedEmployee.setName(editedName);
+                                    selectedEmployee.setAge(editedAge);
+                                    selectedEmployee.setFunction(String.valueOf(editedFunction));
+                                    selectedEmployee.setMarried(isMarried);
+                                    selectedEmployee.setRegion(editedRegion);
+
+                                    // Update the table
+                                    tableModel.setValueAt(editedId, selectedRow, 0);
+                                    tableModel.setValueAt(editedName, selectedRow, 1);
+                                    tableModel.setValueAt(editedAge, selectedRow, 2);
+                                    tableModel.setValueAt(editedFunction, selectedRow, 3);
+                                    tableModel.setValueAt(isMarried, selectedRow, 4);
+                                    tableModel.setValueAt(editedRegion, selectedRow, 5);
+                                }
+                            } catch (NumberFormatException ex) {
+                                isValidInput = false;
+                                JOptionPane.showMessageDialog(frame, "Invalid input for ID or Age. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+
+                            if (!isValidInput) {
+                                JOptionPane.showMessageDialog(frame, "Invalid input. Please check the entered values.", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     }
                 }
             }
         });
+
 
         JButton removeEmployeeButton = new JButton("Remove Employee");
         if (!isDevEnabled) {
@@ -235,17 +308,19 @@ public class EmployeeManagementGUI {
                     tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
 
                     // Notify that the employee has been read successfully
-                    System.out.println("Employee read successfully");
+                    OutputDevice.write("Employee read successfully");
 
-                    // Disable the button after reading the employee
-                    readFromConsoleButton.setEnabled(false);
+                    // Enable the button again
+                    readFromConsoleButton.setEnabled(true);
+
                 } catch (NumberFormatException ex) {
-                    System.out.println("Error: Invalid input. Please enter a valid number.");
+                    OutputDevice.write("Error: Invalid input. Please enter a valid number.");
                 } catch (IllegalArgumentException ex) {
-                    System.out.println("Error: Invalid input. Please enter a valid value.");
+                    OutputDevice.write("Error: Invalid input. Please enter a valid value.");
                 }
             }
         });
+
 
 
         frame.add(tableScrollPane, BorderLayout.CENTER);
@@ -264,7 +339,7 @@ public class EmployeeManagementGUI {
         System.out.print(prompt);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        System.out.println("User input: " + input); // Print the input to the output console
+        OutputDevice.write("User input: " + input); // Print the input to the output console
         return input;
     }
 
@@ -275,7 +350,7 @@ public class EmployeeManagementGUI {
             if (response.equals("y") || response.equals("n")) {
                 return response.equals("Yes");
             } else {
-                System.out.println("Error: Invalid input. Please enter 'y' or 'n'.");
+                OutputDevice.write("Error: Invalid input. Please enter 'y' or 'n'.");
             }
         }
     }
@@ -283,23 +358,37 @@ public class EmployeeManagementGUI {
     private int readIntFromConsole(String prompt) {
         while (true) {
             try {
-                return Integer.parseInt(readFromConsole(prompt));
+                int id = Integer.parseInt(readFromConsole(prompt));
+
+                // Check if the ID already exists
+                if (system.employeeExists(id)) {
+                    OutputDevice.write("Error: Employee with ID " + id + " already exists. Please enter a unique ID.");
+                } else {
+                    return id;
+                }
             } catch (NumberFormatException ex) {
-                System.out.println("Error: Invalid input. Please enter a valid number.");
+                OutputDevice.write("Error: Invalid input. Please enter a valid number.");
             }
         }
     }
 
+
     private String readNameFromConsole(String prompt) {
         while (true) {
             String name = readFromConsole(prompt);
-            if (name.matches("[a-zA-Z]+")) {
+
+            // Remove extra spaces and reduce them to a single space
+            name = name.replaceAll("\\s+", " ").trim();
+
+            // Allow letters, spaces, and hyphens in the name
+            if (name.matches("[a-zA-Z\\s-]+")) {
                 return name;
             } else {
-                System.out.println("Error: Why would you have numbers in your name? =)");
+                OutputDevice.write("Error: Invalid characters in the name. Please enter a valid name.");
             }
         }
     }
+
 
     private int readAgeFromConsole(String prompt) {
         while (true) {
@@ -308,10 +397,10 @@ public class EmployeeManagementGUI {
                 if (age >= 1 && age <= 200) {
                     return age;
                 } else {
-                    System.out.println("Error: Invalid input. Please enter an age between 1 and 200.");
+                    OutputDevice.write("Error: Invalid input. Please enter an age between 1 and 200.");
                 }
             } catch (NumberFormatException ex) {
-                System.out.println("Error: Invalid input. Please enter a valid number for the age.");
+                OutputDevice.write("Error: Invalid input. Please enter a valid number for the age.");
             }
         }
     }
@@ -325,7 +414,7 @@ public class EmployeeManagementGUI {
                 Role.valueOf(function);
                 return function;
             } catch (IllegalArgumentException ex) {
-                System.out.println("Error: " + ex.getMessage() +
+                OutputDevice.write("Error: " + ex.getMessage() +
                         "\nAllowed values: (Intern, Junior, Associate, Intermediate, Senior, Lead, Team_Lead, Director, Ceo)");
             }
         }
@@ -339,10 +428,23 @@ public class EmployeeManagementGUI {
             try {
                 return Region.valueOf(location);
             } catch (IllegalArgumentException ex) {
-                System.out.println("Error: " + ex.getMessage() +
+                OutputDevice.write("Error: " + ex.getMessage() +
                         "\nAllowed values: (Romania, Germany, Italy, Spain, Sweden)");
             }
         }
     }
 
+    private String readNameFromGui(JFrame frame, String input) {
+        // Remove extra spaces and reduce them to a single space
+        String name = input.replaceAll("\\s+", " ").trim();
+
+        // Allow letters, spaces, and hyphens in the name
+        if (name.matches("[a-zA-Z\\s-]+")) {
+            return name;
+        } else {
+            JOptionPane.showMessageDialog(frame, "Invalid characters in the name. Please enter a valid name.", "Error", JOptionPane.ERROR_MESSAGE);
+            // You can choose to handle this differently, like asking the user to input the name again
+            return null;
+        }
+    }
 }
