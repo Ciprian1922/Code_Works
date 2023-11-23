@@ -1,0 +1,3 @@
+/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab8_pipes/Lab8-Pungila/cmake-build-debug/CMakeFiles/Lab8_Pungila.dir
+/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab8_pipes/Lab8-Pungila/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab8_pipes/Lab8-Pungila/cmake-build-debug/CMakeFiles/rebuild_cache.dir
