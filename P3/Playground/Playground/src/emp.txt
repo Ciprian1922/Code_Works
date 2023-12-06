@@ -2,10 +2,10 @@
 2,Ana,32,Intern,true,Romania
 3,Dragos,5,Associate,true,Romania
 4,Maria,28,Director,true,Spain
-5,Mihai,88,Junior,false,Italy
 6,Elena,32,Ceo,false,Sweden
 7,Simona,54,Intern,true,Romania
 8,Cristian,34,Ceo,true,Romania
 9,Adrian,21,Associate,false,Romania
 10,Larisa,34,Intermediate,false,Germany
 78,Popa Ioan-Ciprian,21,Lead,false,Romania
+678,Opi,20,Intermediate,false,Spain
