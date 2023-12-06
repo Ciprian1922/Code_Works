@@ -1,4 +1,4 @@
-# Install script for directory: /home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9
+# Install script for directory: /home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9 - signal
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9 - signal/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9/cmake-build-debug"
+			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9 - signal/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -415,7 +415,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9 - signal/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -475,7 +475,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9"
+			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9 - signal"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1007,7 +1007,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9/cmake-build-debug"
+			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9 - signal/cmake-build-debug"
 		},
 		{
 			"name" : "Lab9_IS_TOP_LEVEL",
@@ -1031,7 +1031,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9"
+			"value" : "/home/ciprian/Desktop/MyStuff/GitHub_Final/Code_Works/OS/Lab9 - signal"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
