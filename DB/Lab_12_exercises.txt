@@ -1,0 +1,64 @@
+1. Add a foreign key reference on the EMPLOYEE table that will ensure that the employee is not assigned to a nonexistent department. 
+2. Confirm that the constraints were added by querying USER_CONSTRAINTS.  Note the types  and  names of the constraints.
+3. Display the object names and types from the USER_OBJECTS data dictionary view   EMPLOYEE and DEPARTMENT tables. 
+4. Create a view to display information about employees from department 60, 80, 20. (employee name, surname, job).
+================================================
+CREATE VIEW EmployeeInfoView AS
+SELECT
+    ENAME AS EmployeeName,
+    JOB
+FROM
+    EMP
+WHERE
+    DEPTNO IN (10, 20, 30);
+================================================
+5. Describe the structure of the view. 
+6. Use aliases for each column in your view (both ways)
+7. Retrieve data from the view (select statements) 
+================================================
+SELECT * FROM EmployeeInfoView;
+================================================
+8. Use the OR REPLACE statement to update the view. (update the views) 
+================================================
+CREATE OR REPLACE VIEW EmployeeInfoView AS
+SELECT
+    ENAME AS EmployeeName,
+    JOB
+FROM
+    EMP
+WHERE
+    DEPTNO IN (60, 80, 20);
+================================================
+9. Create a view containing information about name, min, max, avg salary for each of the departments.
+10. Create a view (VU60_1) where you compute the annual salary for each employee in department 60.
+11. Insert a new employee in department 10.
+================================================
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+VALUES (1001, 'Ioan-Ciprian', 'Popa', 7788, TO_DATE('2023-12-12', 'YYYY-MM-DD'), 3000, NULL, 10);
+================================================
+12. Try to insert/update/remove an employee from VU60_1.
+================================================
+UPDATE EMP
+SET SAL = 9999
+WHERE EMPNO = 1001;
+================================================
+13. Drop a view.
+================================================
+DROP VIEW EmployeeInfoView;
+================================================
+14. Create a view called EMP_VU based on the employee number, employee name, and department number from the OEHR_EMPLOYEES table (and other). Change the heading for the employee name to EMPLOYEE_FN (family name) and EMPLYEE_LN (last name).
+================================================
+CREATE OR REPLACE VIEW EMP_VU AS
+SELECT
+    EMPLOYEE_ID,
+    FIRST_NAME AS EMPLOYEE_FN,
+    LAST_NAME AS EMPLOYEE_LN,
+    DEPARTMENT_ID
+FROM
+    OEHR_EMPLOYEES;
+================================================
+15. Display the content of EMP_VU.
+================================================
+SELECT * FROM EMP_VU;
+================================================
+16. Using your view create a query to display all employee names and department numbers.
