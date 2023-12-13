@@ -1,0 +1,4 @@
+every application has a main thread
+one thread per process
+
+gcc -o app Lab11.c -pthread
