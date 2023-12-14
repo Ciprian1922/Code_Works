@@ -79,6 +79,12 @@ build CMakeFiles/Lab11.dir/Lab11-ABCDE.c.o: C_COMPILER__Lab11_unscanned_Debug /h
   OBJECT_DIR = CMakeFiles/Lab11.dir
   OBJECT_FILE_DIR = CMakeFiles/Lab11.dir
 
+build CMakeFiles/Lab11.dir/OS_Thursday_Pungila/Lab_11.c.o: C_COMPILER__Lab11_unscanned_Debug /home/ciprian/Desktop/GitHub_UVT/Code_Works/OS/Lab11/OS_Thursday_Pungila/Lab_11.c || cmake_object_order_depends_target_Lab11
+  DEP_FILE = CMakeFiles/Lab11.dir/OS_Thursday_Pungila/Lab_11.c.o.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/Lab11.dir
+  OBJECT_FILE_DIR = CMakeFiles/Lab11.dir/OS_Thursday_Pungila
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Lab11
@@ -87,7 +93,7 @@ build CMakeFiles/Lab11.dir/Lab11-ABCDE.c.o: C_COMPILER__Lab11_unscanned_Debug /h
 #############################################
 # Link the executable Lab11
 
-build Lab11: C_EXECUTABLE_LINKER__Lab11_Debug CMakeFiles/Lab11.dir/main.c.o CMakeFiles/Lab11.dir/threads.c.o CMakeFiles/Lab11.dir/thread1.c.o CMakeFiles/Lab11.dir/Lab11.c.o CMakeFiles/Lab11.dir/Lab11-ABCDE.c.o
+build Lab11: C_EXECUTABLE_LINKER__Lab11_Debug CMakeFiles/Lab11.dir/main.c.o CMakeFiles/Lab11.dir/threads.c.o CMakeFiles/Lab11.dir/thread1.c.o CMakeFiles/Lab11.dir/Lab11.c.o CMakeFiles/Lab11.dir/Lab11-ABCDE.c.o CMakeFiles/Lab11.dir/OS_Thursday_Pungila/Lab_11.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Lab11.dir
   POST_BUILD = :
