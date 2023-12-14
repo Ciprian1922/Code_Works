@@ -1,6 +1,8 @@
 # ninja log v5
+1	123	1702568809020694216	CMakeFiles/Lab11.dir/OS_Thursday_Pungila/Lab_11.c.o	99e97d7b7dae393a
 1	44	1702475765243743180	CMakeFiles/Lab11.dir/main.c.o	88afe2c5229db3d4
+4	223	1702568809120694886	CMakeFiles/Lab11.dir/OS_Thursday_Pungila/vowels.c.o	bb42f88ed779e85a
 1	28	1702475765227743083	CMakeFiles/Lab11.dir/threads.c.o	7173b94b89cd634d
 44	99	1702475765299743519	CMakeFiles/Lab11.dir/Lab11-ABCDE.c.o	e6af7ab42e8e53ad
-29	92	1702475765291743470	CMakeFiles/Lab11.dir/Lab11.c.o	cca750f15648a7d7
+0	216	1702568809112694833	CMakeFiles/Lab11.dir/Lab11.c.o	cca750f15648a7d7
 1	53	1702475765251743228	CMakeFiles/Lab11.dir/thread1.c.o	2a45b8f041d36457
