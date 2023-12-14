@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <math.h>
+#include <time.h>
+#include <pthread.h>
+ 
+#define uint32_t unsigned int
+#define MAX 10000000
+#define MAX_THREADS 1
+ 
+uint32_t primes[MAX_THREADS]; // global variable
+ 
+int isPrime(uint32_t n)
+{
+	uint32_t i;
+	if (n < 2)
+		return 0;
+	if (n == 2)
+		return 1;
+	for (i=2; i<=ceil(sqrt(n)); i++)
+		if (n % i == 0)
+				return 0;
+	return 1;
+}
+ 
+void *compute(void *arg)
+{
+	uint32_t i, threadID = *((uint32_t *)arg);
+	free((uint32_t *)arg);
+	// my thread with ID "n" starts from
+	// n * (MAX / MAX_THREADS) ... (N+1) * (MAX / MAX_THREADS)- 1
+	for (i=threadID*(MAX/MAX_THREADS); i<=(threadID+1)*(MAX/MAX_THREADS)-1; i++)
+		if (isPrime(i))
+			primes[threadID]++;
+	return NULL;
+}
+ 
+int main()
+{
+	pthread_t t[MAX_THREADS];
+	uint32_t i, primes2 = 0, start = time(NULL), end;
+ 
+	for (i=0; i<MAX_THREADS; i++)
+	{
+		uint32_t *p = (uint32_t *)malloc(sizeof(uint32_t));
+		*p = i;
+		pthread_create(&t[i], NULL, compute, p); // creates the threads
+	}
+ 
+	for (i=0; i<MAX_THREADS; i++) // waits for the threads to finish
+		pthread_join(t[i], NULL);
+ 
+	end = time(NULL);
+	for (i=0; i<MAX_THREADS; i++)
+		primes2 += primes[i];
+	printf("I found %u primes in %u seconds!\n", primes2, end-start);
+	return 1;	
+}

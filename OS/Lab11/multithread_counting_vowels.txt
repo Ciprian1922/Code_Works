@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <math.h>
+#include <time.h>
+#include <ctype.h>
+#include <fcntl.h>
+#include <pthread.h>
+
+#define uint32_t unsigned int
+#define BUFFER_SIZE 1024
+#define NUM_THREADS 4
+
+struct ThreadData {
+    int fileDescriptor;
+    off_t startOffset;
+    off_t endOffset;
+    uint32_t digitCount;
+};
+
+void* countDigits(void* arg) {
+    struct ThreadData* threadData = (struct ThreadData*)arg;
+    char buffer[BUFFER_SIZE];
+
+    // Move to the starting position for this thread
+    lseek(threadData->fileDescriptor, threadData->startOffset, SEEK_SET);
+
+    // Read and count digits within the assigned chunk
+    while (threadData->startOffset < threadData->endOffset) {
+        ssize_t bytesRead = read(threadData->fileDescriptor, buffer, BUFFER_SIZE);
+        if (bytesRead <= 0) {
+            break;
+        }
+
+        for (ssize_t i = 0; i < bytesRead; i++) {
+            threadData->digitCount += (isdigit(buffer[i]) ? 1 : 0);
+            threadData->startOffset++;
+        }
+    }
+
+    pthread_exit(NULL);
+}
+
+int main(int argc, char** argv) {
+    if (argc < 2) {
+        printf("Usage: %s <text file name>\n", argv[0]);
+        return 1;
+    }
+
+    int fileDescriptor = open(argv[1], O_RDONLY);
+    if (fileDescriptor == -1) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    off_t fileSize = lseek(fileDescriptor, 0, SEEK_END);
+    off_t chunkSize = fileSize / NUM_THREADS;
+
+    pthread_t threads[NUM_THREADS];
+    struct ThreadData threadData[NUM_THREADS];
+
+    for (int i = 0; i < NUM_THREADS; i++) {
+        threadData[i].fileDescriptor = fileDescriptor;
+        threadData[i].startOffset = i * chunkSize;
+        threadData[i].endOffset = (i == NUM_THREADS - 1) ? fileSize : (i + 1) * chunkSize;
+        threadData[i].digitCount = 0;
+
+        pthread_create(&threads[i], NULL, countDigits, (void*)&threadData[i]);
+    }
+
+    // Wait for all threads to finish
+    for (int i = 0; i < NUM_THREADS; i++) {
+        pthread_join(threads[i], NULL);
+    }
+
+    // Calculate total digit count
+    uint32_t totalDigits = 0;
+    for (int i = 0; i < NUM_THREADS; i++) {
+        totalDigits += threadData[i].digitCount;
+    }
+
+    // Close the file descriptor
+    close(fileDescriptor);
+
+    printf("I found %u digits!\n", totalDigits);
+    return 0;
+}
