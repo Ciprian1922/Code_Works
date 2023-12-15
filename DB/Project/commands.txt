@@ -1,0 +1,127 @@
+===TABLE CREATION===
+CREATE TABLE clients (
+    client_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50) NOT NULL,
+    last_name VARCHAR2(50) NOT NULL,
+    luggage_weight NUMBER,
+    date_of_birth DATE,
+    town VARCHAR2(50),
+    married VARCHAR2(3),
+    -- Add more client-related attributes
+);
+CREATE TABLE flights (
+    flight_id NUMBER PRIMARY KEY,
+    flight_number VARCHAR2(20) NOT NULL,
+    departure_city VARCHAR2(50) NOT NULL,
+    destination_city VARCHAR2(50) NOT NULL,
+    departure_time TIMESTAMP,
+    -- Add more flight-related attributes
+);
+CREATE TABLE tickets (
+    ticket_id NUMBER PRIMARY KEY,
+    client_id NUMBER,
+    flight_id NUMBER,
+    seat_number VARCHAR2(10),
+    ticket_price NUMBER,
+    CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES clients(client_id),
+    CONSTRAINT fk_flight FOREIGN KEY (flight_id) REFERENCES flights(flight_id)
+);
+
+===INSERTING DATA INTO TABLES===
+-- Insert into Clients
+INSERT INTO clients VALUES 
+(1, 'John', 'Doe', 20, TO_DATE('1990-05-15', 'YYYY-MM-DD'), 'New York', 'Yes'),
+(2, 'Jane', 'Smith', 15, TO_DATE('1985-08-22', 'YYYY-MM-DD'), 'London', 'No'),
+(3, 'Alice', 'Johnson', 18, TO_DATE('1995-02-10', 'YYYY-MM-DD'), 'Los Angeles', 'No'),
+(4, 'Bob', 'Miller', 25, TO_DATE('1982-11-30', 'YYYY-MM-DD'), 'Chicago', 'Yes'),
+(5, 'Eva', 'Williams', 22, TO_DATE('1998-07-05', 'YYYY-MM-DD'), 'San Francisco', 'Yes'),
+
+-- Insert into Flights
+INSERT INTO flights VALUES 
+(1, 'ABC123', 'New York', 'London', TO_TIMESTAMP('2023-01-01 12:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+(2, 'XYZ456', 'Paris', 'Tokyo', TO_TIMESTAMP('2023-02-01 14:30:00', 'YYYY-MM-DD HH24:MI:SS')),
+(3, 'LMN789', 'Sydney', 'New Delhi', TO_TIMESTAMP('2023-03-15 18:45:00', 'YYYY-MM-DD HH24:MI:SS')),
+(4, 'PQR012', 'Beijing', 'Mumbai', TO_TIMESTAMP('2023-04-20 10:15:00', 'YYYY-MM-DD HH24:MI:SS')),
+(5, 'DEF345', 'Dubai', 'Singapore', TO_TIMESTAMP('2023-05-10 16:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+
+-- Insert into Tickets
+INSERT INTO tickets VALUES 
+(1, 1, 1, 'A12', 500),
+(2, 2, 2, 'B34', 700),
+(3, 3, 3, 'C56', 600),
+(4, 4, 4, 'D78', 800),
+(5, 5, 5, 'E90', 550),
+
+===UPDATING TABLES===
+-- Update Client's Information
+UPDATE clients SET luggage_weight = 25, town = 'Los Angeles' WHERE client_id = 1;
+
+-- Update Flight Departure Time
+UPDATE flights SET departure_time = TO_TIMESTAMP('2023-01-01 14:00:00', 'YYYY-MM-DD HH24:MI:SS') WHERE flight_id = 1;
+
+-- Update Ticket Price
+UPDATE tickets SET ticket_price = 600 WHERE ticket_id = 1;
+
+===DELETING DATA===
+-- Delete Client and Associated Records
+DELETE FROM clients WHERE client_id = 1;
+
+-- Delete Flight and Associated Tickets
+DELETE FROM flights WHERE flight_id = 2;
+
+-- Remove Ticket Record
+DELETE FROM tickets WHERE ticket_id = 2;
+
+===CHANGE CONTENT OF TABLE===
+-- Change Client's Marital Status
+UPDATE clients SET married = 'No' WHERE client_id = 2;
+
+-- Change Flight Destination City
+UPDATE flights SET destination_city = 'Sydney' WHERE flight_id = 1;
+
+-- Change Ticket Seat Number
+UPDATE tickets SET seat_number = 'C23' WHERE ticket_id = 1;
+
+===MODIFY TABLE STRUCTURE===
+-- Add a new column to Clients
+ALTER TABLE clients ADD phone_number VARCHAR2(15);
+
+-- Rename a column in Flights
+ALTER TABLE flights RENAME COLUMN arrival_city TO destination_city;
+
+===CONSTRAINTS===
+-- Add Primary Key Constraint to Clients
+ALTER TABLE clients ADD CONSTRAINT pk_client_id PRIMARY KEY (client_id);
+
+-- Add Foreign Key Constraint to Tickets
+ALTER TABLE tickets ADD CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES clients(client_id);
+
+-- Add Check Constraint on Flight Number
+ALTER TABLE flights ADD CONSTRAINT chk_flight_number CHECK (LENGTH(flight_number) <= 20);
+
+===VIEWS===
+-- Create a View for Comprehensive Client Information
+CREATE VIEW client_info AS
+SELECT client_id, first_name, last_name, luggage_weight, date_of_birth, town, married, phone_number
+FROM clients;
+
+-- Create a View for Ticket Information
+CREATE VIEW ticket_info AS
+SELECT t.ticket_id, c.first_name || ' ' || c.last_name AS passenger_name, f.flight_number, t.seat_number, t.ticket_price
+FROM tickets t
+JOIN clients c ON t.client_id = c.client_id
+JOIN flights f ON t.flight_id = f.flight_id;
+
+===UPDATING VIEW===
+-- Update View (e.g., add a condition)
+CREATE OR REPLACE VIEW high_weight_luggage AS
+SELECT client_id, luggage_weight
+FROM clients
+WHERE luggage_weight > 20;
+
+===RETRIEVE DATA FROM VIEW===
+-- Retrieve data using a SELECT statement
+SELECT * FROM client_info;
+
+-- Retrieve ticket information from the view
+SELECT * FROM ticket_info;
