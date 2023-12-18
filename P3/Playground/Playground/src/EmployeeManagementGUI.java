@@ -321,7 +321,47 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
+        // Add the "Battle" button and its action listener
+        JButton battleButton = new JButton("Battle");
+        battleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create input fields for employee selection
+                JComboBox<Employee> employee1Combo = new JComboBox<>(system.getEmployees().toArray(new Employee[0]));
+                JComboBox<Employee> employee2Combo = new JComboBox<>(system.getEmployees().toArray(new Employee[0]));
 
+                JPanel panel = new JPanel(new GridLayout(3, 2));
+                panel.add(new JLabel("Select Employee 1:"));
+                panel.add(employee1Combo);
+                panel.add(new JLabel("Select Employee 2:"));
+                panel.add(employee2Combo);
+
+                int result = JOptionPane.showConfirmDialog(frame, panel, "Battle",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                // Inside the "Battle" button ActionListener
+                if (result == JOptionPane.OK_OPTION) {
+                    Employee employee1 = (Employee) employee1Combo.getSelectedItem();
+                    Employee employee2 = (Employee) employee2Combo.getSelectedItem();
+
+                    // Determine the winner and loser (randomly for simplicity)
+                    Employee winner = (Math.random() < 0.5) ? employee1 : employee2;
+                    Employee loser = (winner == employee1) ? employee2 : employee1;
+
+                    // Display the winner in a new popup
+                    JOptionPane.showMessageDialog(frame, winner.getName() + " won the battle!", "Battle Result", JOptionPane.INFORMATION_MESSAGE);
+
+                    // Remove the loser employee from the system and the table
+                    system.removeEmployee(loser);
+                    for (int i = 0; i < tableModel.getRowCount(); i++) {
+                        if ((int) tableModel.getValueAt(i, 0) == loser.getId()) {
+                            tableModel.removeRow(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
 
         frame.add(tableScrollPane, BorderLayout.CENTER);
 
@@ -331,6 +371,7 @@ public class EmployeeManagementGUI implements Addable {
         buttonPanel.add(removeEmployeeButton);
         buttonPanel.add(promoteEmployeeButton);
         buttonPanel.add(readFromConsoleButton);
+        buttonPanel.add(battleButton); // Add the "Fight" button
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         frame.setVisible(true);
