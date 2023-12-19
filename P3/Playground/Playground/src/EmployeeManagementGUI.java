@@ -4,11 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
 
 public class EmployeeManagementGUI implements Addable {
     private ManagementSystem system;
     private DefaultTableModel tableModel;
     private boolean isDevEnabled;
+//    private int chatClientCount = 0;
+//    private ChatServer chatServer;
     public boolean validateEmployeeInput(int id, String name, int age, Role function, boolean isMarried, Region region) {
         // Your validation logic here
         if (id <= 0) {
@@ -29,6 +32,7 @@ public class EmployeeManagementGUI implements Addable {
             tableModel.addRow(new Object[]{employee.getId(), employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried(), employee.getRegion()});
         }
         this.isDevEnabled = isDevEnabled;
+
     }
 
     public Role getNextRole(Role currentRole) {
@@ -363,6 +367,53 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
+        // New button to start the server
+//        JButton startServerButton = new JButton("Start Server");
+//        startServerButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                // Start the server in a new thread
+//                new Thread(new Runnable() {
+//                    public void run() {
+//                        startServer();
+//                    }
+//                }).start();
+//            }
+//        });
+
+
+//        JButton chatButton = new JButton("Chat");
+//        chatButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                try {
+//                    // Assuming you have a JTextField for user input
+//                    JTextField userInputField = new JTextField();
+//
+//                    // Create a panel with user input field
+//                    JPanel userInputPanel = new JPanel();
+//                    userInputPanel.add(new JLabel("Enter your message: "));
+//                    userInputPanel.add(userInputField);
+//
+//                    // Show an input dialog with user input field
+//                    int result = JOptionPane.showConfirmDialog(frame, userInputPanel, "Chat",
+//                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+//
+//                    // Get the user input from the text field
+//                    String message = userInputField.getText();
+//
+//                    if (result == JOptionPane.OK_OPTION && !message.isEmpty()) {
+//                        // Create a new ChatClient instance for each user
+//                        ChatClient chatClient = new ChatClient("localhost", 12345); // Replace with your server details
+//                        chatClient.startChat("User" + ++chatClientCount);
+//                        // Assign a unique username and send the message
+//                    }
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//        });
+
+
         frame.add(tableScrollPane, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
@@ -372,6 +423,8 @@ public class EmployeeManagementGUI implements Addable {
         buttonPanel.add(promoteEmployeeButton);
         buttonPanel.add(readFromConsoleButton);
         buttonPanel.add(battleButton); // Add the "Fight" button
+//        buttonPanel.add(startServerButton); //Server
+//        buttonPanel.add(chatButton); //Chat
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         frame.setVisible(true);
@@ -488,4 +541,16 @@ public class EmployeeManagementGUI implements Addable {
             return null;
         }
     }
+
+//    private void startServer() {
+//        // Add code to start your server here
+//        // For simplicity, let's assume you have a separate class for the server called ChatServer
+//        try {
+//            ChatClient chatClient = new ChatClient("localhost", 12345); // Pass the port number
+//            chatServer.startServer(); // You need to implement this method in your ChatServer class
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 }
