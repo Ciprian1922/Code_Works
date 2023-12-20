@@ -6,30 +6,30 @@
 #define NUM_CHAIRS 5
 sem_t waitingRoomMutex;  //semaphore for access to the waiting room
 sem_t barberMutex;      //semaphore for access to the barber
-int clientsWaiting = 0;     //no. of clients waiting
-int clientsServed = 0;       //no. of clients served
-int clientsUnsatisfied = 0; //no. of clients unsatisfied
+int clientsWaiting=0;     //no. of clients waiting
+int clientsServed=0;       //no. of clients served
+int clientsUnsatisfied=0; //no. of clients unsatisfied
 
 void *barber(void *arg){
-    while(1) {
+    for (;;){
         sem_wait(&waitingRoomMutex);
-        if(clientsWaiting > 0){
+        if(clientsWaiting>0){
             clientsWaiting--;
             sem_post(&waitingRoomMutex);
             printf("The barber is cutting client's hair.\n");
-            sleep(1);  //simulation of haircut time
+            sleep(1);//simulation of haircut time
             sem_post(&barberMutex);
             clientsServed++;
-        } else{
+        }else{
             sem_post(&waitingRoomMutex);
             printf("Barber is sleeping.\n");
-            sem_wait(&barberMutex);  //wait for the client
+            sem_wait(&barberMutex);//wait for the client
         }
     }
 }
 void *client(void *arg){
     sem_wait(&waitingRoomMutex);
-    if(clientsWaiting < NUM_CHAIRS){
+    if(clientsWaiting<NUM_CHAIRS){
         clientsWaiting++;
         sem_post(&waitingRoomMutex);
         printf("The client is waiting.\n");
@@ -44,17 +44,17 @@ void *client(void *arg){
 }
 
 int main(int argc, char *argv[]){
-    int numClients = 10; //setting the number of clients
+    int numClients=10; //setting the number of clients
     pthread_t barberThread, clientThreads[numClients];
     sem_init(&waitingRoomMutex, 0, 1);
     sem_init(&barberMutex, 0, 0);
     pthread_create(&barberThread, NULL, barber, NULL);
 
-    for(int i = 0; i < numClients; i++){
+    for(int i=0;i<numClients;i++){
         pthread_create(&clientThreads[i], NULL, client, NULL);
         sleep(1); //delay between client arrivals
     }
-    for(int i = 0; i < numClients; i++){
+    for(int i=0;i<numClients;i++){
         pthread_join(clientThreads[i], NULL);
     }
     //wait for all threads to finish
@@ -68,3 +68,14 @@ int main(int argc, char *argv[]){
 
     return 0;
 }
+
+/// waitingRoomMutex: This semaphore controls access to the waiting room,
+/// ensuring that only one process (barber or client) can manipulate the
+/// clientsWaiting variable and enter the critical section where the waiting
+/// room state is modified.
+
+/// barberMutex: This semaphore is used as a mutex to control access to the barber.
+/// It allows clients to wait until the barber is available. When a client wants to
+/// get a haircut, it checks whether the barber is available. If not, it waits using
+/// sem_wait(&barberMutex). When the barber finishes cutting hair, it signals the waiting
+/// client to proceed by using sem_post(&barberMutex).
