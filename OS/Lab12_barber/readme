@@ -1,2 +1,2 @@
 gcc -o barber barber.c -lpthread
-./barber  
+./barber

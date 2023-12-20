@@ -13,14 +13,11 @@ int clientsUnsatisfied = 0; //no. of clients unsatisfied
 void *barber(void *arg){
     while(1) {
         sem_wait(&waitingRoomMutex);
-
         if(clientsWaiting > 0){
             clientsWaiting--;
             sem_post(&waitingRoomMutex);
-
             printf("The barber is cutting client's hair.\n");
             sleep(1);  //simulation of haircut time
-
             sem_post(&barberMutex);
             clientsServed++;
         } else{
@@ -32,7 +29,6 @@ void *barber(void *arg){
 }
 void *client(void *arg){
     sem_wait(&waitingRoomMutex);
-
     if(clientsWaiting < NUM_CHAIRS){
         clientsWaiting++;
         sem_post(&waitingRoomMutex);
