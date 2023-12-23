@@ -310,7 +310,7 @@ public class EmployeeManagementGUI implements Addable {
 
                     // Add the new employee to the table
                     tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
-
+                    //SQL THING THAT ADDS THE EMPLOYEE
                     // Notify that the employee has been read successfully
                     OutputDevice.write("Employee read successfully");
 
@@ -455,7 +455,7 @@ public class EmployeeManagementGUI implements Addable {
                 int id = Integer.parseInt(readFromConsole(prompt));
 
                 // Check if the ID already exists
-                if (system.employeeExists(id)) {
+                if (system.employeeExists(id) && id > 0) {
                     OutputDevice.write("Error: Employee with ID " + id + " already exists. Please enter a unique ID.");
                 } else {
                     return id;
@@ -475,7 +475,7 @@ public class EmployeeManagementGUI implements Addable {
             name = name.replaceAll("\\s+", " ").trim();
 
             // Allow letters, spaces, and hyphens in the name
-            if (name.matches("[a-zA-Z\\s-]+")) {
+            if (name.matches("[a-zA-Z\\s-]+") && name.length() < 100) {
                 return name;
             } else {
                 OutputDevice.write("Error: Invalid characters in the name. Please enter a valid name.");
@@ -554,3 +554,6 @@ public class EmployeeManagementGUI implements Addable {
 //    }
 
 }
+
+//todo junit
+//mysql workbanch (mysql separat)
