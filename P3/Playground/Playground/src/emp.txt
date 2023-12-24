@@ -7,5 +7,6 @@
 8,Cristian,34,Ceo,true,Romania
 9,Adrian,21,Associate,false,Romania
 10,Larisa,34,Intermediate,false,Germany
+34,Jajak,200,Intern,true,Romania
 78,Popa Ioan-Ciprian,21,Lead,false,Romania
 678,Opi,20,Intermediate,false,Spain
