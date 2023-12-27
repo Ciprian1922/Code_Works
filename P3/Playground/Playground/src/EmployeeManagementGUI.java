@@ -374,6 +374,17 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
+        // Add the "Stats" button and its action listener
+        JButton statsButton = new JButton("DB_Content");
+        statsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Show the employee list window
+                EmployeeListWindow employeeListWindow = new EmployeeListWindow();
+            }
+        });
+
+
+
         // New button to start the server
 //        JButton startServerButton = new JButton("Start Server");
 //        startServerButton.addActionListener(new ActionListener() {
@@ -431,6 +442,7 @@ public class EmployeeManagementGUI implements Addable {
         buttonPanel.add(readFromConsoleButton);
         buttonPanel.add(battleButton); // Add the "Fight" button
         buttonPanel.add(uploadToDatabaseButton);
+        buttonPanel.add(statsButton);
 //        buttonPanel.add(startServerButton); //Server
 //        buttonPanel.add(chatButton); //Chat
         frame.add(buttonPanel, BorderLayout.SOUTH);

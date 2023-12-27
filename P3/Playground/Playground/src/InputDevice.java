@@ -7,7 +7,7 @@ public class InputDevice {
     public static final int ceva = 10;
     public final int altcevaceva = 11;
 
-    public static final int width = 1000;
+    public static final int width = 1100;
     public static final int height = 600;
 
     public static List<Employee> defaultEmployees = new ArrayList<>();

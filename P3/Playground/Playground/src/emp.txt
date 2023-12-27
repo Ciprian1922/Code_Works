@@ -7,6 +7,7 @@
 8,Cristian,34,Ceo,true,Romania
 9,Adrian,21,Associate,false,Romania
 10,Larisa,34,Intermediate,false,Germany
+23,Yoda,199,Intern,true,Romania
 34,Jajak,200,Intern,true,Romania
 45,Gica,88,Intern,true,Romania
 46,Fodor Nedelcu,34,Intern,true,Romania
