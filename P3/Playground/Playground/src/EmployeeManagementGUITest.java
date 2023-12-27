@@ -23,7 +23,7 @@ public class EmployeeManagementGUITest {
         boolean isLoadEnabled = false;
         EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
         //test with valid input
-        boolean result = gui.validateEmployeeInput(1, "John Doe", 30, Role.Junior, false, Region.Romania);
+        boolean result = gui.validateEmployeeInput(1, "Fodor Nedelcu", 30, Role.Junior, false, Region.Romania);
         assertTrue(result);
     }
 
@@ -35,7 +35,7 @@ public class EmployeeManagementGUITest {
         boolean isLoadEnabled = false;
         EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
         //test with invalid ID
-        boolean result = gui.validateEmployeeInput(-1, "John Doe", 30, Role.Junior, false, Region.Romania);
+        boolean result = gui.validateEmployeeInput(-1, "Geleu Bogota", 30, Role.Junior, false, Region.Romania);
         assertFalse(result);
     }
 
@@ -45,7 +45,7 @@ public class EmployeeManagementGUITest {
         ManagementSystem system = new ManagementSystem();
         EmployeeManagementGUI gui = new EmployeeManagementGUI(system, false, false);
         //call the method with an invalid name
-        boolean result = gui.validateEmployeeInput(-1, "John", 25, Role.Intern, false, Region.Romania);
+        boolean result = gui.validateEmployeeInput(-1, "Adrian Mircea", 25, Role.Intern, false, Region.Romania);
         //assert that the result is false
         assertFalse(result);
     }
@@ -60,7 +60,7 @@ public class EmployeeManagementGUITest {
         gui.createAndShowGUI();    //call the createAndShowGUI method to create the GUI
 
         //simulate user interaction to add a valid employee
-        gui.validateEmployeeInput(1, "John Doe", 30, Role.Associate, false, Region.Germany);
+        gui.validateEmployeeInput(1, "Popa Ciprian", 30, Role.Associate, false, Region.Germany);
         int updatedEmployeeCount = system.getEmployees().size();   //get the updated employee count
         assertEquals(initialEmployeeCount, updatedEmployeeCount);   //assert that the employee count has increased by 1
     }

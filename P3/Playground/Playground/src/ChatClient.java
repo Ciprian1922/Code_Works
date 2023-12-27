@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class ChatClient {
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("127.0.0.1", 0000);
+            Socket socket = new Socket("127.0.0.1", 8888);
 
             // Scanner to read from console
             Scanner consoleScanner = new Scanner(System.in);

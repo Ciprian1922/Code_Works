@@ -139,9 +139,6 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-
-        // Clone the "Add Employee" button to create the "Edit Employee" button
-        // Clone the "Add Employee" button to create the "Edit Employee" button
         JButton editEmployeeButton = new JButton("Edit Employee");
         editEmployeeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -244,7 +241,6 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-
         JButton removeEmployeeButton = new JButton("Remove Employee");
         if (!isDevEnabled) {
             removeEmployeeButton.setEnabled(false);
@@ -292,8 +288,6 @@ public class EmployeeManagementGUI implements Addable {
                 }
             }
         });
-
-
 
         JButton readFromConsoleButton = new JButton("Read from console");
         readFromConsoleButton.addActionListener(new ActionListener() {
@@ -564,12 +558,12 @@ public class EmployeeManagementGUI implements Addable {
             // Establish a connection to the database
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "angajat", "sefdesef")) {
                 // Create a PreparedStatement for inserting data into the database
-                String sql = "INSERT INTO `employeedb`.`employee` (id, name, age, role, married, region) VALUES (?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO `employeedb`.`employees` (name, age, role, is_married, region) VALUES (?, ?, ?, ?, ?)";
 
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                     // Iterate through the table model and insert each employee into the database
                     for (int i = 0; i < tableModel.getRowCount(); i++) {
-                        int id = (int) tableModel.getValueAt(i, 0);
+                        //int id = (int) tableModel.getValueAt(i, 0);
                         String name = (String) tableModel.getValueAt(i, 1);
                         int age = (int) tableModel.getValueAt(i, 2);
                         String role = (String) tableModel.getValueAt(i, 3);
@@ -577,12 +571,12 @@ public class EmployeeManagementGUI implements Addable {
                         Region region = (Region) tableModel.getValueAt(i, 5);
 
                         // Set parameters for the prepared statement
-                        preparedStatement.setInt(1, id);
-                        preparedStatement.setString(2, name);
-                        preparedStatement.setInt(3, age);
-                        preparedStatement.setString(4, role.toString());
-                        preparedStatement.setBoolean(5, married);
-                        preparedStatement.setString(6, region.toString());
+                        //preparedStatement.setInt(1, id);
+                        preparedStatement.setString(1, name);
+                        preparedStatement.setInt(2, age);
+                        preparedStatement.setString(3, role.toString());
+                        preparedStatement.setBoolean(4, married);
+                        preparedStatement.setString(5, region.toString());
 
                         // Execute the update
                         preparedStatement.executeUpdate();

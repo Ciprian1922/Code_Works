@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ChatServer {
-    private static final int PORT = 0000;
+    private static final int PORT = 8888;
     private List<ClientHandler> clients = new ArrayList<>();
     private ExecutorService executor = Executors.newFixedThreadPool(10);
 
