@@ -557,13 +557,20 @@ public class EmployeeManagementGUI implements Addable {
 
             // Establish a connection to the database
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "angajat", "sefdesef")) {
-                // Create a PreparedStatement for inserting data into the database
-                String sql = "INSERT INTO `employeedb`.`employees` (name, age, role, is_married, region) VALUES (?, ?, ?, ?, ?)";
+                // Create a PreparedStatement for deleting all records from the table
+                String deleteSql = "DELETE FROM `employeedb`.`employees`";
 
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                try (PreparedStatement deleteStatement = connection.prepareStatement(deleteSql)) {
+                    // Execute the delete statement to remove all records
+                    deleteStatement.executeUpdate();
+                }
+
+                // Create a PreparedStatement for inserting data into the database
+                String insertSql = "INSERT INTO `employeedb`.`employees` (name, age, role, is_married, region) VALUES (?, ?, ?, ?, ?)";
+
+                try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
                     // Iterate through the table model and insert each employee into the database
                     for (int i = 0; i < tableModel.getRowCount(); i++) {
-                        //int id = (int) tableModel.getValueAt(i, 0);
                         String name = (String) tableModel.getValueAt(i, 1);
                         int age = (int) tableModel.getValueAt(i, 2);
                         String role = (String) tableModel.getValueAt(i, 3);
@@ -571,15 +578,14 @@ public class EmployeeManagementGUI implements Addable {
                         Region region = (Region) tableModel.getValueAt(i, 5);
 
                         // Set parameters for the prepared statement
-                        //preparedStatement.setInt(1, id);
-                        preparedStatement.setString(1, name);
-                        preparedStatement.setInt(2, age);
-                        preparedStatement.setString(3, role.toString());
-                        preparedStatement.setBoolean(4, married);
-                        preparedStatement.setString(5, region.toString());
+                        insertStatement.setString(1, name);
+                        insertStatement.setInt(2, age);
+                        insertStatement.setString(3, role.toString());
+                        insertStatement.setBoolean(4, married);
+                        insertStatement.setString(5, region.toString());
 
                         // Execute the update
-                        preparedStatement.executeUpdate();
+                        insertStatement.executeUpdate();
                     }
 
                     JOptionPane.showMessageDialog(null, "Data uploaded to the database successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -587,9 +593,10 @@ public class EmployeeManagementGUI implements Addable {
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error uploading data to database.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error uploading data to the database.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
 //    private void startServer() {
 //        // Add code to start your server here
