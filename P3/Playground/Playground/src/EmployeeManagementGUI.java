@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
@@ -367,6 +371,15 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
+        JButton uploadToDatabaseButton = new JButton("Upload to Database");
+        uploadToDatabaseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Add code to upload data to the database
+                uploadDataToDatabase();
+            }
+        });
+
         // New button to start the server
 //        JButton startServerButton = new JButton("Start Server");
 //        startServerButton.addActionListener(new ActionListener() {
@@ -423,6 +436,7 @@ public class EmployeeManagementGUI implements Addable {
         buttonPanel.add(promoteEmployeeButton);
         buttonPanel.add(readFromConsoleButton);
         buttonPanel.add(battleButton); // Add the "Fight" button
+        buttonPanel.add(uploadToDatabaseButton);
 //        buttonPanel.add(startServerButton); //Server
 //        buttonPanel.add(chatButton); //Chat
         frame.add(buttonPanel, BorderLayout.SOUTH);
@@ -542,6 +556,47 @@ public class EmployeeManagementGUI implements Addable {
         }
     }
 
+    private void uploadDataToDatabase() {
+        try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish a connection to the database
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "angajat", "sefdesef")) {
+                // Create a PreparedStatement for inserting data into the database
+                String sql = "INSERT INTO `employeedb`.`employee` (id, name, age, role, married, region) VALUES (?, ?, ?, ?, ?, ?)";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    // Iterate through the table model and insert each employee into the database
+                    for (int i = 0; i < tableModel.getRowCount(); i++) {
+                        int id = (int) tableModel.getValueAt(i, 0);
+                        String name = (String) tableModel.getValueAt(i, 1);
+                        int age = (int) tableModel.getValueAt(i, 2);
+                        String role = (String) tableModel.getValueAt(i, 3);
+                        boolean married = (boolean) tableModel.getValueAt(i, 4);
+                        Region region = (Region) tableModel.getValueAt(i, 5);
+
+                        // Set parameters for the prepared statement
+                        preparedStatement.setInt(1, id);
+                        preparedStatement.setString(2, name);
+                        preparedStatement.setInt(3, age);
+                        preparedStatement.setString(4, role.toString());
+                        preparedStatement.setBoolean(5, married);
+                        preparedStatement.setString(6, region.toString());
+
+                        // Execute the update
+                        preparedStatement.executeUpdate();
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Data uploaded to the database successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error uploading data to database.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 //    private void startServer() {
 //        // Add code to start your server here
 //        // For simplicity, let's assume you have a separate class for the server called ChatServer
@@ -557,3 +612,4 @@ public class EmployeeManagementGUI implements Addable {
 
 //todo junit
 //mysql workbanch (mysql separat)
+//pass J8J0*^sas

@@ -5,64 +5,63 @@ public class EmployeeManagementGUITest {
 
     @Test
     public void testEmployeeManagementGUI() {
-        // Assuming you have a ManagementSystem instance, and the last two parameters are booleans
+        //assuming you have a ManagementSystem instance, and the last two parameters are booleans
         ManagementSystem managementSystem = new ManagementSystem();
         boolean isDevEnabled = true;
         boolean isLoadEnabled = false;
-
-        // Instantiate EmployeeManagementGUI with the required arguments
+        //instantiate EmployeeManagementGUI with the required arguments
         EmployeeManagementGUI employeeManagementGUI = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
 
-        // Add your test assertions or actions as needed
         assertNotNull(employeeManagementGUI);
     }
 
     @Test
     public void testValidateEmployeeInputValid() {
-        // Provide necessary parameters for ManagementSystem and booleans
+        //provide necessary parameters for ManagementSystem and booleans
         ManagementSystem managementSystem = new ManagementSystem();
         boolean isDevEnabled = true;
         boolean isLoadEnabled = false;
-
         EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
-
-        // Test with valid input
+        //test with valid input
         boolean result = gui.validateEmployeeInput(1, "John Doe", 30, Role.Junior, false, Region.Romania);
         assertTrue(result);
     }
 
     @Test
     public void testValidateEmployeeInputInvalidId() {
-        // Provide necessary parameters for ManagementSystem and booleans
+        //provide necessary parameters for ManagementSystem and booleans
         ManagementSystem managementSystem = new ManagementSystem();
         boolean isDevEnabled = true;
         boolean isLoadEnabled = false;
-
         EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
-
-        // Test with invalid ID
+        //test with invalid ID
         boolean result = gui.validateEmployeeInput(-1, "John Doe", 30, Role.Junior, false, Region.Romania);
         assertFalse(result);
     }
 
     @Test
     public void testValidateEmployeeInputInvalidName() {
-        // Create an instance of EmployeeManagementGUI
+        //create an instance of EmployeeManagementGUI
         ManagementSystem system = new ManagementSystem();
         EmployeeManagementGUI gui = new EmployeeManagementGUI(system, false, false);
-
-        // Call the method with an invalid name
+        //call the method with an invalid name
         boolean result = gui.validateEmployeeInput(-1, "John", 25, Role.Intern, false, Region.Romania);
-
-        // Assert that the result is false
+        //assert that the result is false
         assertFalse(result);
     }
 
-    // Add more test cases for other scenarios
-
     @Test
     public void testAddEmployee() {
-        // You can add test cases for the addEmployee functionality here
-        // Make sure to test both valid and invalid cases
+        //create an instance of ManagementSystem
+        ManagementSystem system = new ManagementSystem();
+        //create an instance of EmployeeManagementGUI
+        EmployeeManagementGUI gui = new EmployeeManagementGUI(system, false, false);
+        int initialEmployeeCount = system.getEmployees().size();   //get the initial employee count
+        gui.createAndShowGUI();    //call the createAndShowGUI method to create the GUI
+
+        //simulate user interaction to add a valid employee
+        gui.validateEmployeeInput(1, "John Doe", 30, Role.Associate, false, Region.Germany);
+        int updatedEmployeeCount = system.getEmployees().size();   //get the updated employee count
+        assertEquals(initialEmployeeCount, updatedEmployeeCount);   //assert that the employee count has increased by 1
     }
 }
