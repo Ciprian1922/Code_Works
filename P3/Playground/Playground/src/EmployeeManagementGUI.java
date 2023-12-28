@@ -378,8 +378,9 @@ public class EmployeeManagementGUI implements Addable {
         JButton statsButton = new JButton("DB_Content");
         statsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Show the employee list window
+                // Show the employee list window as a non-blocking dialog
                 EmployeeListWindow employeeListWindow = new EmployeeListWindow();
+                employeeListWindow.showWindow();
             }
         });
 

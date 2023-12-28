@@ -11,5 +11,6 @@
 34,Jajak,200,Intern,true,Romania
 45,Gica,88,Intern,true,Romania
 46,Fodor Nedelcu,34,Intern,true,Romania
+69,Frincu Andrei,20,Junior,false,Spain
 78,Popa Ioan-Ciprian,21,Lead,false,Romania
 678,Opi,20,Intermediate,false,Spain

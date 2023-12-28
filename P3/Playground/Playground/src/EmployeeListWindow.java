@@ -215,4 +215,10 @@ public class EmployeeListWindow {
             }
         });
     }
+
+    public void showWindow() {
+        // Make the window visible without terminating the application when closed
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
+    }
 }
