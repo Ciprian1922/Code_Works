@@ -8,9 +8,17 @@
 9,Adrian,21,Associate,false,Romania
 10,Larisa,34,Intermediate,false,Germany
 23,Yoda,199,Intern,true,Romania
+31,Toyota,48,Intern,true,Romania
 34,Jajak,200,Intern,true,Romania
+43,Pisica,55,Intern,true,Romania
 45,Gica,88,Intern,true,Romania
 46,Fodor Nedelcu,34,Intern,true,Romania
+47,Lasmborghini,3,Intern,true,Romania
 69,Frincu Andrei,20,Junior,false,Spain
+71,Bugatata,1,Intern,true,Romania
+72,Youtuber,76,Intern,true,Romania
 78,Popa Ioan-Ciprian,21,Lead,false,Romania
+89,Youtube,187,Intern,true,Romania
+91,gigi,2,Intern,true,Romania
+99,Cutu,21,Intern,true,Romania
 678,Opi,20,Intermediate,false,Spain
