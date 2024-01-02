@@ -1,0 +1,3 @@
+C:/Users/Ciprian/Desktop/GitHub_UVT/Code_Works/Don'tMind/cmake-build-debug/CMakeFiles/Don_tMind.dir
+C:/Users/Ciprian/Desktop/GitHub_UVT/Code_Works/Don'tMind/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Ciprian/Desktop/GitHub_UVT/Code_Works/Don'tMind/cmake-build-debug/CMakeFiles/rebuild_cache.dir

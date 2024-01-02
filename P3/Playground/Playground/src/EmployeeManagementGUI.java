@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
@@ -10,17 +11,14 @@ public class EmployeeManagementGUI implements Addable {
     private ManagementSystem system;
     private DefaultTableModel tableModel;
     private boolean isDevEnabled;
-//    private int chatClientCount = 0;
-//    private ChatServer chatServer;
+    private boolean isLoggedIn = false;
+    private String currentUser = null;
     public boolean validateEmployeeInput(int id, String name, int age, Role function, boolean isMarried, Region region) {
         // Your validation logic here
         if (id <= 0) {
             JOptionPane.showMessageDialog(null, "Invalid ID. Please enter a positive integer.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
-        // Validate other fields as needed
-
         return true; // If all validations pass
     }
 
@@ -135,9 +133,6 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-
-        // Clone the "Add Employee" button to create the "Edit Employee" button
-        // Clone the "Add Employee" button to create the "Edit Employee" button
         JButton editEmployeeButton = new JButton("Edit Employee");
         editEmployeeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -240,7 +235,6 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-
         JButton removeEmployeeButton = new JButton("Remove Employee");
         if (!isDevEnabled) {
             removeEmployeeButton.setEnabled(false);
@@ -289,8 +283,6 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-
-
         JButton readFromConsoleButton = new JButton("Read from console");
         readFromConsoleButton.addActionListener(new ActionListener() {
             @Override
@@ -310,7 +302,7 @@ public class EmployeeManagementGUI implements Addable {
 
                     // Add the new employee to the table
                     tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
-
+                    //SQL THING THAT ADDS THE EMPLOYEE
                     // Notify that the employee has been read successfully
                     OutputDevice.write("Employee read successfully");
 
@@ -367,64 +359,57 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-        // New button to start the server
-//        JButton startServerButton = new JButton("Start Server");
-//        startServerButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                // Start the server in a new thread
-//                new Thread(new Runnable() {
-//                    public void run() {
-//                        startServer();
-//                    }
-//                }).start();
-//            }
-//        });
+        JButton uploadToDatabaseButton = new JButton("Upload to Database");
+        uploadToDatabaseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!isLoggedIn) {
+                    // If not logged in, show the login dialog
+                    if (showLoginDialog()) {
+                        // If login is successful, set the flag to true
+                        isLoggedIn = true;
+                    }
+                }
 
+                if (isLoggedIn) {
+                    // If logged in, proceed with the data upload
+                    uploadDataToDatabase();
+                }
+            }
+        });
 
-//        JButton chatButton = new JButton("Chat");
-//        chatButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    // Assuming you have a JTextField for user input
-//                    JTextField userInputField = new JTextField();
-//
-//                    // Create a panel with user input field
-//                    JPanel userInputPanel = new JPanel();
-//                    userInputPanel.add(new JLabel("Enter your message: "));
-//                    userInputPanel.add(userInputField);
-//
-//                    // Show an input dialog with user input field
-//                    int result = JOptionPane.showConfirmDialog(frame, userInputPanel, "Chat",
-//                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-//
-//                    // Get the user input from the text field
-//                    String message = userInputField.getText();
-//
-//                    if (result == JOptionPane.OK_OPTION && !message.isEmpty()) {
-//                        // Create a new ChatClient instance for each user
-//                        ChatClient chatClient = new ChatClient("localhost", 12345); // Replace with your server details
-//                        chatClient.startChat("User" + ++chatClientCount);
-//                        // Assign a unique username and send the message
-//                    }
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//            }
-//        });
+        // Add the "Stats" button and its action listener
+        JButton statsButton = new JButton("DB_Content");
+        statsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Show the employee list window as a non-blocking dialog
+                EmployeeListWindow employeeListWindow = new EmployeeListWindow();
+                employeeListWindow.showWindow();
+            }
+        });
 
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Reset the isLoggedIn variable and set currentUser to null
+                isLoggedIn = false;
+                currentUser = null;
+                JOptionPane.showMessageDialog(null, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
 
         frame.add(tableScrollPane, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(addEmployeeButton);
-        buttonPanel.add(editEmployeeButton); // Add the "Edit Employee" button
+        buttonPanel.add(editEmployeeButton);
         buttonPanel.add(removeEmployeeButton);
         buttonPanel.add(promoteEmployeeButton);
         buttonPanel.add(readFromConsoleButton);
-        buttonPanel.add(battleButton); // Add the "Fight" button
-//        buttonPanel.add(startServerButton); //Server
-//        buttonPanel.add(chatButton); //Chat
+        buttonPanel.add(battleButton);
+        buttonPanel.add(uploadToDatabaseButton);
+        buttonPanel.add(statsButton);
+        buttonPanel.add(logoutButton);
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         frame.setVisible(true);
@@ -433,7 +418,7 @@ public class EmployeeManagementGUI implements Addable {
         System.out.print(prompt);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        OutputDevice.write("User input: " + input); // Print the input to the output console
+        OutputDevice.write("User input: " + input);
         return input;
     }
 
@@ -455,7 +440,7 @@ public class EmployeeManagementGUI implements Addable {
                 int id = Integer.parseInt(readFromConsole(prompt));
 
                 // Check if the ID already exists
-                if (system.employeeExists(id)) {
+                if (system.employeeExists(id) && id > 0) {
                     OutputDevice.write("Error: Employee with ID " + id + " already exists. Please enter a unique ID.");
                 } else {
                     return id;
@@ -466,7 +451,6 @@ public class EmployeeManagementGUI implements Addable {
         }
     }
 
-
     private String readNameFromConsole(String prompt) {
         while (true) {
             String name = readFromConsole(prompt);
@@ -475,7 +459,7 @@ public class EmployeeManagementGUI implements Addable {
             name = name.replaceAll("\\s+", " ").trim();
 
             // Allow letters, spaces, and hyphens in the name
-            if (name.matches("[a-zA-Z\\s-]+")) {
+            if (name.matches("[a-zA-Z\\s-]+") && name.length() < 100) {
                 return name;
             } else {
                 OutputDevice.write("Error: Invalid characters in the name. Please enter a valid name.");
@@ -542,15 +526,142 @@ public class EmployeeManagementGUI implements Addable {
         }
     }
 
-//    private void startServer() {
-//        // Add code to start your server here
-//        // For simplicity, let's assume you have a separate class for the server called ChatServer
-//        try {
-//            ChatClient chatClient = new ChatClient("localhost", 12345); // Pass the port number
-//            chatServer.startServer(); // You need to implement this method in your ChatServer class
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void uploadDataToDatabase() {
+        try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
+            // Establish a connection to the database
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "angajat", "sefdesef")) {
+                // Create a PreparedStatement for deleting all records from the table
+                String deleteSql = "DELETE FROM `employeedb`.`employees`";
+
+                try (PreparedStatement deleteStatement = connection.prepareStatement(deleteSql)) {
+                    // Execute the delete statement to remove all records
+                    deleteStatement.executeUpdate();
+                }
+
+                // Create a PreparedStatement for inserting data into the database
+                String insertSql = "INSERT INTO `employeedb`.`employees` (name, age, role, is_married, region) VALUES (?, ?, ?, ?, ?)";
+
+                try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
+                    // Iterate through the table model and insert each employee into the database
+                    for (int i = 0; i < tableModel.getRowCount(); i++) {
+                        String name = (String) tableModel.getValueAt(i, 1);
+                        int age = (int) tableModel.getValueAt(i, 2);
+                        String role = (String) tableModel.getValueAt(i, 3);
+                        boolean married = (boolean) tableModel.getValueAt(i, 4);
+                        Region region = (Region) tableModel.getValueAt(i, 5);
+
+                        // Set parameters for the prepared statement
+                        insertStatement.setString(1, name);
+                        insertStatement.setInt(2, age);
+                        insertStatement.setString(3, role.toString());
+                        insertStatement.setBoolean(4, married);
+                        insertStatement.setString(5, region.toString());
+
+                        // Execute the update
+                        insertStatement.executeUpdate();
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Data uploaded to the database successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error uploading data to the database.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean showLoginDialog() {
+        JTextField usernameField = new JTextField();
+        JPasswordField passwordField = new JPasswordField();
+        Object[] message = {
+                "Username:", usernameField,
+                "Password:", passwordField
+        };
+
+        int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+
+        if (option == JOptionPane.OK_OPTION) {
+            String username = usernameField.getText();
+            char[] passwordChars = passwordField.getPassword();
+            String password = new String(passwordChars);
+
+            // Check the login credentials
+            if (validateLogin(username, password)) {
+                currentUser = username;
+                return true; // Login successful
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                return false; // Login failed
+            }
+        } else {
+            return false; // User clicked Cancel
+        }
+    }
+
+    private boolean validateLogin(String username, String password) {
+        // Check the login credentials
+        if ((username.equals("angajat") && password.equals("sefdesef"))) {
+            currentUser = username;
+            return true; // Valid credentials
+        } else if (username.equals("averageman") && password.equals("simple")) {
+            currentUser = username;
+
+            // Check user permissions here
+            if (hasDeletePermissions(username)) {
+                return true; // Valid credentials
+            } else {
+                // Display a message for users with insufficient permissions
+                JOptionPane.showMessageDialog(null, "User 'averageman' does not have delete permissions.", "Permission Denied", JOptionPane.ERROR_MESSAGE);
+                return false; // Invalid permissions
+            }
+        }
+        return false;
+    }
+    public class User {
+        private String username;
+        private Role role; // Add a field to store the user's role
+
+        // Constructor, getters, setters...
+
+        public boolean hasPermission(Role requiredPermission) {
+            // Logic to check if the user has the required permission
+            return role == requiredPermission;
+        }
+    }
+    private boolean hasDeletePermissions(String username) {
+        // Implement logic to check if the user has delete permissions
+        try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish a connection to the database
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "your_username", "your_password")) {
+                // Create a PreparedStatement for the query
+                String query = "SELECT delete_permission FROM user_permissions WHERE username = ?";
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.setString(1, username);
+
+                    // Execute the query
+                    try (ResultSet resultSet = statement.executeQuery()) {
+                        if (resultSet.next()) {
+                            // Check the value of delete_permission in the result set
+                            return resultSet.getBoolean("delete_permission");
+                        }
+                    }
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Return false by default (in case of errors or if the user is not found)
+        return false;
+    }
 }
+
+//todo junit
+//mysql workbanch (mysql separat)
+//pass J8J0*^sas

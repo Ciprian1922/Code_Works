@@ -1,3 +1,3 @@
 public enum Region {
-    Romania, Germany, Italy, Spain, Sweden
+    Romania, Germany, Italy, Spain, Sweden, Japan
 }
