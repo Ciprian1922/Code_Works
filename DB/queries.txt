@@ -1,0 +1,115 @@
+--SELECT * FROM emp
+--SELECT * FROM dept
+--SELECT ename, job FROM emp
+--SELECT ename, sal FROM emp
+--SELECT empno, sal FROM emp
+--SELECT ename, sal*12 FROM emp
+--SELECT ename FROM emp WHERE deptno = 10
+--SELECT ename FROM emp WHERE job = 'CLERK' AND sal > 3000
+--SELECT empno, ename FROM emp WHERE comm IS NOT NULL
+--SELECT empno, ename FROM emp WHERE comm IS NULL
+--SELECT ename FROM emp WHERE job IN ('CLERK', 'SALESMAN', 'ANALYST') AND sal > 3000
+--SELECT ename FROM emp, dual WHERE hiredate <= sysdate - INTERVAL '5' YEAR
+--SELECT ename FROM emp WHERE hiredate < '06-30-1990' OR hiredate > '12-31-1990'
+--SELECT sysdate FROM dual
+--SELECT username FROM all_users
+--SELECT table_name FROM user_tables
+--SELECT user FROM dual
+--SELECT ename, job, deptno FROM emp WHERE job IN ('CLERK', 'SALESMAN', 'ANALYST') OR deptno IN (10, 20, 40)
+--SELECT ename FROM emp WHERE ename LIKE 'S%'
+--SELECT ename FROM emp WHERE ename LIKE '%S'
+--SELECT ename FROM emp WHERE ename LIKE '_A%'
+--SELECT ename FROM emp WHERE ename LIKE '_____'
+--SELECT ename FROM emp WHERE job != 'MANAGER'
+--SELECT ename FROM emp WHERE job NOT IN ('SALESMAN', 'CLERK', 'ANALYST')
+--SET PAUSE ON SET PAUSE 'press enter to continue' SET PAGESIZE 10 SELECT * FROM emp
+--SELECT COUNT(ename) FROM emp
+--SELECT SUM(sal) FROM emp
+--SELECT MAX(sal) FROM emp
+--SELECT MIN(sal) FROM emp
+--SELECT AVG(sal) FROM emp
+--SELECT MAX(sal) FROM emp WHERE job = 'CLERK'
+--SELECT MAX(sal) FROM emp WHERE deptno = 20
+--SELECT MIN(sal) FROM emp WHERE job = 'SALESMAN'
+--SELECT AVG(sal) FROM emp WHERE job = 'MANAGER'
+--SELECT SUM(sal) FROM emp WHERE job = 'ANALYST' AND deptno = 40
+--SELECT ename FROM emp ORDER BY sal ASC
+--SELECT ename FROM emp ORDER BY sal DESC
+--SELECT ename FROM emp ORDER BY ename
+--SELECT empno, ename, deptno, sal FROM emp ORDER BY ename, deptno, sal
+--SELECT ename, sal*12 FROM emp ORDER BY sal DESC
+--SELECT ename, sal, sal*0.15 AS hra, sal*0.10 AS da, sal*0.05 AS pf, (sal+sal*0.15+sal*0.10)-sal*0.05 AS total_salary FROM emp ORDER BY sal
+--SELECT deptno, COUNT(*) FROM emp GROUP BY deptno
+--SELECT job, COUNT(*) FROM emp GROUP BY job
+--SELECT deptno, SUM(sal) FROM emp GROUP BY deptno
+--SELECT deptno, MAX(sal) FROM emp GROUP BY deptno
+--SELECT job, SUM(sal) FROM emp GROUP BY job
+--SELECT job, SUM(sal) FROM emp GROUP BY job
+--SELECT deptno FROM emp GROUP BY deptno HAVING COUNT(*) > 3 
+--SELECT job, SUM(sal) FROM emp GROUP BY job HAVING SUM(sal) > 40000
+--SELECT job, COUNT(*) FROM emp GROUP BY job HAVING COUNT(*) > 3
+--SELECT ename FROM emp WHERE sal = (SELECT MAX(sal) FROM emp)
+--SELECT empno, ename FROM emp WHERE job = 'CLERK' AND sal = (SELECT MAX(sal) FROM emp WHERE job = 'CLERK')
+--SELECT ename FROM emp WHERE job = 'SALESMAN' AND sal > (SELECT MAX(sal) FROM emp WHERE job = 'CLERK')
+--SELECT ename FROM emp WHERE job = 'CLERK' AND sal > (SELECT MIN(sal) FROM emp WHERE job = 'SALESMAN')
+--SELECT ename FROM emp WHERE (deptno, sal) IN (SELECT deptno, MAX(sal) FROM emp GROUP BY deptno)
+--SELECT ename FROM emp WHERE (job, sal) IN (SELECT job, MAX(sal) FROM emp GROUP BY job)
+--SELECT e.ename FROM emp e JOIN dept d ON e.deptno = d.deptno WHERE d.dname = 'ACCOUNTING'
+--SELECT e.ename FROM emp e JOIN dept d ON e.deptno = d.deptno WHERE d.loc = 'NEW YORK'
+--SELECT DISTINCT e.job FROM emp e, (SELECT MAX(sal) AS maxsal FROM emp WHERE job = 'MANAGER') m WHERE (SELECT SUM(e.sal) FROM emp) > m.maxsal
+--SELECT m.ename FROM (SELECT MIN(sal) AS minsal FROM emp) e, (SELECT sal, ename FROM emp WHERE deptno = 10) m WHERE m.sal > e.minsal;
+--SELECT m.ename FROM (SELECT SUM(sal) AS sumsal FROM emp) e, (SELECT sal, ename FROM emp WHERE deptno = 10) m WHERE m.sal > e.sumsal;
+--SELECT UPPER(ename) FROM emp
+--SELECT LOWER(ename) FROM emp
+--SELECT INITCAP(ename) FROM emp
+--SELECT LENGTH('Maximilian') FROM dual
+--SELECT LENGTH(ENAME) FROM emp
+--SELECT ename||empno FROM emp
+--SELECT SUBSTR('Oracle', 3, 2) FROM dual
+--SELECT INSTR('Computer Maintenance Corporation', 'a') FROM dual
+--SELECT TRANSLATE('Allen', 'A', 'B') FROM dual
+--SELECT ename, REPLACE(Job, 'Manager', 'Boss') FROM emp
+--SELECT empno, ename, DECODE(deptno, 10, 'first', 20, 'second', 30, 'third', 'other') FROM emp
+--SELECT 20*365 FROM dual
+--SELECT 20*12 FROM dual
+--SELECT '15th 08 Friday Nineteen Ninety Saven' AS current_date FROM dual
+--SELECT 'A has joined the company on Wednesday 13th August 1990' FROM dual
+--SELECT NEXT_DAY(sysdate, 'SATURDAY') FROM dual
+--SELECT TO_CHAR(systimestamp, 'HH24:MI:SS') FROM dual
+--SELECT ADD_MONTHS(sysdate, -3) FROM dual
+--SELECT DISTINCT job FROM emp WHERE deptno IN (10, 20)
+--SELECT ename FROM emp WHERE SAL > (SELECT sal FROM emp WHERE ename = 'A' OR ename = 'B')
+--SELECT DISTINCT job FROM emp WHERE deptno IN (10, 20)
+--SELECT DISTINCT e.job FROM (SELECT job FROM emp WHERE deptno != 10) e, (SELECT job FROM emp WHERE deptno = 10) d WHERE d.job NOT IN e.job
+--SELECT * FROM emp WHERE mgr IS NULL
+--SELECT * FROM emp, dept, salgrade WHERE emp.deptno = dept.deptno AND dept.dname = 'SALES' AND emp.sal BETWEEN salgrade.losal AND salgrade.hisal AND salgrade.grade = 3 (idk 85 btw)
+--SELECT ename FROM emp WHERE LENGTH(ename) >= 4
+--SELECT dname, loc FROM dept WHERE dname LIKE 'S%' AND loc LIKE '%K'
+--SELECT e.ename FROM emp e FULL OUTER JOIN emp m ON 1 = 1 WHERE m.empno = e.mgr AND m.ename = 'KING'
+--SELECT e.ename FROM (SELECT ename, REPLACE(sal, sal*1.20) AS newsal FROM emp) e WHERE e.newsal > 3000
+--SELECT emp.ename, dept.dname FROM emp FULL OUTER JOIN dept ON emp.deptno = dept.deptno
+--SELECT emp.ename FROM emp FULL OUTER JOIN dept ON emp.deptno = dept.deptno WHERE dept.dname = 'SALES'
+--SELECT emp.ename, dept.dname, emp.sal, emp.comm FROM emp FULL OUTER JOIN dept ON emp.deptno = dept.deptno WHERE emp.sal BETWEEN 2000 AND 5000 AND dept.loc = 'NEW YORK'
+--SELECT e.ename, e.sal, m.sal FROM emp e JOIN emp m ON e.mgr = m.empno WHERE e.sal > m.sal
+--SELECT e.ename FROM emp e JOIN emp m ON e.mgr = m.empno WHERE e.deptno = m.deptno
+--SELECT ename FROM emp WHERE mgr IS NULL
+--SELECT salgrade.grade, emp.ename FROM emp, salgrade WHERE deptno IN (10, 30) AND emp.sal BETWEEN salgrade.losal AND salgrade.hisal AND salgrade.grade != 4
+--SELECT ename, sal*1.10 FROM emp WHERE comm IS NULL
+--SELECT ename FROM emp JOIN dept ON emp.deptno = dept.deptno WHERE loc IN ('NEW YORK', 'CHICAGO') AND hiredate < '12-31-1982'
+--SELECT emp.ename, emp.job, dept.dname, dept.loc FROM emp JOIN dept ON emp.deptno = dept.deptno WHERE job = 'MANAGER'
+--SELECT e.ename, m.ename FROM emp e JOIN emp m ON e.mgr = m.deptno WHERE m.ename = 'KING'
+--SELECT emp.ename, emp.sal FROM emp, salgrade WHERE emp.sal BETWEEN salgrade.losal AND salgrade.hisal AND ename = 'FORD' AND emp.sal = salgrade.hisal
+--SELECT e.ename, d.dname, m.ename, s.grade FROM emp e JOIN dept d ON e.deptno = d.deptno JOIN emp m ON e.mgr = m.empno JOIN salgrade s ON m.sal BETWEEN s.losal AND s.hisal
+--SELECT emp.ename, emp.job, emp.sal, dept.dname FROM emp JOIN dept ON emp.deptno = dept.deptno WHERE emp.job NOT LIKE 'CLERK' ORDER BY sal DESC
+--SELECT DISTINCT e.ename, e.job, m.ename FROM emp e, emp m WHERE e.mgr = m.empno OR e.mgr IS NULL
+--SELECT ename FROM emp ORDER BY sal DESC FETCH FIRST 5 ROWS ONLY
+--SELECT sal, ename FROM emp ORDER BY sal DESC FETCH FIRST 1 ROWS ONLY
+--SELECT ename FROM emp e, (SELECT AVG(a.salary) AS avgsal FROM (SELECT MAX(sal) AS salary FROM emp UNION SELECT MIN(sal) AS salary FROM emp) a) m WHERE e.sal = m.avgsal
+--SELECT COUNT(ename) FROM emp GROUP BY deptno HAVING COUNT(ename) > 3
+--SELECT d.dname FROM (SELECT COUNT(ename) AS nr, deptno FROM emp GROUP BY deptno HAVING COUNT(ename) > 3) e JOIN dept d ON e.deptno = d.deptno
+--SELECT ename FROM emp WHERE sal > (SELECT AVG(sal) FROM emp) AND job = 'MANAGER'
+--SELECT DISTINCT m.ename FROM emp e JOIN emp m ON e.mgr = m.empno WHERE m.sal > e.sal
+--SELECT ename, sal, comm, sal AS net FROM emp WHERE sal >= ANY(sal)
+--SELECT ename, sal*12 FROM emp
+--SELECT ename FROM emp ORDER BY sal ASC FETCH FIRST 5 ROWS ONLY
+--SELECT COUNT(e.ename) FROM emp e JOIN emp m ON e.mgr = m.empno WHERE e.sal > m.sal
