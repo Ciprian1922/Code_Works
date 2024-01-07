@@ -1,0 +1,199 @@
+--===TABLE CREATION and INSERTING DATA INTO TABLES===
+CREATE TABLE clients (      -- creating the table clients
+    client_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50) NOT NULL,
+    last_name VARCHAR2(50) NOT NULL,
+    luggage_weight NUMBER DEFAULT 0,
+    date_of_birth DATE,
+    town VARCHAR2(50),
+    married VARCHAR2(5) DEFAULT 'No' CHECK (married IN ('Da', 'Nu')),
+    phone_number VARCHAR2(15) DEFAULT 'N/A',
+    email VARCHAR2(50)
+);
+
+INSERT INTO clients VALUES      -- inserting data into the table clients
+(1, 'Popa', 'Ciprian', 21, TO_DATE('2002-07-15', 'YYYY-MM-DD'), 'Bucuresti', 'Nu', '0721-435-5234', 'ciprian.popa@email.com');
+
+INSERT INTO clients VALUES 
+(2, 'Marcel', 'Vasile', 45, TO_DATE('1977-05-12', 'YYYY-MM-DD'), 'Paris', 'Da', '0712-321-2345', 'marcel.vasile@email.com');
+
+INSERT INTO clients VALUES 
+(3, 'Boboc', 'Popescu', 37, TO_DATE('1987-05-12', 'YYYY-MM-DD'), 'Tenerife', 'Nu', '0755-323-187', 'boboc.popescu@email.com');
+
+select * from clients
+
+CREATE TABLE flights (      -- creating the table flights
+    flight_id NUMBER PRIMARY KEY,
+    flight_number VARCHAR2(20) NOT NULL,
+    departure_city VARCHAR2(50) NOT NULL,
+    arrival_city VARCHAR2(50) NOT NULL,
+    departure_time TIMESTAMP,
+    CONSTRAINT chk_flight_number CHECK (LENGTH(flight_number) <= 20)
+);
+
+INSERT INTO flights VALUES      -- inserting data into flights table
+(1, 'FlightTo', 'New York', 'Londra', TO_TIMESTAMP('2023-01-01 12:00:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+INSERT INTO flights VALUES 
+(2, 'BlueSky789', 'Barcelona', 'Rome', TO_TIMESTAMP('2023-02-15 10:30:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+INSERT INTO flights VALUES 
+(3, 'Sunset456', 'Vienna', 'Prague', TO_TIMESTAMP('2023-03-20 14:45:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+select * from flights
+
+CREATE TABLE tickets (      -- creation of the table tickets
+    ticket_id NUMBER PRIMARY KEY,
+    client_id NUMBER,
+    flight_id NUMBER,
+    seat_number VARCHAR2(10),
+    ticket_price NUMBER,
+    CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES clients(client_id),
+    CONSTRAINT fk_flight FOREIGN KEY (flight_id) REFERENCES flights(flight_id)
+);
+
+INSERT INTO tickets VALUES -- inserting data into tickets table
+(1, 1, 1, 'A12', 500);
+
+INSERT INTO tickets VALUES 
+(2, 2, 2, 'B34', 700);
+
+INSERT INTO tickets VALUES 
+(3, 3, 3, 'C56', 600);
+
+select * from tickets
+
+--===UPDATING TABLES===
+
+UPDATE clients SET luggage_weight = 25, town = 'Los Angeles' WHERE client_id = 1;   -- update client's Information
+UPDATE flights SET departure_time = TO_TIMESTAMP('2023-01-01 14:00:00', 'YYYY-MM-DD HH24:MI:SS') WHERE flight_id = 1;   -- update flight departure time
+UPDATE tickets SET ticket_price = 600 WHERE ticket_id = 1;  -- update ticket price
+
+select * from clients
+select * from flights
+select * from tickets
+
+--===DELETING DATA===
+DELETE FROM tickets WHERE client_id = 1;
+DELETE FROM clients WHERE client_id = 1; 
+DELETE FROM tickets WHERE flight_id = 2;   -- just deleting content from tables
+DELETE FROM flights WHERE flight_id = 2;
+
+
+select * from clients
+select * from flights
+select * from tickets
+
+--===CHANGE CONTENT OF TABLE===
+
+UPDATE clients SET married = 'Nu' WHERE client_id = 2;  -- change client's marital status
+UPDATE flights SET arrival_city = 'Sydney' WHERE flight_id = 1; -- change flight arrival city
+UPDATE tickets SET seat_number = 'C23' WHERE ticket_id = 1; -- change ticket seat number
+
+select * from clients
+select * from flights
+select * from tickets
+
+--===MODIFY TABLE STRUCTURE===
+
+ALTER TABLE clients ADD passport_number VARCHAR2(20);   -- add a new column to clients
+ALTER TABLE flights RENAME COLUMN arrival_city TO destination_city; -- rename a column in flights
+
+
+UPDATE clients SET PASSPORT_NUMBER = '1718289' WHERE client_id = 2;   -- adding passport number to new fields
+UPDATE clients SET PASSPORT_NUMBER = '1718289' WHERE client_id = 3;
+
+
+select * from clients
+select * from flights
+
+--===CONSTRAINTS===
+
+SELECT constraint_name, constraint_type
+FROM all_constraints
+WHERE table_name = 'TICKETS';
+
+ALTER TABLE tickets ADD CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES clients(client_id); -- add foreign key constraint to tickets
+
+
+--===VIEWS===
+ 
+CREATE VIEW client_info AS
+SELECT client_id, first_name, last_name, luggage_weight, date_of_birth, town, married, phone_number, email, passport_number
+FROM clients;   -- create a view for comprehensive client information
+
+CREATE VIEW ticket_info AS
+SELECT t.ticket_id, c.first_name || ' ' || c.last_name AS passenger_name, f.flight_number, t.seat_number, t.ticket_price
+FROM tickets t
+JOIN clients c ON t.client_id = c.client_id
+JOIN flights f ON t.flight_id = f.flight_id;    -- create a view for ticket information
+
+
+--===UPDATING VIEW===
+
+CREATE OR REPLACE VIEW high_weight_luggage AS
+SELECT client_id, luggage_weight
+FROM clients
+WHERE luggage_weight > 20;  -- updating view by adding a condition
+
+--===RETRIEVE DATA FROM VIEW===
+
+SELECT * FROM client_info;
+SELECT * FROM ticket_info;
+
+DROP TABLE clients;
+DROP TABLE flights;
+
+--===More DML Operations===
+
+INSERT INTO clients (client_id, first_name, last_name, date_of_birth, town)
+SELECT 6, 'Emma', 'Johnson', TO_DATE('1993-09-20', 'YYYY-MM-DD'), 'San Francisco' FROM dual;    -- Insert into Clients using SELECT statement
+
+INSERT INTO flights VALUES 
+(6, 'GHI789', 'Berlin', 'Rome', TO_TIMESTAMP('2023-06-01 08:45:00', 'YYYY-MM-DD HH24:MI:SS'));      -- Insert into Flights using VALUES clause
+
+MERGE INTO tickets t
+USING (SELECT 6 AS ticket_id, 3 AS client_id, 6 AS flight_id, 'F12' AS seat_number, 650 AS ticket_price FROM dual) src
+ON (t.ticket_id = src.ticket_id)
+WHEN MATCHED THEN
+  UPDATE SET t.client_id = src.client_id, t.flight_id = src.flight_id, t.seat_number = src.seat_number, t.ticket_price = src.ticket_price
+WHEN NOT MATCHED THEN
+  INSERT VALUES (src.ticket_id, src.client_id, src.flight_id, src.seat_number, src.ticket_price);       -- Insert into Tickets using MERGE statement
+
+--merge into the tickets table using a source dataset that represents a new ticket, if a ticket with the same ID exists, update its information, otherwise insert a new ticket
+
+--===NORMAL FORM===
+
+-- the tables (clients, flights, tickets) in the provided tables belong to the third normal form (3NF)
+-- they exhibit atomic values, avoid repeating groups, and ensure that non-key columns depend
+-- only on the primary key, maintaining data integrity and organization
+-- atomic values: each column contains indivisible and atomic data, meaning no nested structures or arrays
+-- no repeating groups: data is organized in a flat structure, and there is no repeating groups of information within a row
+-- columns depend on the primary key: all non-key columns should depend solely on the table's primary key, and there are no transitive dependencies among non-key columns
+
+
+--===USEFUL SELECT STATEMENTS===
+
+SELECT c.first_name || ' ' || c.last_name AS passenger_name, t.seat_number, f.flight_number
+FROM clients c
+JOIN tickets t ON c.client_id = t.client_id
+JOIN flights f ON t.flight_id = f.flight_id;		--retrieve clients and their ticket information
+
+SELECT f.flight_number, COUNT(t.ticket_id) AS booked_seats, (50 - COUNT(t.ticket_id)) AS available_seats
+FROM flights f
+LEFT JOIN tickets t ON f.flight_id = t.flight_id
+GROUP BY f.flight_number;		--show flights with available seats
+
+SELECT c.client_id, c.first_name, c.last_name, COUNT(t.ticket_id) AS ticket_count
+FROM clients c
+LEFT JOIN tickets t ON c.client_id = t.client_id
+GROUP BY c.client_id, c.first_name, c.last_name
+HAVING COUNT(t.ticket_id) > 1;		--find clients with multiple tickets
+
+--===DELETING EVERYTHING===
+
+ALTER TABLE tickets DROP CONSTRAINT fk_client;
+DROP TABLE clients;
+ALTER TABLE tickets DROP CONSTRAINT fk_flight;
+DROP TABLE flights;
+DROP TABLE tickets CASCADE CONSTRAINTS; 
