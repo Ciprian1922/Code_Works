@@ -9,6 +9,7 @@
 10,Larisa,34,Intermediate,false,Germany
 22,Patricia Roxana,21,Senior,true,Japan
 23,Yoda,199,Intern,true,Romania
+24,LabTest,34,Senior,false,Japan
 31,Toyota,48,Intern,true,Romania
 34,Jajak,200,Intern,true,Romania
 43,Pisica,55,Intern,true,Romania
@@ -17,7 +18,6 @@
 47,Lasmborghini,3,Intern,true,Romania
 55,Adaaa,34,Intern,true,Romania
 69,Frincu Andrei,20,Junior,false,Spain
-71,Bugatata,1,Intern,true,Romania
 72,Youtuber,76,Intern,true,Romania
 78,Popa Ioan-Ciprian,21,Lead,false,Romania
 89,Youtube,187,Intern,true,Romania

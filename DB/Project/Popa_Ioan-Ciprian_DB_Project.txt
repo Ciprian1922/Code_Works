@@ -170,7 +170,9 @@ WHEN NOT MATCHED THEN
 -- atomic values: each column contains indivisible and atomic data, meaning no nested structures or arrays
 -- no repeating groups: data is organized in a flat structure, and there is no repeating groups of information within a row
 -- columns depend on the primary key: all non-key columns should depend solely on the table's primary key, and there are no transitive dependencies among non-key columns
-
+-- A relation is in third normal form (3NF) it is in 2NF and
+-- every non-prime attribute is non-transitively dependent on
+-- every key of the relation.
 
 --===USEFUL SELECT STATEMENTS===
 
