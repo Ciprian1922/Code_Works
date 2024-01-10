@@ -1,0 +1,7 @@
+cd C:\Users\popa_\Desktop\GitHub_UVT\Code_Works\P3\Playground\Playground\src
+
+javac ChatServer.java ChatClient.java
+
+java ChatServer
+
+java ChatClient

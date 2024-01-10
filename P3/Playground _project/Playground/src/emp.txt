@@ -9,7 +9,7 @@
 10,Larisa,34,Intermediate,false,Germany
 22,Patricia Roxana,21,Senior,true,Japan
 23,Yoda,199,Intern,true,Romania
-24,Yoda,199,Intern,true,Romania
+24,LabTest,34,Senior,false,Japan
 31,Toyota,48,Intern,true,Romania
 34,Jajak,200,Intern,true,Romania
 43,Pisica,55,Intern,true,Romania

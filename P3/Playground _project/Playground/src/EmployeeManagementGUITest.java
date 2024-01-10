@@ -9,9 +9,8 @@ public class EmployeeManagementGUITest {
         ManagementSystem managementSystem = new ManagementSystem();
         boolean isDevEnabled = true;
         boolean isLoadEnabled = false;
-        boolean isDbEnabled = false;
         //instantiate EmployeeManagementGUI with the required arguments
-        EmployeeManagementGUI employeeManagementGUI = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled,  isDbEnabled);
+        EmployeeManagementGUI employeeManagementGUI = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
 
         assertNotNull(employeeManagementGUI);
     }
@@ -22,8 +21,7 @@ public class EmployeeManagementGUITest {
         ManagementSystem managementSystem = new ManagementSystem();
         boolean isDevEnabled = true;
         boolean isLoadEnabled = false;
-        boolean isDbEnabled = false;
-        EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled,  isDbEnabled);
+        EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
         //test with valid input
         boolean result = gui.validateEmployeeInput(1, "Fodor Nedelcu", 30, Role.Junior, false, Region.Romania);
         assertTrue(result);
@@ -35,8 +33,7 @@ public class EmployeeManagementGUITest {
         ManagementSystem managementSystem = new ManagementSystem();
         boolean isDevEnabled = true;
         boolean isLoadEnabled = false;
-        boolean isDbEnabled = false;
-        EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled, isDbEnabled);
+        EmployeeManagementGUI gui = new EmployeeManagementGUI(managementSystem, isDevEnabled, isLoadEnabled);
         //test with invalid ID
         boolean result = gui.validateEmployeeInput(-1, "Geleu Bogota", 30, Role.Junior, false, Region.Romania);
         assertFalse(result);
@@ -46,7 +43,7 @@ public class EmployeeManagementGUITest {
     public void testValidateEmployeeInputInvalidName() {
         //create an instance of EmployeeManagementGUI
         ManagementSystem system = new ManagementSystem();
-        EmployeeManagementGUI gui = new EmployeeManagementGUI(system, false, false, false);
+        EmployeeManagementGUI gui = new EmployeeManagementGUI(system, false, false);
         //call the method with an invalid name
         boolean result = gui.validateEmployeeInput(-1, "Adrian Mircea", 25, Role.Intern, false, Region.Romania);
         //assert that the result is false
@@ -58,7 +55,7 @@ public class EmployeeManagementGUITest {
         //create an instance of ManagementSystem
         ManagementSystem system = new ManagementSystem();
         //create an instance of EmployeeManagementGUI
-        EmployeeManagementGUI gui = new EmployeeManagementGUI(system, false, false, false);
+        EmployeeManagementGUI gui = new EmployeeManagementGUI(system, false, false);
         int initialEmployeeCount = system.getEmployees().size();   //get the initial employee count
         gui.createAndShowGUI();    //call the createAndShowGUI method to create the GUI
 

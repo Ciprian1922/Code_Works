@@ -11,7 +11,6 @@ public class EmployeeManagementGUI implements Addable {
     private ManagementSystem system;
     private DefaultTableModel tableModel;
     private boolean isDevEnabled;
-    private boolean isDbEnabled;
     private boolean isLoggedIn = false;
     private String currentUser = null;
     public boolean validateEmployeeInput(int id, String name, int age, Role function, boolean isMarried, Region region) {
@@ -23,7 +22,7 @@ public class EmployeeManagementGUI implements Addable {
         return true; // If all validations pass
     }
 
-    public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled, boolean isLoadEnabled, boolean isDbEnabled) {
+    public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled, boolean isLoadEnabled) {
         this.system = system;
         this.tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Function", "Married", "Region"}, 0);
         // Populate the table model with the employees from the ManagementSystem
@@ -31,7 +30,7 @@ public class EmployeeManagementGUI implements Addable {
             tableModel.addRow(new Object[]{employee.getId(), employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried(), employee.getRegion()});
         }
         this.isDevEnabled = isDevEnabled;
-        this.isDbEnabled = isDbEnabled;
+
     }
 
     public Role getNextRole(Role currentRole) {
@@ -572,64 +571,7 @@ public class EmployeeManagementGUI implements Addable {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error uploading data to the database.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        JButton loadDbButton = new JButton("Load from DB");
-        loadDbButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (isDbEnabled) {
-                    // Load employees from the database
-                    loadEmployeesFromDatabase();
-                }
-            }
-        });
     }
-
-    private void loadEmployeesFromDatabase() {
-        // Your database connection details
-        String dbUrl = "jdbc:mysql://localhost:3306/employeedb";
-        String dbUser;
-        String dbPassword;
-
-        // Set the username and password based on the current user
-        if ("averageman".equals(currentUser)) {
-            dbUser = "averageman";
-            dbPassword = "simple";
-        } else {
-            dbUser = "angajat";
-            dbPassword = "sefdesef";
-        }
-
-        DefaultTableModel tableModel = DatabaseHandler.fetchDataFromDatabase("Name", dbUser, dbPassword);
-
-        // Clear existing rows in the table model
-        tableModel.setRowCount(0);
-
-        // Populate the table model with the fetched data
-        for (int i = 0; i < tableModel.getRowCount(); i++) {
-            String region = (String) tableModel.getValueAt(i, 5);
-
-            // Only add employees from Romania to the table model when the user is 'averageman'
-            if ("averageman".equals(currentUser) && !"Romania".equals(region)) {
-                continue;
-            }
-
-            tableModel.addRow(new Object[]{
-                    tableModel.getValueAt(i, 0),
-                    tableModel.getValueAt(i, 1),
-                    tableModel.getValueAt(i, 2),
-                    tableModel.getValueAt(i, 3),
-                    tableModel.getValueAt(i, 4),
-                    region
-            });
-        }
-    }
-
-
-
-
-
-
-
 
     private boolean showLoginDialog() {
         JTextField usernameField = new JTextField();
@@ -661,16 +603,21 @@ public class EmployeeManagementGUI implements Addable {
 
     private boolean validateLogin(String username, String password) {
         // Check the login credentials
-        if ("angajat".equals(username) && "sefdesef".equals(password)) {
+        if ((username.equals("angajat") && password.equals("sefdesef"))) {
             currentUser = username;
             return true; // Valid credentials
-        } else if ("averageman".equals(username) && "simple".equals(password)) {
+        } else if (username.equals("averageman") && password.equals("simple")) {
             currentUser = username;
-            return true; // Valid credentials
-        }
 
-        // Invalid credentials
-        JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            // Check user permissions here
+            if (hasDeletePermissions(username)) {
+                return true; // Valid credentials
+            } else {
+                // Display a message for users with insufficient permissions
+                JOptionPane.showMessageDialog(null, "User 'averageman' does not have delete permissions.", "Permission Denied", JOptionPane.ERROR_MESSAGE);
+                return false; // Invalid permissions
+            }
+        }
         return false;
     }
     public class User {
@@ -691,7 +638,7 @@ public class EmployeeManagementGUI implements Addable {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish a connection to the database
-            try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "averageman", "simple")) {
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "your_username", "your_password")) {
                 // Create a PreparedStatement for the query
                 String query = "SELECT delete_permission FROM user_permissions WHERE username = ?";
                 try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -713,7 +660,6 @@ public class EmployeeManagementGUI implements Addable {
         // Return false by default (in case of errors or if the user is not found)
         return false;
     }
-
 }
 
 //todo junit
