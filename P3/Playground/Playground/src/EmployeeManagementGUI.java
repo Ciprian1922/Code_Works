@@ -550,20 +550,21 @@ public class EmployeeManagementGUI implements Addable {
                     for (int i = 0; i < tableModel.getRowCount(); i++) {
                         String name = (String) tableModel.getValueAt(i, 1);
                         int age = (int) tableModel.getValueAt(i, 2);
-                        String role = (String) tableModel.getValueAt(i, 3);
+                        String role = tableModel.getValueAt(i, 3).toString(); // Use toString() method
                         boolean married = (boolean) tableModel.getValueAt(i, 4);
                         Region region = (Region) tableModel.getValueAt(i, 5);
 
                         // Set parameters for the prepared statement
                         insertStatement.setString(1, name);
                         insertStatement.setInt(2, age);
-                        insertStatement.setString(3, role.toString());
+                        insertStatement.setString(3, role);
                         insertStatement.setBoolean(4, married);
                         insertStatement.setString(5, region.toString());
 
                         // Execute the update
                         insertStatement.executeUpdate();
                     }
+
 
                     JOptionPane.showMessageDialog(null, "Data uploaded to the database successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -623,13 +624,6 @@ public class EmployeeManagementGUI implements Addable {
             });
         }
     }
-
-
-
-
-
-
-
 
     private boolean showLoginDialog() {
         JTextField usernameField = new JTextField();

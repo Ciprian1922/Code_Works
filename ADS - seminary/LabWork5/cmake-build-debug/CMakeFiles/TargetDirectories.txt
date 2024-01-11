@@ -1,0 +1,3 @@
+C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/ADS - seminary/LabWork5/cmake-build-debug/CMakeFiles/LabWork5.dir
+C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/ADS - seminary/LabWork5/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/popa_/Desktop/GitHub_UVT/Code_Works/ADS - seminary/LabWork5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
