@@ -25,7 +25,6 @@ public:
     [[nodiscard]] int V() const { return nV; }
 
     set<int> adj(int u) { return vec[u]; }
-
 };
 class DFS {
     vector<int> pre; //preorder

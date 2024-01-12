@@ -55,6 +55,12 @@ build CMakeFiles/LabWork5.dir/asg_1.cpp.obj: CXX_COMPILER__LabWork5_unscanned_De
   OBJECT_DIR = CMakeFiles\LabWork5.dir
   OBJECT_FILE_DIR = CMakeFiles\LabWork5.dir
 
+build CMakeFiles/LabWork5.dir/asg_2.cpp.obj: CXX_COMPILER__LabWork5_unscanned_Debug C$:/Users/popa_/Desktop/GitHub_UVT/Code_Works/ADS$ -$ seminary/LabWork5/asg_2.cpp || cmake_object_order_depends_target_LabWork5
+  DEP_FILE = CMakeFiles\LabWork5.dir\asg_2.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabWork5.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabWork5.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target LabWork5
@@ -63,7 +69,7 @@ build CMakeFiles/LabWork5.dir/asg_1.cpp.obj: CXX_COMPILER__LabWork5_unscanned_De
 #############################################
 # Link the executable LabWork5.exe
 
-build LabWork5.exe: CXX_EXECUTABLE_LINKER__LabWork5_Debug CMakeFiles/LabWork5.dir/asg_1.cpp.obj
+build LabWork5.exe: CXX_EXECUTABLE_LINKER__LabWork5_Debug CMakeFiles/LabWork5.dir/asg_1.cpp.obj CMakeFiles/LabWork5.dir/asg_2.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LabWork5.dir
