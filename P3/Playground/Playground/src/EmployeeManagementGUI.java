@@ -20,6 +20,16 @@ public class EmployeeManagementGUI implements Addable {
             JOptionPane.showMessageDialog(null, "Invalid ID. Please enter a positive integer.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+
+        if (name.isEmpty()) {
+            System.out.println("Name must not be empty.");
+            return false;
+        }
+
+        if (age <= 0) {
+            System.out.println("Invalid age. Please enter a positive integer.");
+            return false;
+        }
         return true; // If all validations pass
     }
 
