@@ -21,53 +21,73 @@ Synchronize access to the shared buffer using condition variables
 
 #include "utils.h"
 
+// Define constants for the size of the shared buffer, number of iterations, and random delay.
+
 #define BUFFER_SIZE	3
 #define NR_ITERATIONS	10
 #define RAND_DELAY	-1
 
+// Define the structure for the shared buffer.
 typedef struct {
     int buff[BUFFER_SIZE];
     int count;
 } buffer_t;
 
+// Initialize the buffer with zeros and set the count to 0
 void init_buffer(buffer_t *b)
 {
-    memset(b->buff, 0, sizeof(int) * BUFFER_SIZE);  /// atatea zerouri cat este buffterul
+    /// Set all elements to zero
+    memset(b->buff, 0, sizeof(int) * BUFFER_SIZE);  /// atatea zerouri cat este bufferul
     b->count = 0;///(*b).count          ^-trebuie populat cu acelasi tip de date (aici ar trebui sa fie char in loc de int)
+    /// Initialize the count to zero
 }
 
+// Insert an item into the buffer (LIFO - Last In First Out)
 void insert_item(buffer_t *b, int item)
 {
-    b->buff[b->count] = item; ///concept de stiva
+    // Place the item at the current count position in the buffer.
+    b->buff[b->count] = item; ///concept de stiva - insert at the end
+    // Increment the count of elements in the buffer.
     b->count++;
 }
 
+// Remove an item from the buffer (LIFO)
 int remove_item(buffer_t *b)
-{
-    b->count--;   ///concept de stiva
+{ 
+    // Decrement the count of elements in the buffer.
+    b->count--;   ///concept de stiva- remove from the end
+    // Return the item at the current count position.
     return b->buff[b->count];
 }
 
+// Check if the buffer is full
 int is_buffer_full(buffer_t *b)
 {
     return b->count == BUFFER_SIZE;
 }
 
+// Check if the buffer is empty
 int is_buffer_empty(buffer_t *b)
 {
     return b->count == 0;
 }
-
+/* The shared buffer where the producer will place items and the consumer will take items
+*/
 /* the buffer where the producer will place items
  * and from which the consumer will take items
  */
+// Global variable representing the shared buffer.
 buffer_t common_area;
+
+// Condition variables for signaling whether the buffer is not full or not empty
 
 pthread_cond_t buffer_not_full  = PTHREAD_COND_INITIALIZER;
 pthread_cond_t buffer_not_empty = PTHREAD_COND_INITIALIZER;
 
+// Mutex for protecting access to the shared buffer
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
+// Producer thread function
 void *producer_fn(void *arg)
 {
     int item_to_insert;
@@ -113,7 +133,7 @@ void *producer_fn(void *arg)
     return NULL;
 }
 
-
+// Consumer thread function
 void *consumer_fn(void *arg)
 {
     int item_consumed;
@@ -153,7 +173,7 @@ void *consumer_fn(void *arg)
     return NULL;
 }
 
-
+// Function to create and run producer and consumer threads
 void run_threads(int producer_delay, int consumer_delay)
 {
     int rc;
@@ -177,7 +197,7 @@ void run_threads(int producer_delay, int consumer_delay)
 }
 
 
-
+// Main function
 int main(void)
 {
     srand(time(NULL));
