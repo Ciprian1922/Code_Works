@@ -1,0 +1,37 @@
+1. List the city BLAKE works in.
+SELECT DEPT.LOC AS CITY_HE_WORKS
+FROM EMP
+JOIN DEPT ON EMP.DEPTNO = DEPT.DEPTNO
+WHERE EMP.ENAME = 'BLAKE';
+
+2. List the salary and revised salary of the employees in each department.
+The revised salary will consist of the salary added with the department
+number multiplied by 10.
+SELECT
+  EMP.EMPNO,
+  EMP.ENAME,
+  EMP.SAL AS ORIGINAL_SALARY,
+  (EMP.SAL + (DEPT.DEPTNO * 10)) AS REVISED_SALARY,
+  DEPT.DEPTNO
+FROM
+  EMP
+JOIN
+  DEPT ON EMP.DEPTNO = DEPT.DEPTNO;
+
+3. Count employees working as an analyst.
+SELECT COUNT(*) AS ANALYST_COUNT
+FROM EMP
+WHERE JOB = 'ANALYST';
+
+4. List employees whose salaries are between 1000 and 1500.
+SELECT *
+FROM EMP
+WHERE SAL BETWEEN 1000 AND 1500;
+
+5. List the jobs where the total amount spent on salaries is greater than
+5000, excluding the salesmen.
+SELECT JOB, SUM(SAL) AS TOTAL_SALARY
+FROM EMP
+WHERE JOB != 'SALESMAN'
+GROUP BY JOB
+HAVING SUM(SAL) > 5000;
