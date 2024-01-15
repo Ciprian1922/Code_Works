@@ -79,21 +79,30 @@ void *producer_fn(void *arg)
         item_to_insert = i;
 
         /* TODO - lock mutex */
-        rc = pthread_mutex_lock
+        rc = pthread_mutex_lock(&mutex);
+        DIE(rc != 0, "pthread_mutex_lock in producer");
         /* TODO - if common area is full
          *		then wait until the common area is not full
          */
+        if (is_buffer_null(&common_area))
+        {
+            rc = pthread_cond_wait(&buffer_not_full, &mutex);
+            DIE(rc != 0, "pthread_cond_wait in producer");
+        }
 
         /* TODO - insert item into common area */
-
+        insert_item(common_area, item_to_insert);
         printf("Inserted item %d\n", item_to_insert);
 
         /* TODO - if we have one element in common area
          *		then signal that the buffer is not empty
          */
-
+        if (common area.count == 1){
+            rc = pthread_cond_signal(&buffer_not_empty);
+            DIE(rc != 0, "pthread_cond_signal in producer");
+        }
         /* TODO - unlock mutex */
-
+        pthread_mutex_unlock(&mutex);
         if (delay == RAND_DELAY)
             sleep(rand() % 3);
         else
