@@ -57,7 +57,7 @@ public class InputDevice {
                 }
             }
         } catch (FileNotFoundException e) {
-            // File not found, create the default file with default employees
+            //file not found, create the default file with default employees
             createDefaultFile();
         } catch (IOException e) {
             e.printStackTrace();
