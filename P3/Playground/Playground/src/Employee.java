@@ -59,7 +59,7 @@ public class Employee implements Upgradable {
         String currentRole = this.getFunction();
         Role role = Role.valueOf(currentRole);
 
-        // Get the next role
+        //get the next role
         Role nextRole = getNextRole(role);
 
         if (nextRole != null) {
@@ -74,7 +74,7 @@ public class Employee implements Upgradable {
                 return roles[i + 1];
             }
         }
-        return null; // If the current role is the highest, return null
+        return null; //if the current role is the highest, return null
     }
 
     public void setMarried(boolean married) {
