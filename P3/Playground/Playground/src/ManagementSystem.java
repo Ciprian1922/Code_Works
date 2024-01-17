@@ -32,15 +32,15 @@ class ManagementSystem {
                 return employee;
             }
         }
-        return null; // If no employee with the given ID is found
+        return null; //if no employee with the given ID is found
     }
 
     public boolean employeeExists(int id) {
         for (Employee employee : employees) {
             if (employee.getId() == id) {
-                return true; // Employee with the given ID already exists
+                return true; //employee with the given ID already exists
             }
         }
-        return false; // No employee with the given ID found
+        return false; //no employee with the given ID found
     }
 }
