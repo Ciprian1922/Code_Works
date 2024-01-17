@@ -15,7 +15,6 @@ public class EmployeeManagementGUI implements Addable {
     private boolean isLoggedIn = false;
     private String currentUser = null;
     public boolean validateEmployeeInput(int id, String name, int age, Role function, boolean isMarried, Region region) {
-        // Your validation logic here
         if (id <= 0) {
             JOptionPane.showMessageDialog(null, "Invalid ID. Please enter a positive integer.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -30,13 +29,12 @@ public class EmployeeManagementGUI implements Addable {
             System.out.println("Invalid age. Please enter a positive integer.");
             return false;
         }
-        return true; // If all validations pass
+        return true;
     }
 
     public EmployeeManagementGUI(ManagementSystem system, boolean isDevEnabled, boolean isLoadEnabled, boolean isDbEnabled) {
         this.system = system;
         this.tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Function", "Married", "Region"}, 0);
-        // Populate the table model with the employees from the ManagementSystem
         for (Employee employee : system.getEmployees()) {
             tableModel.addRow(new Object[]{employee.getId(), employee.getName(), employee.getAge(), employee.getFunction(), employee.isMarried(), employee.getRegion()});
         }
@@ -51,7 +49,7 @@ public class EmployeeManagementGUI implements Addable {
                 return roles[i + 1];
             }
         }
-        return null; // If the current role is the highest, return null
+        return null;
     }
 
     public void createAndShowGUI() {
@@ -67,7 +65,6 @@ public class EmployeeManagementGUI implements Addable {
         JButton addEmployeeButton = new JButton("Add Employee");
         addEmployeeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Create input fields for employee details
                 JTextField idField = new JTextField();
                 JTextField nameField = new JTextField();
                 JTextField ageField = new JTextField();
@@ -93,25 +90,22 @@ public class EmployeeManagementGUI implements Addable {
                 int result = JOptionPane.showConfirmDialog(frame, panel, "Add employee",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-                // Inside the "Add Employee" button ActionListener
                 if (result == JOptionPane.OK_OPTION) {
                     String idText = idField.getText();
                     String ageText = ageField.getText();
 
                     if (idText.isEmpty() || ageText.isEmpty()) {
                         JOptionPane.showMessageDialog(frame, "ID and Age must not be empty!", "Error", JOptionPane.ERROR_MESSAGE);
-                        return; // Exit the method early
+                        return; 
                     }
 
                     boolean isValidInput = true;
 
                     try {
                         int id = Integer.parseInt(idText);
-
-                        // Check if an employee with the given ID already exists
                         if (system.employeeExists(id)) {
                             JOptionPane.showMessageDialog(frame, "An employee with the same ID already exists.", "Error", JOptionPane.ERROR_MESSAGE);
-                            return; // Exit the method early
+                            return;
                         }
 
                         String name = readNameFromGui(frame, nameField.getText());
@@ -120,15 +114,11 @@ public class EmployeeManagementGUI implements Addable {
                         boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
                         Region region = (Region) regionCombo.getSelectedItem();
 
-                        // Use the validateEmployeeInput method for validation
                         isValidInput = validateEmployeeInput(id, name, age, function, isMarried, region);
 
                         if (isValidInput) {
-                            // Create a new employee and add it to the system
                             Employee newEmployee = new Employee(id, name, age, function, isMarried, region);
                             system.addEmployee(newEmployee);
-
-                            // Add the new employee to the table
                             tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
                         }
 
@@ -151,8 +141,6 @@ public class EmployeeManagementGUI implements Addable {
 
                 if (selectedRow != -1) {
                     int id = (int) tableModel.getValueAt(selectedRow, 0);
-
-                    // Find the employee with the selected ID
                     Employee selectedEmployee = null;
                     for (Employee employee : system.getEmployees()) {
                         if (employee.getId() == id) {
@@ -162,7 +150,6 @@ public class EmployeeManagementGUI implements Addable {
                     }
 
                     if (selectedEmployee != null) {
-                        // Create input fields for all employee details
                         JTextField idField = new JTextField(String.valueOf(selectedEmployee.getId()));
                         JTextField nameField = new JTextField(selectedEmployee.getName());
                         JTextField ageField = new JTextField(String.valueOf(selectedEmployee.getAge()));
@@ -197,7 +184,7 @@ public class EmployeeManagementGUI implements Addable {
 
                             if (idText.isEmpty() || ageText.isEmpty()) {
                                 JOptionPane.showMessageDialog(frame, "ID and Age must not be empty!", "Error", JOptionPane.ERROR_MESSAGE);
-                                return; // Exit the method early
+                                return;
                             }
 
                             boolean isValidInput = true;
@@ -210,21 +197,17 @@ public class EmployeeManagementGUI implements Addable {
                                 boolean isMarried = maritalStatusCombo.getSelectedItem().equals("Married");
                                 Region editedRegion = (Region) regionCombo.getSelectedItem();
 
-                                // Check if any of the fields are invalid
                                 if (editedName == null) {
                                     isValidInput = false;
                                 }
 
                                 if (isValidInput) {
-                                    // Update the selected employee's details
                                     selectedEmployee.setId(editedId);
                                     selectedEmployee.setName(editedName);
                                     selectedEmployee.setAge(editedAge);
                                     selectedEmployee.setFunction(String.valueOf(editedFunction));
                                     selectedEmployee.setMarried(isMarried);
                                     selectedEmployee.setRegion(editedRegion);
-
-                                    // Update the table
                                     tableModel.setValueAt(editedId, selectedRow, 0);
                                     tableModel.setValueAt(editedName, selectedRow, 1);
                                     tableModel.setValueAt(editedAge, selectedRow, 2);
@@ -254,7 +237,6 @@ public class EmployeeManagementGUI implements Addable {
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = employeeTable.getSelectedRow();
                 if (selectedRow != -1) {
-                    // Remove the selected employee from the system and the table
                     int id = (int) tableModel.getValueAt(selectedRow, 0);
                     for (Employee employee : system.getEmployees()) {
                         if (employee.getId() == id) {
@@ -267,25 +249,22 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-        // Add the "Promote Employee" button and its action listener
+        //"Promote Employee" button and its action listener
         JButton promoteEmployeeButton = new JButton("Promote Employee");
         promoteEmployeeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = employeeTable.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    // Get the selected employee
                     int id = (int) tableModel.getValueAt(selectedRow, 0);
                     Employee selectedEmployee = system.getEmployeeById(id);
-
                     if (selectedEmployee != null) {
-                        // Check if the employee is upgradable
+                        //is upgradable
                         if (selectedEmployee.isUpgradable()) {
-                            // Perform the upgrade
+                            //upgrade
                             selectedEmployee.upgrade();
-
-                            // Update the table to reflect the change
-                            tableModel.setValueAt(selectedEmployee.getFunction(), selectedRow, 3); // Assuming the column index for Function is 3
+                            //update the table to reflect the change
+                            tableModel.setValueAt(selectedEmployee.getFunction(), selectedRow, 3); //assuming the column index for function is 3
                         } else {
                             JOptionPane.showMessageDialog(frame, "The employee cannot be upgraded.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -299,25 +278,17 @@ public class EmployeeManagementGUI implements Addable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // Read employee details from the console
                     int id = readIntFromConsole("Provide the ID of the employee: ");
                     String name = readNameFromConsole("Provide the name of the employee: ");
                     int age = readAgeFromConsole("Provide the age of the employee: ");
                     Role function = Role.valueOf(readRoleFromConsole("Provide the Function of the employee: (Intern, Junior, Associate, Intermediate, Senior, Lead, Team_Lead, Director, Ceo) "));
                     boolean isMarried = readYesNoFromConsole("Is the employee married? (y/n): ");
                     Region region = readLocationFromConsole("Provide the Region of the employee: (Romania, Germany, Italy, Spain, Sweden)");
-
-                    // Create a new employee and add it to the system
                     Employee newEmployee = new Employee(id, name, age, function, isMarried, region);
                     system.addEmployee(newEmployee);
-
-                    // Add the new employee to the table
                     tableModel.addRow(new Object[]{id, name, age, function, isMarried, region});
                     //SQL THING THAT ADDS THE EMPLOYEE
-                    // Notify that the employee has been read successfully
                     OutputDevice.write("Employee read successfully");
-
-                    // Enable the button again
                     readFromConsoleButton.setEnabled(true);
 
                 } catch (NumberFormatException ex) {
@@ -328,7 +299,7 @@ public class EmployeeManagementGUI implements Addable {
             }
         });
 
-        // Add the "Battle" button and its action listener
+        //"Battle" button and its action listener
         JButton battleButton = new JButton("Battle");
         battleButton.addActionListener(new ActionListener() {
             @Override
@@ -345,20 +316,18 @@ public class EmployeeManagementGUI implements Addable {
 
                 int result = JOptionPane.showConfirmDialog(frame, panel, "Battle",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-                // Inside the "Battle" button ActionListener
                 if (result == JOptionPane.OK_OPTION) {
                     Employee employee1 = (Employee) employee1Combo.getSelectedItem();
                     Employee employee2 = (Employee) employee2Combo.getSelectedItem();
 
-                    // Determine the winner and loser (randomly for simplicity)
+                    //determine the winner and loser (randomly for simplicity)
                     Employee winner = (Math.random() < 0.5) ? employee1 : employee2;
                     Employee loser = (winner == employee1) ? employee2 : employee1;
 
-                    // Display the winner in a new popup
+                    //display the winner in a new popup
                     JOptionPane.showMessageDialog(frame, winner.getName() + " won the battle!", "Battle Result", JOptionPane.INFORMATION_MESSAGE);
 
-                    // Remove the loser employee from the system and the table
+                    // remove the loser employee from the system and the table
                     system.removeEmployee(loser);
                     for (int i = 0; i < tableModel.getRowCount(); i++) {
                         if ((int) tableModel.getValueAt(i, 0) == loser.getId()) {
@@ -375,21 +344,21 @@ public class EmployeeManagementGUI implements Addable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isLoggedIn) {
-                    // If not logged in, show the login dialog
+                    //if not logged in, show the login dialog
                     if (showLoginDialog()) {
-                        // If login is successful, set the flag to true
+                        //if login is successful, set the flag to true
                         isLoggedIn = true;
                     }
                 }
 
                 if (isLoggedIn) {
-                    // If logged in, proceed with the data upload
+                    //if logged in, proceed with the data upload
                     uploadDataToDatabase();
                 }
             }
         });
 
-        // Add the "Stats" button and its action listener
+        //"Stats" button and its action listener
         JButton statsButton = new JButton("DB_Content");
         statsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -402,7 +371,7 @@ public class EmployeeManagementGUI implements Addable {
         JButton logoutButton = new JButton("Logout");
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Reset the isLoggedIn variable and set currentUser to null
+                //reset the isLoggedIn variable and set currentUser to null
                 isLoggedIn = false;
                 currentUser = null;
                 JOptionPane.showMessageDialog(null, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
@@ -450,7 +419,7 @@ public class EmployeeManagementGUI implements Addable {
             try {
                 int id = Integer.parseInt(readFromConsole(prompt));
 
-                // Check if the ID already exists
+                //check if the ID already exists
                 if (system.employeeExists(id) && id > 0) {
                     OutputDevice.write("Error: Employee with ID " + id + " already exists. Please enter a unique ID.");
                 } else {
@@ -466,10 +435,10 @@ public class EmployeeManagementGUI implements Addable {
         while (true) {
             String name = readFromConsole(prompt);
 
-            // Remove extra spaces and reduce them to a single space
+            //remove extra spaces and reduce them to a single space
             name = name.replaceAll("\\s+", " ").trim();
 
-            // Allow letters, spaces, and hyphens in the name
+            //allow letters, spaces, and hyphens in the name
             if (name.matches("[a-zA-Z\\s-]+") && name.length() < 100) {
                 return name;
             } else {
@@ -498,7 +467,7 @@ public class EmployeeManagementGUI implements Addable {
         while (true) {
             String function = readFromConsole(prompt);
 
-            // Check if the function is present in the Role enum
+            //check if the function is present in the Role enum
             try {
                 Role.valueOf(function);
                 return function;
@@ -513,7 +482,7 @@ public class EmployeeManagementGUI implements Addable {
         while (true) {
             String location = readFromConsole(prompt);
 
-            // Check if the location is present in the Region enum
+            //check if the location is present in the Region enum
             try {
                 return Region.valueOf(location);
             } catch (IllegalArgumentException ex) {
@@ -524,54 +493,50 @@ public class EmployeeManagementGUI implements Addable {
     }
 
     private String readNameFromGui(JFrame frame, String input) {
-        // Remove extra spaces and reduce them to a single space
+        //remove extra spaces and reduce them to a single space
         String name = input.replaceAll("\\s+", " ").trim();
 
-        // Allow letters, spaces, and hyphens in the name
+        //allow letters, spaces, and hyphens in the name
         if (name.matches("[a-zA-Z\\s-]+")) {
             return name;
         } else {
             JOptionPane.showMessageDialog(frame, "Invalid characters in the name. Please enter a valid name.", "Error", JOptionPane.ERROR_MESSAGE);
-            // You can choose to handle this differently, like asking the user to input the name again
             return null;
         }
     }
 
     private void uploadDataToDatabase() {
         try {
-            // Load the MySQL JDBC driver
+            //load the MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Establish a connection to the database
+            //connection to the database
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "angajat", "sefdesef")) {
-                // Create a PreparedStatement for deleting all records from the table
+                //deleting all records from the table
                 String deleteSql = "DELETE FROM `employeedb`.`employees`";
 
                 try (PreparedStatement deleteStatement = connection.prepareStatement(deleteSql)) {
-                    // Execute the delete statement to remove all records
+                    //execute the delete statement to remove all records
                     deleteStatement.executeUpdate();
                 }
 
-                // Create a PreparedStatement for inserting data into the database
+                //inserting data into the database
                 String insertSql = "INSERT INTO `employeedb`.`employees` (name, age, role, is_married, region) VALUES (?, ?, ?, ?, ?)";
 
                 try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
-                    // Iterate through the table model and insert each employee into the database
+                    //iterate through the table model and insert each employee into the database
                     for (int i = 0; i < tableModel.getRowCount(); i++) {
                         String name = (String) tableModel.getValueAt(i, 1);
                         int age = (int) tableModel.getValueAt(i, 2);
-                        String role = tableModel.getValueAt(i, 3).toString(); // Use toString() method
+                        String role = tableModel.getValueAt(i, 3).toString(); //use toString() method
                         boolean married = (boolean) tableModel.getValueAt(i, 4);
                         Region region = (Region) tableModel.getValueAt(i, 5);
-
-                        // Set parameters for the prepared statement
+                        //set parameters for the prepared statement
                         insertStatement.setString(1, name);
                         insertStatement.setInt(2, age);
                         insertStatement.setString(3, role);
                         insertStatement.setBoolean(4, married);
                         insertStatement.setString(5, region.toString());
-
-                        // Execute the update
+                        //execute the update
                         insertStatement.executeUpdate();
                     }
 
@@ -588,7 +553,7 @@ public class EmployeeManagementGUI implements Addable {
         loadDbButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (isDbEnabled) {
-                    // Load employees from the database
+                    //load employees from the database
                     loadEmployeesFromDatabase();
                 }
             }
@@ -596,12 +561,9 @@ public class EmployeeManagementGUI implements Addable {
     }
 
     private void loadEmployeesFromDatabase() {
-        // Your database connection details
         String dbUrl = "jdbc:mysql://localhost:3306/employeedb";
         String dbUser;
         String dbPassword;
-
-        // Set the username and password based on the current user
         if ("averageman".equals(currentUser)) {
             dbUser = "averageman";
             dbPassword = "simple";
@@ -611,19 +573,14 @@ public class EmployeeManagementGUI implements Addable {
         }
 
         DefaultTableModel tableModel = DatabaseHandler.fetchDataFromDatabase("Name", dbUser, dbPassword);
-
-        // Clear existing rows in the table model
         tableModel.setRowCount(0);
-
-        // Populate the table model with the fetched data
         for (int i = 0; i < tableModel.getRowCount(); i++) {
             String region = (String) tableModel.getValueAt(i, 5);
 
-            // Only add employees from Romania to the table model when the user is 'averageman'
+            // only add employees from Romania to the table model when the user is 'averageman'
             if ("averageman".equals(currentUser) && !"Romania".equals(region)) {
                 continue;
             }
-
             tableModel.addRow(new Object[]{
                     tableModel.getValueAt(i, 0),
                     tableModel.getValueAt(i, 1),
@@ -650,61 +607,49 @@ public class EmployeeManagementGUI implements Addable {
             char[] passwordChars = passwordField.getPassword();
             String password = new String(passwordChars);
 
-            // Check the login credentials
+            //check the login credentials
             if (validateLogin(username, password)) {
                 currentUser = username;
-                return true; // Login successful
+                return true; //login successful
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
-                return false; // Login failed
+                return false; //login failed
             }
         } else {
-            return false; // User clicked Cancel
+            return false; //user clicked Cancel
         }
     }
 
     private boolean validateLogin(String username, String password) {
-        // Check the login credentials
+        //check the login credentials
         if ("angajat".equals(username) && "sefdesef".equals(password)) {
             currentUser = username;
-            return true; // Valid credentials
+            return true; //valid credentials
         } else if ("averageman".equals(username) && "simple".equals(password)) {
             currentUser = username;
-            return true; // Valid credentials
+            return true; //valid credentials
         }
 
-        // Invalid credentials
+        //invalid credentials
         JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
         return false;
     }
     public class User {
         private String username;
-        private Role role; // Add a field to store the user's role
-
-        // Constructor, getters, setters...
-
+        private Role role; 
         public boolean hasPermission(Role requiredPermission) {
-            // Logic to check if the user has the required permission
             return role == requiredPermission;
         }
     }
     private boolean hasDeletePermissions(String username) {
-        // Implement logic to check if the user has delete permissions
         try {
-            // Load the MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Establish a connection to the database
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "averageman", "simple")) {
-                // Create a PreparedStatement for the query
                 String query = "SELECT delete_permission FROM user_permissions WHERE username = ?";
                 try (PreparedStatement statement = connection.prepareStatement(query)) {
                     statement.setString(1, username);
-
-                    // Execute the query
                     try (ResultSet resultSet = statement.executeQuery()) {
                         if (resultSet.next()) {
-                            // Check the value of delete_permission in the result set
                             return resultSet.getBoolean("delete_permission");
                         }
                     }
@@ -713,8 +658,6 @@ public class EmployeeManagementGUI implements Addable {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-
-        // Return false by default (in case of errors or if the user is not found)
         return false;
     }
 
