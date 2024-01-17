@@ -11,14 +11,13 @@ public class Main {
         boolean isLoadEnabled = isLoadEnabled(args);
         boolean isDev = isDevEnabled(args);
         boolean isDbEnabled = isDbEnabled(args);
-
-        // Obtain login credentials
+        //obtain login credentials
         String loggedInUser = getUsername();
         String password = getPassword();
 
-        // Check if login was successful
+        //check if login was successful
         if (loggedInUser == null || password == null || !validateLogin(loggedInUser, password)) {
-            // Show an error message and return without further execution
+            //show an error message and return without further execution
             JOptionPane.showMessageDialog(null, "Login failed. Exiting the application.", "Login Failed", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -29,7 +28,7 @@ public class Main {
             databaseModel = DatabaseHandler.fetchDataFromDatabase("ID", loggedInUser, password);
 
             if ("averageman".equals(loggedInUser)) {
-                // Filter employees based on the Role for averageman
+                //filter employees based on the Role for averageman
                 databaseModel = filterEmployeesByRegion(databaseModel, "Romania");
             }
         } else {
@@ -39,7 +38,7 @@ public class Main {
         List<Employee> employees = getEmployeesFromTableModel(databaseModel);
         system.addEmployees(employees);
 
-        // Create and show the GUI
+        //create and show the GUI
         SwingUtilities.invokeLater(() -> {
             EmployeeManagementGUI gui = new EmployeeManagementGUI(system, isDev, isLoadEnabled, isDbEnabled);
             gui.createAndShowGUI();
@@ -87,20 +86,20 @@ public class Main {
             char[] passwordChars = passwordField.getPassword();
             String password = new String(passwordChars);
 
-            // Check the login credentials
+            //checking the login credentials
             if (validateLogin(username, password)) {
                 currentUser = username;
-                return true; // Login successful
+                return true; //login successful
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
-                return false; // Login failed
+                return false; //login failed
             }
         } else {
-            return false; // User clicked Cancel
+            return false; //user clicked Cancel
         }
     }
 
-    // checking the arguments state
+    //checking the arguments state
     private static boolean isDevEnabled(String[] args) {
         for (String arg : args) {
             if ("dev".equals(arg)) {
@@ -132,7 +131,7 @@ public class Main {
         DefaultTableModel filteredModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Role", "Married", "Region"}, 0);
 
         for (int i = 0; i < model.getRowCount(); i++) {
-            String employeeRegion = (String) model.getValueAt(i, 5); // Assuming Region is at index 5
+            String employeeRegion = (String) model.getValueAt(i, 5); //assuming Region is at index 5
             if (region.equals(employeeRegion)) {
                 Object[] rowData = new Object[6];
                 for (int j = 0; j < 6; j++) {
@@ -142,7 +141,7 @@ public class Main {
             }
         }
 
-        // Clear the original model and add filtered rows
+        //clear the original model and add filtered rows
         model.setRowCount(0);
         for (int i = 0; i < filteredModel.getRowCount(); i++) {
             Object[] rowData = new Object[6];
@@ -158,7 +157,7 @@ public class Main {
         DefaultTableModel romaniaModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Role", "Married", "Region"}, 0);
 
         for (int i = 0; i < model.getRowCount(); i++) {
-            String employeeRegion = (String) model.getValueAt(i, 5); // Assuming Region is at index 5
+            String employeeRegion = (String) model.getValueAt(i, 5); //assuming Region is at index 5
             if ("Romania".equals(employeeRegion)) {
                 Object[] rowData = new Object[6];
                 for (int j = 0; j < 6; j++) {
@@ -172,9 +171,9 @@ public class Main {
     }
     private static void filterEmployeesByRole(DefaultTableModel model, String role) {
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
-            String employeeRole = (String) model.getValueAt(i, 3); // Assuming Role is at index 3
+            String employeeRole = (String) model.getValueAt(i, 3); //assuming Role is at index 3
             if (!role.equals(employeeRole)) {
-                // Remove rows that don't match the specified role
+                //remove rows that don't match the specified role
                 model.removeRow(i);
             }
         }
@@ -207,16 +206,13 @@ public class Main {
         return null;
     }
     private static boolean validateLogin(String username, String password) {
-        // Check the login credentials
         if ("angajat".equals(username) && "sefdesef".equals(password)) {
             currentUser = username;
-            return true; // Valid credentials
+            return true;
         } else if ("averageman".equals(username) && "simple".equals(password)) {
             currentUser = username;
-            return true; // Valid credentials
+            return true;
         }
-
-        // Invalid credentials
         JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
         return false;
     }
