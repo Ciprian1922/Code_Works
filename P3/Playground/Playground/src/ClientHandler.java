@@ -29,14 +29,14 @@ public class ClientHandler implements Runnable {
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new Scanner(socket.getInputStream());
 
-            // Receive the client name
+            //receive the client name
             clientName = in.nextLine();
             System.out.println("Client connected: " + clientName);
 
-            // Inform all clients about the new connection
+            //rnform all clients about the new connection
             chatServer.broadcastMessage(clientName + " has joined the chat.", this);
 
-            // Start listening for messages
+            //start listening for messages
             while (in.hasNextLine()) {
                 String message = in.nextLine();
                 chatServer.broadcastMessage(message, this);
@@ -44,7 +44,7 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            // Inform all clients about the disconnection
+            //inform all clients about the disconnection
             chatServer.broadcastMessage(clientName + " has left the chat.", this);
             chatServer.removeClient(this);
 
