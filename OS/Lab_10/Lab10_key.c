@@ -33,3 +33,9 @@ int main() {
 
     return 0;
 }
+
+// If a key is pressed before the 10 seconds, boom, handler function
+// is called after the output from the if (theBytesRead > 0), but because
+// a key has been pressed, the output after waiting another 10 seconds
+// will be the one from the handler, but if no input will be given at all
+// it will output the message from the else branch from the if
