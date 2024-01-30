@@ -285,4 +285,43 @@ int main(int argc, char *argv[]) {
 WRITING
 2.1 Write a C program that creates 3 child processes, all spawned from the same parent. In the first child, you print the PID of the parent process, in the second child you print the PID of the third child process, and in the third child prints its own PID.
 
+pid_t parent_pid, child2_pid, child3_pid;
+
+int main() {
+    // Parent process
+    pid_t pid1, pid2, pid3;
+
+    parent_pid = getpid();  // Store parent PID
+
+    pid1 = fork();
+
+    if (pid1 == 0) {
+        // First child process
+        printf("First child PID: %d, Parent PID: %d\n", getpid(), parent_pid);
+    } else if (pid1 > 0) {
+        // Parent continues
+        child2_pid = pid2 = fork();
+
+        if (pid2 == 0) {
+            // Second child process
+            printf("Second child PID: %d, Parent PID: %d\n", getpid(), parent_pid);
+        } else if (pid2 > 0) {
+            // Parent continues
+            child3_pid = pid3 = fork();
+
+            if (pid3 == 0) {
+                // Third child process
+                printf("Third child PID: %d\n", getpid());
+            }
+        }
+    }
+
+    // Parent process waits for all children to finish
+    for (int i = 0; i < 3; ++i) {
+        wait(NULL);
+    }
+
+    return 0;
+}
+
 2.2 Write a C program that spawns 4 additional worker threads. Only 2 of these threads(at most) should run in parallel, and the program(using the threads) should count the number of prime numbers ending in digits 3 and 7, between 2 and 100000000 and print that resulting number on screen. At the end, every thread needs to show how many primes it found on its own.
