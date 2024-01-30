@@ -1,9 +1,39 @@
 1.1 Is the code snippet bellow executing corectly? If yes, what does it do? If not, please fix it and describe what it does, and rewrite the code accordingly.
 char fd, c;
-fd = open("myfile.txt". O_RDONLY | O_TRUNC);
+fd = open("myfile.txt", O_RDONLY | O_TRUNC);
 read(fd, &c, 1);
 printf("%c",c);
 close(f);
+
+-open function should be used to open a file, not for reading. It also has the O_TRUNC flag, which truncates the file to zero length, so it might not behave as intended.
+-The file descriptor fd is used to read from the file, but it's later closed with close(f) instead of close(fd).
+-The printf statement is trying to print the character read from the file, but it might not be correctly initialized.
+===CORRECT===
+    int fd;
+    char c;
+
+    // Open the file in read-only mode
+    fd = open("myfile.txt", O_RDONLY);
+
+    if (fd == -1) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    // Read one character from the file
+    if (read(fd, &c, 1) == -1) {
+        perror("Error reading from file");
+        close(fd);
+        return 1;
+    }
+
+    // Print the character
+    printf("%c\n", c);
+
+    // Close the file descriptor
+    close(fd);
+
+    return 0;
 
 1.2  The code snippet bellow is supposed to count the number of digits from a file. Is the code working corectly? If not, please fix it and describe what it does, and rewrite the code accordingly.
 
@@ -22,6 +52,35 @@ int main()
 	return 1;
 }
 
+-The variables c, total, and f are not properly declared. int should be used before the variable names.
+-The condition in the while loop checks for br > 0 but br is not declared before the loop.
+-The indigit function is referenced, but its implementation is not provided in the code.
+-The total variable is not initialized before using it to count the digits.
+
+===CORRECT===
+    char c;
+    int total = 0, f;
+
+    f = open("myfile.txt", O_RDONLY);
+
+    if (f == -1) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    ssize_t br;
+    while ((br = read(f, &c, 1)) > 0) {
+        if (isdigit(c)) {
+            total++;
+        }
+    }
+
+    close(f);
+
+    printf("Found %d digits\n", total);
+
+    return 0;
+ 
 1.3  Describe what is wrong with the code snippet bellow(if anything at all), and fix the problem(s) as required, and rewrite the code accordingly.
 
 char v[1024];
@@ -29,6 +88,34 @@ unsigned long fd = open("/my/OF/pics", O_RDONLY)
 read(fd, &v, 1023);
 printf("File contents: %s", v);
 close(fd);
+
+-The open function might fail to open the file, and it's important to handle such cases.
+-The read function doesn't null-terminate the read data, so printing it as a string (%s) could result in unexpected behavior.
+===CORRECT===
+    char v[1024];
+    unsigned long fd = open("/my/OF/pics", O_RDONLY);
+
+    if (fd == -1) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    ssize_t bytesRead = read(fd, v, sizeof(v) - 1);
+
+    if (bytesRead == -1) {
+        perror("Error reading file");
+        close(fd);
+        return 1;
+    }
+
+    // Null-terminate the string
+    v[sizeof(v) - 1] = '\0'
+
+    printf("File contents: %s\n", v);
+
+    close(fd);
+
+    return 0;
 
 1.4  The code snippet bellow is supposed to create a child process, and wait for the child to print "Hello world". Is it working corectly? If not, please fix it and rewrite the code accordingly.
 
@@ -39,6 +126,35 @@ if (p > 0)
 wait(&n);
 printf("Parent finished!");
 return 1;
+
+-The declaration of char &n; is not valid. It should be int n; as wait stores the exit status of the child process in the variable pointed to by n.
+-The parent process should use waitpid to wait for a specific child process. The wait function may not work as expected in this case.
+-The condition for the parent process to print "Hello world" is incorrect. It should be if (p == 0) for the child process and else for the parent process.
+
+===CORRECT===
+    pid_t p = fork();
+    int n;
+
+    if (p == 0) {
+        // Child process
+        printf("Hello world\n");
+    } else if (p > 0) {
+        // Parent process
+        waitpid(p, &n, 0);
+        printf("Parent finished!\n");
+    } else {
+        perror("Fork failed");
+        return 1;
+    }
+
+    return 0;
+
+Changed char &n; to int n; to properly store the exit status of the child process.
+Used waitpid to wait for the specific child process.
+Adjusted the condition for printing "Hello world" in the child process to if (p == 0) and added an else block for the parent process.
+
+
+
 
 1.5  The following code snippet should have a parent process that spawns two additional children of its own. The first child should show all even numbers from 1 to 1000 abd the second child numbers from 1000 down to 1. Is it correct? If not, please fix any issues and rewrite the code accordingly.
 
@@ -67,14 +183,63 @@ waitpid(&p, &s, NULL);
 waitpid(&p, &s, NULL);
 printf("Children finished printing."); //only the parent needs to print this
 
+-The waitpid function is called twice with the same arguments. It should be called separately for each child process.
+-The loop conditions are incorrect, causing the loops to execute only up to 999 in the first child and down to 2 in the second child.
+
+===CORRECT===
+    pid_t p;
+    int s;
+
+    p = fork();
+
+    if (p > 0) {
+        // Parent process
+        char i;
+        for (i = 1; i <= 1000; i++) {
+            if (i % 2 == 0)
+                printf("Child 1 prints: %d\n", i);
+        }
+        waitpid(p, &s, 0);
+    } else if (p == 0) {
+        // First child process
+        for (int i = 1000; i >= 2; i -= 2)
+            printf("Child 2 prints: %d\n", i);
+    } else {
+        // Fork failed
+        perror("Fork failed");
+        return 1;
+    }
+
+    printf("Children finished printing.\n");
+
+    return 0;
+
 1.6  The code snippet bellow is supposed to create a child process that prints the first argument given in the command line. Is it working correctly? If not, please fix it and rewrite it accordingly.
 
 int main(int argv, char **argc)
 {
-unsigned long p = fork();
-if(p == 0)
-	printf("First argument is: %s\n", argv[1]);
-return 0;
+	unsigned long p = fork();
+	if(p == 0)
+		printf("First argument is: %s\n", argv[1]);
+	return 0;
+}
+-The provided code has a small mistake. The command line arguments are passed as char *argv[] and not int argv. Additionally, it's good practice to check if there are enough arguments before accessing argv[1] to avoid potential segmentation faults.
+
+===CORRECT===
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <argument>\n", argv[0]);
+        return 1;
+    }
+
+    pid_t p = fork();
+
+    if (p == 0) {
+        // Child process
+        printf("First argument is: %s\n", argv[1]);
+    }
+
+    return 0;
 }
 
 1.7 What the code snippet bellow does and fix any problems you find, rewriting the code as necessary.s
@@ -87,3 +252,37 @@ int main(int argv, char **argc)
 	int status;
 	wait(&status);
 }
+
+-The child process is exiting with a status code of 260, which is not a valid exit status. Exit status codes should typically be in the range of 0 to 255.
+-The wait() function is used, but the status of the child process is not being checked or printed.
+
+===CORRECT===
+int main(int argc, char *argv[]) {
+    int pid = fork();
+
+    if (pid == 0) {
+        // Child process
+        exit(42); // Use a valid exit status, e.g., 42
+    } else if (pid > 0) {
+        // Parent process
+        int status;
+        wait(&status);
+
+        if (WIFEXITED(status)) {
+            printf("Child process exited with status: %d\n", WEXITSTATUS(status));
+        } else {
+            fprintf(stderr, "Child process terminated abnormally\n");
+        }
+    } else {
+        // Fork failed
+        perror("Fork failed");
+        return 1;
+    }
+
+    return 0;
+}
+
+WRITING
+2.1 Write a C program that creates 3 child processes, all spawned from the same parent. In the first child, you print the PID of the parent process, in the second child you print the PID of the third child process, and in the third child prints its own PID.
+
+2.2 Write a C program that spawns 4 additional worker threads. Only 2 of these threads(at most) should run in parallel, and the program(using the threads) should count the number of prime numbers ending in digits 3 and 7, between 2 and 100000000 and print that resulting number on screen. At the end, every thread needs to show how many primes it found on its own.
