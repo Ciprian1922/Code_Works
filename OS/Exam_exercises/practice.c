@@ -40,7 +40,7 @@ int main(){
         }else if(pid3 > 0) {
           // now we have to write the pid using the parent through the pipe so the child can read it
           close(pipefd[0]); // close read end of the pipe using the parent
-          write(pipefd[1], &pid3, sizeof(pid3)); // writing into the pipe 
+          write(pipefd[1], &pid3, sizeof(pid3)); // writing into the pipe the wanted PID for process 2 
           close(pipefd[1]); // close write end of the pipe using the parent
         }
       }
@@ -53,3 +53,14 @@ int main(){
   
   return 0;
 }
+
+// So what we basically did was to create the pid's of the processes, then to create the pipe 
+// and check if it was created successfully, then we do out first fork, we enter the first child 
+// process to prind the previously saved pid, and on the else branch we continue to create 
+// the second process. Here we want to establish the pipe with the third process, so we firstly 
+// close the right end of the pipe, read the message from the pipe and finally close the read 
+// end of the pipe, and after that we can print the recived pid from the third process; on the else
+// branch we do another fork for the third pid, we further check if we are in the child to write 
+// it's pid and on the else branch, we are going to send the PID with the parent by closing the read
+// end of the pipe, we write the pid into the pipe such that child 2 gets it and in the end we close 
+// also the write end. Last but not least, we are waiting for the processes to finish.
