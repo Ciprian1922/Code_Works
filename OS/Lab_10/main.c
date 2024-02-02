@@ -55,7 +55,7 @@ int main() {
             printf("Computation completed successfully.\n");
         } else {
             fprintf(stderr, "Computation failed.\n");
-            exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE); 
         }
     }
 
