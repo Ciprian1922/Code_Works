@@ -125,7 +125,7 @@ void *producer_fn(void *arg)
         pthread_mutex_unlock(&mutex);
 
         if (delay == RAND_DELAY)
-            sleep(rand() % 3);
+            sleep(rand() % 3); //BUFFER_SIZE
         else
             sleep(delay);
     }
