@@ -11,8 +11,8 @@ int main(){
   
   pid_parent1 = getpid(); //getting the pid for the parent
   
-  int pipefd[2];//check if the pipe was created corectly
-  if(pipe(pipefd) == -1){
+  int pipefd[2];
+  if(pipe(pipefd) == -1){ //check if the pipe was created corectly
     perror("Error creating the pipe!");
     exit(EXIT_FAILURE);
   }
