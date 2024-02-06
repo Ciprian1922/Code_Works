@@ -93,7 +93,8 @@ close(fd);
 -The read function doesn't null-terminate the read data, so printing it as a string (%s) could result in unexpected behavior.
 ===CORRECT===
     char v[1024];
-    unsigned long fd = open("/my/OF/pics", O_RDONLY);
+    int fd = open("/my/OF/pics", O_RDONLY); // it is recommended to declare opened files with int for compatibility and stability, with unsigned it could of had the value -1
+					    // and you cannot store -1 by declaring a variable with unsigned
 
     if (fd == -1) {
         perror("Error opening file");
