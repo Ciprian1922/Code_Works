@@ -337,16 +337,15 @@ int main() {
 
 2.2 Write a C program that spawns 4 additional worker threads. Only 2 of these threads(at most) should run in parallel, and the program(using the threads) should count the number of prime numbers ending in digits 3 and 7, between 2 and 100000000 and print that resulting number on screen. At the end, every thread needs to show how many primes it found on its own.
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-
 #define MAX_THREADS 4
 #define RANGE_START 2
 #define RANGE_END 100000000
 
 // Mutex for synchronization
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+// Semaphore for allowing at most 2 threads to run in parallel
+sem_t semaphore;
 
 // Function to check if a number is prime
 int is_prime(int n) {
@@ -362,6 +361,8 @@ void* count_primes(void* arg) {
     int id = *(int*)arg;
     int count = 0;
 
+    sem_wait(&semaphore); // Decrement semaphore value
+    
     for (int i = RANGE_START + id; i <= RANGE_END; i += MAX_THREADS) {
         if (i % 10 == 3 || i % 10 == 7) {
             if (is_prime(i)) {
@@ -375,12 +376,17 @@ void* count_primes(void* arg) {
     printf("Thread %d found %d primes.\n", id, count);
     pthread_mutex_unlock(&mutex);
 
+    sem_post(&semaphore); // Increment semaphore value
+
     return NULL;
 }
 
 int main() {
     pthread_t threads[MAX_THREADS];
     int thread_ids[MAX_THREADS];
+
+    // Initialize semaphore
+    sem_init(&semaphore, 0, 2);
 
     // Create threads
     for (int i = 0; i < MAX_THREADS; ++i) {
@@ -399,8 +405,10 @@ int main() {
         }
     }
 
+    // Destroy semaphore
+    sem_destroy(&semaphore);
+
     pthread_mutex_destroy(&mutex);
 
     return 0;
 }
-A
