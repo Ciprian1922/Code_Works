@@ -108,14 +108,14 @@ NVARCHAR(512), category VARCHAR(128),
 details JSON) in MySQL, write the SQL
 statement that updates the resolution to
 3840 x 2160' for all products in 'TV SET
-category where resolution is '3820 x 21 60"
+category where resolution is '3840 x 21 60"
 (Note: the <> is stored as a JSON property in
 details column).
 
 update products 
 set details = json_set(details, '$.resolution', '3840 x 2160') 
-where category = 'tv set' 
-and json_extract(details, '$.resolution') = '3820 x 2160';
+where category = 'TV SET' 
+and json_extract(details, '$.resolution') = '3840 x 2160';
 
 6. The relation R(A, B, C, D, E, F) is in the
 following normal form
