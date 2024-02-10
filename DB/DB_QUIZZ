@@ -244,7 +244,7 @@ Steps for norminalization:
   -The Department table includes the DepartmentID(as a primary key), DepartmentName, and Location
   -We update the student table, removing DepartmentName and Location, and retain only DepartmentID as a foreign key that is referencing the Department table
   -We maintain the existing Course and Instructor tables as they already have direct dependencies on DepartmentID.
-The tables that we get would look like this(at least this is how we could create them(I removed create instruction)):
+The tables that we get would look like this(at least this is how we could create them(I did not placed the create instruction)):
 
 Department (
     DepartmentID INT PRIMARY KEY,
@@ -257,14 +257,14 @@ Student (
     LastName VARCHAR(255),
     Address VARCHAR(255),
     Phone VARCHAR(15),
-    DepartmentID INT,   -- (Foreign Key that references Department)
+    DepartmentID INT,   -- (foreign key that references Department)
     FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
 );
 Course (
     CourseID INT PRIMARY KEY,
     CourseName VARCHAR(255),
     DepartmentID INT,
-    InstructorID INT,   -- (Foreign Key that references Instructor)
+    InstructorID INT,   -- (foreign key that references Instructor)
     FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
     FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID)
 );
