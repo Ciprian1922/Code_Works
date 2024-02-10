@@ -1,0 +1,92 @@
+1.Given that the data sample from above *
+is representative for ALL functional
+dependencies in the real dataset,
+select which ones valid functional
+dependencies in the dataset
+Multiple options are possible
+a.{BC} -> F
+b.C->A
+c.A->B
+d.E->C
+e.F->C
+f.C->F
+g.C->E
+h.D->E
+
+2.Suppose relation R(A, B, C) currently
+has only the tuple (0,0,0) and it must
+always satisfy the functional
+dependencies A T B and B T C.
+Which of the following tuples may be
+inserted into R legally?
+a.(0, 0, 1)
+b.(0,0, 2)
+c.(0, 1,0)
+d.(1,1,0)
+
+3.The candidate key of the relation R(A,B, C,D,E, F) is
+a.{BC}
+b.{ABC}
+c.{BD}
+d.{E}
+e.{AB}
+f.{AD}
+g.{C}
+h.{F}
+i.{A}
+j.{B}
+k.{DB}
+l.{D}
+m.{AC}
+
+4.Data Sample
+A
+2012
+B
+DiCaprio
+C
+Django
+Unchained
+Once Upon...
+D
+1234
+E
+Columbia
+Pictures
+Heydey
+Films
+Columbia
+Pictures
+Columbia
+Pictures
+F
+Comp A
+2019
+DiCaprio
+456
+Comp B
+2015
+DiCaprio
+The Revenant
+1234
+Comp B
+2012
+Waltz
+Django
+Unchained
+1234
+Comp C
+Given that the data sample from above is
+representative for ALL functional
+dependencies in the real dataset, select which
+ones valid functional dependencies in the
+dataset
+Multiple options are possible
+A->B
+{BC}->F
+E->C
+C->A
+F->C
+C->E
+D->E
+C->F
