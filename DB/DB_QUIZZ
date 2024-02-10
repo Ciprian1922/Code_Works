@@ -39,7 +39,19 @@ k.{DB}
 l.{D} --
 m.{AC}
 
-4.Data Sample
+4.
+Data Sample(this is a table)
+A, B, C, D, E, F;
+2012, DiCaprio, Django Unchained, 1234, Columbia Pictures, Comp A;
+2019, DiCaprio, Once Upon..., 456, Heydey Films, Comp B;
+2015, DiCaprio, The Revenant, 1234, Columbia Pictures, Comp B;
+2012, Waltz, Django Unchained, 1234, Columbia Pictures, Comp C.
+
+
+
+
+
+Data Sample
 A
 2012
 B
@@ -114,7 +126,7 @@ d.4NF
 e.BCNF
 
 7. Consider a relation R(A,B,C,D,E) with two
-multi-valued dependencies: A + B,B + D and
+multi-valued dependencies: A -> B,B + D and
 no functional dependencies. Suppose we
 decompose R into 4th Normal Form
 Depending on the order in which we deal with
@@ -123,9 +135,9 @@ decompositions. Which one of the following
 relation could be in the final 4NF
 decomposition?
 a.AC
-b.ABCDE --
+b.ABCDE
 c.BD
-d.ACDE --
+d.ACDE
 
 8. Among the advantages of SQL are:
 a.Impossible to model a relational database
@@ -275,8 +287,58 @@ This normalization process ensures each table has a clearly defined primary key 
 
 
 
+//txt
+1):)
+D->E
+C->A
+C->E
+BC->F
 
 
+2) BC?
+
+3)3NF?/BCNF?/2NF?
+
+4)(1,1,0)?
+
+5)UPDATE Products
+SET details = JSON_SET(details, '$.resolution', '3840 x 2160')
+WHERE category = 'TV SET' AND JSON_EXTRACT(details, '$.resolution') = '3820 x 2160';???
+
+6)Advantages of SQL:
+*Simple queries can be used to retrieve data quickly and efficiently
+
+*Easy to learn and almost every DBMS supports it
+
+7)Data manipulation commands are:
+*DELETE
+
+*INSERT
+
+8)What is a relation :
+*A relation contains attributes
+*A relation is a table with columms and rows
+* A relation holds information about the object to be represented in the database
+
+9)What do you understand by functional dependencies:
+A relation is said to be in functional dependency when one attribute uniquely defines another attribute
+
+10)The following commands are NOT from Data Definition Language
+*INSERT
+*COMMIT
+
+11) What are the advantages and disadvantages of views in a database:
+*Views account for logical data independece as the growth and restructuring of tables are not reflected in the views
+
+*Views are used in order to abstract the database structure  from application developers.
+
+*A view is a virtual table that does not have its data on its own rather the data is defined from one or more underlying tables
+
+12) 6.66
+
+13) 2?
+
+14)
 
 
 
