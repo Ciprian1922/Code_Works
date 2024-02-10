@@ -113,7 +113,235 @@ c.3NF
 d.4NF
 e.BCNF
 
-7. 
+7. Consider a relation R(A,B,C,D,E) with two
+multi-valued dependencies: A + B,B + D and
+no functional dependencies. Suppose we
+decompose R into 4th Normal Form
+Depending on the order in which we deal with
+4NF violations, we can get different final
+decompositions. Which one of the following
+relation could be in the final 4NF
+decomposition?
+a.AC
+b.ABCDE --
+c.BD
+d.ACDE --
+
+8. Among the advantages of SQL are:
+a.Impossible to model a relational database
+using it
+b.Complex queries cannot be computed
+-- c.Simple queries can be used to retrieve data
+quickly and efficiently
+-- d.Easy to learn and almost every DBMS
+supports it
+
+9. Consider table R(A) containing {(3}, (4)}.
+Suppose transaction T1 is "update T set
+A=2*A; insert into R values (6)" and
+transaction T2 is "select avg(A) from R; select
+avg(A) from R". If transaction T2 executes
+using "repeatable read", what are the possible
+values returned by its SECOND statement?
+a. 7
+b. 6.66 --
+c. 3.5
+d. 10
+
+10. Given HighSalary view created as below,
+which of the following statements will be
+rejected / accepted by the DBMS?
+CREATE TABLE EmpSalary(EmpId INT, Salary INT);
+ICREATE VIEW HighSalary
+AS SELECT * FROM EmpSalary WHERE salary > 10000
+WITH CHECK OPTION;
+Accepted
+Rejected
+rej - UPDATE
+HighSalary SET
+salary =9500
+WHERE EmpId=
+1234
+acc - UPDATE
+HighSalary SET
+salary =10500
+WHERE Empld =
+1234
+rej - INSERT INTO
+HighSalary(Empld,
+salary) VALUES
+(1234, 8000)
+acc - INSERT INTO
+HighSalary(Empld,
+salary) VALUES
+(123, 10000)
+acc - DELETE FROM
+HighSalary
+WHERE
+Empld=123
+
+11. Consider a relational database schema for a
+university management system with the
+following tables:
+1. **Student (StudentID, FirstName, LastName,
+Address, Phone, DepartmentlD)**
+Candidate Key: StudentID
+2.**Course (CourselD, CourseName,
+DepartmentID, InstructorlD)**
+Candidate Key: CourselD
+3. **Department (DepartmentID,
+DepartmentName, Location)**
+Candidate Key: DepartmentID
+4. **Instructor (InstructorlD, FirstName,
+LastName, DepartmentlD)**
+Candidate Key: InstructorlD
+The database is currently in 2nd Normal Form
+(2NF). However, during a recent review, it was
+identified that there are some potential issues
+related to functional dependencies and partial
+dependencies. Your task is to perform the
+necessary transformations to bring the
+database to at least 3rd Normal Form (3NF).
+Identify the functional dependencies and
+partial dependencies that violate the 3rd
+Normal Form and perform the required normal
+form transformations. Provide the resulting
+tables with their attributes and any additional
+tables created during the normalization
+process.
+Ensure that each table has a clearly defined
+primary key, and foreign keys are appropriately
+assigned. If any new tables are created during
+the normalization process, specify their primary
+and foreign keys as well
+Explain each step of the normalization process
+and justify your decisions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
