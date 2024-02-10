@@ -230,51 +230,52 @@ Explain each step of the normalization process
 and justify your decisions:
 
 
+For the database management system, norminalization is essential in order to store the data in an efficient way and also maintaining the integrity of it. The given university management system database must be normalized to 3nf because it has to take into consideration the functional dependencies and also the partial ones.
+First we have to identify our dependencies: 
+-identification dependencies: we have to identify the functional dependencies and the partial ones
+  Functional ones:
+   -StudentID determines FirstName, LastName, Address, Phone, and DepartmentID
+   -CourseID determines CourseName, DepartmentID, and InstructorID
+   -DepartmentID determines DepartmentName and Location
+   -InstructorID determines FirstName, LastName, and DepartmentID
+  Partial dependencies - none
+Steps for norminalization:
+  -In order to resolve the functional dependency StudentID DepartmentID, we can create a separate Department table
+  -The Department table includes the DepartmentID(as a primary key), DepartmentName, and Location
+  -We update the student table, removing DepartmentName and Location, and retain only DepartmentID as a foreign key that is referencing the Department table
+  -We maintain the existing Course and Instructor tables as they already have direct dependencies on DepartmentID.
+The tables that we get would look like this(at least this is how we could create them(I removed create instruction)):
 
-
-In database management, normalization is essesntial for ensuring efficient data storage and maintaining data integrity. Our university management system's database needs to be normalized to at least 3rd Normal Form (3NF) to address potential issues with functional dependencies and partial dependencies.
-
-Here's how we achieve this without mentioning ChatGPT:
-
-Identify Dependencies:
-
-We first identify functional dependencies and partial dependencies in our schema.
-Functional dependencies:
-StudentID determines FirstName, LastName, Address, Phone, and DepartmentID.
-CourselD determines CourseName, DepartmentID, and InstructorID.
-DepartmentID determines DepartmentName and Location.
-InstructorID determines FirstName, LastName, and DepartmentID.
-We don't have any partial dependencies.
-Normalization Steps:
-
-To resolve the functional dependency StudentID → DepartmentID, we create a separate Department table.
-The new Department table includes DepartmentID (Primary Key), DepartmentName, and Location.
-We update the Student table, removing DepartmentName and Location, and retain only DepartmentID as a foreign key referencing the Department table.
-We maintain the existing Course and Instructor tables as they already have direct dependencies on DepartmentID.
-Resulting Tables:
-
-Department:
-DepartmentID (Primary Key)
-DepartmentName
-Location
-Student:
-StudentID (Primary Key)
-FirstName
-LastName
-Address
-Phone
-DepartmentID (Foreign Key referencing Department)
-Course:
-CourselD (Primary Key)
-CourseName
-DepartmentID (Foreign Key referencing Department)
-InstructorID (Foreign Key referencing Instructor)
-Instructor:
-InstructorID (Primary Key)
-FirstName
-LastName
-DepartmentID (Foreign Key referencing Department)
-This normalization process ensures each table has a clearly defined primary key and establishes appropriate foreign key relationships between tables, thus enhancing data integrity and minimizing redundancy.
+Department (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(255),
+    Location VARCHAR(255)
+);
+Student (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    Address VARCHAR(255),
+    Phone VARCHAR(15),
+    DepartmentID INT,   -- (Foreign Key that references Department)
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
+);
+Course (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(255),
+    DepartmentID INT,
+    InstructorID INT,   -- (Foreign Key that references Instructor)
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+    FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID)
+);
+Instructor (
+    InstructorID INT PRIMARY KEY,
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
+);
+This normalization process ensures that each table that we have has a clearly defined primary key and it establish appropriate foreign key relationships between all tables while mantaining the data integrity.
 
 
 
