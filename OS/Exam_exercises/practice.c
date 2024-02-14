@@ -1,3 +1,5 @@
+2.1 Write a C program that creates 3 child processes, all spawned from the same parent. In the first child, you print the PID of the parent process, in the second child you print the PID of the third child process, and in the third child prints its own PID.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
