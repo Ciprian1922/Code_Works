@@ -44,10 +44,11 @@ int main(){
           close(pipefd[0]); // close read end of the pipe using the parent
           write(pipefd[1], &pid3, sizeof(pid3)); // writing into the pipe the wanted PID for process 2 
           close(pipefd[1]); // close write end of the pipe using the parent
+          
           wait(NULL);wait(NULL);wait(NULL);
-        }
-      }
-  }
+        }else{perror("Error forking!");exit(EXIT_FAILURE);}
+      }else{perror("Error forking!");exit(EXIT_FAILURE);}
+  }else{perror("Error forking!");exit(EXIT_FAILURE);}
   
   //lastly we wait for the 3 processes to finish
   for(int i = 0; i<3; i++){
