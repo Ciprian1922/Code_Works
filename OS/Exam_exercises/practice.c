@@ -44,6 +44,7 @@ int main(){
           close(pipefd[0]); // close read end of the pipe using the parent
           write(pipefd[1], &pid3, sizeof(pid3)); // writing into the pipe the wanted PID for process 2 
           close(pipefd[1]); // close write end of the pipe using the parent
+          wait(NULL);wait(NULL);wait(NULL);
         }
       }
   }
