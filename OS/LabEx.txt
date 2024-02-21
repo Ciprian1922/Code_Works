@@ -296,44 +296,74 @@ int main(int argc, char *argv[]) {
 WRITING
 2.1 Write a C program that creates 3 child processes, all spawned from the same parent. In the first child, you print the PID of the parent process, in the second child you print the PID of the third child process, and in the third child prints its own PID.
 
-pid_t parent_pid, child2_pid, child3_pid;
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
 
-int main() {
-    // Parent process
-    pid_t pid1, pid2, pid3;
+pid_t pid_parent1, pid_process2, pid_process3;//globally initializing the pid
 
-    parent_pid = getpid();  // Store parent PID
-
-    pid1 = fork();
-
-    if (pid1 == 0) {
-        // First child process
-        printf("First child PID: %d, Parent PID: %d\n", getpid(), parent_pid);
-    } else if (pid1 > 0) {
-        // Parent continues
-        child2_pid = pid2 = fork();
-
-        if (pid2 == 0) {
-            // Second child process
-            printf("Second child PID: %d, Parent PID: %d\n", getpid(), parent_pid);
-        } else if (pid2 > 0) {
-            // Parent continues
-            child3_pid = pid3 = fork();
-
-            if (pid3 == 0) {
-                // Third child process
-                printf("Third child PID: %d\n", getpid());
-            }
-        }
-    }
-
-    // Parent process waits for all children to finish
-    for (int i = 0; i < 3; ++i) {
-        wait(NULL);
-    }
-
-    return 0;
+int main(){
+  pid_t pid1, pid2, pid3;
+  
+  pid_parent1 = getpid(); //getting the pid for the parent
+  
+  int pipefd[2];
+  if(pipe(pipefd) == -1){ //check if the pipe was created corectly
+    perror("Error creating the pipe!");
+    exit(EXIT_FAILURE);
+  }
+  pid1 = fork();
+  
+  if(pid1 == 0){ //we are in the first child process
+    printf("The parent PID from the child1: %d\n", pid_parent1);
+    
+  }else if(pid1 > 0){ //we continue with the parent and create process two
+    
+    pid2 = fork(); pid_process2 = pid2;
+    if(pid2 == 0){  // we go straight into the second process
+      
+      close(pipefd[1]); // closing the right end of the pipe here in process two
+      read(pipefd[0], &pid3, sizeof(pid3)); // now we can read the pid through our pipe for third process
+      close(pipefd[0]); // now we also close that reading end of the pipe
+      // now that we have it, we can also print it
+      printf("The PID of child 3 read from child 2 is: %d\n", pid3); // easy print
+      
+    }else if(pid2 > 0){ // we don's stop here, we continue to create the third process using parent 
+        pid3 = pid_process3 = fork();
+        
+        if(pid3 == 0){
+          printf("The PID of child 3 read from child 3 is: %d\n", getpid()); // easy print
+        }else if(pid3 > 0) {
+          // now we have to write the pid using the parent through the pipe so the child can read it
+          close(pipefd[0]); // close read end of the pipe using the parent
+          write(pipefd[1], &pid3, sizeof(pid3)); // writing into the pipe the wanted PID for process 2 
+          close(pipefd[1]); // close write end of the pipe using the parent
+          
+          wait(NULL);wait(NULL);wait(NULL);
+        }else{perror("Error forking!");exit(EXIT_FAILURE);}
+      }else{perror("Error forking!");exit(EXIT_FAILURE);}
+  }else{perror("Error forking!");exit(EXIT_FAILURE);}
+  
+  //lastly we wait for the 3 processes to finish
+  for(int i = 0; i<3; i++){
+    wait(NULL);
+  }
+  
+  return 0;
 }
+
+// So what we basically did was to create the pid's of the processes, then to create the pipe 
+// and check if it was created successfully, then we do out first fork, we enter the first child 
+// process to prind the previously saved pid, and on the else branch we continue to create 
+// the second process. Here we want to establish the pipe with the third process, so we firstly 
+// close the right end of the pipe, read the message from the pipe and finally close the read 
+// end of the pipe, and after that we can print the recived pid from the third process; on the else
+// branch we do another fork for the third pid, we further check if we are in the child to write 
+// it's pid and on the else branch, we are going to send the PID with the parent by closing the read
+// end of the pipe, we write the pid into the pipe such that child 2 gets it and in the end we close 
+// also the write end. Last but not least, we are waiting for the processes to finish.
 
 2.2 Write a C program that spawns 4 additional worker threads. Only 2 of these threads(at most) should run in parallel, and the program(using the threads) should count the number of prime numbers ending in digits 3 and 7, between 2 and 100000000 and print that resulting number on screen. At the end, every thread needs to show how many primes it found on its own.
 
