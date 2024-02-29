@@ -1,0 +1,1 @@
+the database can be a simeple txt file
