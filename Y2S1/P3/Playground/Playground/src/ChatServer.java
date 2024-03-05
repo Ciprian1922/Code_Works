@@ -35,14 +35,42 @@ public class ChatServer {
         }
     }
 
-    public void broadcastMessage(String message, ClientHandler sender) {
-        for (ClientHandler client : clients) {
-            if (client != sender) {
-                client.sendMessage(sender.getClientName() + ": " + message);
-            }
-        }
+    public void sendClientInfo(ClientHandler client) {
+        String clientInfo = "IP: " + client.getClientSocket().getInetAddress().getHostAddress() +
+                ", Source Port: " + client.getClientSocket().getLocalPort() +
+                ", Destination Port: " + client.getClientSocket().getPort() +
+                ", Name: " + client.getClientName();
+        client.sendMessage(clientInfo);
     }
 
+    public void broadcastMessage(String message, ClientHandler sender) {
+        String senderInfo = "IP: " + sender.getClientSocket().getInetAddress().getHostAddress() +
+                ", Source Port: " + sender.getClientSocket().getLocalPort() +
+                ", Destination Port: " + sender.getClientSocket().getPort() +
+                ", Name: " + sender.getClientName();
+        String fullMessage = senderInfo + ", Message: " + message;
+
+        for (ClientHandler client : clients) {
+            client.sendMessage(fullMessage);
+        }
+    }
+//    public void broadcastMessage(String message, ClientHandler sender) {
+//        String senderInfo = "IP: " + sender.getClientSocket().getInetAddress().getHostAddress() +
+//                ", Source Port: " + sender.getClientSocket().getLocalPort() +
+//                ", Destination Port: " + sender.getClientSocket().getPort() +
+//                ", Name: " + sender.getClientName();
+//        String fullMessage = senderInfo + ", Message: " + message;
+//
+//        // Send the full message to the sender
+//        sender.sendMessage(fullMessage);
+//
+//        // Send only the message to the other clients
+//        for (ClientHandler client : clients) {
+//            if (client != sender) {
+//                client.sendMessage(message);
+//            }
+//        }
+//    }
     public void removeClient(ClientHandler client) {
         clients.remove(client);
     }

@@ -33,7 +33,10 @@ public class ClientHandler implements Runnable {
             clientName = in.nextLine();
             System.out.println("Client connected: " + clientName);
 
-            //rnform all clients about the new connection
+            //inform the client about its info
+            chatServer.sendClientInfo(this);
+
+            //inform all clients about the new connection
             chatServer.broadcastMessage(clientName + " has joined the chat.", this);
 
             //start listening for messages
@@ -54,5 +57,9 @@ public class ClientHandler implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Socket getClientSocket() {
+        return socket;
     }
 }
