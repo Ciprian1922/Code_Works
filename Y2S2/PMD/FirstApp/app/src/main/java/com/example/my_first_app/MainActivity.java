@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 approx = Double.parseDouble(secondApprox.getText().toString());
 
                 if(value.equals("pi")) {
+                    // Compute approximation of pi
                     double prev_term = 1;
                     double curr_term = -1.0/3;
                     sum = prev_term + curr_term;
@@ -52,10 +53,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                     sum = 4.0 * sum;
                     computeResult.setText(Double.toString(sum));
-                } else {
+                } else if (value.equals("e")) {
+                    // Compute Euler's number (e) using the approximation
+                    double epsilon = approx; // User-provided approximation
+                    double e = 1; // Initialize e
+                    double factorial = 1; // Initialize factorial
+                    double term = 1; // Initialize term
+                    int n = 1; // Initialize n
+                    do {
+                        factorial *= n; // Update factorial
+                        term = 1.0 / factorial; // Update term
+                        e += term; // Update e
+                        n++; // Increment n
+                    } while (term > epsilon); // Continue until the term is smaller than the approximation
+                    computeResult.setText(Double.toString(e));
+                } else if (value.equals("golden_ratio")) {
+                    // Compute the Golden Ratio (phi) with approximation
+                    double epsilon = approx; // Approximation threshold
+                    double phi = 1 + epsilon; // Initialize phi with a value slightly larger than 1
+                    double previousPhi;
+                    do {
+                        previousPhi = phi;
+                        phi = 1 + 1 / phi; // Recursively compute phi
+                    } while (Math.abs(phi - previousPhi) > epsilon); // Stop when the difference is smaller than the approximation threshold
+                    computeResult.setText(Double.toString(phi));
+                }else {
                     computeResult.setText("Incorrect string for Value");
                 }
             }
         });
+
     }
 }
