@@ -5,3 +5,12 @@ javac ChatServer.java ChatClient.java
 java ChatServer
 
 java ChatClient
+
+The client establishes a connection with the server using sockets (Socket class).
+The client sends its username to the server.
+The server creates a new thread to handle communication with this client (ClientHandler).
+The server receives the username and informs all clients about the new connection.
+The server and client can now exchange messages through their respective input and output streams (Scanner and PrintWriter).
+When a client sends a message, it's received by the server's ClientHandler.
+The server forwards this message to all clients, including the sender, and displays it in the server terminal along with the sender's details.
+The process continues until a client disconnects, at which point the server removes the client from the list of active clients and informs the remaining clients about the disconnection.

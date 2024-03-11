@@ -42,6 +42,11 @@ public class ClientHandler implements Runnable {
             //start listening for messages
             while (in.hasNextLine()) {
                 String message = in.nextLine();
+                String clientInfo = "IP: " + socket.getInetAddress().getHostAddress() +
+                        ", Source Port: " + socket.getLocalPort() +
+                        ", Destination Port: " + socket.getPort() +
+                        ", Name: " + clientName;
+                System.out.println("Message from " + clientInfo + ": " + message);
                 chatServer.broadcastMessage(message, this);
             }
         } catch (IOException e) {

@@ -1,0 +1,80 @@
+1. Make Reservation:
+Description:
+The customer accesses the company's website to make a reservation. They fill out a form indicating the start and end dates needed, the preferred vehicle, and the pickup office. After submission, the system checks vehicle availability. If available, it computes the price, registers the reservation, and generates a rental number along with a rental agreement.
+
+Flow of Events:
+
+1. Customer accesses the company's website.
+2. Customer fills out the reservation form with details.
+3. System checks vehicle availability.
+4. If vehicle available:
+5. System computes the price.
+6. System registers the reservation and generates a rental number.
+7. System creates a rental agreement.
+8. Customer receives rental number and agreement.
+
+2. Check Availability:
+Description:
+The system checks the availability of a vehicle of a given type at the requested pickup office for a requested rental period. If available, the vehicle is reserved for the requested period.
+
+Flow of Events:
+
+1. System receives a request to check vehicle availability.
+2. System checks availability of the requested vehicle type at the specified pickup office for the requested rental period.
+3. If vehicle available:
+          System reserves the vehicle for the requested period.
+
+3. Initiate Rental:
+Description:
+A customer arrives at a pickup office and provides a rental number to the rental officer. The system retrieves the corresponding rental agreement. If accepted by the customer, a rental agreement is printed and insurance options are presented. Upon selection, the system records the preference and generates an insurance policy to be signed along with the rental agreement.
+
+Flow of Events:
+
+1. Customer arrives at pickup office and provides rental number.
+2. Rental officer enters rental number into the system.
+3. System retrieves rental agreement.
+4. Rental agreement is discussed with the customer.
+If accepted:
+   5. System prints rental agreement.
+   6. System presents insurance options.
+   7. Customer selects insurance option.
+   8. System records preference and generates insurance policy.
+   9. Customer signs rental agreement and insurance policy.
+
+4. Process Vehicle Returns:
+Description:
+The customer returns the rented vehicle to the rental officer, who records mileage and fuel level in the system. The system computes fuel consumption and updates the rental account. Payment is made, and the rental officer registers the payment. In case of damage, an insurance claim form is generated.
+
+Flow of Events:
+
+1. Customer returns vehicle to rental officer.
+2. Rental officer records mileage and fuel level.
+3. System computes fuel consumption and updates rental account.
+4. Customer pays rental amount.
+5. Rental officer registers payment.
+If vehicle damaged:
+    6. Rental officer registers vehicle damage.
+    7. System generates insurance claim form.
+
+5. Provide Management Reports:
+Description:
+The system can generate various management reports. The manager selects a report type, and the system generates and displays the requested report. Printing is optional.
+
+Flow of Events:
+
+1. Manager selects report type.
+2. System generates and displays requested report.
+If printing requested:
+    3. System prints report.
+
+6. Regular Rentals for Company Customers:
+Description:
+This feature allows the company's authorized employees to make regular pickups of company-designated vehicles from nominated offices. The company provides a list of authorized employees, and the system presents an account to the company on a monthly basis.
+
+Flow of Events:
+
+1. Authorized employee requests pickup of company-designated vehicle.
+2. System checks availability of the designated vehicle.
+If vehicle available:
+    3. System initiates rental.
+    4. Company receives monthly account.

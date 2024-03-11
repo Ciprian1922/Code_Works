@@ -1,0 +1,49 @@
+Use Case: _-==Borrow Copy of Book==-_
+
+Description:
+This use case allows a library member to borrow a copy of a book from the library. The member needs to be registered in the library system and must be logged in. The member searches for the desired book either by title, author, or category. Once the book is found, the member selects the desired copy to borrow. The system checks if the member has not reached the maximum limit of borrowed books. If the conditions are met, the book is borrowed, and the member receives a confirmation message.
+
+Actors:
+-Library Member
+
+Preconditions:
+-The member must be logged in.
+-The book must be available for borrowing.
+-The member must not have reached the maximum limit of borrowed books.
+
+Flow of Events:
+1. The member logs in to the library system.
+2. The member searches for the desired book.
+3. The member selects a copy of the book to borrow.
+4. The system checks if the member is eligible to borrow the book.
+5. If eligible, the book is borrowed, and the system updates the member's borrowing record.
+6. The system sends a confirmation message to the member.
+
+Alternate Flows:
+-If the book is not available for borrowing, the system displays a message indicating the unavailability of the book.
+-If the member has reached the maximum limit of borrowed books, the system displays a message indicating the limit has been reached.
+
+
+_-==Use Case: Extend Loan==-_
+
+Description:
+This use case allows a library member to extend the loan period for a borrowed book. The member needs to be registered in the library system and must be logged in. The member selects the book for which they want to extend the loan period. The system checks if the book is eligible for loan extension. If eligible, the loan period is extended, and the member receives a confirmation message.
+
+Actors:
+-Library Member
+
+Preconditions:
+-The member must be logged in.
+-The book must be eligible for loan extension.
+
+Flow of Events:
+
+1. The member logs in to the library system.
+2. The member selects the book for which they want to extend the loan period.
+3. The system checks if the book is eligible for loan extension.
+4. If eligible, the loan period is extended, and the system updates the member's borrowing record.
+5. The system sends a confirmation message to the member.
+
+Alternate Flows:
+-If the book is not eligible for loan extension, the system displays a message indicating the ineligibility.
+-If the member has already reached the maximum number of loan extensions, the system displays a message indicating the limit has been reached.
