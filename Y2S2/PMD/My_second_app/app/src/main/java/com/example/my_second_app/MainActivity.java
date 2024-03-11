@@ -78,17 +78,38 @@ public class MainActivity extends Activity {
 
     // Method to calculate the determinant of a square matrix
     private double determinant(double[][] matrix) {
-        // Implementation of determinant calculation (omitted for brevity)
-        // You can implement this method using standard algorithms like recursion
-        return 0.0; // Placeholder, replace with your implementation
+        // Assuming the matrix is 2x2
+        if (matrix.length != 2 || matrix[0].length != 2) {
+            throw new IllegalArgumentException("Matrix must be 2x2");
+        }
+
+        // Calculate the determinant using the formula ad - bc
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
     }
 
     // Method to replace a column in a matrix with a vector
+// Method to replace a column in a matrix with a vector
     private double[][] replaceColumn(double[][] matrix, int columnIndex, double[] vector) {
-        // Implementation of replacing a column in a matrix (omitted for brevity)
-        // You need to replace the specified column with the given vector
-        return new double[1][1]; // Placeholder, replace with your implementation
+        // Create a new matrix to hold the result
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        double[][] result = new double[rows][cols];
+
+        // Copy elements from the original matrix to the result matrix
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (j == columnIndex) {
+                    // Replace the elements in the specified column with the elements of the vector
+                    result[i][j] = vector[i];
+                } else {
+                    // Copy the elements from the original matrix
+                    result[i][j] = matrix[i][j];
+                }
+            }
+        }
+        return result;
     }
+
 
     // Method to handle button click event
     public void solveEquations(View view) {
