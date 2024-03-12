@@ -50,10 +50,10 @@ public class ChatServer {
                 ", Name: " + sender.getClientName();
         String fullMessage = senderInfo + ", Message: " + message;
 
-        for (ClientHandler client : clients) {
-            client.sendMessage(fullMessage);
-        }
+        // Send the full message to the sender
+        sender.sendMessage(fullMessage);
     }
+
 //    public void broadcastMessage(String message, ClientHandler sender) {
 //        String senderInfo = "IP: " + sender.getClientSocket().getInetAddress().getHostAddress() +
 //                ", Source Port: " + sender.getClientSocket().getLocalPort() +

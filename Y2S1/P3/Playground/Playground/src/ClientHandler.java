@@ -23,7 +23,7 @@ public class ClientHandler implements Runnable {
         out.println(message);
     }
 
-    @Override
+
     public void run() {
         try {
             out = new PrintWriter(socket.getOutputStream(), true);
@@ -47,6 +47,7 @@ public class ClientHandler implements Runnable {
                         ", Destination Port: " + socket.getPort() +
                         ", Name: " + clientName;
                 System.out.println("Message from " + clientInfo + ": " + message);
+                // Broadcast only to the sender
                 chatServer.broadcastMessage(message, this);
             }
         } catch (IOException e) {
@@ -63,6 +64,7 @@ public class ClientHandler implements Runnable {
             }
         }
     }
+
 
     public Socket getClientSocket() {
         return socket;

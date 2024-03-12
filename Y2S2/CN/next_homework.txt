@@ -1,0 +1,5 @@
+inregistradre de un minut in care sa luam port-ul de pe care comunicam uvt
+
+incercam sa accesam si vedem ce raspuns primim
+cu listen
+breakdown la pachete si mai adanc si si mai adanc pana vedem taote informatiile
