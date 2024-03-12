@@ -1,6 +1,9 @@
 2
 4 -3 11
 6 5 7
+
+results: 2, -1
+
 Input: The user provides a system of linear equations in the format specified.
 Parsing: The app parses the input to extract the coefficients and constants from the equations.
 Solution: It then uses Cramer's Rule to solve the equations system.
