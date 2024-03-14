@@ -1,0 +1,147 @@
+1. In this exercise, you calculate the square of a number. The value of the number is provided
+with the help of a substitution variable. Then the result is displayed on the screen. Create the
+following PL/SQL script:
+SET SERVEROUTPUT ON
+DECLARE
+v_num NUMBER := &sv_num;
+v_result NUMBER;
+BEGIN
+v_result := POWER(v_num, 2);
+DBMS_OUTPUT.PUT_LINE ('The value of v_result is: '|| v_result);
+END;
+Execute the script, what will happen if the value of v_num is equal to 10?
+
+-the script will prompt you to enter a value for sv_num and if you enter 10, it will be substituted for v_num
+-inside the PL/SQL block, POWER(v_num, 2) calculates the square of v_num, which is 10 in this case.
+-the result of the calculation, which is 10 to the power of 2, is stored in v_result.
+-at the end DBMS_OUTPUT.PUT_LINE prints "The value of v_result is: 100" to the console.
+
+
+2. In this exercise, you determine the day of the week based on today’s date. You then display
+the results on the screen. Create the following PL/SQL script:
+SET SERVEROUTPUT ON
+DECLARE
+v_day VARCHAR2(20);
+BEGIN
+v_day := TO_CHAR(SYSDATE, 'Day');
+DBMS_OUTPUT.PUT_LINE ('Today is '||v_day);
+END;
+Execute the script, and then answer the following questions:
+
+2.1.What is printed on the screen? -Today is Thursday
+2.2.What is printed on the screen if the statement SET SERVEROUTPUT OFF is issued?-no output will be printed on the screen
+2.3. How would you change the script to display the time of day as well?
+SET SERVEROUTPUT ON
+DECLARE
+    v_day VARCHAR2(20);
+    v_time VARCHAR2(20);
+BEGIN
+    v_day := TO_CHAR(SYSDATE, 'Day');
+    v_time := TO_CHAR(SYSDATE, 'HH:MI:SS AM');
+    DBMS_OUTPUT.PUT_LINE ('Today is ' || v_day || ' and the time is ' || v_time);
+END;
+
+3. (0.25p)To calculate the area of a circle, you must square the circle’s radius and then
+multiply it by π. Write a program that calculates the area and the perimeter of a circle. The
+value for the radius should be provided with the help of a substitution variable. Use 3.14 for
+the value of π. After the area and perimeter of the circle is calculated, display it on the
+screen.
+SET SERVEROUTPUT ON
+DECLARE
+    v_radius NUMBER := &sv_radius;
+    v_pi NUMBER := 3.14;
+    v_area NUMBER;
+    v_perimeter NUMBER;
+BEGIN
+    v_area := v_pi * power(v_radius, 2);
+    v_perimeter := 2 * v_pi * v_radius;
+
+    DBMS_OUTPUT.PUT_LINE('area of the circle is: ' || v_area);
+    DBMS_OUTPUT.PUT_LINE('perimeter of the circle is: ' || v_perimeter);
+END;
+
+4. (0.25p)Calculate the minimum, the maximum for two given numbers.
+SET SERVEROUTPUT ON
+DECLARE
+    v_num1 NUMBER := &sv_num1;
+    v_num2 NUMBER := &sv_num2;
+    v_min NUMBER;
+    v_max NUMBER;
+BEGIN
+    IF v_num1 < v_num2 THEN
+        v_min := v_num1;
+        v_max := v_num2;
+    ELSE
+        v_min := v_num2;
+        v_max := v_num1;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('The minimum of ' || v_num1 || ' and ' || v_num2 || ' is: ' || v_min);
+    DBMS_OUTPUT.PUT_LINE('The maximum of ' || v_num1 || ' and ' || v_num2 || ' is: ' || v_max);
+END;
+
+5. (0.25p)Write a program to accept a year and check whether it is leap year or not.
+SET SERVEROUTPUT ON
+DECLARE
+    v_year NUMBER := &sv_year;
+    v_is_leap_year VARCHAR2(20);
+BEGIN
+    IF (v_year mod 4 = 0 AND v_year mod 100 != 0) OR (v_year mod 400 = 0) THEN
+        v_is_leap_year := 'Leap Year';
+    ELSE
+        v_is_leap_year := 'Not a Leap Year';
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE(v_year || ' is ' || v_is_leap_year);
+END;
+
+6. (0.25p)Write a program to accept 4 numbers and check whether it is Ramanujan number or
+not(it is the smallest number expressible as the sum of two cubes in two different ways).
+DECLARE
+    v_num1 NUMBER := &sv_num1;
+    v_num2 NUMBER := &sv_num2;
+    v_num3 NUMBER := &sv_num3;
+    v_num4 NUMBER := &sv_num4;
+    v_count NUMBER := 0;
+BEGIN
+	cube_sum1 = POWER(v_num1, 3) + POWER(v_num2, 3)
+	cube_sum1 = POWER(v_num1, 3) + POWER(v_num2, 3)
+	IF cube_sum1 == cube_sum2 THEN
+		DBMS_OUTPUT.PUT_LINE('The given numbers form a Ramanujan number');
+  	ELSE
+        	DBMS_OUTPUT.PUT_LINE('The given numbers do not form a Ramanujan number');
+        END IF;
+END;
+
+
+
+7. (0.25p)Write a program to accept a char and check it is a vowel or consonant.
+SET SERVEROUTPUT ON
+DECLARE
+    v_char CHAR(1) := UPPER('&sv_char');
+    v_is_vowel VARCHAR2(20) := 'CONSONANT';
+BEGIN
+    IF v_char IN ('A', 'E', 'I', 'O', 'U') THEN
+        v_is_vowel := 'VOWEL';
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('the character ' || v_char || ' is a ' || v_is_vowel);
+END;
+
+8. (0.25p)Write a program to accept a number of days and find out the number of years and
+the number of days and months.
+SET SERVEROUTPUT ON
+DECLARE
+    v_total_days NUMBER := &sv_total_days;
+    v_years NUMBER;
+    v_months NUMBER;
+    v_remaining_days NUMBER;
+BEGIN
+    v_years := v_total_days / 365;
+    v_months := MOD(v_total_days, 365) / 30;
+    v_remaining_days := MOD(v_total_days, 365) MOD 30;
+
+    DBMS_OUTPUT.PUT_LINE('years: ' || TRUNC(v_years));
+    DBMS_OUTPUT.PUT_LINE('months: ' || TRUNC(v_months));
+    DBMS_OUTPUT.PUT_LINE('days: ' || v_remaining_days);
+END;
