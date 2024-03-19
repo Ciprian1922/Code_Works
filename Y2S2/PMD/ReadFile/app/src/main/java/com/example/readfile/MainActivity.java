@@ -1,14 +1,15 @@
-package com.example.readfile;// MainActivity.java
-//        int[][] matrix1 = readMatrix("matrix1.txt");
-//        int[][] matrix2 = readMatrix("matrix2.txt");
+package com.example.readfile;
+
 import android.os.Bundle;
-import android.os.Environment;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -23,48 +24,79 @@ public class MainActivity extends AppCompatActivity {
 
         resultTextView = findViewById(R.id.resultTextView);
 
-        // Initialize example matrices
+        // Create two matrices and save them to files
         int[][] matrix1 = {
-                {1, 2, 3},
+                {1, 2, 10},
                 {4, 5, 6},
                 {7, 8, 9}
         };
-
         int[][] matrix2 = {
                 {9, 8, 7},
                 {6, 5, 4},
                 {3, 2, 1}
         };
+        writeMatrixToFile(matrix1, "matrix1.txt");
+        writeMatrixToFile(matrix2, "matrix2.txt");
 
-        // Compute sum
-        int[][] sum = computeSum(matrix1, matrix2);
+        // Read matrices from files
+        int[][] matrix1FromFile = readMatrixFromFile("matrix1.txt");
+        int[][] matrix2FromFile = readMatrixFromFile("matrix2.txt");
 
-        // Display result
-        displayMatrix(sum);
+        if (matrix1FromFile != null && matrix2FromFile != null) {
+            // Compute sum of matrices
+            int[][] sum = computeSum(matrix1FromFile, matrix2FromFile);
 
-        // Write result to a text file
-        writeMatrixToFile(sum, "result.txt");
+            // Display result on screen
+            displayMatrix(sum);
+
+            // Save result to a file
+            writeMatrixToFile(sum, "result.txt");
+
+            // Display a success message
+            Toast.makeText(this, "Result saved to result.txt", Toast.LENGTH_SHORT).show();
+        } else {
+            // Display an error message if reading matrices from files failed
+            Toast.makeText(this, "Error reading matrices from files", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int[][] readMatrixFromFile(String fileName) {
+        try {
+            File file = new File(getExternalFilesDir(null) + "/Matrices", fileName);
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            int[][] matrix = new int[3][3];
+            String line;
+            int row = 0;
+            while ((line = br.readLine()) != null && row < 3) {
+                String[] values = line.split(" ");
+                for (int col = 0; col < 3 && col < values.length; col++) {
+                    matrix[row][col] = Integer.parseInt(values[col]);
+                }
+                row++;
+            }
+            br.close();
+            return matrix;
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private int[][] computeSum(int[][] matrix1, int[][] matrix2) {
-        int rows = matrix1.length;
-        int cols = matrix1[0].length;
-        int[][] sum = new int[rows][cols];
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        int[][] sum = new int[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 sum[i][j] = matrix1[i][j] + matrix2[i][j];
             }
         }
-
         return sum;
     }
 
     private void displayMatrix(int[][] matrix) {
         StringBuilder sb = new StringBuilder();
-        for (int[] row : matrix) {
-            for (int num : row) {
-                sb.append(num).append(" ");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                sb.append(matrix[i][j]).append(" ");
             }
             sb.append("\n");
         }
@@ -73,41 +105,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void writeMatrixToFile(int[][] matrix, String fileName) {
         try {
-            // Specify the directory path where you want to save the file
-            String directoryPath = "C:\\Users\\popa_\\Desktop\\GitHub_UVT\\Code_Works\\Y2S2\\PMD\\ReadFile\\";
-
-            // Create the directory if it doesn't exist
-            File directory = new File(directoryPath);
+            File directory = new File(getExternalFilesDir(null), "Matrices");
             if (!directory.exists()) {
-                boolean created = directory.mkdirs();
-                if (!created) {
-                    System.out.println("Failed to create directory: " + directoryPath);
-                    return;
-                }
-                System.out.println("Directory created: " + directoryPath);
-            } else {
-                System.out.println("Directory already exists: " + directoryPath);
+                directory.mkdirs();
             }
-
-            // Create the file within the specified directory
             File file = new File(directory, fileName);
-
-            // Open a PrintWriter for writing to the file
-            PrintWriter writer = new PrintWriter(file);
-
-            // Write matrix data to the file
-            for (int[] row : matrix) {
-                for (int num : row) {
-                    writer.print(num + " ");
+            PrintWriter writer = new PrintWriter(new FileOutputStream(file));
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    writer.print(matrix[i][j] + " ");
                 }
-                writer.println(); // Move to the next line after each row
+                writer.println();
             }
-
-            // Close the PrintWriter
             writer.close();
-
-            // Display a message indicating the file path
-            System.out.println("Result saved to " + file.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
