@@ -1,14 +1,16 @@
+SET SERVEROUTPUT ON
 DECLARE
-    v_total_days NUMBER := &sv_total_days;
-    v_years NUMBER;
-    v_months NUMBER;
-    v_remaining_days NUMBER;
+    v_date DATE;
+    v_day VARCHAR2(15);
 BEGIN
-    v_years := v_total_days / 365;
-    v_months := MOD(v_total_days, 365) / 30;
-    v_remaining_days := MOD(v_total_days, 365) MOD 30;
-
-    DBMS_OUTPUT.PUT_LINE('years: ' || TRUNC(v_years));
-    DBMS_OUTPUT.PUT_LINE('months: ' || TRUNC(v_months));
-    DBMS_OUTPUT.PUT_LINE('days: ' || v_remaining_days);
+    v_date := TO_DATE('23-MAR-2024', 'DD-MON-YYYY'); 
+    v_day := RTRIM(TO_CHAR(v_date, 'DAY'));
+    
+    IF v_day IN ('SATURDAY', 'SUNDAY') THEN
+        DBMS_OUTPUT.PUT_LINE (TO_CHAR(v_date, 'DD-MON-YYYY') || ' falls on a weekend.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE (TO_CHAR(v_date, 'DD-MON-YYYY') || ' does not fall on a weekend.');
+    END IF;
+    
+    DBMS_OUTPUT.PUT_LINE ('Done...');
 END;
