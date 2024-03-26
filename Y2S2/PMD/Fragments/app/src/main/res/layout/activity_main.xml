@@ -7,14 +7,28 @@
     android:padding="16dp">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Factorial Fragment"
-        android:onClick="selectFactorialFragment" />
+        android:text="Compute Factorial"
+        android:onClick="selectFirstFactorialFragment" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compute Factorial (Second)"
+        android:onClick="selectSecondFactorialFragment" />
 
     <FrameLayout
         android:id="@+id/fragment_place"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="16dp" />
+
+    <FrameLayout
+        android:id="@+id/fragment_place_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
