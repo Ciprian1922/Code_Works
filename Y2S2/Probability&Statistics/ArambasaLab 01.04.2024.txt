@@ -1,0 +1,5 @@
+A filling station is supplied with gasoline once a week. The sales are measured in thousands of gallons. If the sales are represented by a random variable with probability density function:
+f(x) = c*(1-x)^4 if 0 < x < 1 and f(x) = 0 otherwise
+a) find c s.t. f is a PDF
+b) for c from a) find the CDF
+c) compute E[x]     
