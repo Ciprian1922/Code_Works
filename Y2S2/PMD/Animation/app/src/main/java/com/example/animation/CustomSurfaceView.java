@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -14,7 +15,8 @@ public class CustomSurfaceView implements SurfaceHolder.Callback, Runnable {
     private Thread thread;
     private boolean isRunning = false;
 
-    private float objectX, objectY;
+    private float pyramidY;
+    private float cubeY;
     private float scaleFactor = 1.0f;
 
     public CustomSurfaceView(Context context, SurfaceView surfaceView) {
@@ -24,8 +26,8 @@ public class CustomSurfaceView implements SurfaceHolder.Callback, Runnable {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        objectX = surfaceView.getWidth() / 2f;
-        objectY = surfaceView.getHeight() / 2f;
+        pyramidY = surfaceView.getHeight() / 2f;
+        cubeY = surfaceView.getHeight() / 2f;
         startDrawing();
     }
 
@@ -79,27 +81,30 @@ public class CustomSurfaceView implements SurfaceHolder.Callback, Runnable {
     private void draw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
         Paint paint = new Paint();
+
+        // Draw pyramid
+        paint.setColor(Color.RED);
+        Path pyramidPath = new Path();
+        float pyramidBase = 200 * scaleFactor;
+        float pyramidHeight = 200 * scaleFactor;
+        float halfBase = pyramidBase / 2;
+        pyramidPath.moveTo(canvas.getWidth() / 2 - halfBase, pyramidY + pyramidHeight / 2);
+        pyramidPath.lineTo(canvas.getWidth() / 2, pyramidY - pyramidHeight / 2);
+        pyramidPath.lineTo(canvas.getWidth() / 2 + halfBase, pyramidY + pyramidHeight / 2);
+        pyramidPath.lineTo(canvas.getWidth() / 2 - halfBase, pyramidY + pyramidHeight / 2); // Closing the triangle
+        canvas.drawPath(pyramidPath, paint);
+
+        // Update pyramid position and scale (move towards the viewer with zoom effect)
+        pyramidY -= 2; // Adjust speed
+        scaleFactor += 0.2f; // Adjust zoom speed
+
+        // Draw cube
         paint.setColor(Color.BLUE);
+        float cubeSize = 200;
+        canvas.drawRect(canvas.getWidth() / 2 - cubeSize / 2, cubeY - cubeSize / 2,
+                canvas.getWidth() / 2 + cubeSize / 2, cubeY + cubeSize / 2, paint);
 
-        // Example: Drawing a rectangle representing the object
-        float objectWidth = 100 * scaleFactor;
-        float objectHeight = 100 * scaleFactor;
-
-        // Adjust object position to simulate coming closer
-        float distanceFromViewer = 500; // Initial distance from viewer
-        float distanceStep = 2000; // Increase this value to make the animation faster
-
-        distanceFromViewer -= distanceStep;
-
-        float left = (canvas.getWidth() - objectWidth) / 2;
-        float top = (canvas.getHeight() - objectHeight) / 2;
-        float right = left + objectWidth;
-        float bottom = top + objectHeight;
-        canvas.drawRect(left, top, right, bottom, paint);
-
-        // Update object scale
-        scaleFactor += 0.1; // Simulate object zooming in
+        // Update cube position (come after the pyramid)
+        cubeY -= 2; // Adjust speed
     }
-
-
 }
