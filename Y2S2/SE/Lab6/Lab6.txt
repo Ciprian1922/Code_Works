@@ -1,0 +1,58 @@
+class Person {
+    private String name;
+    private String dateOfBirth;
+    private String gender;
+    private ArrayList<Person> parents;
+    private ArrayList<Person> children;
+
+    public Person(String name, String dateOfBirth, String gender) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.parents = new ArrayList<>();
+        this.children = new ArrayList<>();
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    public void addParent(Person parent) {
+        parents.add(parent);
+        parent.addChild(this);
+    }
+    public void addChild(Person child) {
+        children.add(child);
+        child.addParent(this);
+    }
+    public ArrayList<Person> getParents() {
+        return parents;
+    }
+    public ArrayList<Person> getChildren() {
+        return children;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Person Ciprian = new Person("Ciprian", "2003-01-01", "Male");
+        Person Popa = new Person("Popa", "2003-05-15", "Male");
+        Person Roxana = new Person("Roxana", "2002-03-20", "Female");
+
+        john.addChild(Ciprian);
+        jane.addChild(Popa);
+	jane.addChild(Roxana);
+    }
+}
