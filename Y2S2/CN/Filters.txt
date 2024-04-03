@@ -1,0 +1,20 @@
+ip.addr == x.x.x.x: Show packets with the specified IP address.
+tcp: Show only TCP packets.
+udp: Show only UDP packets.
+icmp: Show only ICMP packets.
+http: Show only HTTP packets.
+tcp.port == xx: Show packets with the specified TCP port.
+udp.port == xx: Show packets with the specified UDP port.
+eth.addr == xx:xx:xx:xx:xx:xx: Show packets with the specified Ethernet MAC address.
+frame.number == x: Show packet with the specified frame number.
+ip.src == x.x.x.x: Show packets with the specified source IP address.
+ip.dst == x.x.x.x: Show packets with the specified destination IP address.
+tcp.flags.syn == 1: Show TCP SYN packets.
+tcp.flags.ack == 1: Show TCP ACK packets.
+dns: Show only DNS packets.
+icmp.type == x: Show ICMP packets with the specified type.
+icmp.code == x: Show ICMP packets with the specified code.
+tcp.len > x: Show TCP packets larger than x bytes.
+udp.len > x: Show UDP packets larger than x bytes.
+ip.len > x: Show IP packets larger than x bytes.
+frame.len > x: Show packets larger than x bytes.
