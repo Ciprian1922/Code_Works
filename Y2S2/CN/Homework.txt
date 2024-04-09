@@ -1,0 +1,17 @@
+Homework
+Any other 6 protocol from app layer witch are not mentioned in this chapter
+
+theory at page 94 95 ..98 ... 103  ..109 ..112...117 /706   !!!!!!!!!
+(CHAPTER 1 AND CHAPTER 2)
+
+ip is routed protocol, like the cars, but when you arive with car at roundabaut, you will see a table with direction and on witch exit you can go on that direction, in the entire enthernet of world, the enthernet has many of this roundabauts(routers), they have to be up to date about the table from the middle of the roundabaut, we have to make this assimilation, at each roundabaut, a table should exists, those tables, the cars will take a specific path, and the tables are up to date, because somebody is routing them, that's how they get up to date 
+
+to send a message i should have the destination address and the mac, this is used for ARP
+
+
+we should remember the matematics for binary from page 115!!!
+
+
+
+
+
