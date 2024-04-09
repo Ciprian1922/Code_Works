@@ -1,30 +1,45 @@
-DECLARE
-    v_section_id SECTION.SECTION_ID%TYPE := 1; 
-    v_num_students NUMBER; --store nr of students registered in a section
+-- Insert data into COURSE table
+INSERT INTO COURSE (COURSE_NO, DESCRIPTION, COST, PREREQUISITE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES ('C001', 'Introduction to Programming', 200.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       ('C002', 'Database Management Systems', 250.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       ('C003', 'Web Development', 220.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE);
 
-    --custom exception
-    e_no_students_enrolled EXCEPTION;
-BEGIN
-    -- getting the number of students registered in the provided section
-    SELECT COUNT(*)
-    INTO v_num_students
-    FROM ENROLLMENT
-    WHERE SECTION_ID = v_section_id;
+-- Insert data into INSTRUCTOR table
+INSERT INTO INSTRUCTOR (INSTRUCTOR_ID, SALUTATION_ID, FIRST_NAME, LAST_NAME, STREET_ADDRESS, ZIP, PHONE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES (1, 'Mr.', 'John', 'Doe', '123 Elm St', '12345', '123-456-7890', 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (2, 'Ms.', 'Jane', 'Smith', '456 Oak St', '54321', '987-654-3210', 'Admin', SYSDATE, 'Admin', SYSDATE);
 
-    --check if the number of students is equal to 0
-    IF v_num_students = 0 THEN
-        --raise custom exception e_no_students_enrolled and display an error message
-        RAISE_APPLICATION_ERROR(-20001, 'PROBLEM: 0 STUDENTS IN THIS SECTION ' || v_section_id);
-    ELSE
-        --display the number of students in the section
-        DBMS_OUTPUT.PUT_LINE('Number of students in section ' || v_section_id || ': ' || v_num_students);
-    END IF;
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No data found for section ' || v_section_id);
-    WHEN e_no_students_enrolled THEN
-        DBMS_OUTPUT.PUT_LINE(SQLERRM);
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
-END;
-/
+-- Insert data into ZIPCODE table
+INSERT INTO ZIPCODE (ZIP, CITY, STATE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES ('12345', 'City1', 'ST', 'Admin', SYSDATE, 'Admin', SYSDATE),
+       ('54321', 'City2', 'ST', 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+-- Insert data into SECTION table
+INSERT INTO SECTION (SECTION_ID, COURSE_NO, SECTION_NO, START_DATE_TIME, LOCATION, INSTRUCTOR_ID, CAPACITY, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES (101, 'C001', 1, TO_DATE('2022-04-01', 'YYYY-MM-DD'), 'Room A', 1, 30, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (102, 'C002', 1, TO_DATE('2022-04-05', 'YYYY-MM-DD'), 'Room B', 2, 25, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (103, 'C003', 1, TO_DATE('2022-04-10', 'YYYY-MM-DD'), 'Room C', 1, 20, 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+-- Insert data into STUDENT table
+INSERT INTO STUDENT (STUDENT_ID, SALUTATION, FIRST_NAME, LAST_NAME, STREET_ADDRESS, ZIP, PHONE, EMPLOYER, REGISTRATION_DATE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES (1, 'Mr.', 'Michael', 'Johnson', '789 Pine St', '13579', '456-789-0123', 'Company1', SYSDATE, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (2, 'Ms.', 'Emily', 'Davis', '246 Maple St', '97531', '789-012-3456', 'Company2', SYSDATE, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (3, 'Mrs.', 'Sarah', 'Wilson', '357 Oak St', '53179', '012-345-6789', 'Company3', SYSDATE, 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+-- Insert data into ENROLLMENT table
+INSERT INTO ENROLLMENT (STUDENT_ID, SECTION_ID, ENROLL_DATE, FINAL_GRADE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES (1, 101, SYSDATE, 'A', 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (2, 102, SYSDATE, 'B', 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (3, 103, SYSDATE, 'C', 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+-- Insert data into GRADE_TYPE table
+INSERT INTO GRADE_TYPE (GRADE_TYPE_CODE, DESCRIPTION, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES ('A', 'Excellent', 'Admin', SYSDATE, 'Admin', SYSDATE),
+       ('B', 'Good', 'Admin', SYSDATE, 'Admin', SYSDATE),
+       ('C', 'Average', 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+-- Insert data into GRADE_TYPE_WEIGHT table
+INSERT INTO GRADE_TYPE_WEIGHT (SECTION_ID, GRADE_TYPE_CODE, NUMBER_PER_SECTION, PERCENT_OF_FINAL_GRADE, DROP_LOWEST, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES (101, 'A', 5, 20.0, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (101, 'B', 5, 30.0, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+       (101, 'C', 5, 50.0, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE);

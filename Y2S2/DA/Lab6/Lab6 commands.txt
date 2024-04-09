@@ -1,0 +1,190 @@
+Exercises: 1. (0.25p)Create a script that displays the course number and description, and the names of the students enrolled in it. You will need to utilize nested cursors in this exercise.
+SET SERVEROUTPUT ON
+
+DECLARE
+    v_course_no COURSE.COURSE_NO%TYPE;
+    v_description COURSE.DESCRIPTION%TYPE;
+    v_student_name STUDENT.FIRST_NAME%TYPE;
+
+    --cursors
+    CURSOR course_cursor IS
+        SELECT COURSE_NO, DESCRIPTION
+        FROM COURSE;
+
+BEGIN
+    -- Open
+    OPEN course_cursor;
+
+    LOOP
+        --fetching
+        FETCH course_cursor INTO v_course_no, v_description;
+        EXIT WHEN course_cursor%NOTFOUND;
+
+        --display
+        DBMS_OUTPUT.PUT_LINE('Course Number: ' || v_course_no || ', Description: ' || v_description);
+
+        --cursor is fetching
+        FOR student_cursor IN (SELECT s.FIRST_NAME
+                               FROM STUDENT s
+                               JOIN ENROLLMENT e ON s.STUDENT_ID = e.STUDENT_ID
+                               JOIN SECTION sec ON e.SECTION_ID = sec.SECTION_ID
+                               WHERE sec.COURSE_NO = v_course_no) LOOP
+
+            --fetch agian
+            v_student_name := student_cursor.FIRST_NAME;
+
+            --display
+            DBMS_OUTPUT.PUT_LINE('   Student: ' || v_student_name);
+        END LOOP;
+    END LOOP;
+
+    --close cursor
+    CLOSE course_cursor;
+
+END;
+/
+
+
+
+--Retrieves the course number and description.
+--Fetches the names of students enrolled in that course from the STUDENT table, using nested cursor.
+--Displays the course information along with the names of the enrolled students.
+
+
+2. (0.25p)Modify the script created in the previous exercise. In this version, process the outer cursor course cur Via a simple loop.
+done
+
+
+
+
+
+3.(0.25p)Modify the script created in the first exercise, instead of `utilizing nested cursors, process course and student datasets in a single cursor. Ensure that the output produced by this version follows the same format as the original.
+SET SERVEROUTPUT ON
+
+DECLARE
+    v_course_no COURSE.COURSE_NO%TYPE;
+    v_description COURSE.DESCRIPTION%TYPE;
+    v_student_name STUDENT.FIRST_NAME%TYPE;
+
+    --cursor that fetches
+    CURSOR course_student_cursor IS
+        SELECT c.COURSE_NO, c.DESCRIPTION, s.FIRST_NAME
+        FROM COURSE c
+        JOIN SECTION sec ON c.COURSE_NO = sec.COURSE_NO
+        JOIN ENROLLMENT e ON sec.SECTION_ID = e.SECTION_ID
+        JOIN STUDENT s ON e.STUDENT_ID = s.STUDENT_ID;
+
+BEGIN
+    --open
+    OPEN course_student_cursor;
+
+    --fetch+process each student
+    LOOP
+        FETCH course_student_cursor INTO v_course_no, v_description, v_student_name;
+        EXIT WHEN course_student_cursor%NOTFOUND;
+
+        -- display only once per course
+        IF course_student_cursor%ROWCOUNT = 1 THEN
+            DBMS_OUTPUT.PUT_LINE('Course Number: ' || v_course_no || ', Description: ' || v_description);
+        END IF;
+
+        -- display
+        DBMS_OUTPUT.PUT_LINE('   Student: ' || v_student_name);
+    END LOOP;
+
+    -- close
+    CLOSE course_student_cursor;
+
+END;
+/
+
+
+
+4. (0,25p)Modify the script created in the first exercise, in this version, use a parameterized cursor for the inner cursor loop. 
+
+5. 0.5 Write a nested cursor in which the parent cursor gathers information about each section of a course. The child cursor counts the enrollment. The only output is one line for each course, with the course name, section number, and total enrollment. 
+SET SERVEROUTPUT ON
+
+DECLARE
+    v_course_no COURSE.COURSE_NO%TYPE;
+    v_description COURSE.DESCRIPTION%TYPE;
+    v_section_id SECTION.SECTION_ID%TYPE;
+    v_enrollment_count NUMBER;
+
+    --partent cursor gathers informations about each section
+    CURSOR course_section_cursor IS
+        SELECT c.COURSE_NO, c.DESCRIPTION, sec.SECTION_ID
+        FROM COURSE c
+        JOIN SECTION sec ON c.COURSE_NO = sec.COURSE_NO;
+
+    --child cursors counts the enrollments
+    CURSOR enrollment_count_cursor (p_section_id SECTION.SECTION_ID%TYPE) IS
+        SELECT COUNT(*) AS enrollment_count
+        FROM ENROLLMENT
+        WHERE SECTION_ID = p_section_id;
+
+BEGIN
+    -- open the parent cursor
+    OPEN course_section_cursor;
+
+    -- looping through each section
+    LOOP
+        --fetch course and section information
+        FETCH course_section_cursor INTO v_course_no, v_description, v_section_id;
+        EXIT WHEN course_section_cursor%NOTFOUND;
+
+        --counting enrollments for current section
+        OPEN enrollment_count_cursor(v_section_id);
+        FETCH enrollment_count_cursor INTO v_enrollment_count;
+        CLOSE enrollment_count_cursor;
+
+        --printing
+        DBMS_OUTPUT.PUT_LINE('Course: ' || v_description || ', Section: ' || v_section_id || ', Total Enrollment: ' || v_enrollment_count);
+    END LOOP;
+
+    --closing the parent cursor
+    CLOSE course_section_cursor;
+
+END;
+/
+
+
+6. (0.5p)Write an anonymous PL/SQL block that finds all the courses that have at least one section that is at its maximum enrollment. If no courses meet that criterion, pick two courses and create that situation for each.
+ a) For each of those courses, add another section. The instructor for the new section should be taken from the existing records in the instructor table. Use the instructor who is signed up to teach the fewest courses. Handle the fact that, during the execution of your program, the instructor teaching the most courses may change. 
+
+b) Use any exception-handling techniques you think are useful to capture error conditions.
+DECLARE
+    v_max_capacity NUMBER;
+    v_course_no COURSE.COURSE_NO%TYPE;
+    v_section_id SECTION.SECTION_ID%TYPE;
+    v_instructor_id INSTRUCTOR.INSTRUCTOR_ID%TYPE;
+BEGIN
+    -- Find courses with at least one section at maximum enrollment
+    SELECT MAX(CAPACITY)
+    INTO v_max_capacity
+    FROM SECTION;
+
+    FOR course_rec IN (SELECT c.COURSE_NO, sec.SECTION_ID
+                       FROM COURSE c
+                       JOIN SECTION sec ON c.COURSE_NO = sec.COURSE_NO
+                       WHERE sec.CAPACITY = v_max_capacity)
+    LOOP
+        BEGIN
+            -- For each course, add another section
+            INSERT INTO SECTION (SECTION_ID, COURSE_NO, SECTION_NO, START_DATE_TIME, LOCATION, INSTRUCTOR_ID, CAPACITY, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+            VALUES ((SELECT MAX(SECTION_ID) + 1 FROM SECTION), course_rec.COURSE_NO, (SELECT MAX(SECTION_NO) + 1 FROM SECTION WHERE COURSE_NO = course_rec.COURSE_NO), SYSDATE, 'New Location', 
+                    (SELECT INSTRUCTOR_ID FROM (SELECT INSTRUCTOR_ID, COUNT(*) AS num_courses FROM SECTION GROUP BY INSTRUCTOR_ID ORDER BY num_courses ASC) WHERE ROWNUM = 1),
+                    v_max_capacity, 'Admin', SYSDATE, 'Admin', SYSDATE);
+        EXCEPTION
+            WHEN OTHERS THEN
+                DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+        END;
+    END LOOP;
+END;
+/
+SELECT *
+FROM SECTION
+WHERE MODIFIED_DATE = TRUNC(SYSDATE);
+
+ 7. (0.5p)Construct. 3 cursors. The first one, cursor c_student takes no parameters and is a collection of students with a last name beginning with J. The second one c_course takes in the parameter of student_ID to generate a list of courses that student is taking. The third one, c_grade takes in two parameters, section_id and student_id. In this way it can generate an average of the different grade types (quizes, homework, final, etc.) for that student for that course. Display the student name for the first coursor. The second cursor takes the parameter of student_id from the first cursor. Only the description of the course is displayed. The third cursor takes in the parameter of section_id from the second cursor and student_id from the first cursor. The grades are then displayed.
+ 

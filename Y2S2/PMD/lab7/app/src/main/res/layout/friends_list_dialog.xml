@@ -1,0 +1,8 @@
+<!-- friends_list_dialog.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/friendListLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!-- Friend entries will be added dynamically -->
+</LinearLayout>
