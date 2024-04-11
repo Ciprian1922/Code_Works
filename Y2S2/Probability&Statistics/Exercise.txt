@@ -1,0 +1,44 @@
+Calculate the following probabilities using a normal approximation (Central Limit Theorem):
+P(X < 150), where X-B belongs to (200, 0.8)
+a) 0.019 
+b) 0.047
+c) 0.021
+d) 0.015
+
+2. Let X de a discrete random variable with the following distribution
+Compute the value of V[X]. Round your answer to 3 decimal places.
+
+3. A committee consists of five Chicanos, two Asians, three African Americans, and two Cancasians. A subcommittee of four is chosen at random. What is the probability that all the ethnic groups are represented an the sabcommittee? 
+a) 0.121
+b) 0.452
+c) 0.548
+d) 0.879
+4. For evalunting the effectiveness of a processor for a certain type of tasks, we recorded the CPU time for 20 randomly chosen jobs. It is known that the CPU time has a normal distribution with mean 20(s) and standard deviation 8(s). Compute the probability that the average CPU for the selected jobs (the sample mean) takes valves in the interval [18.22]. Round your answer to 3 decimal places.
+
+5. The lifetime, in years, of some electronic component is a continuous random variable with the density f(x) = k/x^4, if x>=1, f(x)=0, x<1.
+Find k sunch that f is a valid PDF and the probability that the lifetime will exceed 4 years.
+a) 0,275
+b) 0,459
+c) k=1/2
+d) 0,984 
+e) 0,016
+f) k=3   CORRECT
+g) k=1/3
+h) k=4
+
+6. A problem on a multiple-choice quiz is answered corectly with probability 0,9 if a student is prepared
+an unprepared student guesses between 4 possible answers. Seventy five percent of students prepare for the quiz. If Student X gives a correct answer to this problem, what is the chance that he prepared for the quiz?
+a) 0,915   CORRECT
+b) 0,854
+c) 0,825
+d) 0,945
+
+
+8. In a certain store one in ten computers has defects. Twenty randomly selected computers are bought for the university lab. Compute the probability that less than three computers have defects. Round your aswer to 3 decimal places.
+
+9. Which of the following are the properties of a probability density function(PDF):
+a) lim(x->infinity)f(x) = 1  CORRECT
+b) f(x) >=0, for all x belong to R  CORRECT
+c) lim(x->-infinity)f(x) = 0   CORRECT
+d) f is an increasing function
+e) integral from - infinity to infinity of f(x)dx = 1   CORRECT
