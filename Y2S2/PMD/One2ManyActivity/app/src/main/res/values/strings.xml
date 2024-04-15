@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">One2ManyActivity</string>
+    <string-array name="questions">
+        <item>What is an oriented graph?</item>
+        <item>In a dezoriented graph, how are the edges represented?</item>
+        <item>Which statement is true about oriented graphs?</item>
+        <item>In a dezoriented graph, what is the degree of a vertex?</item>
+        <item>Which of the following graphs can be considered dezoriented?</item>
+    </string-array>
+    <string-array name="answers1">
+        <item>A) A graph with edges having directions.</item>
+        <item>B) A graph with no cycles.</item>
+        <item>C) A graph with weighted edges.</item>
+        <item>D) A graph with no vertices.</item>
+    </string-array>
+    <string-array name="answers2">
+        <item>A) Edges without any direction.</item>
+        <item>B) Edges with alternating directions.</item>
+        <item>C) Edges with multiple directions.</item>
+        <item>D) Edges with random directions.</item>
+    </string-array>
+    <string-array name="answers3">
+        <item>A) They can have cycles.</item>
+        <item>B) They cannot have cycles.</item>
+        <item>C) They always have negative weights on edges.</item>
+        <item>D) They always have a single vertex.</item>
+    </string-array>
+    <string-array name="answers4">
+        <item>A) The number of edges connected to it.</item>
+        <item>B) The weight of the edges connected to it.</item>
+        <item>C) The distance from the other vertices.</item>
+        <item>D) The number of vertices in the graph.</item>
+    </string-array>
+    <string-array name="answers5">
+        <item>A) A graph representing internet connections.</item>
+        <item>B) A graph representing a one-way street system.</item>
+        <item>C) A graph representing social media connections.</item>
+        <item>D) A graph representing a network of rivers and tributaries.</item>
+    </string-array>
+    <string name="result_message">You answered %1$d out of %2$d questions correctly. (%3$d%%)</string>
+
+
 </resources>
