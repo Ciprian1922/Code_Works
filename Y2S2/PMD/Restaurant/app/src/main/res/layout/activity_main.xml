@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Radio buttons for food -->
+    <RadioGroup
+        android:id="@+id/food_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/food_burger_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Burger" />
+
+        <RadioButton
+            android:id="@+id/food_kebab_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kebab" />
+
+        <RadioButton
+            android:id="@+id/food_salad_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salad" />
+    </RadioGroup>
+
+    <!-- Radio buttons for drinks -->
+    <RadioGroup
+        android:id="@+id/drink_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/food_radio_group"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/drink_cola_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cola" />
+
+        <RadioButton
+            android:id="@+id/drink_orange_juice_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orange Juice" />
+
+        <RadioButton
+            android:id="@+id/drink_water_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Water" />
+    </RadioGroup>
+
+    <!-- Button to navigate to second activity -->
+    <Button
+        android:id="@+id/menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:layout_below="@id/drink_radio_group"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp" />
+
+</RelativeLayout>
