@@ -1,0 +1,38 @@
+Why automated testing is useful ?
+Automated testing increases efficiency, consistency, and coverage in testing processes. It helps in quickly identifying defects, reduces manual effort, and supports continuous integration and delivery by allowing frequent and reliable testing of the application.
+What is the role of equivalence partitions in unit testing ?
+Equivalence partitioning in unit testing simplifies testing by dividing input data into partitions that are expected to exhibit similar behavior. Testing a single representative from each partition ensures coverage while reducing the total number of tests needed.
+Give examples of criteria for selecting tests that reveal defects in the system.
+Testing guidelines are hints for the testing team to help them choose tests that will reveal defects in the system:
+Test edge cases:
+ -If your partition has upper and lower bounds (e.g. length of strings, numbers, etc.) choose inputs at the edges of the range.
+Force errors:
+ -Choose test inputs that force the system to generate all error messages. Choose test inputs that should generate invalid outputs.
+Fill buffers
+ -Choose test inputs that cause all input buffers to overflow.
+Repeat yourself :
+ -Repeat the same test input or series of inputs several times
+Overflow and underflow:
+ -If your program does numeric calculations, choose test inputs that cause it to calculate very large or very small numbers.
+Don’t forget null and zero:
+ -If your program uses pointers or strings, always test with null pointers and strings. If you use sequences, test with an empty sequence. For numeric inputs, always test with zero.
+Keep count:
+ -When dealing with lists and list transformation, keep count of the number of elements in each list and check that these are consistent after each transformation.
+One is different:
+ -If your program deals with sequences, always test with sequences that have a single value.
+Shortly describe the component parts of the automated unit test.
+Automated tests are structured into three parts:
+Setup (arrange) part:
+ -System initialization with the test case, namely the inputs and expected outputs. This involves defining the test parameters and, if necessary, mock objects that emulate the functionality of code that has not yet been developed.
+Call (action) part:
+ -Call the unit that is being tested with the test parameters.
+Assertion part:
+ -Compare the result of the call with the expected result.
+If the assertion evaluates to true, the test has been successful and if false, then it has failed.
+
+Define the software regression.
+Software regression : software bug or quality altering, as a consequence of a software change.
+Why regression testing is important ? Explain how automated testing simplifies regression testing.
+Regression testing ensures that recent changes to the software haven't introduced new bugs or issues, maintaining the stability and reliability of the application over time. Automated testing simplifies regression testing by executing tests quickly, consistently, and repeatedly, ensuring thorough coverage of the codebase with minimal manual effort.
+What do we need to consider when we design the software product, so that we can automatically and efficiently test its features ?
+When designing for automated testing, considerations include modularity for testing individual components, testability through features like dependency injection, stable interfaces to minimize test maintenance, accessibility for test automation tools, configurable options for testing under different conditions, comprehensive logging and monitoring, and separation of concerns for easier testing of different layers of the application.

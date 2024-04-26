@@ -1,0 +1,213 @@
+6. An individual needing automobile insurance requested quotes from
+10 different insurers for identical coverage and received the following
+values (amounts are annual premiums in dollars):
+720, 880, 630, 590, 1140, 908, 677, 720, 1260, 800
+
+Find
+(a) The sample mean
+(b) The sample median
+(c) The sample standard deviation
+
+
+> premiums <- c(720, 880, 630, 590, 1140, 908, 677, 720, 1260, 800)
+> mean_premium <- mean(premiums)
+> print(mean_premium)
+[1] 832.5
+> median_premium <- median(premiums)
+> print(median_premium)
+[1] 760
+> std_dev <- sd(premiums)
+> print(std_dev)
+[1] 220.0077
+
+17. The following data represent the acidity of 40 successive rainfalls in
+the state of Minnesota. The acidity is measured on a pH scale, which
+varies from 1 (very acidic) to 7 (neutral).
+
+3.71, 4.23, 4.16, 2.98, 3.23, 4.67, 3.99, 5.04, 4.55, 3.24, 2.80, 3.44,
+3.27, 2.66, 2.95, 4.70, 5.12, 3.77, 3.12, 2.38, 4.57, 3.88, 2.97, 3.70, 2.53, 2.67,
+4.12, 4.80, 3.55, 3.86, 2.51, 3.33, 3.85, 2.35, 3.12, 4.39, 5.09, 3.38, 2.73, 3.07
+(a) Find the sample standard deviation.
+(b) Find the range.
+(c) Find the interquartile range.
+
+> acidity <- c(3.71, 4.23, 4.16, 2.98, 3.23, 4.67, 3.99, 5.04, 4.55, 3.24, 2.80, 3.44,
++              3.27, 2.66, 2.95, 4.70, 5.12, 3.77, 3.12, 2.38, 4.57, 3.88, 2.97, 3.70, 
++              2.53, 2.67, 4.12, 4.80, 3.55, 3.86, 2.51, 3.33, 3.85, 2.35, 3.12, 4.39, 
++              5.09, 3.38, 2.73, 3.07)
+> std_dev <- sd(acidity)
+> print(std_dev)
+[1] 0.8046793
+> range_acidity <- range(acidity)
+> print(range_acidity)
+[1] 2.35 5.12
+we have to substract them and the result is 2.77
+> quartiles <- quantile(acidity, c(0.25, 0.75))
+> iqr <- quartiles[2] - quartiles[1]
+> print(iqr)
+75% 
+1.2 
+
+18. Consider the following two data sets:
+
+A: 4.5, 0, 5.1, 5.0, 10, 5.2 B: 0.4, 0.1, 9, 0, 10, 9.5
+(a) Determine the range for each data set.
+(b) Determine the sample standard deviation for each data set.
+(c) Determine the interquartile range for each data set.
+
+> # Data set A
+> data_A <- c(4.5, 0, 5.1, 5.0, 10, 5.2)
+> range_A <- range(data_A)
+> print(range_A)
+[1]  0 10    - this is the range( i mean the value 10)
+> 
+> # Data set B
+> data_B <- c(0.4, 0.1, 9, 0, 10, 9.5)
+> range_B <- range(data_B)
+> print(range_B)
+[1]  0 10
+
+
+> # Data set A
+> std_dev_A <- sd(data_A)
+> print(std_dev_A)
+[1] 3.17154
+> 
+> # Data set B
+> std_dev_B <- sd(data_B)
+> print(std_dev_B)
+[1] 5.12354
+
+
+> # Data set A
+> quartiles_A <- quantile(data_A, c(0.25, 0.75))
+> iqr_A <- quartiles_A[2] - quartiles_A[1]
+> print(iqr_A)
+ 75% 
+0.55 
+> 
+> # Data set B
+> quartiles_B <- quantile(data_B, c(0.25, 0.75))
+> iqr_B <- quartiles_B[2] - quartiles_B[1]
+> print(iqr_B)
+75% 
+9.2 
+
+
+2. The following stem-and-leaf plot records the diastolic blood pressure
+of a sample of 30 men.
+9 3, 5, 8
+8 6, 7, 8, 9, 9, 9
+7 0, 1, 2, 2, 4, 5, 5, 6, 7, 8
+6 0, 1, 2, 2, 3, 4, 5, 5
+5 4, 6, 8
+(a) Compute the sample mean x.
+(b) Compute the sample median.
+(c) Compute the sample mode.
+(d) Compute the sample standard deviation s.
+(e) Do the data appear to be approximately normal?
+(f) What proportion of the data values lies between x + 2s and x − 2s?
+(g) Compare the answer in part (f) to the one prescribed by the
+empirical rule.
+a.
+> # Convert the stem-and-leaf plot into a numeric vector
+> blood_pressure <- c(93, 95, 98, 86, 87, 88, 89, 89, 89, 70, 71, 72, 72, 74, 75, 75, 76, 77, 78, 60, 61, 62, 62, 63, 64, 65, 65, 54, 56, 58)
+> 
+> # Compute the sample mean
+> mean_blood_pressure <- mean(blood_pressure)
+> print(mean_blood_pressure)
+[1] 74.13333
+b.
+> # Compute the sample median
+> median_blood_pressure <- median(blood_pressure)
+> print(median_blood_pressure)
+[1] 73
+c.
+> # Compute the sample mode and its frequency
+> mode_freq <- sort(table(blood_pressure), decreasing = TRUE)[1]
+> mode_value <- as.numeric(names(mode_freq))
+> 
+> # Print mode value and frequency
+> print(paste("Mode value:", mode_value))
+[1] "Mode value: 89"
+> print(paste("Mode frequency:", mode_freq))
+[1] "Mode frequency: 3"
+d.
+> # Compute the sample standard deviation
+> std_dev_blood_pressure <- sd(blood_pressure)
+> print(std_dev_blood_pressure)
+[1] 12.65111
+e.
+> # Check for normality using a histogram
+> hist(blood_pressure, main = "Histogram of Diastolic Blood Pressure", xlab = "Blood Pressure")
+f.
+> # Calculate the proportion of data values between x + 2s and x - 2s
+> proportion <- sum(blood_pressure > mean_blood_pressure - 2 * std_dev_blood_pressure & blood_pressure < mean_blood_pressure + 2 * std_dev_blood_pressure) / length(blood_pressure)
+> print(proportion)
+[1] 1
+
+
+6. The following data represent the birth weights at an inner-city hos-
+pital in a large eastern city:
+
+2.4, 3.3, 4.1, 5.0, 5.1, 5.2, 5.6, 5.8, 5.9, 5.9, 6.0, 6.1, 6.2, 6.3,
+6.3, 6.4, 6.4, 6.5, 6.7, 6.8, 7.2, 7.4, 7.5, 7.5, 7.6, 7.6, 7.7, 7.8,
+7.8, 7.9, 7.9, 8.3, 8.5, 8.8, 9.2, 9.7, 9.8, 9.9, 10.0, 10.3, 10.5
+(a) Plot this in a stem-and-leaf diagram.
+(b) Find the sample mean x.
+(c) Find the sample median.
+(d) Find the sample standard deviation s.
+(e) What proportion of the data lies within x ± 2s?
+(f) Do the data appear to be approximately normal?
+(g) If your answer to (f) is yes, what would you have estimated, based
+on your answers to (b) and (d), for (e)?
+
+a.
+> # Data
+> birth_weights <- c(2.4, 3.3, 4.1, 5.0, 5.1, 5.2, 5.6, 5.8, 5.9, 5.9, 6.0, 6.1, 6.2, 6.3,
++                    6.3, 6.4, 6.4, 6.5, 6.7, 6.8, 7.2, 7.4, 7.5, 7.5, 7.6, 7.6, 7.7, 7.8,
++                    7.8, 7.9, 7.9, 8.3, 8.5, 8.8, 9.2, 9.7, 9.8, 9.9, 10.0, 10.3, 10.5)
+> 
+> # Stem-and-leaf plot
+> stem(birth_weights)
+
+  The decimal point is at the |
+
+   2 | 4
+   3 | 3
+   4 | 1
+   5 | 0126899
+   6 | 0123344578
+   7 | 24556678899
+   8 | 358
+   9 | 2789
+  10 | 035
+b.
+> mean_birth_weight <- mean(birth_weights)
+> print(mean_birth_weight)
+[1] 7.095122
+c.
+> median_birth_weight <- median(birth_weights)
+> print(median_birth_weight)
+[1] 7.2
+d.
+> std_dev_birth_weight <- sd(birth_weights)
+> print(std_dev_birth_weight)
+[1] 1.847965
+e.
+> proportion_within_2s <- sum(birth_weights > mean_birth_weight - 2 * std_dev_birth_weight & birth_weights < mean_birth_weight + 2 * std_dev_birth_weight) / length(birth_weights)
+> print(proportion_within_2s)
+[1] 0.9512195
+f.
+> hist(birth_weights, main = "Histogram of Birth Weights", xlab = "Birth Weight")
+
+
+
+
+
+
+
+
+
+
+
