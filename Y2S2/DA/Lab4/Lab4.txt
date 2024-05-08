@@ -1,0 +1,149 @@
+1. SET SERVEROUTPUT ON
+DECLARE
+    v_date DATE;
+    v_day VARCHAR2(15);
+BEGIN
+    v_date := TO_DATE('21-MAR-2024', 'DD-MON-YYYY'); 
+    v_day := RTRIM(TO_CHAR(v_date, 'DAY'));
+    
+    IF v_day IN ('SATURDAY', 'SUNDAY') THEN
+        DBMS_OUTPUT.PUT_LINE (TO_CHAR(v_date, 'DD-MON-YYYY') || ' falls on a weekend.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE (TO_CHAR(v_date, 'DD-MON-YYYY') || ' does not fall on a weekend.');
+    END IF;
+    
+    DBMS_OUTPUT.PUT_LINE ('Done...');
+END;
+
+2. SET SERVEROUTPUT ON
+DECLARE
+    v_instructor_id NUMBER := &sv_instructor_id; 
+    v_section_count NUMBER;
+BEGIN
+
+    SELECT COUNT(*)
+    INTO v_section_count
+    FROM SECTION
+    WHERE INSTRUCTOR_ID = v_instructor_id;
+
+    IF v_section_count >= 3 THEN
+        DBMS_OUTPUT.PUT_LINE ('This instructor needs a vacation.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE ('This instructor is teaching ' || v_section_count || ' sections.');
+    END IF;
+END;
+/
+ 
+3.SET SERVEROUTPUT ON
+DECLARE
+    v_date DATE := TO_DATE('21-MAR-2024', 'DD-MON-YYYY'); 
+    v_day VARCHAR2(15);
+    v_time VARCHAR2(20);
+BEGIN
+    v_day := RTRIM(TO_CHAR(v_date, 'DAY'));
+
+    CASE 
+        WHEN v_day IN ('SATURDAY', 'SUNDAY') AND TO_CHAR(v_date, 'HH24:MI:SS') < '12:00:00' THEN
+                v_time := 'Morning';
+            ELSE
+                v_time := 'Afternoon';
+    END CASE;
+    IF v_day IN ('SATURDAY', 'SUNDAY') THEN
+        DBMS_OUTPUT.PUT_LINE (TO_CHAR(v_date, 'DD-MON-YYYY') || ' falls on a weekend ' || v_time);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE (TO_CHAR(v_date, 'DD-MON-YYYY') || ' does not fall on a weekend');
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE ('Done...');
+END;
+4.
+SET SERVEROUTPUT ON
+DECLARE
+    v_instructor_id NUMBER := &sv_instructor_id; -- Input the instructor ID
+    v_section_count NUMBER;
+BEGIN
+    -- Count the number of sections taught by the instructor
+    SELECT COUNT(*)
+    INTO v_section_count
+    FROM SECTION
+    WHERE INSTRUCTOR_ID = v_instructor_id;
+
+    -- Output message using CASE statement
+    CASE
+        WHEN v_section_count >= 3 THEN
+            DBMS_OUTPUT.PUT_LINE ('This instructor needs a vacation.');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE ('This instructor is teaching ' || v_section_count || ' sections.');
+    END CASE;
+END;
+/
+
+
+5. 
+DECLARE
+    v_num NUMBER := NULL;
+BEGIN
+    IF v_num > 0 THEN
+        DBMS_OUTPUT.PUT_LINE ('v_num is greater than 0');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE ('v_num is not greater than 0');
+    END IF;
+END;
+
+
+--the two blocks produce different outputs because they handle the NULL value of v_num differently due to the way conditional statements work with NULL values
+
+DECLARE
+    v_num NUMBER := NULL;
+BEGIN
+    IF v_num > 0 THEN
+        DBMS_OUTPUT.PUT_LINE ('v_num is greater than 0');
+    END IF;
+    IF NOT (v_num > 0) THEN
+        DBMS_OUTPUT.PUT_LINE ('v_num is not greater than 0');
+    END IF;
+END;
+
+--Here, in the first IF statement, since the condition v_num > 0 evaluates to FALSE when v_num is NULL, the corresponding DBMS_OUTPUT statement is not executed
+
+4.
+SET SERVEROUTPUT ON
+DECLARE
+    v_instructor_id NUMBER := &sv_instructor_id; -- Input the instructor ID
+    v_section_count NUMBER;
+BEGIN
+    -- Count the number of sections taught by the instructor
+    SELECT COUNT(*)
+    INTO v_section_count
+    FROM sections
+    WHERE instructor_id = v_instructor_id;
+
+    -- Output message using CASE statement
+    CASE
+        WHEN v_section_count >= 3 THEN
+            DBMS_OUTPUT.PUT_LINE ('This instructor needs a vacation.');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE ('This instructor is teaching ' || v_section_count || ' sections.');
+    END CASE;
+END;
+/
+
+6. SELECT e.student_id, e.section_id, e.final_grade, g.numeric_grade,
+COALESCE(g.numeric_grade, e.final_grade) grade
+FROM enrollment e, grade g
+WHERE e.student_id = g.student_id
+AND e.section_id = g.section_id
+AND e.student_id = 102
+AND g.grade_type_code = 'FI';
+
+--The COALESCE function is used to return the first non-null expression from the provided list of expressions. In this case, if g.numeric_grade is NULL, it will be replaced by e.final_grade. This means if g.numeric_grade is NULL, it will be substituted with e.final_grade, potentially leading to a different value in the output.
+
+SELECT e.student_id, e.section_id, e.final_grade, g.numeric_grade,
+NULLIF(g.numeric_grade, e.final_grade) grade
+FROM enrollment e, grade g
+WHERE e.student_id = g.student_id
+AND e.section_id = g.section_id
+AND e.student_id = 102
+AND g.grade_type_code = 'FI';
+
+--The NULLIF function returns NULL if the two provided expressions are equal; otherwise, it returns the first expression. In this case, if g.numeric_grade is equal to e.final_grade, NULL is returned. This means that if g.numeric_grade is equal to e.final_grade, it will be replaced with NULL, potentially leading to a different value in the output.

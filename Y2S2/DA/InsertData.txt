@@ -1,0 +1,62 @@
+-- Insert data into STUDENT table
+INSERT INTO STUDENT (STUDENT_ID, SALUTATION, FIRST_NAME, LAST_NAME, STREET_ADDRESS, ZIP, PHONE, EMPLOYER, REGISTRATION_DATE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES
+    (1, 'Mr.', 'John', 'Doe', '123 Main St', '12345', '123-456-7890', 'ABC Company', TO_DATE('2024-01-01', 'YYYY-MM-DD'), 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (2, 'Ms.', 'Jane', 'Smith', '456 Elm St', '23456', '987-654-3210', 'XYZ Corporation', TO_DATE('2024-01-05', 'YYYY-MM-DD'), 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (3, 'Dr.', 'Michael', 'Johnson', '789 Oak St', '34567', '555-123-4567', 'DEF Corporation', TO_DATE('2024-01-10', 'YYYY-MM-DD'), 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (4, 'Mrs.', 'Emily', 'Brown', '101 Pine St', '45678', '444-789-1234', 'GHI Corporation', TO_DATE('2024-01-15', 'YYYY-MM-DD'), 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (5, 'Mr.', 'David', 'Wilson', '202 Cedar St', '56789', '333-456-7890', 'JKL Corporation', TO_DATE('2024-01-20', 'YYYY-MM-DD'), 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+-- Insert data into INSTRUCTOR table
+INSERT INTO INSTRUCTOR (INSTRUCTOR_ID, SALUTATION_ID, FIRST_NAME, LAST_NAME, STREET_ADDRESS, ZIP, PHONE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES
+    (101, 'Dr.', 'Sarah', 'Williams', '321 Oak St', '12345', '111-222-3333', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (102, 'Mr.', 'James', 'Jones', '654 Pine St', '23456', '222-333-4444', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (103, 'Ms.', 'Karen', 'Davis', '987 Elm St', '34567', '333-444-5555', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (104, 'Mr.', 'Robert', 'Miller', '246 Maple St', '45678', '444-555-6666', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (105, 'Ms.', 'Jessica', 'Martinez', '135 Cedar St', '56789', '555-666-7777', 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+
+INSERT INTO COURSE (COURSE_NO, DESCRIPTION, COST, PREREQUISITE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES
+    ('COURSE1', 'Introduction to Programming', 200.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('COURSE2', 'Database Management', 250.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('COURSE3', 'Web Development', 220.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('COURSE4', 'Data Structures and Algorithms', 300.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('COURSE5', 'Computer Networking', 280.00, NULL, 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+
+INSERT INTO ZIPCODE (ZIP, CITY, STATE, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES
+    ('12345', 'City1', 'ST', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('23456', 'City2', 'ST', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('34567', 'City3', 'ST', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('45678', 'City4', 'ST', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('56789', 'City5', 'ST', 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+
+INSERT INTO SECTION (SECTION_ID, COURSE_NO, SECTION_NO, START_DATE_TIME, LOCATION, INSTRUCTOR_ID, CAPACITY, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES
+    (1, 'COURSE1', 101, TO_DATE('2024-03-01', 'YYYY-MM-DD'), 'Location1', 101, 30, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (2, 'COURSE2', 102, TO_DATE('2024-03-05', 'YYYY-MM-DD'), 'Location2', 102, 25, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (3, 'COURSE3', 103, TO_DATE('2024-03-10', 'YYYY-MM-DD'), 'Location3', 103, 20, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (4, 'COURSE4', 104, TO_DATE('2024-03-15', 'YYYY-MM-DD'), 'Location4', 104, 35, 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (5, 'COURSE5', 105, TO_DATE('2024-03-20', 'YYYY-MM-DD'), 'Location5', 105, 28, 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+
+INSERT INTO GRADE_TYPE (GRADE_TYPE_CODE, DESCRIPTION, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES
+    ('A', 'Letter Grade A', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('B', 'Letter Grade B', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('C', 'Letter Grade C', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('D', 'Letter Grade D', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    ('F', 'Letter Grade F', 'Admin', SYSDATE, 'Admin', SYSDATE);
+
+
+INSERT INTO GRADE_TYPE_WEIGHT (SECTION_ID, GRADE_TYPE_CODE, NUMBER_PER_SECTION, PERCENT_OF_FINAL_GRADE, DROP_LOWEST, CREATED_BY, CREATED_DATE, MODIFIED_BY, MODIFIED_DATE)
+VALUES
+    (1, 'A', 5, 30.00, 'N', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (2, 'B', 4, 25.00, 'N', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (3, 'C', 3, 20.00, 'N', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (4, 'D', 2, 15.00, 'N', 'Admin', SYSDATE, 'Admin', SYSDATE),
+    (5, 'F', 1, 10.00, 'N', 'Admin', SYSDATE, 'Admin', SYSDATE);

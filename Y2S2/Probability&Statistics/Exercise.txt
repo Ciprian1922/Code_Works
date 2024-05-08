@@ -1,4 +1,4 @@
-Calculate the following probabilities using a normal approximation (Central Limit Theorem):
+1.Calculate the following probabilities using a normal approximation (Central Limit Theorem):
 P(X < 150), where X-B belongs to (200, 0.8)
 a) 0.019 
 b) 0.047
@@ -13,6 +13,8 @@ a) 0.121
 b) 0.452
 c) 0.548
 d) 0.879
+
+
 4. For evalunting the effectiveness of a processor for a certain type of tasks, we recorded the CPU time for 20 randomly chosen jobs. It is known that the CPU time has a normal distribution with mean 20(s) and standard deviation 8(s). Compute the probability that the average CPU for the selected jobs (the sample mean) takes valves in the interval [18.22]. Round your answer to 3 decimal places.
 
 5. The lifetime, in years, of some electronic component is a continuous random variable with the density f(x) = k/x^4, if x>=1, f(x)=0, x<1.

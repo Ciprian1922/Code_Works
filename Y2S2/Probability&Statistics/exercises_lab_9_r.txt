@@ -1,0 +1,79 @@
+2. The following is a sample of prices, rounded to the nearest cent,
+charged per gallon of standard gasoline in the San Francisco Bay area
+in May 1991:
+121, 119, 117, 121, 120, 120, 118, 124, 123, 139, 120,
+115, 117, 121, 123, 120, 123, 118, 117, 122, 122, 119
+(a) Construct a frequency histogram for this data set.
+(b) Construct a frequency polygon.
+(c) Construct a stem-and-leaf plot.
+(d) Does any data value seem out of the ordinary? If so, explain whyw
+
+a)
+
+library(ggplot2)
+
+prices <- c(121, 119, 117, 121, 120, 120, 118, 124, 123, 139, 120, 115, 117, 121, 123, 120, 123, 118, 117, 122, 122, 119)
+
+#Construct a frequency histogram
+histogram <- ggplot(data = data.frame(prices), aes(x = prices)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", aes(y = ..count..)) +
+  labs(title = "Frequency Histogram of Gasoline Prices",
+       x = "Price (cents per gallon)",
+       y = "Frequency")
+
+b)
+#Construct a frequency polygon
+polygon <- ggplot(data = data.frame(prices), aes(x = prices)) +
+  geom_freqpoly(binwidth = 1, color = "blue") +
+  labs(title = "Frequency Polygon of Gasoline Prices",
+       x = "Price (cents per gallon)",
+       y = "Frequency")
+
+print(histogram)
+print(polygon)
+
+c)
+stem_leaf <- stem(prices)
+stem_leaf
+
+
+d)
+outlier <- boxplot(prices, plot = FALSE)$out
+if (length(outlier) > 0) {
+  print(paste("Outlier detected at value:", outlier))
+  # Explanation or further analysis can be done here
+} else {
+  print("No outlier detected.")
+}
+
+
+3. The following frequency table presents the number of female suicides
+that took place in eight German states over 14 years.
+Number of suicides per year 01234 5 6 7 8 9 10
+Frequency 9 19 17 20 15 118235 3
+Thus, for instance, there were a total of 20 cases in which states had
+3 suicides in a year.
+(a) How many suicides were reported over the 14 years?
+(b) Represent the above data in a histogram.
+
+data
+suicides <- c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+frequency <- c(9, 19, 17, 20, 15, 11, 8, 2, 3, 0, 0)
+
+a) calculate total number of suicides reported over 14 years
+total_suicides <- sum(suicides * frequency)
+cat("Total number of suicides reported over 14 years:", total_suicides, "\n")
+
+b) ) Create a histogram
+# Convert the frequency table to a data frame
+df <- data.frame(suicides = suicides, frequency = frequency)
+
+# Create the histogram
+histogram <- ggplot(data = df, aes(x = factor(suicides), y = frequency)) +
+  geom_col(fill = "skyblue", color = "black") +
+  labs(title = "Frequency of Female Suicides Over 14 Years",
+       x = "Number of Suicides per Year",
+       y = "Frequency") +
+  theme_minimal()
+
+print(histogram)

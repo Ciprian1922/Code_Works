@@ -1,0 +1,18 @@
+exercise
+50 chars
+course name should be short(char20)
+teacher name char 20
+each cousre has 3 marks(mark1, mark2, mark3(integers))
+final collum is the final grade(real number)(average of the 3 marks)
+
+3 operations:
+add 
+modify
+view all
+delete(when deleting a popup with confirmation have to popup)
+
+the vectors where the data is stored should contain 
+course
+teacher
+final grade>=5 passed
+final grade<5 not passed

@@ -7,11 +7,14 @@ Flow of Events:
 1. Customer accesses the company's website.
 2. Customer fills out the reservation form with details.
 3. System checks vehicle availability.
-4. If vehicle available:
-5. System computes the price.
-6. System registers the reservation and generates a rental number.
-7. System creates a rental agreement.
-8. Customer receives rental number and agreement.
+If vehicle available:
+     4. System computes the price.
+     5. System registers the reservation and generates a rental number.
+     6. System creates a rental agreement.
+     7. Customer receives rental number and agreement.
+else
+     8. Customer is informed that the requested vehicle is not available.
+     9. Customer is offered the option to indicate a new set of preferences or to cancel the reservation.
 
 2. Check Availability:
 Description:
@@ -21,8 +24,8 @@ Flow of Events:
 
 1. System receives a request to check vehicle availability.
 2. System checks availability of the requested vehicle type at the specified pickup office for the requested rental period.
-3. If vehicle available:
-          System reserves the vehicle for the requested period.
+If vehicle available:
+          3. System reserves the vehicle for the requested period.
 
 3. Initiate Rental:
 Description:
@@ -56,6 +59,7 @@ If vehicle damaged:
     6. Rental officer registers vehicle damage.
     7. System generates insurance claim form.
 
+
 5. Provide Management Reports:
 Description:
 The system can generate various management reports. The manager selects a report type, and the system generates and displays the requested report. Printing is optional.
@@ -66,15 +70,3 @@ Flow of Events:
 2. System generates and displays requested report.
 If printing requested:
     3. System prints report.
-
-6. Regular Rentals for Company Customers:
-Description:
-This feature allows the company's authorized employees to make regular pickups of company-designated vehicles from nominated offices. The company provides a list of authorized employees, and the system presents an account to the company on a monthly basis.
-
-Flow of Events:
-
-1. Authorized employee requests pickup of company-designated vehicle.
-2. System checks availability of the designated vehicle.
-If vehicle available:
-    3. System initiates rental.
-    4. Company receives monthly account.
