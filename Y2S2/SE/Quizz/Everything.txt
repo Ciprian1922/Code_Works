@@ -36,3 +36,163 @@ Why regression testing is important ? Explain how automated testing simplifies r
 Regression testing ensures that recent changes to the software haven't introduced new bugs or issues, maintaining the stability and reliability of the application over time. Automated testing simplifies regression testing by executing tests quickly, consistently, and repeatedly, ensuring thorough coverage of the codebase with minimal manual effort.
 What do we need to consider when we design the software product, so that we can automatically and efficiently test its features ?
 When designing for automated testing, considerations include modularity for testing individual components, testability through features like dependency injection, stable interfaces to minimize test maintenance, accessibility for test automation tools, configurable options for testing under different conditions, comprehensive logging and monitoring, and separation of concerns for easier testing of different layers of the application.
+
+Select what version management, as activity of the software configuration management process, means:
+keeping track of requests for changes to the software, cost and impact of changes analysis and deciding which changes should be implemented.
+(correct)keeping track of the multiple versions of system components and ensuring that changes made to components by different developers do not interfere with each other.
+creating a complete, executable system by compiling and linking the system components, external libraries, configuration files, and other related artifacts implied in the specific system.
+Enumerate the artifacts, realized during the software development process, placed under configuration control.
+-Source Code and Executable Code: This includes all code files written by developers, both in source form and compiled into executable binaries.
+-Code Descriptions: These encompass various documents describing the code, such as requirements documents, design specifications, models, and user guides.
+-Data: Data contained within the software system, either as part of the program itself or stored externally.
+
+Typical artifacts under configuration control include:
+-Requirements specifications
+-Design specifications
+-Source code (including business logic, database tables, user interface scripts)
+-Executable code
+-Test cases (including test scenarios, test scripts, and associated test data)
+
+These artifacts are crucial for managing the development process, ensuring that changes are tracked, and versions are properly maintained. Configuration control facilitates effective collaboration among team members and helps in maintaining the integrity and stability of the software system throughout its development lifecycle.
+
+
+
+
+
+Describe the operations “view”, “modify” and “return” provided by a version management system. Consider a project where 3 developers (John, Alice and Dan) colaborate and work in parallel. If at one moment John must read module X and Alice and Dan must modify it, describe a sequence of such operations executed by the 3 developers when using a centralized version control system.
+View (John):
+-John executes the "view" operation to retrieve a read-only copy of module X from the central repository.
+-He can now examine the contents of module X without making any changes.
+Modify (Alice and Dan):
+-Alice and Dan both need to modify module X simultaneously.
+-They execute the "modify" operation to check out writable copies of module X from the central repository.
+-The version control system ensures that while Alice and Dan are modifying the module, it remains locked to prevent other developers (including John) from making conflicting changes.
+Return (Alice and Dan):
+-After completing their modifications, Alice and Dan execute the "return" operation to update the central repository with their changes.
+-The modified version of module X is returned to the repository, incorporating Alice's and Dan's changes.
+-The lock on module X is released, allowing other developers to access and modify it.
+
+By following this sequence of operations, John, Alice, and Dan can effectively collaborate on module X while ensuring data consistency and avoiding conflicts in a centralized version control environment.
+
+
+
+
+Realize a comparison between centralized version management systems and the distributed ones. (similarities and differences).
+Similarities:
+-Version Control: Both CVCS and DVCS provide version control capabilities, allowing developers to track changes, manage revisions, and collaborate on codebases effectively.
+-Operations: Both systems support common operations such as checking out, modifying, and committing code changes.
+-Baseline Management: Both systems enable the creation and management of baselines, which represent specific versions of a software system.
+
+Differences:
+Architecture:
+-CVCS: Centralized architecture with a single central repository that stores the entire history and versions of the codebase.
+-DVCS: Decentralized architecture where each developer maintains a complete local copy of the repository, including its full history and branches.
+Workflow:
+-CVCS: Follows a linear workflow where developers typically check out files from the central repository, make changes locally, and then commit those changes back to the central repository.
+-DVCS: Allows for more flexible workflows, including branching, merging, and parallel development. Developers can commit changes to their local repository and synchronize with remote repositories as needed.
+Network Dependency:
+-CVCS: Requires constant network connectivity to access the central repository for operations like check-out, commit, and update.
+-DVCS: Provides offline capabilities since developers have a complete copy of the repository locally. They can work offline and synchronize changes with remote repositories later.
+Resilience:
+-CVCS: Vulnerable to a single point of failure since the central repository holds the entire history. If the central server goes down, developers may lose access to version history and collaboration capabilities.
+-DVCS: More resilient to failures as each developer has a complete backup of the repository. If one server goes down, developers can continue working with their local copies and push changes to alternative remote repositories.
+
+
+
+
+
+How must be done system building in order to make continous integration more efficient ?
+-Automated Build Process: Implement an automated build system that can quickly compile and link system components, external libraries, and configuration files. This ensures that building the system is fast and consistent.
+-Incremental Building: Utilize incremental building techniques to rebuild only those parts of the system that have changed since the last build. This minimizes build time by avoiding unnecessary recompilation of unchanged components.
+-Dependency Management: Use a dependency model to determine which components need to be rebuilt based on changes to source code or configuration files. This helps in efficiently updating only the affected parts of the system.
+-Fast Feedback Loop: Ensure that the integration process provides fast feedback to developers. Continuous integration systems should quickly build and test the system after each change pushed to the repository, allowing developers to detect and fix issues promptly.
+-Integration Testing: Integrate automated testing into the build process to verify the functionality and stability of the system. This helps in identifying issues early in the development cycle, enabling rapid resolution and preventing the accumulation of defects.
+-Continuous Delivery and Deployment: Extend continuous integration to continuous delivery and deployment, where changes are automatically tested and validated in a production-like environment before being deployed to customers. This ensures that the system is always in a deployable state, ready for release at any time.
+
+
+
+Describe the procedure of installing on the production servers a new version of a software system which has passed all validation tests.
+1. Preparation: Before deployment, ensure that all necessary preparations have been made, including:
+-Backing up the current production system to mitigate risks in case of unexpected issues during deployment.
+-Reviewing the release notes and documentation for the new version to understand any changes or requirements.
+2. Deployment Plan: Develop a deployment plan outlining the sequence of steps and responsibilities for each team member involved in the deployment process. This plan should include rollback procedures in case of deployment failures.
+3. Deployment Package: Prepare the deployment package containing all the necessary files and configurations for the new version of the software system. This package should be thoroughly tested and validated in a staging environment before deployment to production.
+4. Deployment Execution:
+-Notify stakeholders and users about the upcoming deployment to minimize disruptions.
+-Schedule a maintenance window during off-peak hours to minimize the impact on users.
+-Coordinate with system administrators and operations teams to ensure proper access and permissions for deploying the new version.
+-Deploy the new version to production servers using automated deployment tools or manual procedures, depending on the complexity of the system.
+-Monitor the deployment process closely for any errors or failures, and address them promptly.
+5. Post-Deployment Verification:
+-Perform post-deployment verification tests to ensure that the new version is functioning correctly in the production environment.
+-Monitor system performance and stability to detect any anomalies or issues that may have arisen as a result of the deployment.
+6. Rollback Plan: If any critical issues are encountered during or after deployment, initiate the rollback procedure to revert to the previous version of the software system. This may involve restoring data from backups and reconfiguring the environment.
+7. Communication: Keep stakeholders informed about the status of the deployment, including any successes, failures, or deviations from the planned timeline. Provide documentation and support resources for users to adapt to any changes introduced by the new version.
+8. Post-Deployment Activities:
+-Conduct a post-mortem analysis to review the deployment process and identify areas for improvement.
+-Update documentation and knowledge bases with any changes made during the deployment.
+-Monitor user feedback and system performance to address any issues or concerns that arise after the deployment.
+
+
+
+
+
+In the change management process, what is the role of cost and impact analysis of the software system change requests ?
+1. Analyzing Costs and Benefits: This involves evaluating the potential costs and benefits associated with proposed changes. It helps in understanding the financial implications of implementing the change compared to the expected benefits.
+2. Change Prioritization: By assessing the impact and costs of change requests, priorities can be assigned based on urgency and cost-effectiveness. This ensures that the most critical and cost-effective changes are given priority.
+3. Impact Analysis: Understanding the consequences of proposed changes is essential. This involves assessing how the change will affect various aspects of the system, including functionality, users, and associated components.
+4. Decision Making: The cost and impact analysis provides valuable information for decision-making. Change requests are reviewed by a Change Control Board (CCB) or similar group, which evaluates them from a strategic and organizational perspective to determine their viability.
+5. Tracking Changes: Throughout the change management process, it's important to track which components of the system have been changed and their associated costs. This helps in maintaining transparency and accountability in the change management process.
+
+Overall, the cost and impact analysis ensure that changes are carefully evaluated, prioritized, and implemented in a manner that maximizes benefits while minimizing costs and risks.
+
+
+
+
+
+
+What categories of information must be kept, by the development team, for each release of a software system and what are these necessary for ?
+
+For each release of a software system, the development team must keep several categories of information:
+
+1. Executable Code: This includes the compiled programs and associated executable files that constitute the release. It's necessary for delivering the functional software to customers.
+2. Configuration Files: These files define how the software should be configured for specific installations or environments. They are essential for ensuring that the software functions correctly in different settings.
+3. Data Files: Data files, such as databases or configuration data, are needed for the operational use of the software. They contain information required for the software to perform its intended functions.
+4. Installation Program: Scripts or programs used to install the software on target hardware or environments. They facilitate the deployment of the software to end-users.
+5. Documentation: Electronic and paper documentation describing the system, its functionalities, installation procedures, and usage guidelines. Documentation helps users understand and utilize the software effectively.
+6. Packaging and Publicity Materials: These materials are designed to promote and advertise the release, attracting customers to use or purchase the software.
+
+These categories of information are necessary for various purposes:
+-Functional Delivery: Executable code, configuration files, and data files are essential for delivering a functional software system to customers.
+-Installation and Deployment: Installation programs and configuration files facilitate the installation and deployment of the software in different environments.
+-User Understanding: Documentation provides users with necessary information to understand and use the software effectively.
+-Promotion and Marketing: Packaging and publicity materials help promote the software release, attracting customers and increasing adoption.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
