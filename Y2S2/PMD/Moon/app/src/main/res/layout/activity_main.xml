@@ -4,10 +4,69 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.moonrotation.MoonSurfaceView
+    <com.example.moon.MoonSurfaceView
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingClass" />
+        android:layout_height="match_parent" />
+
+    <SeekBar
+        android:id="@+id/distanceSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/distanceRadioGroup"
+        android:layout_centerHorizontal="true"
+        android:max="5" />
+
+    <RadioGroup
+        android:id="@+id/distanceRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/distanceEditText"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5" />
+
+        <RadioButton
+            android:id="@+id/radioButtonRandom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Random" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/distanceEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:hint="Enter value (1-6)"
+        android:inputType="number"
+        android:maxLength="1" />
+
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/distanceEditText"
+        android:layout_toEndOf="@id/distanceEditText"
+        android:text="OK" />
 
 </RelativeLayout>

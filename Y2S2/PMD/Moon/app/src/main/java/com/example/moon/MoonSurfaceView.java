@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -16,10 +17,22 @@ public class MoonSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private float earthX, earthY;
     private float moonX, moonY;
     private float angle = 0;
-    private final float radius = 200;
+    private float radius = 200;
 
     public MoonSurfaceView(Context context) {
         super(context);
+        surfaceHolder = getHolder();
+        surfaceHolder.addCallback(this);
+    }
+
+    public MoonSurfaceView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        surfaceHolder = getHolder();
+        surfaceHolder.addCallback(this);
+    }
+
+    public MoonSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
     }
@@ -82,7 +95,7 @@ public class MoonSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if (canvas != null) {
             try {
                 // Draw background
-                canvas.drawColor(Color.BLACK);
+                canvas.drawColor(Color.GRAY);
 
                 // Draw Earth
                 Paint paint = new Paint();
@@ -97,4 +110,10 @@ public class MoonSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             }
         }
     }
+
+    public void setMoonDistance(int distance) {
+        // Adjust the radius based on the provided distance
+        radius = distance;
+    }
+
 }
