@@ -1,6 +1,7 @@
 package com.example.one2manyactivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button goToFirstActivityBtn = findViewById(R.id.goToFirstActivityBtn);
         Button goToSecondActivityBtn = findViewById(R.id.goToSecondActivityBtn);
+        Button openTheoryBtn = findViewById(R.id.openTheoryBtn);
 
         goToFirstActivityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivityForResult(intent, 2); // Start SecondActivity and wait for result
+            }
+        });
+
+        openTheoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPDF();
             }
         });
     }
@@ -62,5 +77,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-}
+    private void openPDF() {
+        try {
+            // Copy PDF file from res/raw to a cache directory
+            File cacheFile = new File(getCacheDir(), "theory.pdf");
+            if (!cacheFile.exists()) {
+                try (InputStream is = getResources().openRawResource(R.raw.theory);
+                     FileOutputStream fos = new FileOutputStream(cacheFile)) {
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = is.read(buffer)) > 0) {
+                        fos.write(buffer, 0, length);
+                    }
+                }
+            }
 
+            // Open the PDF file with an appropriate app
+            Uri pdfUri = FileProvider.getUriForFile(this, getPackageName() + ".provider", cacheFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(pdfUri, "application/pdf");
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("MainActivity", "Error opening PDF", e);
+        }
+    }
+}

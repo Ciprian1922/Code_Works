@@ -1,0 +1,41 @@
+byte anding 
+1 and 1 =1 , 1 and 0 = 0 ....a
+cand am 1 valoarea de 1 nu schimba valoarea de 0 cand se schimba, valoarea de 0 schimba la 9 tot
+192.168.25.172/24 - 24 = size
+254 de adrese combinatii pentru hosti, 256-2
+
+
+pentru a avea 3 retele dev test si contabili, trebuie sa imprumutam 2 biti de host intrucat cu cele 4 combinatii pe care le primim, putem cu 00 de exemplu sa avem developerii, pe 01 sa avem test si 10 contabilii
+
+192.168.25.0/24  devine 192.168.25.0/26 (26 pentru ca am imprumutat cei 2 biti)
+
+192.168.25.63/26 devine asa pentru ca la final o sa ramana in coada 111111 din adresa mare
+
+1100000.10101000.00011001.00000000
+
+                          ||    bitii aia 2 initiali ii putem folosi pentru cele 3 adrese, iar adresa finala o sa fie 
+1100000.10101000.00011001.00111111   -  acei 1 din coada
+
+trebuie 3 retele diferite intrucat sa nu se joace una cu alta
+
+si o sa avem cele 3 adrese initiale
+1100000.10101000.00011001.00000000   - dev
+1100000.10101000.00011001.01000000  - testerilor  - valorile sunt schimbate, fiecare are adresa ei, hostii lor si broadcastul lor, am facut poza sa se vada diferentele
+1100000.10101000.00011001.10000000   -  contabilii
+
+cate 64 pentru fiecare, iar valoarea adreselor din pozele pe care le-am facut marti 14.05.2024, vine de exemplu pentru testeri 0*2^8+1*2^7 unde astea sunt din ultimii biti de la valoarea testerilor
+
+gateway-ul papa o adresa din cele 64 si raman 63 si una broadcastul si una reteaua si mai raman 61 la final
+
+daca am fura 3 biti ar fi pasul din cate 32 in 32 pt ca nu este 2^6 si este 2^5
+
+exemplu real life cu 3 categorii dar mai mici, am facut poza, modificam un singur bit in loc de 2
+deci primii au de la 0 la 127    1100000.10101000.00011001.00000000
+cei de ai doilea or sa aibe 64 de pozitii si le ajung pentru ca au nevoie de 52   1100000.10101000.00011001.10000000
+                                                                                                             |  aici
+si ultimii or sa aibe 1100000.10101000.00011001.11000000
+
+						  |    si aici se mai injumatateste o data pizza si in final mai ramane putin tot asa pentru future development
+
+
+

@@ -20,15 +20,25 @@
         android:layout_centerHorizontal="true"
         android:text="Go to Second Activity" />
 
-    <TextView
-        android:id="@+id/piTextView"
+    <Button
+        android:id="@+id/openTheoryBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/goToSecondActivityBtn"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
+        android:text="Open Theory" />
+
+    <TextView
+        android:id="@+id/piTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/openTheoryBtn"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
         android:text="Value of Pi: "
         android:textSize="18sp" />
+
     <TextView
         android:id="@+id/correctAnswersTextView"
         android:layout_width="wrap_content"
