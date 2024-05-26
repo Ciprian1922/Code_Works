@@ -1,6 +1,5 @@
 package com.example.one2manyactivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +25,9 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        // Set activity to fullscreen
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         Log.d("SecondActivity", "onCreate() called"); // Add this log message
 
@@ -108,7 +110,6 @@ public class SecondActivity extends AppCompatActivity {
         return -1; // Default to -1 if correct answer is not found
     }
 
-
     private void submitAnswers() {
         // Calculate the number of correct answers
         int correctAnswers = calculateCorrectAnswers();
@@ -124,7 +125,6 @@ public class SecondActivity extends AppCompatActivity {
         // Finish SecondActivity
         finish();
     }
-
 
     private int calculateCorrectAnswers() {
         int correctAnswers = 0;
@@ -147,9 +147,6 @@ public class SecondActivity extends AppCompatActivity {
 
         return correctAnswers;
     }
-
-
-
 
     private int getCorrectOptionIndex(int questionIndex) {
         // Retrieve the index of the correct answer from the string array

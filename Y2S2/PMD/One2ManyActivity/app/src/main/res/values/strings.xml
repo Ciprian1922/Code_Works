@@ -1,43 +1,41 @@
 <resources>
     <string name="app_name">One2ManyActivity</string>
     <string-array name="questions">
-        <item>What is an oriented graph?</item>
-        <item>In a dezoriented graph, how are the edges represented?</item>
-        <item>Which statement is true about oriented graphs?</item>
-        <item>In a dezoriented graph, what is the degree of a vertex?</item>
-        <item>Which of the following graphs can be considered dezoriented?</item>
+        <item>What are the basic concepts of binary trees?</item>
+        <item>What is the definition of a binary tree?</item>
+        <item>What is the purpose of a root node in a binary tree?</item>
+        <item>How is insertion performed in a binary search tree?</item>
+        <item>What is the primary application of binary search trees?</item>
     </string-array>
     <string-array name="answers1">
-        <item>A) A graph with edges having directions.</item>
-        <item>B) A graph with no cycles.</item>
-        <item>C) A graph with weighted edges.</item>
-        <item>D) A graph with no vertices.</item>
+        <item>A) Hierarchy and organization of data</item>
+        <item>B) Storage and retrieval properties</item>
+        <item>C) Nodes with at most two children</item>
+        <item>D) Operations for tree traversal</item>
     </string-array>
     <string-array name="answers2">
-        <item>A) Edges without any direction.</item>
-        <item>B) Edges with alternating directions.</item>
-        <item>C) Edges with multiple directions.</item>
-        <item>D) Edges with random directions.</item>
+        <item>A) A hierarchical structure with nodes having two children</item>
+        <item>B) A tree with no cycles</item>
+        <item>C) A tree with exactly two nodes</item>
+        <item>D) A tree with only one child per node</item>
     </string-array>
     <string-array name="answers3">
-        <item>A) They can have cycles.</item>
-        <item>B) They cannot have cycles.</item>
-        <item>C) They always have negative weights on edges.</item>
-        <item>D) They always have a single vertex.</item>
+        <item>A) To serve as the starting point for traversal</item>
+        <item>B) To define the height of the tree</item>
+        <item>C) To contain the maximum number of children</item>
+        <item>D) To determine the type of tree (e.g., full, complete)</item>
     </string-array>
     <string-array name="answers4">
-        <item>A) The number of edges connected to it.</item>
-        <item>B) The weight of the edges connected to it.</item>
-        <item>C) The distance from the other vertices.</item>
-        <item>D) The number of vertices in the graph.</item>
+        <item>A) By comparing elements and inserting into the left subtree</item>
+        <item>B) By inserting at random positions within the tree</item>
+        <item>C) By always inserting at the root node</item>
+        <item>D) By inserting elements without any comparison</item>
     </string-array>
     <string-array name="answers5">
-        <item>A) A graph representing internet connections.</item>
-        <item>B) A graph representing a one-way street system.</item>
-        <item>C) A graph representing social media connections.</item>
-        <item>D) A graph representing a network of rivers and tributaries.</item>
+        <item>A) Efficient searching, insertion, and deletion</item>
+        <item>B) Representation of mathematical expressions</item>
+        <item>C) Data compression using Huffman coding</item>
+        <item>D) Classification and decision-making processes with decision trees</item>
     </string-array>
     <string name="result_message">You answered %1$d out of %2$d questions correctly. (%3$d%%)</string>
-
-
 </resources>

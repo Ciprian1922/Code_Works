@@ -1,0 +1,214 @@
+2. A previous sample of fish in Lake Michigan indicated that the mean
+polychlorinated biphenyl (PCB) concentration per fish was 11.2 parts
+per million with a standard deviation of 2 parts per million. Suppose a
+new random sample of 10 fish has the following concentrations:
+11.5, 12.0, 11.6, 11.8, 10.4, 10.8, 12.2, 11.9, 12.4, 12.6
+Assume that the standard deviation has remained equal to 2 parts per
+million, and test the hypothesis that the mean PCB concentration has
+also remained unchanged at 11.2 parts per million. Use the 5 percent
+level of significance.
+
+
+# Sample data
+sample_data <- c(11.5, 12.0, 11.6, 11.8, 10.4, 10.8, 12.2, 11.9, 12.4, 12.6)
+
+# Given values
+population_mean <- 11.2
+population_sd <- 2
+alpha <- 0.05
+
+# Sample mean
+sample_mean <- mean(sample_data)
+
+# Sample size
+n <- length(sample_data)
+
+# Calculate the z-score
+z <- (sample_mean - population_mean) / (population_sd / sqrt(n))
+
+# Calculate the p-value
+p_value <- 2 * pnorm(-abs(z))
+
+# Print the results
+cat("Sample mean:", sample_mean, "\n")
+cat("Z-score:", z, "\n")
+cat("P-value:", p_value, "\n")
+
+# Determine whether to reject the null hypothesis
+if (p_value < alpha) {
+  cat("Reject the null hypothesis. There is evidence to suggest the mean PCB concentration has changed.\n")
+} else {
+  cat("Fail to reject the null hypothesis. There is no evidence to suggest the mean PCB concentration has changed.\n")
+}
+
+
+
+
+
+6. A farmer claims to be able to produce larger tomatoes. To test this
+claim, a tomato variety that has a mean diameter size of 8.2 centimeters with a standard deviation of 2.4 centimeters is used. If a sample
+of 36 tomatoes yielded a sample mean of 9.1 centimeters, does this
+prove that the mean size is indeed larger? Assume that the population
+standard deviation remains equal to 2.4, and use the 5 percent level of
+significance.
+
+
+
+
+
+# Given values
+population_mean <- 8.2
+sample_mean <- 9.1
+population_sd <- 2.4
+n <- 36
+alpha <- 0.05
+
+# Calculate the z-score
+z <- (sample_mean - population_mean) / (population_sd / sqrt(n))
+
+# Calculate the critical value for a one-tailed test
+z_critical <- qnorm(1 - alpha)
+
+# Calculate the p-value
+p_value <- 1 - pnorm(z)
+
+# Print the results
+cat("Sample mean:", sample_mean, "\n")
+cat("Z-score:", z, "\n")
+cat("Critical value:", z_critical, "\n")
+cat("P-value:", p_value, "\n")
+
+# Determine whether to reject the null hypothesis
+if (z > z_critical) {
+  cat("Reject the null hypothesis. There is evidence to suggest the mean size of the tomatoes is larger.\n")
+} else {
+  cat("Fail to reject the null hypothesis. There is no evidence to suggest the mean size of the tomatoes is larger.\n")
+}
+
+
+
+
+
+4. The number of lunches served daily at a school cafeteria last
+year was normally distributed with mean 300. The menu has been
+changed this year to healthier foods, and the administration wants
+to test the hypothesis that the mean number of lunches sold is
+unchanged. A sample of 12 days yielded the following number of
+lunches sold:
+312, 284, 281, 295, 306, 273, 264, 258, 301, 277, 280, 275
+Is the hypothesis that the mean is equal to 300 rejected at the
+(a) 10 percent
+(b) 5 percent
+(c) 1 percent
+level of significance?
+
+# Sample data
+sample_data <- c(312, 284, 281, 295, 306, 273, 264, 258, 301, 277, 280, 275)
+
+# Calculate sample mean and sample standard deviation
+sample_mean <- mean(sample_data)
+sample_sd <- sd(sample_data)
+
+# Given values
+population_mean <- 300
+n <- length(sample_data)
+alpha_levels <- c(0.10, 0.05, 0.01)
+
+# Calculate sample mean and sample standard deviation
+sample_mean <- mean(sample_data)
+sample_sd <- sd(sample_data)
+
+# Calculate the t-score
+t_score <- (sample_mean - population_mean) / (sample_sd / sqrt(n))
+
+# Calculate the p-value for the two-tailed test
+p_value <- 2 * (1 - pt(abs(t_score), df = n - 1))
+
+# Print the results
+cat("Sample mean:", sample_mean, "\n")
+cat("Sample standard deviation:", sample_sd, "\n")
+cat("T-score:", t_score, "\n")
+cat("P-value:", p_value, "\n")
+
+# Determine whether to reject the null hypothesis at different significance levels
+for (alpha in alpha_levels) {
+  critical_value <- qt(1 - alpha / 2, df = n - 1)
+  cat("Critical value at alpha =", alpha, ":", critical_value, "\n")
+  if (abs(t_score) > critical_value) {
+    cat("Reject the null hypothesis at alpha =", alpha, ".\n")
+  } else {
+    cat("Fail to reject the null hypothesis at alpha =", alpha, ".\n")
+  }
+}
+
+
+1. A standard drug is known to be effective in 72 percent of cases in
+which it is used to treat a certain infection. A new drug has been developed, and testing has found it to be effective in 42 cases out of 50.
+Is this strong enough evidence to prove that the new drug is more
+effective than the old one? Find the relevant p value.
+
+
+# Given values
+p0 <- 0.72
+n <- 50
+successes <- 42
+phat <- successes / n
+
+# Calculate the z-score
+z <- (phat - p0) / sqrt((p0 * (1 - p0)) / n)
+
+# Calculate the p-value for a one-tailed test
+p_value <- 1 - pnorm(z)
+
+# Print the results
+cat("Sample proportion:", phat, "\n")
+cat("Z-score:", z, "\n")
+cat("P-value:", p_value, "\n")
+
+
+
+
+
+
+
+15. Twenty-five percent of women of child-bearing age smoke. A scientist wanted to test the hypothesis that this is also the proportion of
+smokers in the population of women who suffer ectopic pregnancies.
+To do so, the scientist chose a random sample of 120 women who had
+recently suffered an ectopic pregnancy. If 48 of these women turn out
+to be smokers, what is the p value of the test of the hypothesis
+H0: p = 0.25 against H1: p 
+= 0.25
+where p is the proportion of smokers in the population of women who
+have suffered an ectopic pregnancy?
+
+
+
+
+# Given values
+p0 <- 0.25
+n <- 120
+successes <- 48
+phat <- successes / n
+
+# Calculate the z-score
+z <- (phat - p0) / sqrt((p0 * (1 - p0)) / n)
+
+# Calculate the p-value for a two-tailed test
+p_value <- 2 * (1 - pnorm(abs(z)))
+
+# Print the results
+cat("Sample proportion:", phat, "\n")
+cat("Z-score:", z, "\n")
+cat("P-value:", p_value, "\n")
+
+
+
+Since the p-value is much smaller than any common significance level (e.g., 0.05, 0.01), we reject the null hypothesis and conclude that the proportion of smokers among women who have suffered an ectopic pregnancy is significantly different from 25%.
+
+
+
+
+
+
+
+

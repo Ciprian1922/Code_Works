@@ -4,49 +4,56 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/goToFirstActivityBtn"
-        android:layout_width="wrap_content"
+    <!-- VideoView for the background video -->
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Go to First Activity" />
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
 
+    <!-- Compute Binary Tree Button -->
+    <Button
+        android:id="@+id/computeBinaryTreeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Compute Binary Tree"
+        android:layout_marginTop="400dp" />
+
+    <!-- Quiz Yourself Button -->
     <Button
         android:id="@+id/goToSecondActivityBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/goToFirstActivityBtn"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/computeBinaryTreeBtn"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
-        android:text="Go to Second Activity" />
+        android:text="Quiz Yourself" />
 
+    <!-- Go To Theory Button -->
     <Button
         android:id="@+id/openTheoryBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/goToSecondActivityBtn"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
-        android:text="Open Theory" />
+        android:text="Go To Theory" />
 
-    <TextView
-        android:id="@+id/piTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/openTheoryBtn"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:text="Value of Pi: "
-        android:textSize="18sp" />
-
+    <!-- Correct Answers TextView -->
     <TextView
         android:id="@+id/correctAnswersTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/piTextView"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/openTheoryBtn"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:text="Correct Answers: "
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:background="@drawable/textview_background"
+        android:textColor="@android:color/black"
+        android:padding="8dp" />
 
 </RelativeLayout>
