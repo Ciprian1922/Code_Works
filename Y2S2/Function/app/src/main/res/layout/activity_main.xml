@@ -1,0 +1,39 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/input_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter value for a"
+        android:inputType="numberDecimal|numberSigned"/>
+
+    <EditText
+        android:id="@+id/input_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter value for b"
+        android:inputType="numberDecimal|numberSigned"/>
+
+    <Button
+        android:id="@+id/plot_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plot Function"/>
+
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Results will appear here"/>
+
+    <com.example.function.GraphView
+        android:id="@+id/graph_view"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#EEEEEE"/>
+</LinearLayout>
