@@ -1,0 +1,281 @@
+ ==== 1. Anelectricscalegivesareadingequaltothetrueweightplusarandom
+ error that is normally distributed with mean 0 and standard deviation
+ σ =0.1 ounces. Suppose that the results of five successive weighings
+ of the same object are as follows: 3.142, 3.163, 3.155, 3.150, 3.141.
+ (a) Determine a 95 percent confidence interval estimate of the true
+ weight.
+ (b) Determine a 99 percent confidence interval estimate of the true
+ weight.
+
+# Given data
+weights <- c(3.142, 3.163, 3.155, 3.150, 3.141)
+
+# Calculate the mean of the weights
+mean_weight <- mean(weights)
+
+# Given standard deviation of the error
+sigma <- 0.1
+
+# Number of observations
+n <- length(weights)
+
+# Calculate the standard error of the mean
+standard_error <- sigma / sqrt(n)
+
+# Calculate the critical values for 95% and 99% confidence levels
+z_95 <- qnorm(0.975)  # 95% confidence
+z_99 <- qnorm(0.995)  # 99% confidence
+
+# Calculate the margin of error for 95% and 99% confidence levels
+margin_error_95 <- z_95 * standard_error
+margin_error_99 <- z_99 * standard_error
+
+# Calculate the 95% confidence interval
+ci_95 <- c(mean_weight - margin_error_95, mean_weight + margin_error_95)
+
+# Calculate the 99% confidence interval
+ci_99 <- c(mean_weight - margin_error_99, mean_weight + margin_error_99)
+
+# Print the results
+cat("95% confidence interval estimate of the true weight: [", ci_95[1], ", ", ci_95[2], "]\n")
+cat("99% confidence interval estimate of the true weight: [", ci_99[1], ", ", ci_99[2], "]\n")
+
+
+> cat("95% confidence interval estimate of the true weight: [", ci_95[1], ", ", ci_95[2], "]\n")
+95% confidence interval estimate of the true weight: [ 3.062548 ,  3.237852 ]
+> cat("99% confidence interval estimate of the true weight: [", ci_99[1], ", ", ci_99[2], "]\n")
+99% confidence interval estimate of the true weight: [ 3.035005 ,  3.265395 ]
+
+
+
+
+===== 3. The polychlorinated biphenyl (PCB) concentration of a fish caught in
+ Lake Michigan was measured by a technique that is known to result
+ in an error of measurement that is normally distributed with stan
+dard deviation 0.08 parts per million. If the results of 10 independent
+ measurements of this fish are
+ 11.2, 12.4, 10.8, 11.6, 12.5, 10.1, 11.0, 12.2, 12.4, 10.6
+ give a 95 percent confidence interval estimate of the PCB level of this
+ f
+ ish.
+
+
+
+
+# Given data
+measurements <- c(11.2, 12.4, 10.8, 11.6, 12.5, 10.1, 11.0, 12.2, 12.4, 10.6)
+
+# Calculate the mean of the measurements
+mean_measurement <- mean(measurements)
+
+# Given standard deviation of the error
+sigma <- 0.08
+
+# Number of observations
+n <- length(measurements)
+
+# Calculate the standard error of the mean
+standard_error <- sigma / sqrt(n)
+
+# Calculate the critical value for 95% confidence level
+z_95 <- qnorm(0.975)  # 95% confidence
+
+# Calculate the margin of error for 95% confidence level
+margin_error_95 <- z_95 * standard_error
+
+# Calculate the 95% confidence interval
+ci_95 <- c(mean_measurement - margin_error_95, mean_measurement + margin_error_95)
+
+# Print the results
+cat("95% confidence interval estimate of the PCB level: [", ci_95[1], ", ", ci_95[2], "]\n")
+
+95% confidence interval estimate of the PCB level: [ 11.43042 ,  11.52958 ]
+
+
+
+
+
+===== 2. The manager of a shipping department of a mail-order operation
+ located in New York has been receiving complaints about the length
+ of time it takes for customers in California to receive their orders. To
+ learn more about this potential problem, the manager chose a random
+ sample of 12 orders and then checked to see how many days it took to
+ receive each of these orders. The resulting data were
+ 15, 20, 10, 11, 7, 12, 9, 14, 12, 8, 13, 16
+ (a) Find a 90 percent confidence interval estimate for the mean time
+ it takes California customers to receive their orders.
+ (b) Find a 95 percent confidence interval estimate.
+
+
+# Given data
+delivery_times <- c(15, 20, 10, 11, 7, 12, 9, 14, 12, 8, 13, 16)
+
+# Calculate the sample mean and standard deviation
+mean_delivery_time <- mean(delivery_times)
+sd_delivery_time <- sd(delivery_times)
+
+# Number of observations
+n <- length(delivery_times)
+
+# Calculate the standard error of the mean
+standard_error <- sd_delivery_time / sqrt(n)
+
+# Calculate the critical values for 90% and 95% confidence levels
+t_90 <- qt(0.95, df = n - 1)  # 90% confidence (0.95 because it's a two-tailed test)
+t_95 <- qt(0.975, df = n - 1)  # 95% confidence
+
+# Calculate the margin of error for 90% and 95% confidence levels
+margin_error_90 <- t_90 * standard_error
+margin_error_95 <- t_95 * standard_error
+
+# Calculate the 90% confidence interval
+ci_90 <- c(mean_delivery_time - margin_error_90, mean_delivery_time + margin_error_90)
+
+# Calculate the 95% confidence interval
+ci_95 <- c(mean_delivery_time - margin_error_95, mean_delivery_time + margin_error_95)
+
+# Print the results
+cat("90% confidence interval estimate for the mean delivery time: [", ci_90[1], ", ", ci_90[2], "]\n")
+cat("95% confidence interval estimate for the mean delivery time: [", ci_95[1], ", ", ci_95[2], "]\n")
+
+
+90% confidence interval estimate for the mean delivery time: [ 10.34678 ,  14.15322 ]
+> cat("95% confidence interval estimate for the mean delivery time: [", ci_95[1], ", ", ci_95[2], "]\n")
+95% confidence interval estimate for the mean delivery time: [ 9.917469 ,  14.58253 ]
+
+
+
+
+ ===== 1. A random sample of 500 California voters indicated that 302 are in
+ favor of the death penalty. Construct a 99 percent confidence interval
+ estimate of the proportion of all California voters in favor of the death
+ penalty.
+
+
+
+
+
+# Given data
+n <- 500
+x <- 302
+
+# Calculate the sample proportion
+p_hat <- x / n
+
+# Calculate the standard error of the proportion
+standard_error <- sqrt(p_hat * (1 - p_hat) / n)
+
+# Calculate the critical value for the 99% confidence level
+z_99 <- qnorm(0.995)  # 99% confidence
+
+# Calculate the margin of error for the 99% confidence level
+margin_error_99 <- z_99 * standard_error
+
+# Calculate the 99% confidence interval
+ci_99 <- c(p_hat - margin_error_99, p_hat + margin_error_99)
+
+# Print the results
+cat("99% confidence interval estimate of the proportion in favor of the death penalty: [", ci_99[1], ", ", ci_99[2], "]\n")
+
+99% confidence interval estimate of the proportion in favor of the death penalty: [ 0.5476624 ,  0.6603376 ]
+
+
+
+
+
+
+==== 2. A study was instituted to learn how the diets of women changed
+ during the winter and the summer. A random group of 12 women
+ were observed during the month of July, and the percentage of
+ each woman’s calories that came from fat was determined. Similar
+ observations were made on a different randomly selected group of
+ size 12 during the month of January. Suppose the results were as
+ follows:
+ July: 32.2, 27.4, 28.6, 32.4, 40.5, 26.2, 29.4, 25.8, 36.6, 30.3,
+ 28.5, 32.0
+ January: 30.5, 28.4, 40.2, 37.6, 36.5, 38.8, 34.7, 29.5, 29.7, 37.2,
+ 41.5, 37.0
+ Test the hypothesis that the mean fat intake is the same for both
+ months. Use the
+ (a) 5 percent
+ (b) 1 percent
+ level of significance.
+
+
+# Data for July and January
+july <- c(32.2, 27.4, 28.6, 32.4, 40.5, 26.2, 29.4, 25.8, 36.6, 30.3, 28.5, 32.0)
+january <- c(30.5, 28.4, 40.2, 37.6, 36.5, 38.8, 34.7, 29.5, 29.7, 37.2, 41.5, 37.0)
+
+# Perform the two-sample t-test
+t_test_result <- t.test(july, january, var.equal = TRUE)
+
+# Print the results of the t-test
+print(t_test_result)
+
+# Check the results at the 5% level of significance
+if(t_test_result$p.value < 0.05) {
+  cat("At the 5% level of significance, we reject the null hypothesis.\n")
+} else {
+  cat("At the 5% level of significance, we fail to reject the null hypothesis.\n")
+}
+
+# Check the results at the 1% level of significance
+if(t_test_result$p.value < 0.01) {
+  cat("At the 1% level of significance, we reject the null hypothesis.\n")
+} else {
+  cat("At the 1% level of significance, we fail to reject the null hypothesis.\n")
+}
+
+
+At the 1% level of significance, we fail to reject the null hypothesis.
+
+
+==== 2. A shoe salesman claims that using his company’s running shoes will
+ result, on average, in faster times. To check this claim, a track coach
+ assembled a team of 10 sprinters. The coach randomly divided the
+ runners into two groups of size 5. The members of the first group then
+ ran 100 yards, using their usual running shoes; the members of the
+ second group ran 100 yards, using the company’s shoes. After time
+ was given for rest, the group who ran with their usual shoes changed
+ into the company’s shoes and members of the other group changed
+ to their usual shoes. Then they all ran another dash of 100 yards. The
+ following data resulted:
+ Racer
+ 1 2 3 4 5 6 7 8 9 10
+ Time (old shoes) 10.5 10.3 11.0 10.9 11.3 9.9 10.1 10.7 12.2 11.1
+ Time (new shoes) 10.3 10.0 10.6 11.1 11.0 9.8 10.2 10.5 11.8 10.5
+ Do these data prove the claim of the salesman that the company’snew
+ shoes result, on average, in lower times? Use the 10 percent level of
+ significance. What about at the 5 percent level?
+ 
+
+
+# Times for old and new shoes
+times_old <- c(10.5, 10.3, 11.0, 10.9, 11.3, 9.9, 10.1, 10.7, 12.2, 11.1)
+times_new <- c(10.3, 10.0, 10.6, 11.1, 11.0, 9.8, 10.2, 10.5, 11.8, 10.5)
+
+# Perform the paired t-test
+t_test_result <- t.test(times_old, times_new, paired = TRUE)
+
+# Print the results of the t-test
+print(t_test_result)
+
+# Check the results at the 10% level of significance
+if(t_test_result$p.value < 0.10) {
+  cat("At the 10% level of significance, we reject the null hypothesis.\n")
+} else {
+  cat("At the 10% level of significance, we fail to reject the null hypothesis.\n")
+}
+
+# Check the results at the 5% level of significance
+if(t_test_result$p.value < 0.05) {
+  cat("At the 5% level of significance, we reject the null hypothesis.\n")
+} else {
+  cat("At the 5% level of significance, we fail to reject the null hypothesis.\n")
+}
+
+At the 5% level of significance, we reject the null hypothesis.
+
+
+
+
