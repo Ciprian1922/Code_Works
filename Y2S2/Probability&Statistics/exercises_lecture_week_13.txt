@@ -1,0 +1,321 @@
+3. To test the hypothesis
+H0: μ = 105 against H1: μ 
+= 105
+a sample of size 9 is chosen. If the sample mean is X = 100, find the
+p value if the population standard deviation is known to be
+(a) σ = 5
+(b) σ = 10
+(c) σ = 15
+In which cases would the null hypothesis be rejected at the 5 percent
+level of significance? What about at the 1 percent level?
+
+
+Two-tailed test:
+p-value = 2*P(z>=|zc|) pnorm(|zd|lowest/tail)
+
+zc - completed value of the test statistic 1-pnorm(|zd|)
+one tailed test:
+Ha miu>miu0 ->p_value = pnorm(zc)
+Ha miu>miu0 -> pvalue = pnorm (zc, lower.tail=f)
+
+solution in r
+> # Define the parameters
+> sample_mean <- 100
+> population_mean <- 105
+> sample_size <- 9
+> 
+> # Population standard deviations
+> sigma_values <- c(5, 10, 15)
+> 
+> # Function to calculate p-value
+> calculate_p_value <- function(sample_mean, population_mean, sample_size, sigma) {
++     z <- (sample_mean - population_mean) / (sigma / sqrt(sample_size))
++     p_value <- 2 * pnorm(-abs(z))
++     return(p_value)
++ }
+> 
+> # Calculate p-values for each sigma
+> p_values <- sapply(sigma_values, function(sigma) calculate_p_value(sample_mean, population_mean, sample_size, sigma))
+> 
+> # Determine rejection at 5% and 1% significance levels
+> reject_5_percent <- p_values < 0.05
+> reject_1_percent <- p_values < 0.01
+> 
+> # Display the results and decisions
+> list(p_values = p_values, reject_5_percent = reject_5_percent, reject_1_percent = reject_1_percent)
+$p_values
+[1] 0.002699796 0.133614403 0.317310508
+
+$reject_5_percent
+[1]  TRUE FALSE FALSE
+
+$reject_1_percent
+[1]  TRUE FALSE FALSE
+
+
+
+
+
+
+2. A fast-food establishment has been averaging about $2000 of business
+per weekday. To see whether business is changing due to a deteriorating economy (which may or may not be good for the fast-food industry),
+management has decided to carefully study the figures for the next
+8 days. Suppose the figures are
+2050, 2212, 1880, 2121, 2205, 2018, 1980, 2188
+(a) What are the null and the alternative hypotheses?
+(b) Are the data significant enough, at the 5 percent level, to prove
+that a change has occurred?
+(c) What about at the 1 percent level?
+(d) If you can run Program 9-1 or some equivalent software, find the
+p value.
+
+
+> # Given data
+> data <- c(2050, 2212, 1880, 2121, 2205, 2018, 1980, 2188)
+> n <- length(data)
+> mu <- 2000
+> 
+> # Sample statistics
+> sample_mean <- mean(data)
+> sample_sd <- sd(data)
+> 
+> # t-score calculation
+> t_score <- (sample_mean - mu) / (sample_sd / sqrt(n))
+> 
+> # Degrees of freedom
+> df <- n - 1
+> 
+> # Critical t-values for 5% and 1% significance levels
+> critical_value_5_percent <- qt(0.975, df)
+> critical_value_1_percent <- qt(0.995, df)
+> 
+> # p-value calculation
+> p_value <- 2 * pt(-abs(t_score), df)
+> 
+> # Decisions
+> reject_5_percent <- abs(t_score) > critical_value_5_percent
+> reject_1_percent <- abs(t_score) > critical_value_1_percent
+> 
+> # Output results
+> list(
++     sample_mean = sample_mean,
++     sample_sd = sample_sd,
++     t_score = t_score,
++     critical_value_5_percent = critical_value_5_percent,
++     critical_value_1_percent = critical_value_1_percent,
++     p_value = p_value,
++     reject_5_percent = reject_5_percent,
++     reject_1_percent = reject_1_percent
++ )
+$sample_mean
+[1] 2081.75
+
+$sample_sd
+[1] 120.1865
+
+$t_score
+[1] 1.923877
+
+$critical_value_5_percent
+[1] 2.364624
+
+$critical_value_1_percent
+[1] 3.499483
+
+$p_value
+[1] 0.09578176
+
+$reject_5_percent
+[1] FALSE
+
+$reject_1_percent
+[1] FALSE
+
+
+
+
+
+
+
+3. Shoplifting is a serious problem for retailers. In the past, a large department store found that 1 out of every 14 people entering the store
+engaged in some form of shoplifting. To help alleviate this problem, 3
+months ago the store hired additional security guards. This additional
+hiring was widely publicized. To assess its effect, the store recently
+chose 300 shoppers at random and closely followed their movements
+by camera. If 18 of these 300 shoppers were involved in shoplifting,
+does this prove, at the 5 percent level of significance, that the new
+policy is working?
+
+> # Given data
+> n <- 300
+> x <- 18
+> p0 <- 1 / 14
+> alpha <- 0.05
+> 
+> # Sample proportion
+> phat <- x / n
+> 
+> # Test statistic
+> z <- (phat - p0) / sqrt(p0 * (1 - p0) / n)
+> 
+> # Critical value for one-tailed test at 5% significance level
+> z_critical <- qnorm(alpha)
+> 
+> # p-value
+> p_value <- pnorm(z)
+> 
+> # Decision
+> reject_null <- z < z_critical
+> 
+> # Output results
+> list(
++     phat = phat,
++     z = z,
++     z_critical = z_critical,
++     p_value = p_value,
++     reject_null = reject_null
++ )
+$phat
+[1] 0.06
+
+$z
+[1] -0.7686151
+
+$z_critical
+[1] -1.644854
+
+$p_value
+[1] 0.2210609
+
+$reject_null
+[1] FALSE
+
+
+
+Twenty-five males between the ages of 25 and 30 who were participating in a well-known heart study carried out in Framingham,
+Massachusetts were randomly selected. Of these, 11 were smokers
+and 14 were not. The following data refer to readings of their systolic
+blood pressure:
+Smokers Nonsmokers Smokers Nonsmokers
+124 130 131 127
+134 122 133 135
+136 128 125 120
+125 129 118 122
+133 118 120
+127 122 115
+135 116 123
+10.4 Testing Equality of Means: Small-Sample Tests 469
+Do the data indicate, at the 1 percent level of significance, a difference
+in mean systolic blood pressure levels for the populations represented by the two groups? If not, what about at the 5 percent
+level?
+
+
+> # Data
+> smokers <- c(124, 134, 136, 125, 133, 127, 135, 131, 133, 125, 118)
+> nonsmokers <- c(130, 122, 128, 129, 118, 122, 127, 120, 122, 115, 116, 123, 127, 135)
+> 
+> # Perform two-sample t-test
+> t_test_result <- t.test(smokers, nonsmokers, alternative = "two.sided", var.equal = TRUE)
+> 
+> # Output results
+> t_test_result
+
+	Two Sample t-test
+
+data:  smokers and nonsmokers
+t = 2.3091, df = 23, p-value = 0.03026
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  0.5545156 10.0948351
+sample estimates:
+mean of x mean of y 
+ 129.1818  123.8571 
+
+> 
+> var.test(smokers,nonsmokers)
+
+	F test to compare two variances
+
+data:  smokers and nonsmokers
+F = 1.0005, num df = 10, denom df = 13, p-value = 0.9785
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.3078777 3.5849835
+sample estimates:
+ratio of variances 
+            1.0005 
+
+
+
+
+
+3. Use the t test on the following paired data to test
+H0: μx = μy against H1: μx 
+= μy
+at the 5 percent level of significance.
+i
+1 2 3 4 5 6 7 8 9 10 11
+Xi 122 132 141 127 141 119 124 131 145 140 135
+Yi 134 126 133 122 155 116 118 137 140 133 142
+
+
+> # Data
+> X <- c(122, 132, 141, 127, 141, 119, 124, 131, 145, 140, 135)
+> Y <- c(134, 126, 133, 122, 155, 116, 118, 137, 140, 133, 142)
+> 
+> # Perform paired t-test
+> t_test_result <- t.test(X, Y, paired = TRUE, alternative = "two.sided")
+> 
+> # Output results
+> t_test_result
+
+	Paired t-test
+
+data:  X and Y
+t = 0.036865, df = 10, p-value = 0.9713
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -5.403607  5.585425
+sample estimates:
+mean difference 
+     0.09090909 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
