@@ -1,0 +1,184 @@
+Twenty students were asked how many hours per week they study for Probability and Statistics and their answers were recorded: 1.5, 2, 2.5, 3, 2, 3.5, 1.5, 2, 4 4.5, 3, 3.5, 2.5, 2, 0.5, 1, 2, 2.5, 3, 2.5.
+
+1.Using the data specified above, compute sample mean, sample median, mode and sample standard deviation.
+
+Solution:
+
+
+study_hours <- c(1.5, 2, 2.5, 3, 2, 3.5, 1.5, 2, 4, 4.5, 3, 3.5, 2.5, 2, 0.5, 1, 2, 2.5, 3, 2.5) # given data
+
+mean_study_hours <- mean(study_hours) #compute mean of the study hours
+
+print(paste("Sample Mean:", mean_study_hours))
+
+
+median_study_hours <- median(study_hours)  #calculate the median of the study hours
+print(paste("Sample Median:", median_study_hours))
+
+
+get_mode <- function(v) {  #function that finds the mode
+  unique_values <- unique(v)
+  unique_values[which.max(tabulate(match(v, unique_values)))]
+}
+
+
+mode_study_hours <- get_mode(study_hours) #calculate the mode of the study hours
+print(paste("Sample Mode:", mode_study_hours))
+
+
+sd_study_hours <- sd(study_hours) #compute the standard deviation of the study hours
+print(paste("Sample Standard Deviation:", sd_study_hours))
+
+Results:
+- Sample Mean: 2.45
+- Sample Median: 2.5
+- Sample Mode: 2
+- Sample Standard Deviation: 0.985420027997679
+
+2.Using the given data, compute the interquartile range and use it to determine the outliers
+
+Solution:
+
+#first we calculate the interquartile range of the study hours
+Q1 <- quantile(study_hours, 0.25)
+Q3 <- quantile(study_hours, 0.75)
+
+IQR_study_hours <- Q3 - Q1
+print(paste("Interquartile Range:", IQR_study_hours))
+
+#obtain the lower and upper bounds for outliers
+lower_bound <- Q1 - 1.5 * IQR_study_hours
+upper_bound <- Q3 + 1.5 * IQR_study_hours
+
+
+outliers <- study_hours[study_hours < lower_bound | study_hours > upper_bound] #find the outliers
+
+# Print the outliers
+if (length(outliers) == 0) {
+  print("No outliers found.")
+} else {
+  print("Outliers:")
+  print(outliers)
+}
+
+Results:
+Interquartile Range: 1
+No outliers found.
+
+3.Plot the histogram and compute the skewness. Is the distribution of the data symmetric? Justify your answer.
+
+Solution:
+#load necessary library for skewness calculation
+#install.packages("e1071") #if not installed
+library(e1071) #to load
+
+
+hist(study_hours, main="Histogram_study_hours", xlab="hours", ylab="frequency", col="lightgreen", border="black") #plot the histogram of the study hours
+
+skewness_study_hours <- skewness(study_hours) #compute the skewness of the study hours
+print(paste("Skewness:", skewness_study_hours))
+
+#determine if the distribution is symmetric:
+if (skewness_study_hours > 0) {
+  print("The distribution is positively skewed (right-skewed).")
+} else if (skewness_study_hours < 0) {
+  print("The distribution is negatively skewed (left-skewed).")
+} else {
+  print("The distribution is symmetric.")
+}
+
+Results:
+I printed the histogram in R for a better visualisation.
+Skewness: 0.131675928917979
+We can tell that it leans a bit to the right.
+We got: The distribution is positively skewed (right-skewed).
+
+4.Using the given data compute the 95% confidence interval for the population mean. Write your answer in the box below.
+
+Solution:
+mean_study_hours <- mean(study_hours)
+
+sd_study_hours <- sd(study_hours)#compute the sample standard deviation
+
+n <- length(study_hours) #the sample size
+
+standard_error <- sd_study_hours / sqrt(n) #standard error of the mean
+
+critical_value <- 1.96  # For 95% confidence level#critical value for a 95% confidence interval
+
+margin_of_error <- critical_value * standard_error #compute the margin of error
+
+#the confidence interval
+lower_bound <- mean_study_hours - margin_of_error
+upper_bound <- mean_study_hours + margin_of_error
+
+#results
+print(paste("95% Confidence Interval: [", lower_bound, ", ", upper_bound, "]", sep=""))
+
+Results:
+95% Confidence Interval: [2.01812063087746, 2.88187936912254]
+
+5.To estimate p, the proportion of all newborn babies who are male, the gender of 10,000 newborn babies was noted. If 5106 were male, determine a 99 percent confidence interval estimate of p.
+
+Solution:
+
+total_babies <- 10000
+
+male_babies <- 5106
+
+proportion_male <- male_babies / total_babies #proportion of male newborn babies
+
+standard_error <- sqrt((proportion_male * (1 - proportion_male)) / total_babies) #standard error of the proportion
+
+critical_value <- qnorm(0.995)  # For 99% confidence level #critical value for a 99% confidence interval
+
+margin_of_error <- critical_value * standard_error #margin of error
+
+#the confidence interval
+lower_bound <- proportion_male - margin_of_error
+upper_bound <- proportion_male + margin_of_error
+
+# Print the confidence interval
+print(paste("99% Confidence Interval Estimate of Proportion p:", "[", lower_bound, ",", upper_bound, "]"))
+
+Results:
+99% Confidence Interval Estimate of Proportion p: [ 0.497723748009327 , 0.523476251990673 ]
+
+6.In 2001, entering students at a certain university had an average score of 542 on the verbal part of the SAT. A random sample of the scores of 20 students in the 2003 class resulted in these scores: 542, 490, 582, 511 515, 564, 500, 602, 488, 512, 518, 522, 505, 569, 575, 515, 520, 528 533, 515 Do the given data prove that the average score has decreased to below 542? Use the 5 percent level of significance
+
+ambulance service claims that at least 45 percent of its calls involve life-threatening emergencies. To check this claim, a random sample of 200 calls was selected from the service's files. If 70 of these calls involved life-threatening emergencies, is the service's claim believable at the 5 percent level of significance?
+
+Solution:
+
+scores_2003 <- c(542, 490, 582, 511, 515, 564, 500, 602, 488, 512, 518, 522, 505, 569, 575, 515, 520, 528, 533, 515)
+
+mean_2001 <- 542
+
+sample_mean <- mean(scores_2003)
+
+t_test_result <- t.test(scores_2003, mu = mean_2001, alternative = "less") #perform one-sample t-test
+
+if (t_test_result$p.value < 0.05) {
+  print("The average score has decreased below 542.")
+} else {
+  print("There is not enough evidence to conclude that the average score has decreased below 542.")
+}
+
+
+calls_life_threatening <- 70
+
+total_calls <- 200
+
+claimed_proportion <- 0.45
+
+z_test_result <- prop.test(calls_life_threatening, total_calls, p = claimed_proportion, alternative = "less") #perform one-sample proportion z-test
+
+if (z_test_result$p.value < 0.05) {
+  print("The service's claim is not believable at the 5 percent level of significance.")
+} else {
+  print("The service's claim is believable at the 5 percent level of significance.")
+}
+
+Results:
+There is not enough evidence to conclude that the average score has decreased below 542.
+The service's claim is not believable at the 5 percent level of significance.
