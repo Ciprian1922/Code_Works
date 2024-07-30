@@ -1,9 +1,90 @@
-Why automated testing is useful ?
-Automated testing increases efficiency, consistency, and coverage in testing processes. It helps in quickly identifying defects, reduces manual effort, and supports continuous integration and delivery by allowing frequent and reliable testing of the application.
-What is the role of equivalence partitions in unit testing ?
+1. What is a prototype and why is important to develop product prototypes ?
+=A prototype is an initial version of a software system used for demonstrating concepts and  to try out design options.  It is important to develop product prototypes because they serve as essential tools for  validating concepts, gathering feedback, and refining the product before full-scale  development, ultimately increasing the chances of success in the market.
+
+2. Imagine you have your own software development company. Write a vision for a  new software product that you intend to develop.
+=In my software development company I aim to revolutionize automotive efficiency with a  innovative software solution that takes fuel efficiency to another level  It leverages real-time data on wind direction and terrain surface to optimize fuel  consumption when driving on autopilot mode. The goal is to provide drivers with a smarter,  more efficient driving experience, reducing fuel costs and environmental impact.  his way we envision a future where every journey is optimized for efficiency, sustainability,  and performance, enhancing the driving experience for all.
+
+
+3. Why is important to create Personas ?
+=It is important to create Personas because:  development team members empathize with potential users of the  software;  as a tool that allows developers to step into the user's shoes;  imagine how a persona, not a developer, would behave and react ; check ideas and make sure not to include features that aren't really  needed;  avoid making unwarranted assumptions, based on developers' own  knowledge, and designing an over-complic ated or irrelevant product.
+
+
+4. Consider the following User Story and the details in the "Note". Based on the details  given as "Note", write its acceptance criteria.
+"As a trainer, I need to create a new course or event  so site visitors can see it."
+Vote: This includes the following information:  name, description (HTML), trainer names (multiple selection from a list),  start date, end date, venue name (HTML) and address, contact name,  contact phone, contact email, a link for more information, and a link to register  "or a certification course the name of the class is a dropdown list;  for others, it is free text.
+=1. Users can create a new course or event from the trainer's dashboard  2. Required details include  Course/event name (dropdown list for certification courses, free text for others).  Description (HTML format)  Selection of multiple trainers from a list.  -Start and end dates.  -Venue name and address (HTML format).  Contact name, phone, and email.  Links for more information and registration  3. Upon submission, the course/event should be visible to site visitors  4. Details should be accurately displayed, including name, description, trainers, dates, venue,  contact info, and registration link.  5. Registration link should direct to the appropriate registration page,  6. Ensure easy access to the created course/event on the site's calendar or listing page.
+
+
+
+5. Why requirements prioritization is necessary ?
+=Requirements prioritization is necessary to allocate resources efficiently based on  stakeholder input, development constraints, and business objectives, ensuring that high-  priority requirements are developed and released first.
+
+6. What information results from the requirements representation with use cases and  their details ?
+=-The purpose of a use-case model is to capture all of the useful ways to use a system.  -UC Model should be represented in an accessible format that captures a system's  requirements and can be used to drive its development and testing.  Clearly establishes the boundary and scope of the system by providing a complete picture  of its actors (being outside the system) and use cases (being inside the system).  -Provides the context for the elaboration of the individual use cases.  Enables agile requirements management.
+
+7. Why requirements validation is needed and which are the main techniques to  realize it ?
+=It is is needed for demonstrating that the requirements define the system that the customer  really wants, also fixing a requirements error after delivery may cost up to 100  times the cost of fixing an implementation error.  The main techniques are requirements reviews, prototyping and test-case generation.
+
+
+8. Based on these figures, explain the differences between project-based software engineering and product software engineering.
+=Project-Based Software Engineering: Developers identify opportunities independently and implement features based on their insights, The loop may occur multiple times as developers continue to identify and implement features inspired by opportunities they encounter, Stakeholders may not actively participate in the opportunity identification process beyond initial feedback, emphasis on addressing immediate opportunities rather than long- term product strategy, Developers retain significant autonomy in decision-making regarding feature implementation.
+=Product Software Engineering: Customers present problems or requirements, initiating the software development process, The loop continues iteratively as developers address customer requirements, ensuring ongoing support and improvement, Customers actively participate in shaping requirements and providing feedback throughout the development process, Focus extends beyond immediate needs to incorporate long-term product vision and roadmap, Development decisions prioritize customer needs and satisfaction, guided by feedback and market demands.
+
+
+9. Identify one advantage and one disadvantage of executing a software product as a software service (on the developer's servers) compared with executing it entirely on the customer's computers.
+=An advantage would be that Software as a Service allows for rapid delivery of software updates and new features since they are deployed and managed centrally on the developer's servers. This facilitates quick adaptation to market demands and changing customer needs, ensuring continuous improvement and innovation. A disadvantage would be that Software as a Service relies on the developer's servers for execution, which can introduce concerns regarding data security, privacy, and reliability Users may experience disruptions or downtime if there are issues with the developer's servers or infrastructure.
+
+
+10. In the folowing class diagram, which are the attributes of class Staff and which s the operations of class Student ?
+=The attributes of class Staff are department and deophone and the operations of class student are registration() and de de_gistration().
+
+11. In the following class diagram, which are the attributes of class Assignment ?
+=The attributes of class Assignment are percent and the collection of attributes from exercise and solution that include nr(Exercise), description(Exercise), nr(Solution), text(Solution) and diagrams(Solution).
+
+12. What is the importance of GUI prototyping ?
+=The importance of GUI prototyping lies in its ability to provide a tangible representation of the interface, enabling stakeholders to gather feedback early, refine design iteratively, and ensure that the final product meets user needs effectively.
+ 
+13. What is the importance of MDE (Model Driven Engineering) ?
+=The importance of MDE(Model Driven Engineering) lies in its ability to elevate software development to a higher level of abstraction, where models, rather than programs, are the primary outputs. By automatically generating code from models, MDE reduces the need for manual coding and platform-specific considerations, making it easier to adapt systems to new platforms. This approach streamlines development, abstracts away from programming language details, and enhances productivity by focusing on system design at different Ievels of abstraction
+
+14. Shortly describe the types of models in MDA (Model Driven Architecture). Specify their relationships.
+=Computation Independent Model (CIM) - this model captures domain abstractions used in the system without referencing its implementation details. CIMs are also known as domain models. 2. Platform Independent Model (PIM) - this describes the system's behavior and structure without specifying implementation details, It is usually represented using UML models, illustrating how the system responds to external and internal events. 3. Platform Specific Model (PSM) - these are transformations of the platform-independent model, incorporating platform-specific details. Multiple PSMs can be derived for different application platforms, each adding further platform-specific information.
+In MDA, the relationships between models are based on transformations. CIMs are transformed into PIMs, which are further transformed into PSMs. These transformations enable the gradual refinement of models from abstract domain concepts to concrete implementation details, ultimately leading to the generation of executable code.
+
+15. What is an architectural conflict and which is the method to overcome it ?
+=An architectural conflict arises when there is tension between two or more quality attributes where improving one attribute leads to a degradation in another. To overcome these conflicts we could do as follows: 1. Conduct trade-off analysis 2. Utilize architectural patterns 3. Embrace modular design 4. Adopt an iterative approach to design
+
+16. Which are the main architectural perspectives and what shows each of it ?
+=The main architectural perspectives are: Static Perspective: shows system modules, interfaces, and relationships Dynamic Perspective: shows runtime structure and component interactions eployment Perspective: shows system deployment on hardware and software platforms
+
+17. What is the meaning of cross-cutting concerns in layered architectures?
+=Cross-cutting concerns in layered architectures refer to systemic concerns that affect the  entire system, including all layers and user interactions and they are distinct from functional  ones represented by layers and generate specific interactions between layers, making  system modification challenging, especially for enhancing aspects like security.
+
+18. Suppose a mobile platform is selected for delivering a software application.  Specify the main problems specific to this type of platform and their solutions.
+=Main problems specific to delivering a software application on a mobile platform could be  the following:  1. Intermittent Connectivity - Solutions include providing limited offline functionality and  syncing data when connectivity is available  2. Processor Power Constraints - Solutions involve minimizing computationally-intensive  operations to conserve battery life  3. Power Management - Solutions include optimizing the application to minimize power  consumption during use  4. On-Screen Input - Solutions involve designing user interfaces that minimize reliance on  on-screen input such as keyboard to improve usability
+
+19. Explain why specifying the interfaces of different components of a software  system allows these components to be designed and developed in parallel.
+=Specifying the interfaces of different components of a software system allows for parallel  design and development because it establishes a clear contract between components.  By defining the operations, parameters, and return types that components will interact with  interface specifications enable teams to work independently. Each team can design and  implement their respective components based on these agreed-upon interfaces without  needing to know the internal workings of other components. This parallel development  streamlines the process, reduces dependencies, and ultimately accelerates the overall  development timeline.
+
+20. Which are the main elements identified and modeled during an object-oriented  design process ?
+=During an object-oriented design process, the main elements identified and modeled  include:  System context and modes of use  System architecture  Principal system objects  Design models (static and dynamic)  object interfaces
+
+21. Consider an application to be developed using an application framework. Generally  (without reference to a specific framework), what will be reused (from the  framework) by the application and what the application needs to add ?
+=In an application developed using an application framework, reusable components provided  by the framework are reused by the application.  These components typically include predefined classes, libraries, and tools that offer  functionality such as user authentication, database support, session management, and  dynamic web page creation.  Additionally, the framework establishes a skeleton architecture and behavior for the  application. However, the application needs to add specific functionality and customize the  framework by extending its abstract classes, implementing interfaces, and adding new  components to fill in parts of the design. This customization tailors the framework to meet  the specific requirements of the application.
+
+22. One benefit of reusing COTS systems is avoiding some development risks by using  existing software. What risks are nevertheless introduced by the problems implied  by this approach ?
+=Despite their potential to mitigate certain development risks such as time-to-market  constraints and leveraging existing functionalities, Commercial Off-The-Shelf (COTS)  systems introduce their own unique set of challenges:  Lack of control over functionality and performance: COTS systems may not seamlessly  align with project requirements, resulting in performance issues or functionality gaps.  Interoperability challenges: Integrating different COTS systems can prove intricate due to  varying assumptions and interfaces, leading to compatibility hurdles.  Absence of control over system evolution: COTS vendors dictate system updates,  potentially triggering unexpected alterations or dependencies.  ⁃ Restricted vendor support: COTS vendors may offer insufficient support throughout the  product's lifespan, leaving projects vulnerable to unresolved issues.
+
+
+
+23. Why automated testing is useful ?
+=Automated testing increases efficiency, consistency, and coverage in testing processes. It helps in quickly identifying defects, reduces manual effort, and supports continuous integration and delivery by allowing frequent and reliable testing of the application.
+
+24. What is the role of equivalence partitions in unit testing ?
 Equivalence partitioning in unit testing simplifies testing by dividing input data into partitions that are expected to exhibit similar behavior. Testing a single representative from each partition ensures coverage while reducing the total number of tests needed.
-Give examples of criteria for selecting tests that reveal defects in the system.
-Testing guidelines are hints for the testing team to help them choose tests that will reveal defects in the system:
+
+25. Give examples of criteria for selecting tests that reveal defects in the system.
+=Testing guidelines are hints for the testing team to help them choose tests that will reveal defects in the system:
 Test edge cases:
  -If your partition has upper and lower bounds (e.g. length of strings, numbers, etc.) choose inputs at the edges of the range.
 Force errors:
@@ -20,8 +101,10 @@ Keep count:
  -When dealing with lists and list transformation, keep count of the number of elements in each list and check that these are consistent after each transformation.
 One is different:
  -If your program deals with sequences, always test with sequences that have a single value.
-Shortly describe the component parts of the automated unit test.
-Automated tests are structured into three parts:
+
+
+27. Shortly describe the component parts of the automated unit test.
+=Automated tests are structured into three parts:
 Setup (arrange) part:
  -System initialization with the test case, namely the inputs and expected outputs. This involves defining the test parameters and, if necessary, mock objects that emulate the functionality of code that has not yet been developed.
 Call (action) part:
@@ -30,13 +113,14 @@ Assertion part:
  -Compare the result of the call with the expected result.
 If the assertion evaluates to true, the test has been successful and if false, then it has failed.
 
-Define the software regression.
-Software regression : software bug or quality altering, as a consequence of a software change.
-Why regression testing is important ? Explain how automated testing simplifies regression testing.
-Regression testing ensures that recent changes to the software haven't introduced new bugs or issues, maintaining the stability and reliability of the application over time. Automated testing simplifies regression testing by executing tests quickly, consistently, and repeatedly, ensuring thorough coverage of the codebase with minimal manual effort.
-What do we need to consider when we design the software product, so that we can automatically and efficiently test its features ?
-When designing for automated testing, considerations include modularity for testing individual components, testability through features like dependency injection, stable interfaces to minimize test maintenance, accessibility for test automation tools, configurable options for testing under different conditions, comprehensive logging and monitoring, and separation of concerns for easier testing of different layers of the application.
+27. Define the software regression.
+=Software regression : software bug or quality altering, as a consequence of a software change.
 
+28. Why regression testing is important ? Explain how automated testing simplifies regression testing.
+=Regression testing ensures that recent changes to the software haven't introduced new bugs or issues, maintaining the stability and reliability of the application over time. Automated testing simplifies regression testing by executing tests quickly, consistently, and repeatedly, ensuring thorough coverage of the codebase with minimal manual effort.
+
+29. What do we need to consider when we design the software product, so that we can automatically and efficiently test its features ?
+=When designing for automated testing, considerations include modularity for testing individual components, testability through features like dependency injection, stable interfaces to minimize test maintenance, accessibility for test automation tools, configurable options for testing under different conditions, comprehensive logging and monitoring, and separation of concerns for easier testing of different layers of the application.
 Select what version management, as activity of the software configuration management process, means:
 keeping track of requests for changes to the software, cost and impact of changes analysis and deciding which changes should be implemented.
 (correct)keeping track of the multiple versions of system components and ensuring that changes made to components by different developers do not interfere with each other.
@@ -45,22 +129,16 @@ Enumerate the artifacts, realized during the software development process, place
 -Source Code and Executable Code: This includes all code files written by developers, both in source form and compiled into executable binaries.
 -Code Descriptions: These encompass various documents describing the code, such as requirements documents, design specifications, models, and user guides.
 -Data: Data contained within the software system, either as part of the program itself or stored externally.
-
 Typical artifacts under configuration control include:
 -Requirements specifications
 -Design specifications
 -Source code (including business logic, database tables, user interface scripts)
 -Executable code
 -Test cases (including test scenarios, test scripts, and associated test data)
-
 These artifacts are crucial for managing the development process, ensuring that changes are tracked, and versions are properly maintained. Configuration control facilitates effective collaboration among team members and helps in maintaining the integrity and stability of the software system throughout its development lifecycle.
 
-
-
-
-
-Describe the operations “view”, “modify” and “return” provided by a version management system. Consider a project where 3 developers (John, Alice and Dan) colaborate and work in parallel. If at one moment John must read module X and Alice and Dan must modify it, describe a sequence of such operations executed by the 3 developers when using a centralized version control system.
-View (John):
+30. Describe the operations “view”, “modify” and “return” provided by a version management system. Consider a project where 3 developers (John, Alice and Dan) colaborate and work in parallel. If at one moment John must read module X and Alice and Dan must modify it, describe a sequence of such operations executed by the 3 developers when using a centralized version control system.
+=View (John):
 -John executes the "view" operation to retrieve a read-only copy of module X from the central repository.
 -He can now examine the contents of module X without making any changes.
 Modify (Alice and Dan):
@@ -71,18 +149,13 @@ Return (Alice and Dan):
 -After completing their modifications, Alice and Dan execute the "return" operation to update the central repository with their changes.
 -The modified version of module X is returned to the repository, incorporating Alice's and Dan's changes.
 -The lock on module X is released, allowing other developers to access and modify it.
-
 By following this sequence of operations, John, Alice, and Dan can effectively collaborate on module X while ensuring data consistency and avoiding conflicts in a centralized version control environment.
 
-
-
-
-Realize a comparison between centralized version management systems and the distributed ones. (similarities and differences).
-Similarities:
+31. Realize a comparison between centralized version management systems and the distributed ones. (similarities and differences).
+=Similarities:
 -Version Control: Both CVCS and DVCS provide version control capabilities, allowing developers to track changes, manage revisions, and collaborate on codebases effectively.
 -Operations: Both systems support common operations such as checking out, modifying, and committing code changes.
 -Baseline Management: Both systems enable the creation and management of baselines, which represent specific versions of a software system.
-
 Differences:
 Architecture:
 -CVCS: Centralized architecture with a single central repository that stores the entire history and versions of the codebase.
@@ -97,22 +170,16 @@ Resilience:
 -CVCS: Vulnerable to a single point of failure since the central repository holds the entire history. If the central server goes down, developers may lose access to version history and collaboration capabilities.
 -DVCS: More resilient to failures as each developer has a complete backup of the repository. If one server goes down, developers can continue working with their local copies and push changes to alternative remote repositories.
 
-
-
-
-
-How must be done system building in order to make continous integration more efficient ?
--Automated Build Process: Implement an automated build system that can quickly compile and link system components, external libraries, and configuration files. This ensures that building the system is fast and consistent.
+32. How must be done system building in order to make continous integration more efficient ?
+=-Automated Build Process: Implement an automated build system that can quickly compile and link system components, external libraries, and configuration files. This ensures that building the system is fast and consistent.
 -Incremental Building: Utilize incremental building techniques to rebuild only those parts of the system that have changed since the last build. This minimizes build time by avoiding unnecessary recompilation of unchanged components.
 -Dependency Management: Use a dependency model to determine which components need to be rebuilt based on changes to source code or configuration files. This helps in efficiently updating only the affected parts of the system.
 -Fast Feedback Loop: Ensure that the integration process provides fast feedback to developers. Continuous integration systems should quickly build and test the system after each change pushed to the repository, allowing developers to detect and fix issues promptly.
 -Integration Testing: Integrate automated testing into the build process to verify the functionality and stability of the system. This helps in identifying issues early in the development cycle, enabling rapid resolution and preventing the accumulation of defects.
 -Continuous Delivery and Deployment: Extend continuous integration to continuous delivery and deployment, where changes are automatically tested and validated in a production-like environment before being deployed to customers. This ensures that the system is always in a deployable state, ready for release at any time.
 
-
-
-Describe the procedure of installing on the production servers a new version of a software system which has passed all validation tests.
-1. Preparation: Before deployment, ensure that all necessary preparations have been made, including:
+33. Describe the procedure of installing on the production servers a new version of a software system which has passed all validation tests.
+=1. Preparation: Before deployment, ensure that all necessary preparations have been made, including:
 -Backing up the current production system to mitigate risks in case of unexpected issues during deployment.
 -Reviewing the release notes and documentation for the new version to understand any changes or requirements.
 2. Deployment Plan: Develop a deployment plan outlining the sequence of steps and responsibilities for each team member involved in the deployment process. This plan should include rollback procedures in case of deployment failures.
@@ -133,60 +200,37 @@ Describe the procedure of installing on the production servers a new version of 
 -Update documentation and knowledge bases with any changes made during the deployment.
 -Monitor user feedback and system performance to address any issues or concerns that arise after the deployment.
 
-
-
-
-
-In the change management process, what is the role of cost and impact analysis of the software system change requests ?
-1. Analyzing Costs and Benefits: This involves evaluating the potential costs and benefits associated with proposed changes. It helps in understanding the financial implications of implementing the change compared to the expected benefits.
+34. In the change management process, what is the role of cost and impact analysis of the software system change requests ?
+=1. Analyzing Costs and Benefits: This involves evaluating the potential costs and benefits associated with proposed changes. It helps in understanding the financial implications of implementing the change compared to the expected benefits.
 2. Change Prioritization: By assessing the impact and costs of change requests, priorities can be assigned based on urgency and cost-effectiveness. This ensures that the most critical and cost-effective changes are given priority.
 3. Impact Analysis: Understanding the consequences of proposed changes is essential. This involves assessing how the change will affect various aspects of the system, including functionality, users, and associated components.
 4. Decision Making: The cost and impact analysis provides valuable information for decision-making. Change requests are reviewed by a Change Control Board (CCB) or similar group, which evaluates them from a strategic and organizational perspective to determine their viability.
 5. Tracking Changes: Throughout the change management process, it's important to track which components of the system have been changed and their associated costs. This helps in maintaining transparency and accountability in the change management process.
-
 Overall, the cost and impact analysis ensure that changes are carefully evaluated, prioritized, and implemented in a manner that maximizes benefits while minimizing costs and risks.
 
-
-
-
-
-
-What categories of information must be kept, by the development team, for each release of a software system and what are these necessary for ?
-
-For each release of a software system, the development team must keep several categories of information:
-
+35. What categories of information must be kept, by the development team, for each release of a software system and what are these necessary for ?
+=For each release of a software system, the development team must keep several categories of information:
 1. Executable Code: This includes the compiled programs and associated executable files that constitute the release. It's necessary for delivering the functional software to customers.
 2. Configuration Files: These files define how the software should be configured for specific installations or environments. They are essential for ensuring that the software functions correctly in different settings.
 3. Data Files: Data files, such as databases or configuration data, are needed for the operational use of the software. They contain information required for the software to perform its intended functions.
 4. Installation Program: Scripts or programs used to install the software on target hardware or environments. They facilitate the deployment of the software to end-users.
 5. Documentation: Electronic and paper documentation describing the system, its functionalities, installation procedures, and usage guidelines. Documentation helps users understand and utilize the software effectively.
 6. Packaging and Publicity Materials: These materials are designed to promote and advertise the release, attracting customers to use or purchase the software.
-
 These categories of information are necessary for various purposes:
 -Functional Delivery: Executable code, configuration files, and data files are essential for delivering a functional software system to customers.
 -Installation and Deployment: Installation programs and configuration files facilitate the installation and deployment of the software in different environments.
 -User Understanding: Documentation provides users with necessary information to understand and use the software effectively.
 -Promotion and Marketing: Packaging and publicity materials help promote the software release, attracting customers and increasing adoption.
 
+36. Which of the generic software process models may be agile processes ?
+=Incremental development and Reuse-oriented development can both be agile processes and thats mainly because they allow flexibility, iterative improvements, and responsiveness to change -> key principles of agile methodologies.
 
-
-
-Which of the generic software process models may be agile processes ?
-Incremental development and Reuse-oriented development can both be agile processes and thats mainly because they allow flexibility, iterative improvements, and responsiveness to change -> key principles of agile methodologies.
-
-
-Explain why incremental delivery has as a consequence the fact that the highest priority system services tend to receive the most testing?
-
--In incremental delivery, high-priority system services receive more testing because they are included in early increments, which are deployed for end-user use. Requirements are frozen once development starts, focusing testing efforts on the functionality being delivered in each increment.
-
+37. Explain why incremental delivery has as a consequence the fact that the highest priority system services tend to receive the most testing?
+=-In incremental delivery, high-priority system services receive more testing because they are included in early increments, which are deployed for end-user use. Requirements are frozen once development starts, focusing testing efforts on the functionality being delivered in each increment.
 -For example, in a e-commerce platform, if secure payment processing is a high priority requirement, it would likely be included in the first increment for testing. As development progresses in subsequent increments, other features like user profiles or product recommendations might be added, but the payment processing service would have undergone more testing due to its early inclusion.
 
-
-
-
-4. Check the correct answers: 
-
-Agile methods in software development imply :
+37. Check the correct answers: 
+=Agile methods in software development imply :
 [X] Incremental delivery 
 [  ] Periodic activities to eliminate complexity from the system 
 [X] Customer involvement during the software process 
@@ -194,44 +238,29 @@ Agile methods in software development imply :
 [  ] Establishing normative processes for team working 
 [  ] Planning in advance all software process activities
 
-
-
-
-
-Explain why agile methods in software engineering ensure rapid development and delivery of software products. (Base your argumentation on the agile methods principles and specifics).
-1. Iterative and Incremental Development: Short cycles allow for continuous feedback and quick adaptation to changing requirements.
+38. Explain why agile methods in software engineering ensure rapid development and delivery of software products. (Base your argumentation on the agile methods principles and specifics).
+=1. Iterative and Incremental Development: Short cycles allow for continuous feedback and quick adaptation to changing requirements.
 2. Customer Involvement: Close collaboration ensures that software meets customer needs, accelerating acceptance.
 3. Embracing Change: Systems are designed to accommodate evolving requirements, minimizing rework.
 4. Maintaining Simplicity: Focus on simplicity reduces complexity, aiding rapid development and maintenance.
 5. People-Centric Approach: Trusting teams to make decisions empowers rapid and efficient development.
 
-
-
-
-Explain how XP aligns to the the principles of agile software development methods.  
+39. Explain how XP aligns to the the principles of agile software development methods.  
 1.Incremental Development: XP delivers small increments of functionality frequently.
 2.Customer Involvement: Customers are engaged full-time, prioritizing requirements as user stories.
 3.People Over Process: XP promotes practices like pair programming and collective ownership, emphasizing people over strict processes.
 4.Change: XP supports change through iterative development and frequent releases.
 5.Maintaining Simplicity: XP emphasizes constant code improvement through practices like test-driven development and refactoring.
 
-
-
-
-
-
-Explain how XP aligns to the the principles of agile software development methods.  
+40. Explain how XP aligns to the the principles of agile software development methods.  
 1.Incremental Development: XP delivers small increments of functionality frequently.
 2.Customer Involvement: Customers are engaged full-time, prioritizing requirements as user stories.
 3.People Over Process: XP promotes practices like pair programming and collective ownership, emphasizing people over strict processes.
 4.Change: XP supports change through iterative development and frequent releases.
 5.Maintaining Simplicity: XP emphasizes constant code improvement through practices like test-driven development and refactoring.
 
-
-
-Elaborate on the building and maintaining the prioritized risks list.
-
-Prioritized Risks List Management
+41. Elaborate on the building and maintaining the prioritized risks list.
+=Prioritized Risks List Management
 1. Risk IdentificationTypes of Risks:
 -Technology risks
 -People risks
@@ -245,14 +274,12 @@ Examples of Risks:Technology: The database cannot process transactions as expect
 -Tools: Software tools cannot be integrated.
 -Requirements: Major design rework due to requirements changes.
 -Estimation: Underestimating the time required to develop the software.
-
 2. Risk Documentation
 Risk Register:
 -Create a comprehensive list of identified risks.
 -Describe each risk, its type, and its potential impact.
 -Risk Statement:
 -Write clear statements describing the risk, its cause, and its potential impact.
-
 3. Risk Analysis
 Assess Probability and Effects:
 -Probability Levels: Very low, low, moderate, high, very high.
@@ -261,7 +288,6 @@ Example Analysis:
 -High Probability and Catastrophic Impact: Inability to recruit staff with required skills.
 -Moderate Probability and Serious Impact: Key staff illness at critical times; faults in reusable software components.
 -High Probability and Serious Impact: Underestimated development time.
-
 4. Risk Planning
 Develop Risk Management Strategies:
 -Avoidance Strategies: Reduce the probability of risk occurring.
@@ -270,7 +296,6 @@ Develop Risk Management Strategies:
     Example: Reorganize the team to ensure overlap of work.
 -Contingency Plans: Prepare plans to handle the risk if it materializes.
     Example: Prepare a briefing document for senior management.
-
 5. Risk Monitoring
 Regular Assessment:
 -Continuously assess identified risks to determine if their probability or impact has changed.
@@ -278,67 +303,77 @@ Indicators:
 -Monitor risk indicators such as late hardware delivery (technology risks) or high staff turnover (people risks).
 Management Meetings:
 -Discuss key risks at regular management progress meetings.
-
 6. Adaptation and Continuous Improvement
 Review and Update:
 -Regularly review and update the risk list based on new information and project progress.
 Learning from Experience:
 -Document lessons learned and use these insights to improve future risk management processes.
 
-
-
-
-
-
-
-What is the specific of acceptance testing in XP context ?
-
-
-In Extreme Programming (XP), acceptance testing ensures the software meets customer needs. Here are the key aspects:
-
+42. What is the specific of acceptance testing in XP context ?
+=In Extreme Programming (XP), acceptance testing ensures the software meets customer needs. Here are the key aspects:
 Customer-Driven Testing:
 - User Stories: Tests are based on customer-provided user stories describing functionality.
 - Customer Involvement: Customers define acceptance criteria, ensuring tests meet their expectations.
-
 Automated Testing:
 - Automation: Tests are automated for continuous integration and frequent verification.
 - Tools: Tools like Cucumber or FitNesse automate and maintain tests.
-
 Test-First Approach:
 - Test-Driven Development (TDD): Tests are written before code to clarify requirements and maintain a tested version of the code.
 - Incremental Development: Tests are developed incrementally, validating requirements continuously.
-
 Clear Criteria for Success:
 - Pass/Fail Criteria: Each test has clear criteria for completion, aiding decision-making.
 - Completion Definition: User stories are complete only when all related tests pass.
-
 Collaboration and Communication:
 - Collaborative Process: Developers, testers, and customers work together on writing tests, clarifying requirements, and resolving misunderstandings.
 - Frequent Feedback: Regular feedback loops ensure quick identification and correction of deviations.
-
 Continuous Integration:
 - Integration with CI: Tests run automatically with each new code integration, ensuring no regressions.
 - Regression Testing: Automated tests also serve as regression tests, maintaining existing functionality.
-
 Realistic Scenarios:
 - Real-World Scenarios: Tests mimic actual usage scenarios to ensure correct software behavior.
 - Edge Cases: Tests include typical and extreme conditions to verify robustness.
-
 Living Documentation:
 - Executable Specifications: Tests serve as documentation, providing clear, executable specifications for future maintenance.
-
 Benefits:
 - Quality Assurance: Ensures high-quality software that meets customer needs.
 - Customer Satisfaction: Involves customers in testing, ensuring their requirements are met.
 - Reduced Risk: Continuous validation reduces the risk of building incorrect or incomplete products.
 
+43. Describe the relation of 'spring backlog’ with 'product backlog’. Which is the criterion for ordering the items in the 'product backlog’?
+=Product Backlog:
+-The product backlog is a comprehensive list of everything that needs to be done to develop the software product. It includes features, bug fixes, improvements, and other tasks that contribute to the product's development
+-It is a dynamic list that evolves over time as new requirements emerge and priorities change
+-Items in the product backlog are often described as Product Backlog Items
+Sprint Backlog:
+-The sprint backlog is a subset of the product backlog, specifically the items that the development team commits to completing during a single sprint
+-At the beginning of each sprint, during the sprint planning meeting, the team selects items from the product backlog to create the sprint backlog
+-The sprint backlog is more detailed than the product backlog, as it breaks down selected PBIs into specific tasks and defines the work necessary to complete them within the sprint duration
+Criterion of ordering items in the 'product backlog':
+-Business value - items that deliver the highest business value or benefit to the stakeholders are given higher priority
+-Customer needs - features or fixes that meet customer requirements or solve critical issues are prioritized
+-Dependencies - some items may need to be completed before others can be started. These dependencies influence the order of backlog items
+-Risk reduction - items that reduce risks, such as technical debts or security vulnerabilities, might be prioritized higher
+-Feedback - continuous feedback from stakeholders and end-users can shift priorities, ensuring that the product remains aligned with user expectations and market demands
 
+44. Why is it important that each sprint should normally produce a ‘potentially shippable’ product increment?  When might the team relax this rule and produce something that is not ‘ready to ship’? 
+=Importance of Producing a ‘Potentially Shippable’ Product Increment:
+- Value delivery- ensures each sprint delivers tangible value to stakeholders and users
+- Feedback loop - facilitates early and continuous feedback, ensuring alignment with user expectations
+- Quality assurance - maintains high standards by completing necessary testing and integration
+- Progress visibility - provides a clear measure of progress, allowing stakeholders to track development
+- Risk mitigation - reduces risk by identifying and addressing issues early
+When the Team Might Relax This Rule:
+- Exploratory work - initial research, prototyping, or proof-of-concept development
+- Complex integrations - highly complex tasks requiring multiple sprints for completion
+- Technical debt reduction - focusing on code refactoring or architectural changes
+- Spike solutions - investigating specific problems or evaluating new technologies
+- Non-functional requirements - performance, security, or scalability improvements
 
+45. Scrum has been designed for use by a team of 5-8 people working together to develop a software product. What problems might arise if you try to use Scrum for student team projects where a group work together to develop a program? What parts of Scrum could be used in this situation?
+=Most of the times the teams formed on such team projects are smaller than the 5-8 range, also most of the students are enrolled in a lot of activities, so gathering them all together might be challenging. Due to these, this impact will make consistent progress harder to achieve.
+Most of the students lack the skills required in order to follow the scrum method, they might give wrong estimations, bad development and a hard time managing the tasks.
 
-
-
-
-
+46. What could be done if the team has potential would be to hold sprint planning meetings to select and refine tasks from the project backlog, ensuring clear goals and division of work for each sprint, make daily meetings to discuss progress, obstacles and plans for the current day, maintain a sprint backlog that outlines tasks to be completed in the current sprint, that would help the team to stay focused on specific goals and track progress, at the end of each sprint, hold a review to showcase the completed work to peers or instructors and gather feedback, conduct retrospective meetings to discuss what went well, what didn’t, and how to improve in the next sprint, maintain a product backlog with prioritized tasks and requirements and finally, encourage team members to take initiative, make decisions collectively, and divide tasks based on individual strengths.
 
 
 

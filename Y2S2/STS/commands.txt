@@ -1,0 +1,222 @@
+en
+conf t
+hostname CORE-R2
+line console 0
+password cisco
+login
+exit
+
+enable password cisco
+no ip domain lookup
+banner motd #NO UNAUTHORISED ACCESS!!!#
+service password-encryption
+
+do wr
+
+ip domain name cisco.net
+username admin password cisco
+crypto key generate rsa
+1024 
+line vty 0 15
+login local
+transport input ssh
+exit
+do wr
+
+ip ssh version 2
+
+===============================
+int range fa0/1-2
+switchport mode trunk
+exit
+
+vlan 60
+name ServerRoom
+vlan 99
+name BlackHole
+exit
+
+int range fa0/3-24
+switchport mode access
+switchport access vlan 60
+exit
+
+int range gig0/1-2
+switchport mode access
+switchport access vlan 99
+exit
+
+do wr
+
+===================2,3
+
+(multilayer)
+
+
+int range gig1/0/3-8
+switchport mode trunk
+vlan 10
+name Sales
+vlan 20
+name HR
+vlan 30
+name Finance
+vlan 40
+name Admin
+vlan 50
+name ICT
+vlan 60
+name ServerRoom
+
+exit
+
+do wr
+
+
+
+============== enable routing on the switch
+ip routing
+router ospf 10
+router-id 2.2.2.2
+network 172.16.1.0 0.0.0.127 area 0
+network 172.16.1.128 0.0.0.127 area 0
+network 172.16.2.0 0.0.0.127 area 0
+network 172.16.2.128 0.0.0.127 area 0
+network 172.16.3.0 0.0.0.127 area 0
+network 172.16.3.128 0.0.0.127 area 0
+network 172.16.3.128 0.0.0.15 area 0
+
+network 172.16.3.144 0.0.0.3 area 0
+network 172.16.3.148 0.0.0.3 area 0
+
+
+
+                 ======  for the routers(core1)
+router ospf 10
+router-id 3.3.3.3
+
+
+network 172.16.3.144 0.0.0.3 area 0
+network 172.16.3.152 0.0.0.3 area 0
+network 195.136.17.0 0.0.0.3 area 0
+network 195.136.17.4 0.0.0.3 area 0
+
+do wr
+exit
+
+                 ======  for the routers(core2)
+router ospf 10
+router-id 4.4.4.4
+
+
+network 172.16.3.148 0.0.0.3 area 0
+network 172.16.3.156 0.0.0.3 area 0
+network 195.136.17.8 0.0.0.3 area 0
+network 195.136.17.12 0.0.0.3 area 0
+
+do wr
+exit
+
+                 ======  for the routers(isp1-demo purpose(cannot be modified irl))
+router ospf 10
+router-id 5.5.5.5
+
+
+
+network 195.136.17.0 0.0.0.3 area 0
+network 195.136.17.8 0.0.0.3 area 0
+
+do wr
+exit
+
+                 ======  for the routers(isp2-demo purpose(cannot be modified irl))
+router ospf 10
+router-id 5.5.5.5
+
+
+
+network 195.136.17.4 0.0.0.3 area 0
+network 195.136.17.12 0.0.0.3 area 0
+
+do wr
+exit
+
+
+
+======6vlan
+
+int vlan 10
+no sh
+ip add 172.16.1.1 255.255.255.128
+ip helper-address 172.16.3.130
+ex
+
+int vlan 20
+no sh
+ip add 172.16.1.129 255.255.255.128
+ip helper-address 172.16.3.130
+ex
+
+int vlan 30
+no sh
+ip add 172.16.2.1 255.255.255.128
+ip helper-address 172.16.3.130
+ex
+
+int vlan 40
+no sh
+ip add 172.16.2.129 255.255.255.128
+ip helper-address 172.16.3.130
+ex
+
+int vlan 50
+no sh
+ip add 172.16.3.1 255.255.255.128
+ip helper-address 172.16.3.130
+ex
+
+int vlan 60
+no sh
+ip add 172.16.3.129 255.255.255.128
+ip helper-address 172.16.3.130
+ex
+
+
+===========10  to the cores - configuring nat
+ip nat inside source list 1 int se0/2/0 overload
+ip nat inside source list 1 int se0/2/1 overload
+access-list 1 permit 172.16.1.0 0.0.0.127
+access-list 1 permit 172.16.1.128 0.0.0.127
+access-list 1 permit 172.16.2.0 0.0.0.127
+access-list 1 permit 172.16.3.0 0.0.0.127
+access-list 1 permit 172.16.3.128 0.0.0.15
+
+
+
+ip nat inside source list 1 int se0/2/0 overload
+ip nat inside source list 1 int se0/2/1 overload
+
+access-list 1 permit 172.16.1.0 0.0.0.127
+access-list 1 permit 172.16.1.128 0.0.0.127
+access-list 1 permit 172.16.2.0 0.0.0.127
+access-list 1 permit 172.16.2.128 0.0.0.127
+access-list 1 permit 172.16.3.0 0.0.0.127
+access-list 1 permit 172.16.3.128 0.0.0.127
+access-list 1 permit 172.16.3.128 0.0.0.15
+
+
+===========10.1 - default static route - both mlt
+ip route 0.0.0.0 0.0.0.0 gig1/0/1
+ip route 0.0.0.0 0.0.0.0 gig1/0/2 70
+do wr
+
+
+ip route 0.0.0.0 0.0.0.0 se0/2/0
+ip route 0.0.0.0 0.0.0.0 se0/2/1 70
+do wr
+
+
+===========11 verify the configuration
+
+
+
