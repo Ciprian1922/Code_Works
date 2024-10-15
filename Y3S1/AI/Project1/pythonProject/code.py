@@ -3,7 +3,7 @@ from collections import deque  # import deque for efficient queue operations
 from tkinter import messagebox  # Import messagebox for displaying alerts
 
 
-# Function to check if placing a queen at (row, col) is valid
+#check if placing a queen at (row, col) is valid
 def is_valid(state, row, col):
     """
     Check if it's valid to place a queen at (row, col) based on the current state of the board.
@@ -206,3 +206,51 @@ def main():
 
 
 main()  #execute the main function when the script is run
+
+"""
+N-Queens Algorithm using Breadth-First Search (BFS)
+
+The N-Queens problem involves placing `n` queens on an `n x n` chessboard such that no two queens threaten each other.
+This means:
+- no two queens can be placed in the same row.
+- no two queens can be placed in the same column.
+- no two queens can be placed on the same diagonal.
+
+The algorithm implemented here uses the Breadth-First Search (BFS) strategy to solve the problem. Below is a brief explanation of how the algorithm performs:
+
+1. **Initial State**: 
+   - the algorithm starts with an empty board. Each possible board configuration is represented as a "state", where a state is a list of integers. 
+   - the list holds the column positions of the queens placed so far. For example, if `state = [2, 0, 3]`, it means that queens are placed in row 0 at column 2, in row 1 at column 0, and in row 2 at column 3.
+   - we initialize the algorithm with an empty state, meaning no queens are placed yet.
+
+2. **Queue-Based Exploration**: 
+   - BFS uses a queue to keep track of partially completed board configurations (states). 
+      The queue is initialized with a single empty state `[]` (no queens placed yet).
+   - the algorithm then proceeds to explore possible placements row by row. In each iteration,
+      it dequeues a partial state from the front of the queue and tries to place a queen in the next row.
+
+3. **State Expansion**:
+   - for each partial state, the algorithm attempts to place a queen in every column of the next row.
+   - before placing a queen in a column, it checks if the placement is valid using the `is_valid` function, 
+      which ensures that the new queen does not conflict with any previously placed queens.
+   - a valid placement is one where no queens threaten each other, meaning no two queens share the same row, column, or diagonal.
+   - if a valid column is found, a new state is created by adding the column index to the current state, and this new state is enqueued.
+
+4. **Validation**:
+   - the `is_valid` function is crucial for ensuring that queens are placed in safe positions. It checks for conflicts in the following ways:
+     - **Column conflict**: It checks if the new queen is placed in a column that already has a queen.
+     - **Diagonal conflict**: It checks if the new queen is placed on a diagonal that contains another queen. 
+      Diagonal conflicts are identified by checking if the absolute difference between row indices equals the absolute difference between column indices.
+
+5. **Solution Found**:
+   - a state is considered a solution when it contains `n` queens (i.e., when the length of the state equals `n`).
+   - each complete state represents a valid solution, and it is stored in a list of solutions.
+
+6. **Termination**:
+   - the BFS continues until the queue is empty, meaning all possible configurations have been explored.
+   - the algorithm guarantees that all solutions will be found because BFS systematically explores all valid configurations without skipping any possibilities.
+
+7. **Efficiency Considerations**:
+   - BFS ensures that invalid states are discarded as soon as a conflict is detected, avoiding unnecessary exploration of invalid configurations.
+   - this makes the algorithm efficient for finding all solutions to the N-Queens problem.
+"""

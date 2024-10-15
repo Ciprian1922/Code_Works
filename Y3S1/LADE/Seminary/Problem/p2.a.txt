@@ -1,0 +1,67 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+
+def dydt(t, y):  #define the differential equation dy/dt = sin(t)
+    return np.sin(t)
+
+t_vals = np.linspace(-5, 5, 20)  #create a grid of t and y values for plotting the direction field
+y_vals = np.linspace(-5, 5, 20)
+T, Y = np.meshgrid(t_vals, y_vals)
+
+#calculate the slope dy/dt at each point in the grid
+U = 1  #normalized t-axis (this makes the arrows uniform in the t direction)
+V = dydt(T, Y)  #the dy/dt values from the equation
+
+#cormalize the arrows to make them clearer in the plot
+N = np.sqrt(U**2 + V**2)  #magnitude of the vectors
+U, V = U/N, V/N  #normalize each vector
+
+#plot the direction field using quiver (which creates vector arrows)
+plt.figure(figsize=(10, 6))
+plt.quiver(T, Y, U, V, color="blue", headlength=3)
+
+#function to plot solutions for different initial conditions
+def plot_solution(y0, color):
+    #solve the differential equation using solve_ivp for initial condition y0
+    sol = solve_ivp(dydt, [-5, 5], [y0], t_eval=np.linspace(-5, 5, 1000))
+    #plot the solution curve
+    plt.plot(sol.t, sol.y[0], color=color, label=f'y(0)={y0}')
+
+#add solution curves for various initial values of y (starting values of y)
+initial_conditions = [-4, -2, 0, 2, 4]  # Different y(0) values
+colors = ['red', 'green', 'orange', 'purple', 'black']  # Colors for the curves
+
+#plot each solution curve
+for y0, color in zip(initial_conditions, colors):
+    plot_solution(y0, color)
+
+#customize plot limits and labels
+plt.xlim([-5, 5])
+plt.ylim([-5, 5])
+plt.xlabel("t")
+plt.ylabel("y")
+plt.title("direction field + solutions for dy/dt = sin(t)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+#analysis
+# 1.Are there equilibrium solutions?
+#from observing the graph, we can conclude that there are no constant equilibrium solutions
+#where y remains fixed over time, the system displays oscillatory behavior, 
+#following the periodic nature of sin(t), the solution curves do not settle at any particular 
+#value of y, but continuously oscillate as t progresses
+
+#2.Appearance of the solution curves:
+#  -the solution curves show oscillatory behavior that follows the periodic nature of sin(t)
+#  -the slope of the direction field depends on t, not on y, this results in horizontal oscillations
+#  -the curves exhibit similar shapes, but their initial y-values shift them vertically
+#  -since the differential equation depends only on t, each solution has the same shape but with a vertical shift
+#  -there are no equilibrium points where the solution stays constant for all t
+
+#overall behavior:
+#  -all solutions oscillate based on the behavior of sin(t)
+#  -no equilibrium solutions (constant y values) are possible, but the solutions repeat periodically
+#  -the direction field shows arrows oscillating between positive and negative slopes
