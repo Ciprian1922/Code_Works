@@ -1,0 +1,234 @@
+\documentclass[12pt,a4paper]{book}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{amsmath,amsthm,amssymb,graphicx,hyperref}
+\usepackage[left=1.2in,right=1.2in,top=1in,bottom=1in]{geometry}
+\usepackage{listings}
+%\usepackage[romanian]{babel}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{paralist}
+\RequirePackage{hyphenat}
+\usepackage{algorithm, algpseudocode}%algorithmic
+\usepackage[inline]{enumitem}
+%\usepackage{...insert other packages here...}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}[section]
+\newtheorem{exmp}{Example}[section]
+
+
+\begin{document}
+\sloppy
+
+\thispagestyle{empty}
+\begin{center}
+\begin{figure}[h!]
+\vspace{-20pt}
+\begin{center}
+\includegraphics[width=100pt]{FMI-03.png}
+\end{center}
+\end{figure}
+
+
+{\large{\bf WEST UNIVERSITY OF TIMI\c SOARA
+
+FACULTY OF MATHEMATICS AND COMPUTER SCIENCE
+
+BACHELOR STUDY PROGRAM:  COMPUTER SCIENCE IN ENGLISH  
+}}
+
+\vspace{120pt}
+{\huge {\bf BACHELOR THESIS}}
+
+\vspace{160pt}
+\end{center}
+
+{\large\noindent{\bf SUPERVISOR:
+\hspace{172pt} GRADUATE: }
+
+\noindent Prof./Conf./Lect. Dr. Firstname Lastname \hfill 
+\noindent  Firstname Lastname
+}
+
+\vfill
+\begin{center}
+{\bf TIMI\c SOARA
+
+2025}
+\end{center}
+\newpage
+\thispagestyle{empty}
+\begin{center}
+{\large{\bf WEST UNIVERSITY OF TIMI\c SOARA
+		
+FACULTY OF MATHEMATICS AND COMPUTER SCIENCE
+		
+BACHELOR STUDY PROGRAM:  COMPUTER SCIENCE IN ENGLISH}}
+
+\vspace{200pt}
+{\huge {\bf Title }}
+
+\vspace{153pt}
+\end{center}
+
+{\large\noindent{\bf SUPERVISOR:\hfill GRADUATE:}
+
+\noindent Prof./Conf./Lect. Dr. Firstname  Lastname\hfill
+\noindent Firstname  Lastname}
+ 
+
+\vfill
+\begin{center}
+{\bf TIMI\c SOARA
+
+2025}
+\end{center}
+
+\newpage
+\normalsize{}
+
+\section*{Abstract} 
+
+
+\newpage
+\normalsize{}
+
+\tableofcontents
+\input{cap1} % example
+\input{cap2}
+
+\chapter{Some Latex Statements}
+
+In this chapter are presented  some useful latex statements in thesis written part.
+
+
+\section{Enumeration usage}
+Enumeration with numeric label:
+\begin{enumerate}
+    \item Option 1
+    \item Option 2
+    \item Option 3
+\end{enumerate}
+
+Enumeration without label:
+\begin{itemize}
+    \item Option 1
+    \item Option 2
+    \item Option 3
+\end{itemize}
+
+\section{If you need to add: definitions,  theorems, ... .}
+\begin{defn} ...
+\end{defn}
+\begin{thm} ...
+\end{thm}
+\begin{proof} ...
+\end{proof}
+\begin{rem} ...
+\end{rem}
+\begin{exmp} ...
+\end{exmp}
+
+\section{References}
+The bibliography has to be referenced in thesis content using cite (e.g. \cite{Bersani}).
+
+\section{Using figures}
+Each figure has to have a caption that is a suggestive description of what  the  picture represents (e.g. Figure \ref{fig:siglaUVT}).
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.25\linewidth]{template-eng/FMI-03.png}
+    \caption{ FMI logo scaled at 25\% of text width}
+    \label{fig:siglaUVT}
+\end{figure}
+
+\section{Algorithm pseudo-code}
+Pseudo-code is a formal way to describe an algorithm, is more clear than a textual description ore code ( e.g. Algorithn \ref{alg:alg_ex}).
+
+\begin{algorithm}[!ht]
+\caption{An algorithm with caption}\label{alg:alg_ex}
+\begin{algorithmic}[1]
+\Require $n \geq 0$
+\Ensure $y = x^n$
+\State $y \gets 1$
+\State $X \gets x$
+\State $N \gets n$
+\While{$N \neq 0$}
+\If{$N$ is even}
+    \State $X \gets X \times X$
+    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+\ElsIf{$N$ is odd}
+    \State $y \gets y \times X$
+    \State $N \gets N - 1$
+\EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+\section{Adding code}
+If it necessary to add  some code from the application, do not use print-screens, use  listing  (e.g. listing \ref{lst:p1}).
+\begin{lstlisting}[language=Python, numbers=left,
+    stepnumber=1, caption=Un exemplu de cod python, label=lst:p1]
+import numpy as np
+    
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+    M = None #to become the incidence matrix
+    VT = np.zeros((n*m,1), int)  #dummy variable
+    
+    #compute the bitwise xor matrix
+    M1 = bitxormatrix(genl1)
+    M2 = np.triu(bitxormatrix(genl2),1) 
+
+    for i in range(m-1):
+        for j in range(i+1, m):
+            [r,c] = np.where(M2 == M1[i,j])
+            for k in range(len(r)):
+                VT[(i)*n + r[k]] = 1;
+                VT[(i)*n + c[k]] = 1;
+                VT[(j)*n + r[k]] = 1;
+                VT[(j)*n + c[k]] = 1;
+                
+                if M is None:
+                    M = np.copy(VT)
+                else:
+                    M = np.concatenate((M, VT), 1)
+                
+                VT = np.zeros((n*m,1), int)
+    
+    return M
+\end{lstlisting}
+
+\section{Tablels}
+
+A simple example of an table (see Table \ref{tab:my_tabel}). 
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l | c |  c | c |} 
+ \hline
+ Stopping criteria & \textbf{Alg.1} & \textbf{Alg.2} & \textbf{Alg.3} \\  
+ \hline\hline
+\textbf{ MSQ} & 0.97 & 0.8 & 00.60 \\ 
+ \hline
+ \textbf{R2} & 0.77 & 0.78 & 0.54 \\
+ \hline
+ 
+ \hline
+\end{tabular}
+    \caption{Algorithm comparison}
+    \label{tab:my_tabel}
+\end{table}
+
+
+For more details regarding how to create a table use the following reference \url{https://www.overleaf.com/learn/latex/Tables}.
+
+
+\bibliography{mybib}
+\bibliographystyle{alpha}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\end{document} 
