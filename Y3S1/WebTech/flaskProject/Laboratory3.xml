@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE school SYSTEM "school.dtd">-->
+<school>
+	<building category="theoretical"  year="2024" profile="MI" owner="Anais">
+	<space>2000</space>
+    <children>5000</children>
+    <teachers>2500</teachers>
+    </building>
+    <building category="theoretical"  year="2023" profile="FILO" owner="Bob">
+	<space>2300</space>
+    <children>1000</children>
+    <teachers>500</teachers>
+    </building>
+    <building category="theoretical"  year="2022" profile="SS" owner="Denis">
+	<space>3000</space>
+    <children>6000</children>
+    <teachers>3000</teachers>
+    </building>
+    <building category="theoretical"  year="2021" profile="SN" owner="Radu">
+	<space>1753</space>
+    <children>3241</children>
+    <teachers>2234</teachers>
+    </building>
+    <building category="theoretical"  year="2020" profile="Economy" owner="Gigi">
+	<space>2032</space>
+    <children>1232</children>
+    <teachers>234</teachers>
+    </building>
+    <building category="theoretical"  year="2014" profile="Agro" owner="Lotus">
+	<space>200</space>
+    <children>20</children>
+    <teachers>8</teachers>
+    </building>
+    <building category="theoretical"  year="2004" profile="D" owner="Zamfir">
+	<space>2341</space>
+    <children>2300</children>
+    <teachers>1200</teachers>
+    </building>
+    <building category="theoretical"  year="2015" profile="E" owner="Gica">
+	<space>2234</space>
+    <children>2352</children>
+    <teachers>2300</teachers>
+    </building>
+    <building category="theoretical"  year="2018" profile="F" owner="Messi">
+	<space>120</space>
+    <children>40</children>
+    <teachers>34</teachers>
+    </building>
+    <building category="theoretical"  year="2003" profile="G" owner="Vector">
+	<space>2300</space>
+    <children>230</children>
+    <teachers>100</teachers>
+    </building>
+
+
+</school>

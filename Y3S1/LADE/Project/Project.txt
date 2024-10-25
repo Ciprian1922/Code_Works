@@ -1,0 +1,48 @@
+Multiple Solutions of a First-Order Initial
+Value Problem
+
+
+Courtesy of Bruce W. Atkinson, Samford University
+The initial value problem (IVP),
+(7) dy
+dx = 3y2/3 , y122 = 0 ,
+which was discussed in Example 9 and Problem 29 of Section 1.2, is an example of an IVP that has
+more than one solution. The goal of this project is to find all the solutions to (7) on 1 - ∞, + ∞2.
+It turns out that there are infinitely many! These solutions can be obtained by concatenating the
+three functions 1x - a23
+
+for x 6 a, the constant 0 for a ... x ... b, and 1x - b23
+
+for x 7 b, where
+
+a ... 2 ... b, as can be seen by completing the following steps:
+(a) Show that if y = ƒ1x2 is a solution to the differential equation dy>dx = 3y 2>3
+that
+is not zero on an open interval I, then on this interval ƒ1x2 must be of the form
+ƒ1x2 = 1x - c23
+
+for some constant c not in I.
+
+(b) Prove that if y = ƒ1x2 is a solution to the differential equation dy>dx = 3y 2>3
+on
+1 - ∞, + ∞2 and ƒ1a2 = ƒ1b2 = 0, where a 6 b, then ƒ1x2 = 0 for a ... x ... b.
+[Hint: Consider the sign of ƒ′.]
+(c) Now let y = g1x2 be a solution to the IVP (7) on 1 - ∞, + ∞2. Of course g122 = 0.
+If g vanishes at some point x 7 2, then let b be the largest of such points; otherwise, set
+b = 2. Similarly, if g vanishes at some point x 6 2, then let a be the smallest (furthest
+to the left) of such points; otherwise, set a = 2. Here we allow b = + ∞ and a = - ∞.
+(Because g is a continuous function, it can be proved that there always exist such largest
+and smallest points.) Using the results of parts (a) and (b) prove that if both a and b are
+finite, then g has the following form:
+g1x2 = •
+1x - a23 if x ... a
+0 if a 6 x ... b
+1x - b23 if x 7 b
+What is the form of g if b = + ∞? If a = - ∞? If both b = + ∞ and a = - ∞?
+(d) Verify directly that the above concatenated function g is indeed a solution to the IVP (7)
+
+for all choices of a and b with a ... 2 ... b. Also sketch the graph of several of the solu-
+tion function g in part (c) for various values of a and b, including infinite values.
+
+We have analyzed here a first-order IVP that not only fails to have a unique solution but has a
+solution set consisting of a doubly infinite family of functions (with a and b as the two parameters).

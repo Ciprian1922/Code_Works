@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School Buildings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>School Buildings</h1>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Year</th>
+            <th>Profile</th>
+            <th>Owner</th>
+            <th>Space</th>
+            <th>Children</th>
+            <th>Teachers</th>
+        </tr>
+        {% for building in buildings %}
+        <tr>
+            <td>{{ building.category }}</td>
+            <td>{{ building.year }}</td>
+            <td>{{ building.profile }}</td>
+            <td>{{ building.owner }}</td>
+            <td>{{ building.space }}</td>
+            <td>{{ building.children }}</td>
+            <td>{{ building.teachers }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
