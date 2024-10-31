@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <category name="Fiction">
+        <book ISBN="978-3-16-148410-0" copiesAvailable="5">
+            <title>The Great Gatsby</title>
+            <author>F. Scott Fitzgerald</author>
+            <publicationDate>1925-04-10</publicationDate>
+        </book>
+        <book ISBN="978-0-7432-7356-5" copiesAvailable="3">
+            <title>1984</title>
+            <author>George Orwell</author>
+            <publicationDate>1949-06-08</publicationDate>
+        </book>
+    </category>
+    
+    <category name="Science Fiction">
+        <book ISBN="978-0-553-80371-0" copiesAvailable="4">
+            <title>Dune</title>
+            <author>Frank Herbert</author>
+            <publicationDate>1965-08-01</publicationDate>
+        </book>
+        <book ISBN="978-0-7653-9090-2" copiesAvailable="2">
+            <title>Neuromancer</title>
+            <author>William Gibson</author>
+            <publicationDate>1984-07-01</publicationDate>
+        </book>
+    </category>
+    
+    <category name="Non-Fiction">
+        <book ISBN="978-0-06-230123-9" copiesAvailable="7">
+            <title>Sapiens: A Brief History of Humankind</title>
+            <author>Yuval Noah Harari</author>
+            <publicationDate>2011-01-01</publicationDate>
+        </book>
+        <book ISBN="978-1-4767-6298-5" copiesAvailable="3">
+            <title>Educated</title>
+            <author>Tara Westover</author>
+            <publicationDate>2018-02-20</publicationDate>
+        </book>
+    </category>
+    
+    <category name="Mystery">
+        <book ISBN="978-0-14-313764-2" copiesAvailable="4">
+            <title>The Girl with the Dragon Tattoo</title>
+            <author>Stieg Larsson</author>
+            <publicationDate>2005-08-01</publicationDate>
+        </book>
+        <book ISBN="978-0-525-51009-7" copiesAvailable="6">
+            <title>Gone Girl</title>
+            <author>Gillian Flynn</author>
+            <publicationDate>2012-06-05</publicationDate>
+        </book>
+    </category>
+</library>
