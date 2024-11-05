@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="library.xsl"?>
+<library name="City Library">
+    <category name="Classics">
+        <book title="Pride and Prejudice" author="Jane Austen" publication_date="1813-01-28" isbn="9781503290563" copies="4"/>
+        <book title="Moby-Dick" author="Herman Melville" publication_date="1851-10-18" isbn="9781503280786" copies="3"/>
+        <book title="Crime and Punishment" author="Fyodor Dostoevsky" publication_date="1866-01-01" isbn="9780486415871" copies="2"/>
+    </category>
+
+    <category name="Science Fiction">
+        <book title="Fahrenheit 451" author="Ray Bradbury" publication_date="1953-10-19" isbn="9781451673319" copies="5"/>
+        <book title="The War of the Worlds" author="H.G. Wells" publication_date="1898-01-01" isbn="9780486295060" copies="4"/>
+        <book title="Snow Crash" author="Neal Stephenson" publication_date="1992-06-01" isbn="9780553380958" copies="3"/>
+    </category>
+
+    <category name="Non-Fiction">
+        <book title="The Diary of a Young Girl" author="Anne Frank" publication_date="1947-06-25" isbn="9780553296983" copies="5"/>
+        <book title="A Brief History of Time" author="Stephen Hawking" publication_date="1988-04-01" isbn="9780553380163" copies="4"/>
+        <book title="The Art of War" author="Sun Tzu" publication_date="5th century BC" isbn="9781599869773" copies="6"/>
+    </category>
+
+    <category name="Fantasy">
+        <book title="The Hobbit" author="J.R.R. Tolkien" publication_date="1937-09-21" isbn="9780547928227" copies="7"/>
+        <book title="Harry Potter and the Philosopher's Stone" author="J.K. Rowling" publication_date="1997-06-26" isbn="9780747532699" copies="8"/>
+        <book title="American Gods" author="Neil Gaiman" publication_date="2001-06-19" isbn="9780062472106" copies="4"/>
+    </category>
+
+    <category name="Historical Fiction">
+        <book title="All the Light We Cannot See" author="Anthony Doerr" publication_date="2014-05-06" isbn="9781501173219" copies="3"/>
+        <book title="The Book Thief" author="Markus Zusak" publication_date="2005-03-14" isbn="9780375842207" copies="5"/>
+        <book title="The Pillars of the Earth" author="Ken Follett" publication_date="1989-09-29" isbn="9780451166890" copies="2"/>
+    </category>
+</library>

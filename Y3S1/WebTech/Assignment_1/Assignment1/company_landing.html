@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradyse</title>
+    <style>
+        /* Google font thing */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #fc466b, #3f5efb);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #f4f4f9;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 40px; /* Add more space below the header */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            font-weight: bold;
+            color: #f4f4f9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #f4f4f9;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #f4f4f9;
+            color: #fc466b;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px 0 40px; /* Add extra top and bottom margin for spacing */
+            width: 90%;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        section:hover {
+            transform: scale(1.05);
+        }
+
+        section h2 {
+            font-size: 2em;
+            color: #f4f4f9;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        section p {
+            font-size: 1.2em;
+            color: #f4f4f9;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            color: #f4f4f9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button, input[type="submit"] {
+            background: #fc466b;
+            color: #f4f4f9;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background: #3f5efb;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            section h2 {
+                font-size: 1.5em;
+            }
+
+            section p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Paradyse</h1>
+    </header>
+
+    <nav>
+        <a href="html5_tags.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="http_form.html">Contact</a>
+    </nav>
+
+    <section id="home">
+        <h2>Home Section</h2>
+        <p>Welcome to Paradyse, this section can be considered home :D</p>
+    </section>
+
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>Here you can feel yourself and nobody will ever care.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Nuke an email at this address: paradyse@heaven.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Paradyse.</p>
+    </footer>
+</body>
+</html>

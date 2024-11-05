@@ -1,0 +1,10 @@
+<!ELEMENT library (category+)>
+<!ATTLIST library name CDATA #REQUIRED>
+<!ELEMENT category (book+)>
+<!ATTLIST category name CDATA #REQUIRED>
+<!ELEMENT book EMPTY>
+<!ATTLIST book title CDATA #REQUIRED>
+<!ATTLIST book author CDATA #REQUIRED>
+<!ATTLIST book publication_date CDATA #REQUIRED>
+<!ATTLIST book isbn CDATA #REQUIRED>
+<!ATTLIST book copies CDATA #REQUIRED>
