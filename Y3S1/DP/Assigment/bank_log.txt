@@ -1,0 +1,526 @@
+2024-10-22 22:32:57 - Added client: Ionescu Ion
+2024-10-22 22:32:57 - Client Ionescu Ion added.
+2024-10-22 22:32:57 - Added client: Marinescu Marin
+2024-10-22 22:32:57 - Client Marinescu Marin added.
+2024-10-22 22:32:57 - Deposited 150 to client Ionescu Ion.
+2024-10-22 22:32:57 - Withdrew 50 from client Ionescu Ion.
+2024-10-22 22:36:15 - Added client: Ionescu Ion
+2024-10-22 22:36:15 - Client Ionescu Ion added.
+2024-10-22 22:36:15 - Added client: Marinescu Marin
+2024-10-22 22:36:15 - Client Marinescu Marin added.
+2024-10-22 22:36:15 - Added RON account for client Ionescu Ion.
+2024-10-22 22:36:15 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:36:15 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:36:15 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:37:46 - Added client: Ionescu Ion
+2024-10-22 22:37:46 - Client Ionescu Ion added.
+2024-10-22 22:37:46 - Added client: Marinescu Marin
+2024-10-22 22:37:46 - Client Marinescu Marin added.
+2024-10-22 22:37:46 - Added RON account for client Ionescu Ion.
+2024-10-22 22:37:46 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:37:46 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:37:46 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:44:29 - Added client: Ionescu Ion
+2024-10-22 22:44:29 - Client Ionescu Ion added.
+2024-10-22 22:44:29 - Added client: Marinescu Marin
+2024-10-22 22:44:29 - Client Marinescu Marin added.
+2024-10-22 22:44:29 - Added RON account for client Ionescu Ion.
+2024-10-22 22:44:29 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:44:29 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:44:29 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:45:38 - Added client: Ionescu Ion
+2024-10-22 22:45:38 - Client Ionescu Ion added.
+2024-10-22 22:45:38 - Added client: Marinescu Marin
+2024-10-22 22:45:38 - Client Marinescu Marin added.
+2024-10-22 22:45:38 - Added RON account for client Ionescu Ion.
+2024-10-22 22:45:38 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:45:45 - Added client: Ionescu Ion
+2024-10-22 22:45:45 - Client Ionescu Ion added.
+2024-10-22 22:45:45 - Added client: Marinescu Marin
+2024-10-22 22:45:45 - Client Marinescu Marin added.
+2024-10-22 22:45:45 - Added RON account for client Ionescu Ion.
+2024-10-22 22:45:45 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:45:45 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:45:45 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:49:55 - Added client: Ionescu Ion
+2024-10-22 22:49:55 - Client Ionescu Ion added.
+2024-10-22 22:49:55 - Added client: Marinescu Marin
+2024-10-22 22:49:55 - Client Marinescu Marin added.
+2024-10-22 22:49:55 - Added RON account for client Ionescu Ion.
+2024-10-22 22:49:55 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:49:55 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:49:55 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:50:02 - Added client: John Doe
+2024-10-22 22:50:02 - Added client: John Doe
+2024-10-22 22:50:02 - Added client: John Doe
+2024-10-22 22:50:02 - Added client: John Doe
+2024-10-22 22:50:02 - Added client: John Doe
+2024-10-22 22:50:02 - Added client: John Doe
+2024-10-22 22:50:49 - Added client: Ionescu Ion
+2024-10-22 22:50:49 - Client Ionescu Ion added.
+2024-10-22 22:50:49 - Added client: Marinescu Marin
+2024-10-22 22:50:49 - Client Marinescu Marin added.
+2024-10-22 22:50:49 - Added RON account for client Ionescu Ion.
+2024-10-22 22:50:49 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:50:49 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:50:49 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:50:51 - Added client: Ionescu Ion
+2024-10-22 22:50:51 - Client Ionescu Ion added.
+2024-10-22 22:50:51 - Added client: Marinescu Marin
+2024-10-22 22:50:51 - Client Marinescu Marin added.
+2024-10-22 22:50:51 - Added RON account for client Ionescu Ion.
+2024-10-22 22:50:51 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:50:51 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:50:51 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:51:35 - Added client: John Doe
+2024-10-22 22:51:35 - Added client: John Doe
+2024-10-22 22:51:35 - Added client: John Doe
+2024-10-22 22:51:35 - Added client: John Doe
+2024-10-22 22:51:35 - Added client: John Doe
+2024-10-22 22:51:51 - Added client: Ionescu Ion
+2024-10-22 22:51:51 - Client Ionescu Ion added.
+2024-10-22 22:51:51 - Added client: Marinescu Marin
+2024-10-22 22:51:51 - Client Marinescu Marin added.
+2024-10-22 22:51:51 - Added RON account for client Ionescu Ion.
+2024-10-22 22:51:51 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:51:57 - Added client: Ionescu Ion
+2024-10-22 22:51:57 - Client Ionescu Ion added.
+2024-10-22 22:51:57 - Added client: Marinescu Marin
+2024-10-22 22:51:57 - Client Marinescu Marin added.
+2024-10-22 22:51:57 - Added RON account for client Ionescu Ion.
+2024-10-22 22:51:57 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:51:57 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:51:57 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:56:36 - Added client: Ionescu Ion
+2024-10-22 22:56:36 - Added client: Marinescu Marin
+2024-10-22 22:56:36 - Client Marinescu Marin added.
+2024-10-22 22:56:36 - Added RON account for client Ionescu Ion.
+2024-10-22 22:56:36 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:56:36 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:56:36 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:56:49 - Added client: Ionescu Ion
+2024-10-22 22:56:49 - Client Ionescu Ion added.
+2024-10-22 22:56:49 - Added client: Marinescu Marin
+2024-10-22 22:56:49 - Client Marinescu Marin added.
+2024-10-22 22:56:49 - Added RON account for client Ionescu Ion.
+2024-10-22 22:56:49 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:56:49 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:56:49 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:57:09 - Added client: Ionescu Ion
+2024-10-22 22:57:09 - Added client: Marinescu Marin
+2024-10-22 22:57:09 - Added RON account for client Ionescu Ion.
+2024-10-22 22:57:09 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:57:09 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:57:09 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:57:38 - Added client: Ionescu Ion
+2024-10-22 22:57:38 - Client Ionescu Ion added.
+2024-10-22 22:57:38 - Added client: Marinescu Marin
+2024-10-22 22:57:38 - Client Marinescu Marin added.
+2024-10-22 22:57:38 - Added RON account for client Ionescu Ion.
+2024-10-22 22:57:38 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:57:38 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:57:38 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 22:58:18 - Added client: Ionescu Ion
+2024-10-22 22:58:18 - Client Ionescu Ion added.
+2024-10-22 22:58:18 - Added client: Marinescu Marin
+2024-10-22 22:58:18 - Client Marinescu Marin added.
+2024-10-22 22:58:18 - Added RON account for client Ionescu Ion.
+2024-10-22 22:58:18 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 22:58:18 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 22:58:18 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 23:04:38 - Added client: Ionescu Ion
+2024-10-22 23:04:38 - Client Ionescu Ion added.
+2024-10-22 23:04:38 - Added client: Marinescu Marin
+2024-10-22 23:04:38 - Client Marinescu Marin added.
+2024-10-22 23:04:38 - Added RON account for client Ionescu Ion.
+2024-10-22 23:04:38 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 23:04:38 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 23:04:38 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 23:07:11 - Added client: Ionescu Ion
+2024-10-22 23:07:11 - Client Ionescu Ion added.
+2024-10-22 23:07:11 - Added client: Marinescu Marin
+2024-10-22 23:07:11 - Client Marinescu Marin added.
+2024-10-22 23:07:11 - Added RON account for client Ionescu Ion.
+2024-10-22 23:07:11 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 23:07:11 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 23:07:11 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 23:09:56 - Added client: Ionescu Ion
+2024-10-22 23:09:56 - Client Ionescu Ion added.
+2024-10-22 23:09:56 - Added client: Marinescu Marin
+2024-10-22 23:09:56 - Client Marinescu Marin added.
+2024-10-22 23:09:56 - Added RON account for client Ionescu Ion.
+2024-10-22 23:09:56 - Client Ionescu got 300
+2024-10-22 23:09:56 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 23:09:56 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 23:09:56 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-22 23:10:15 - Added client: Ionescu Ion
+2024-10-22 23:10:15 - Client Ionescu Ion added.
+2024-10-22 23:10:15 - Added client: Marinescu Marin
+2024-10-22 23:10:15 - Client Marinescu Marin added.
+2024-10-22 23:10:15 - Added RON account for client Ionescu Ion.
+2024-10-22 23:10:15 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-22 23:10:15 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-22 23:10:15 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-23 21:02:48 - Added client: Ionescu Ion
+2024-10-23 21:02:48 - Client Ionescu Ion added.
+2024-10-23 21:02:48 - Added client: Marinescu Marin
+2024-10-23 21:02:48 - Client Marinescu Marin added.
+2024-10-23 21:02:48 - Added client: Evelin Miller
+2024-10-23 21:02:48 - Client Evelin Miller added.
+2024-10-23 21:02:48 - Added RON account for client Ionescu Ion.
+2024-10-23 21:02:48 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-23 21:02:48 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-23 21:02:48 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-23 21:04:33 - Added client: Ionescu Ion
+2024-10-23 21:04:33 - Client Ionescu Ion added.
+2024-10-23 21:04:33 - Added client: Marinescu Marin
+2024-10-23 21:04:33 - Client Marinescu Marin added.
+2024-10-23 21:04:33 - Added client: Evelin Miller
+2024-10-23 21:04:33 - Client Evelin Miller added.
+2024-10-23 21:04:33 - Removed client: Evelin Miller
+2024-10-23 21:04:33 - Client Evelin Miller removed
+2024-10-23 21:04:33 - Added RON account for client Ionescu Ion.
+2024-10-23 21:04:33 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-23 21:04:33 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-23 21:04:33 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-23 21:05:56 - Added client: Ionescu Ion
+2024-10-23 21:05:56 - Client Ionescu Ion added.
+2024-10-23 21:05:56 - Added client: Marinescu Marin
+2024-10-23 21:05:56 - Client Marinescu Marin added.
+2024-10-23 21:05:56 - Added client: Evelin Miller
+2024-10-23 21:05:56 - Client Evelin Miller added.
+2024-10-23 21:05:56 - Removed client: Evelin Miller
+2024-10-23 21:05:56 - Client Evelin Miller removed
+2024-10-23 21:05:56 - Added RON account for client Ionescu Ion.
+2024-10-23 21:05:56 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-23 21:05:56 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-23 21:05:56 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-23 21:13:37 - Added client: John Doe
+2024-10-23 21:13:37 - Added client: John Doe
+2024-10-23 21:13:37 - Added client: John Doe
+2024-10-23 21:13:37 - Added client: John Doe
+2024-10-23 21:13:37 - Added client: John Doe
+2024-10-24 13:11:25 - Added client: Ionescu Ion
+2024-10-24 13:11:25 - Client Ionescu Ion added.
+2024-10-24 13:11:25 - Added client: Marinescu Marin
+2024-10-24 13:11:25 - Client Marinescu Marin added.
+2024-10-24 13:11:25 - Added client: Evelin Miller
+2024-10-24 13:11:25 - Client Evelin Miller added.
+2024-10-24 13:11:25 - Removed client: Evelin Miller
+2024-10-24 13:11:25 - Client Evelin Miller removed
+2024-10-24 13:11:25 - Added RON account for client Ionescu Ion.
+2024-10-24 13:11:25 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 13:11:25 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 13:11:25 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 13:12:19 - Added client: Ionescu Ion
+2024-10-24 13:12:19 - Client Ionescu Ion added.
+2024-10-24 13:12:19 - Added client: Marinescu Marin
+2024-10-24 13:12:19 - Client Marinescu Marin added.
+2024-10-24 13:12:19 - Added client: Evelin Miller
+2024-10-24 13:12:19 - Client Evelin Miller added.
+2024-10-24 13:12:19 - Removed client: Evelin Miller
+2024-10-24 13:12:19 - Client Evelin Miller removed
+2024-10-24 13:12:19 - Added RON account for client Ionescu Ion.
+2024-10-24 13:12:19 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 13:12:19 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 13:12:35 - Added client: Ionescu Ion
+2024-10-24 13:12:35 - Client Ionescu Ion added.
+2024-10-24 13:12:35 - Added client: Marinescu Marin
+2024-10-24 13:12:35 - Client Marinescu Marin added.
+2024-10-24 13:12:35 - Added client: Evelin Miller
+2024-10-24 13:12:35 - Client Evelin Miller added.
+2024-10-24 13:12:35 - Removed client: Evelin Miller
+2024-10-24 13:12:35 - Client Evelin Miller removed
+2024-10-24 13:12:35 - Added RON account for client Ionescu Ion.
+2024-10-24 13:12:35 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 13:12:35 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 13:12:35 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 13:12:48 - Added client: Ionescu Ion
+2024-10-24 13:12:48 - Client Ionescu Ion added.
+2024-10-24 13:12:48 - Added client: Marinescu Marin
+2024-10-24 13:12:48 - Client Marinescu Marin added.
+2024-10-24 13:12:48 - Added client: Evelin Miller
+2024-10-24 13:12:48 - Client Evelin Miller added.
+2024-10-24 13:12:48 - Removed client: Evelin Miller
+2024-10-24 13:12:48 - Client Evelin Miller removed
+2024-10-24 13:12:48 - Added RON account for client Ionescu Ion.
+2024-10-24 13:12:48 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 13:12:55 - Added client: Ionescu Ion
+2024-10-24 13:12:55 - Client Ionescu Ion added.
+2024-10-24 13:12:55 - Added client: Marinescu Marin
+2024-10-24 13:12:55 - Client Marinescu Marin added.
+2024-10-24 13:12:55 - Added client: Evelin Miller
+2024-10-24 13:12:55 - Client Evelin Miller added.
+2024-10-24 13:12:55 - Removed client: Evelin Miller
+2024-10-24 13:12:55 - Client Evelin Miller removed
+2024-10-24 13:12:55 - Added RON account for client Ionescu Ion.
+2024-10-24 13:12:55 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 13:12:55 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 13:12:55 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:05:18 - Added client: Ionescu Ion
+2024-10-24 14:05:18 - Client Ionescu Ion added.
+2024-10-24 14:05:18 - Added client: Marinescu Marin
+2024-10-24 14:05:18 - Client Marinescu Marin added.
+2024-10-24 14:05:18 - Added client: Evelin Miller
+2024-10-24 14:05:18 - Client Evelin Miller added.
+2024-10-24 14:05:18 - Removed client: Evelin Miller
+2024-10-24 14:05:18 - Client Evelin Miller removed
+2024-10-24 14:05:18 - Added RON account for client Ionescu Ion.
+2024-10-24 14:05:18 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:05:18 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:05:18 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:12:19 - Added client: Ionescu Ion
+2024-10-24 14:12:19 - Client Ionescu Ion added.
+2024-10-24 14:12:19 - Added client: Marinescu Marin
+2024-10-24 14:12:19 - Client Marinescu Marin added.
+2024-10-24 14:12:19 - Added client: Evelin Miller
+2024-10-24 14:12:19 - Client Evelin Miller added.
+2024-10-24 14:12:19 - Removed client: Evelin Miller
+2024-10-24 14:12:19 - Client Evelin Miller removed
+2024-10-24 14:12:19 - Added RON account for client Ionescu Ion.
+2024-10-24 14:12:19 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:12:19 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:12:19 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:15:23 - Added client: Ionescu Ion
+2024-10-24 14:15:23 - Client Ionescu Ion added.
+2024-10-24 14:15:23 - Added client: Marinescu Marin
+2024-10-24 14:15:23 - Client Marinescu Marin added.
+2024-10-24 14:15:23 - Added client: Evelin Miller
+2024-10-24 14:15:23 - Client Evelin Miller added.
+2024-10-24 14:15:23 - Removed client: Evelin Miller
+2024-10-24 14:15:23 - Client Evelin Miller removed
+2024-10-24 14:15:23 - Added RON account for client Ionescu Ion.
+2024-10-24 14:15:23 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:15:23 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:15:23 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:15:47 - Added client: Ionescu Ion
+2024-10-24 14:15:47 - Client Ionescu Ion added.
+2024-10-24 14:15:47 - Added client: Marinescu Marin
+2024-10-24 14:15:47 - Client Marinescu Marin added.
+2024-10-24 14:15:47 - Added client: Evelin Miller
+2024-10-24 14:15:47 - Client Evelin Miller added.
+2024-10-24 14:15:47 - Removed client: Evelin Miller
+2024-10-24 14:15:47 - Client Evelin Miller removed
+2024-10-24 14:15:47 - Added RON account for client Ionescu Ion.
+2024-10-24 14:15:47 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:15:47 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:15:47 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:16:27 - Added client: Ionescu Ion
+2024-10-24 14:16:27 - Client Ionescu Ion added.
+2024-10-24 14:16:27 - Added client: Marinescu Marin
+2024-10-24 14:16:27 - Client Marinescu Marin added.
+2024-10-24 14:16:27 - Added client: Evelin Miller
+2024-10-24 14:16:27 - Client Evelin Miller added.
+2024-10-24 14:16:27 - Removed client: Evelin Miller
+2024-10-24 14:16:27 - Client Evelin Miller removed
+2024-10-24 14:16:27 - Added RON account for client Ionescu Ion.
+2024-10-24 14:16:27 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:16:27 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:16:27 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:17:07 - Added client: Ionescu Ion
+2024-10-24 14:17:07 - Client Ionescu Ion added.
+2024-10-24 14:17:07 - Added client: Marinescu Marin
+2024-10-24 14:17:07 - Client Marinescu Marin added.
+2024-10-24 14:17:07 - Added client: Evelin Miller
+2024-10-24 14:17:07 - Client Evelin Miller added.
+2024-10-24 14:17:07 - Removed client: Evelin Miller
+2024-10-24 14:17:07 - Client Evelin Miller removed
+2024-10-24 14:17:07 - Added RON account for client Ionescu Ion.
+2024-10-24 14:17:07 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:17:07 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:17:07 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:17:44 - Added client: Ionescu Ion
+2024-10-24 14:17:44 - Client Ionescu Ion added.
+2024-10-24 14:17:44 - Added client: Marinescu Marin
+2024-10-24 14:17:44 - Client Marinescu Marin added.
+2024-10-24 14:17:44 - Added client: Evelin Miller
+2024-10-24 14:17:44 - Client Evelin Miller added.
+2024-10-24 14:17:44 - Removed client: Evelin Miller
+2024-10-24 14:17:44 - Client Evelin Miller removed
+2024-10-24 14:17:44 - Added RON account for client Ionescu Ion.
+2024-10-24 14:17:44 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:17:44 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:17:44 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:18:55 - Added client: Ionescu Ion
+2024-10-24 14:18:55 - Client Ionescu Ion added.
+2024-10-24 14:18:55 - Added client: Marinescu Marin
+2024-10-24 14:18:55 - Client Marinescu Marin added.
+2024-10-24 14:18:55 - Added client: Evelin Miller
+2024-10-24 14:18:55 - Client Evelin Miller added.
+2024-10-24 14:18:55 - Removed client: Evelin Miller
+2024-10-24 14:18:55 - Client Evelin Miller removed
+2024-10-24 14:18:55 - Added RON account for client Ionescu Ion.
+2024-10-24 14:18:55 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:18:55 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:18:55 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 14:47:54 - Added client: Ionescu Ion
+2024-10-24 14:47:54 - Client Ionescu Ion added.
+2024-10-24 14:47:54 - Added client: Marinescu Marin
+2024-10-24 14:47:54 - Client Marinescu Marin added.
+2024-10-24 14:47:54 - Added client: Evelin Miller
+2024-10-24 14:47:54 - Client Evelin Miller added.
+2024-10-24 14:47:54 - Removed client: Evelin Miller
+2024-10-24 14:47:54 - Client Evelin Miller removed
+2024-10-24 14:47:54 - Added RON account for client Ionescu Ion.
+2024-10-24 14:47:54 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 14:47:54 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 14:47:54 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-10-24 15:06:04 - Added client: Ionescu Ion
+2024-10-24 15:06:04 - Client Ionescu Ion added.
+2024-10-24 15:06:04 - Added client: Marinescu Marin
+2024-10-24 15:06:04 - Client Marinescu Marin added.
+2024-10-24 15:06:04 - Added client: Evelin Miller
+2024-10-24 15:06:04 - Client Evelin Miller added.
+2024-10-24 15:06:04 - Removed client: Evelin Miller
+2024-10-24 15:06:04 - Client Evelin Miller removed
+2024-10-24 15:06:04 - Added RON account for client Ionescu Ion.
+2024-10-24 15:06:04 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-10-24 15:06:04 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-10-24 15:06:04 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 18:01:22 - Added client: Ionescu Ion
+2024-11-06 18:01:22 - Client Ionescu Ion added.
+2024-11-06 18:01:22 - Added client: Marinescu Marin
+2024-11-06 18:01:22 - Client Marinescu Marin added.
+2024-11-06 18:01:22 - Added client: Evelin Miller
+2024-11-06 18:01:22 - Client Evelin Miller added.
+2024-11-06 18:01:22 - Removed client: Evelin Miller
+2024-11-06 18:01:22 - Client Evelin Miller removed
+2024-11-06 18:01:22 - Added RON account for client Ionescu Ion.
+2024-11-06 18:01:22 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 18:01:22 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 18:01:22 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 18:34:47 - Added client: Ionescu Ion
+2024-11-06 18:34:47 - Client Ionescu Ion added.
+2024-11-06 18:34:47 - Added client: Marinescu Marin
+2024-11-06 18:34:47 - Client Marinescu Marin added.
+2024-11-06 18:34:47 - Added client: Evelin Miller
+2024-11-06 18:34:47 - Client Evelin Miller added.
+2024-11-06 18:34:47 - Removed client: Evelin Miller
+2024-11-06 18:34:47 - Client Evelin Miller removed
+2024-11-06 18:34:47 - Added RON account for client Ionescu Ion.
+2024-11-06 18:34:47 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 18:34:47 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 18:34:47 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 18:36:42 - Added client: John Doe
+2024-11-06 18:36:42 - Added client: John Doe
+2024-11-06 18:36:42 - Added client: John Doe
+2024-11-06 18:36:42 - Added client: John Doe
+2024-11-06 18:36:42 - Added client: John Doe
+2024-11-06 18:39:13 - Added client: Ionescu Ion
+2024-11-06 18:39:13 - Client Ionescu Ion added.
+2024-11-06 18:39:13 - Added client: Marinescu Marin
+2024-11-06 18:39:13 - Client Marinescu Marin added.
+2024-11-06 18:39:13 - Added client: Evelin Miller
+2024-11-06 18:39:13 - Client Evelin Miller added.
+2024-11-06 18:39:13 - Removed client: Evelin Miller
+2024-11-06 18:39:13 - Client Evelin Miller removed
+2024-11-06 18:39:13 - Added RON account for client Ionescu Ion.
+2024-11-06 18:39:13 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 18:39:13 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 18:39:13 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 18:39:25 - Added client: John Doe
+2024-11-06 18:39:25 - Added client: John Doe
+2024-11-06 18:39:25 - Added client: John Doe
+2024-11-06 18:39:25 - Added client: John Doe
+2024-11-06 18:39:25 - Added client: John Doe
+2024-11-06 20:42:59 - Added client: Ionescu Ion
+2024-11-06 20:42:59 - Client Ionescu Ion added.
+2024-11-06 20:42:59 - Added client: Marinescu Marin
+2024-11-06 20:42:59 - Client Marinescu Marin added.
+2024-11-06 20:42:59 - Added client: Evelin Miller
+2024-11-06 20:42:59 - Client Evelin Miller added.
+2024-11-06 20:42:59 - Removed client: Evelin Miller
+2024-11-06 20:42:59 - Client Evelin Miller removed
+2024-11-06 20:42:59 - Added RON account for client Ionescu Ion.
+2024-11-06 20:42:59 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 20:42:59 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 20:43:32 - Added client: Ionescu Ion
+2024-11-06 20:43:32 - Client Ionescu Ion added.
+2024-11-06 20:43:32 - Added client: Marinescu Marin
+2024-11-06 20:43:32 - Client Marinescu Marin added.
+2024-11-06 20:43:32 - Added client: Evelin Miller
+2024-11-06 20:43:32 - Client Evelin Miller added.
+2024-11-06 20:43:32 - Removed client: Evelin Miller
+2024-11-06 20:43:32 - Client Evelin Miller removed
+2024-11-06 20:43:32 - Added RON account for client Ionescu Ion.
+2024-11-06 20:43:32 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 20:43:32 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 20:46:02 - Added client: Ionescu Ion
+2024-11-06 20:46:02 - Client Ionescu Ion added.
+2024-11-06 20:46:02 - Added client: Marinescu Marin
+2024-11-06 20:46:02 - Client Marinescu Marin added.
+2024-11-06 20:46:02 - Added client: Evelin Miller
+2024-11-06 20:46:02 - Client Evelin Miller added.
+2024-11-06 20:46:02 - Removed client: Evelin Miller
+2024-11-06 20:46:02 - Client Evelin Miller removed
+2024-11-06 20:46:02 - Added RON account for client Ionescu Ion.
+2024-11-06 20:46:02 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 20:46:02 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 20:47:59 - Added client: Ionescu Ion
+2024-11-06 20:47:59 - Client Ionescu Ion added.
+2024-11-06 20:47:59 - Added client: Marinescu Marin
+2024-11-06 20:47:59 - Client Marinescu Marin added.
+2024-11-06 20:47:59 - Added client: Evelin Miller
+2024-11-06 20:47:59 - Client Evelin Miller added.
+2024-11-06 20:47:59 - Removed client: Evelin Miller
+2024-11-06 20:47:59 - Client Evelin Miller removed
+2024-11-06 20:47:59 - Added RON account for client Ionescu Ion.
+2024-11-06 20:47:59 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 20:47:59 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 20:47:59 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 20:48:18 - Added client: Ionescu Ion
+2024-11-06 20:48:18 - Client Ionescu Ion added.
+2024-11-06 20:48:19 - Added client: Marinescu Marin
+2024-11-06 20:48:19 - Client Marinescu Marin added.
+2024-11-06 20:48:19 - Added client: Evelin Miller
+2024-11-06 20:48:19 - Client Evelin Miller added.
+2024-11-06 20:48:19 - Removed client: Evelin Miller
+2024-11-06 20:48:19 - Client Evelin Miller removed
+2024-11-06 20:48:19 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 20:48:19 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 20:48:28 - Added client: Ionescu Ion
+2024-11-06 20:48:28 - Client Ionescu Ion added.
+2024-11-06 20:48:28 - Added client: Marinescu Marin
+2024-11-06 20:48:28 - Client Marinescu Marin added.
+2024-11-06 20:48:28 - Added client: Evelin Miller
+2024-11-06 20:48:28 - Client Evelin Miller added.
+2024-11-06 20:48:28 - Removed client: Evelin Miller
+2024-11-06 20:48:28 - Client Evelin Miller removed
+2024-11-06 20:48:28 - Added RON account for client Ionescu Ion.
+2024-11-06 20:48:28 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 20:48:28 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 20:48:28 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 21:07:25 - Added client: Ionescu Ion
+2024-11-06 21:07:25 - Client Ionescu Ion added.
+2024-11-06 21:07:25 - Added client: Marinescu Marin
+2024-11-06 21:07:25 - Client Marinescu Marin added.
+2024-11-06 21:07:25 - Added client: Evelin Miller
+2024-11-06 21:07:25 - Client Evelin Miller added.
+2024-11-06 21:07:25 - Removed client: Evelin Miller
+2024-11-06 21:07:25 - Client Evelin Miller removed
+2024-11-06 21:07:25 - Added RON account for client Ionescu Ion.
+2024-11-06 21:07:25 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 21:07:25 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 21:07:25 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 21:07:46 - Added client: John Doe
+2024-11-06 21:07:46 - Added client: John Doe
+2024-11-06 21:07:46 - Added client: John Doe
+2024-11-06 21:07:46 - Added client: John Doe
+2024-11-06 21:07:46 - Added client: John Doe
+2024-11-06 22:27:37 - Added client: Ionescu Ion
+2024-11-06 22:27:37 - Client Ionescu Ion added.
+2024-11-06 22:27:37 - Added client: Marinescu Marin
+2024-11-06 22:27:37 - Client Marinescu Marin added.
+2024-11-06 22:27:37 - Added client: Evelin Miller
+2024-11-06 22:27:37 - Client Evelin Miller added.
+2024-11-06 22:27:37 - Removed client: Evelin Miller
+2024-11-06 22:27:37 - Client Evelin Miller removed
+2024-11-06 22:27:37 - Added RON account for client Ionescu Ion.
+2024-11-06 22:27:37 - Deposited 150 to EUR account of client Ionescu Ion.
+2024-11-06 22:27:37 - Withdrew 50 from EUR account of client Ionescu Ion.
+2024-11-06 22:27:37 - Transferred 40 RON from client Marinescu Marin to client Ionescu Ion.
+2024-11-06 22:27:51 - Added client: John Doe
+2024-11-06 22:27:51 - Added client: John Doe
+2024-11-06 22:27:51 - Added client: John Doe
+2024-11-06 22:27:51 - Added client: John Doe
+2024-11-06 22:27:51 - Added client: John Doe

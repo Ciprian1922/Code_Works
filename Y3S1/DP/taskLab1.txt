@@ -1,0 +1,17 @@
+use only one language in the project
+
+validate the amount that is retrieve/depose in a bank account
+-Using the exception mechanism - complete
+
+Replace the clients arrat and accounts array with collection from collection class framework
+-Fully implemented
+
+Group class in packages
+
+Automated test fully tested
+
+Daily report of the operations done in a bank
+
+daily report of the added/removed clients/accounts from the bank
+
+

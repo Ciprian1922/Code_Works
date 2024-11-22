@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<h1> {{ post.title }} </h1>
+<i>Written on {{ post.posted }} by {{ post.posted_by.username }}</i>
+
+<p>
+  {{ post.body }}
+</p>
+{% endblock %}
