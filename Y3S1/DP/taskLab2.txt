@@ -1,0 +1,337 @@
+Implement Builder pattern, singleton and  factory method or abstract factory patterns
+
+Builder Pattern
+Implement Builder Patten for Client Class - implementation - usage demo - unit tests
+-Implement+Demo+Unit Test
+
+Refactor account creation using a design pattern
+Implement Abstract Factory or Factory Method for Account Class - implementation - refactor code to use the implemented pattern - usage demo - unit tests
+- implementation - refactor code to use the implemented pattern - usage demo - unit tests
+
+Singleton
+-Identify a scenario for Singleton pattern and implement
+- implementation - demo usage - unit test cases
+
+
+
+
+
+
+package test;
+
+import accounts.Account;
+import accounts.AccountRON;
+import bank.Bank;
+import bank.Client;
+
+public class Test {
+
+	public static void main(String[] args) {
+		/**
+		 * Create BCR bank with 2 clients
+		 */
+		Bank bcr = new Bank("Banca BCR");
+		// creare client Ionescu cu 2 conturi unul in EUR si unul in RON
+		Client cl1 = new Client("Ionescu Ion", "Timisoara", Account.TYPE.EUR, "EUR124", 200.9);
+		bcr.addClient(cl1);
+		cl1.addAccount(Account.TYPE.RON, "RON1234", 400);
+		// creare client Marinecu cu un cont in RON
+		Client cl2 = new Client("Marinescu Marin", "Timisoara", Account.TYPE.RON, "RON126", 100);
+		bcr.addClient(cl2);
+		System.out.println(bcr);
+
+		/**
+		 * Create bank CEC with one client
+		 */
+		Bank cec = new Bank("Banca CEC");
+		Client clientCEC = new Client("Vasilescu Vasile", "Brasov", Account.TYPE.EUR, "EUR128", 700);
+		cec.addClient(clientCEC);
+		System.out.println(cec);
+
+		//depose in account RON126 of client Marinescu
+		Client cl = bcr.getClient("Marinescu Marin");
+		if (cl != null) {
+			cl.getAccount("RON126").depose(400);
+			System.out.println(cl);
+		}
+
+		//retrieve from account RON126 of Marinescu
+		if (cl != null) {
+			cl.getAccount("RON126").retrieve(67);
+			System.out.println(cl);
+		}
+
+		//tranfer between accounts RON126 si RON1234
+		AccountRON c1 = (AccountRON) cl.getAccount("RON126");
+		AccountRON c2 = (AccountRON) bcr.getClient("Ionescu Ion").getAccount("RON1234");
+		c1.transfer(c2, 40);
+		System.out.println(bcr);
+
+	}
+
+}
+
+package test;
+
+import accounts.Account;
+import accounts.AccountRON;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TestAccount {
+
+    @Test
+    public void testDeposePositiveAmount() {
+        Account account = new AccountRON("RON1234", 100);
+        account.depose(50);
+        assertEquals(150, account.getAmount());  // Use getAmount() to exclude interest
+    }
+
+    @Test
+    public void testDeposeNegativeAmount() {
+        Account account = new AccountRON("RON1234", 100);
+        assertThrows(IllegalArgumentException.class, () -> account.depose(-50));
+    }
+
+    @Test
+    public void testRetrieveExceedingBalance() {
+        Account account = new AccountRON("RON1234", 100);
+        assertThrows(IllegalArgumentException.class, () -> account.retrieve(200));
+    }
+
+    @Test
+    public void testRetrieveWithinBalance() {
+        Account account = new AccountRON("RON1234", 100);
+        account.retrieve(50);
+        assertEquals(50, account.getAmount());  // Use getAmount() to exclude interest
+    }
+}
+
+
+package singleton;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+/**
+ * Handles generating and saving daily reports for the bank.
+ */
+public class DailyReport {
+
+    /**
+     * Saves the provided report to a file.
+     */
+    public static void saveReportToFile(String report, String fileName) {
+        try (FileWriter writer = new FileWriter(fileName, true)) {
+            writer.write(report);
+            writer.write("\n");
+            AppLogger.logInfo("Saved report to file: " + fileName); //LOGGING FUNCTIONALITY
+        } catch (IOException e) {
+            AppLogger.logWarning("Failed to save report: " + e.getMessage()); //LOGGING EXCEPTION HANDLING
+        }
+    }
+}
+
+package singleton;
+
+import java.util.logging.Logger;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
+import java.io.IOException;
+
+/**
+  logging for the entire application
+  logs information to a file called bank_operations.log
+ */
+public class AppLogger {
+    private static Logger logger = Logger.getLogger("BankLogger");
+
+    static {
+        try {
+            FileHandler fileHandler = new FileHandler("bank_operations.log", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+            logger.setUseParentHandlers(false);
+        } catch (IOException e) {
+            System.err.println("Failed to initialize logger: " + e.getMessage());
+        }
+    }
+
+    public static void logInfo(String message) {
+        logger.info(message);
+    }
+
+    public static void logWarning(String message) {
+        logger.warning(message);
+    }
+}
+
+package operations;
+
+import accounts.Account;
+
+public interface Transfer {
+	public void transfer(Account c, double s);  //TRANSFER FUNCTIONALITY
+}
+
+
+package operations;
+
+public interface Operations {
+	public double getTotalAmount();
+
+	public double getInterest();
+
+	public void depose(double amount);
+
+	public void retrieve(double amount);
+}
+
+
+package exceptions;
+
+public class RetrieveAmountException extends IllegalArgumentException {
+    public RetrieveAmountException(String message) {
+        super(message); // Pass the message to the superclass (IllegalArgumentException)
+    }
+}
+
+
+package exceptions;
+
+public class DepositAmountException extends IllegalArgumentException {
+    public DepositAmountException(String message) {
+        super(message); // Pass the message to the superclass (IllegalArgumentException)
+    }
+}
+
+package bank;
+
+import accounts.Account;
+import accounts.AccountRON;
+import accounts.ContEUR;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Client {
+	private String name;
+	private String address;
+	private List<Account> accounts;    //LAB1 Task(List) - client holds multiple accounts
+
+	public Client(String name, String address, Account.TYPE type, String accountCode, double amount) {
+		this.name = name;
+		this.address = address;
+		this.accounts = new ArrayList<>();    //LAB1 Task(List)
+		addAccount(type, accountCode, amount);
+	}
+
+	public void addAccount(Account.TYPE type, String accountCode, double amount) {
+		Account account = (type == Account.TYPE.EUR) ? new ContEUR(accountCode, amount) : new AccountRON(accountCode, amount);
+		accounts.add(account);
+	}
+
+	public Account getAccount(String accountCode) {
+		for (Account account : accounts) {
+			if (account.getAccountNumber().equals(accountCode)) {
+				return account;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "\n\tbank.Client [name=" + name + ", address=" + address + ", accounts=" + accounts + "]";
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String nume) {
+		this.name = nume;
+	}
+}
+
+package bank;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Bank {
+	private List<Client> clients;
+	private String bankCode;
+
+	public Bank(String codBanca) {
+		this.bankCode = codBanca;
+		this.clients = new ArrayList<>();   //LAB1 Task(List) CLIENT List for each bank
+	}
+
+	public void addClient(Client c) {
+		clients.add(c);
+	}
+
+	public Client getClient(String name) {
+		for (Client client : clients) {
+			if (client.getName().equals(name)) {
+				return client;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "bank.Bank [code=" + bankCode + ", clients=" + clients + "]";
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

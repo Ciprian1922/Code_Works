@@ -1,0 +1,71 @@
+\subsection{Related Work 1: Smart Plant Watering System}
+\begin{itemize}
+    \item \textbf{Resource author}: Mohsen Niazian and Gniewko Niedbała
+    \item \textbf{Resource name}: Machine Learning for Plant Breeding and Biotechnology
+    \item \textbf{Subject}: The paper describes a system that monitors environmental conditions like soil moisture, temperature, and humidity to automate plant irrigation.
+    \item \textbf{Addressed problem}: How to automate plant irrigation based on real-time environmental data. 
+    \item \textbf{Methods/methodology used}: Environmental sensors (soil moisture, pH, flame, etc.) and an Arduino UNO microcontroller were used to collect and process data for irrigation decisions.
+    \item \textbf{Used algorithms}: FindS algorithm to generate hypotheses about plant health based on sensor inputs.
+    \item \textbf{Test data}: Simulated environmental data was used to test the system.
+\end{itemize}
+
+
+\subsection{Related Work 2: Remote Control for Smart Homes}
+\begin{itemize}
+    \item \textbf{Resource author}: Amir Rajabzadeh, Ali Reza Manashty, Zahra Forootan Jahromi
+    \item \textbf{Resource name}: A Generic Model for Smart House Remote Control 
+Systems with Software and Hardware Simulators
+    \item \textbf{Subject}: The paper proposes a model for remotely controlling smart homes using web and mobile platforms.
+    \item \textbf{Addressed problem}: Providing remote access and control for smart home devices without the need for a physical setup.
+    \item \textbf{Methods/methodology used}: Integration of software and hardware simulators for testing smart homes remotely. GSM modems were used for communication.
+    \item \textbf{Test data}: Simulated smart home environments for scenario testing.
+\end{itemize}
+
+\subsection{Related Work 3: AI-Based Seamless Vehicle License Plate Recognition Using Raspberry Pi Technology}
+\begin{itemize}
+    \item \textbf{Resource author}: Alvis Abreo, Mayur C, Somnath Sinha
+    \item \textbf{Resource name}: AI-Based Seamless Vehicle License Plate Recognition Using Raspberry Pi Technology
+    \item \textbf{Subject}: The paper discusses a vehicle management system for Christ University, utilizing YOLOv8 for vehicle detection and Tesseract OCR for license plate recognition to enhance security and manage vehicular movement.
+    \item \textbf{Addressed problem}: How to improve campus security by preventing unauthorized vehicle access and optimizing traffic and parking management.
+    \item \textbf{Methods/methodology used}: The system leverages Raspberry Pi 4 (8GB RAM) for video analysis, YOLOv8 for real-time vehicle detection, and Tesseract OCR for license plate recognition. It captures vehicle images and processes them using high-performance object detection and OCR technologies.
+    \item \textbf{Used algorithms}: YOLOv8 (object detection) and Tesseract OCR (optical character recognition).
+    \item \textbf{Test data}: Real-time vehicle data from Christ University campus was used for testing the system, validating both detection and recognition processes.
+\end{itemize}
+
+
+\subsection{Related Work 4: Implementation of Voice Based Home Automation System Using Raspberry Pi}
+\begin{itemize}
+    \item \textbf{Resource Author:} Harshada Rajput, Karuna Sawant, Dipika Shetty, Punit Shukla, Prof. Amit Chougule;
+    \item \textbf{Resource Name:} Implementation of Voice Based Home Automation System Using Raspberry Pi;
+    \item \textbf{Subject:} The paper aims to design a voice-controlled home automation system using a Raspberry Pi and Android device to facilitate easy control of home appliances, particularly for elderly and disabled people;
+    \item \textbf{Addressed Problem:} The challenge addressed is how to simplify the control of household devices for individuals who have difficulty in manually operating them, making life easier through automation;
+    \item \textbf{Methods/Methodology:} The system uses an Android-based application that receives voice commands from users. The commands are processed by the Raspberry Pi through Wi-Fi, enabling the automation of devices such as lights and fans. Voice commands are converted to text on the Android device and transmitted to the Raspberry Pi for action;
+    \item \textbf{Used Algorithms:} Voice-to-text conversion on Android devices, signal processing on the Raspberry Pi, and a relay-based system for controlling electrical appliances;
+    \item \textbf{Test Data:} The system was tested with real home automation devices using Raspberry Pi 3 and an Android application for controlling household appliances via voice commands. It also demonstrated 90\% accuracy in voice recognition.
+\end{itemize}
+
+
+
+\subsection{Soft computing based solar follower using Raspberry pi 4B - not sure if I will still use this}
+\begin{itemize}
+    \item \textbf{Resource Author:} Kanhaiya Kumar, Lokesh Varshney, A. Ambikapathy, Raunak Singh, Yasharth Rai, Sarthak Sikriwal, Rajkishor Prajapati;
+    \item \textbf{Resource Name:} Soft Computing Based Solar Follower Using Raspberry Pi 4B;
+    \item \textbf{Subject:} The paper aims to develop an image-based solar tracker utilizing the Raspberry Pi 4B to enhance the harvesting of solar energy, especially during cloudy conditions;
+    \item \textbf{Addressed Problem:} The primary challenge addressed is the inefficiency of traditional solar tracking systems, which struggle to accurately position the solar panels during overcast weather;
+    \item \textbf{Methods/Methodology:} The proposed system utilizes a webcam for digital image processing on the Raspberry Pi board, which detects the Sun's position by tracking its centroid from sky images. Servo motors adjust the camera's orientation based on this processing;
+    \item \textbf{Used Algorithms:} The methodology employs Digital Image Processing (DIP) algorithms, including adaptive thresholding and Hough transformation, to identify the Sun's image and position it correctly;
+    \item \textbf{Test Data:} The system was tested with various environmental conditions, achieving a tracking error reduced to 0.040° even during cloudy days, demonstrating its robustness in real-world scenarios.
+\end{itemize}
+
+
+\subsection{Raspberry Pi Based Soil Parameters Monitoring Device Using Sensors}
+
+\begin{itemize}
+    \item \textbf{Resource Authors:} Reshma U N, Prithvi P Bangera, Chethana H C, Kavya Nadig N C, Keerthi D S
+    \item \textbf{Resource Name:} Raspberry Pi Based Soil Parameters Monitoring Device Using Sensors
+    \item \textbf{Subject:} The paper aims to design an automated system for monitoring soil parameters (pH, moisture, and temperature) to improve agricultural practices and ensure optimal plant growth.
+    \item \textbf{Addressed Problem:} The paper addresses the challenges of labor shortages and the need for efficient management of soil conditions in modern agriculture, particularly in greenhouse environments.
+    \item \textbf{Methods/Methodology:} The methodology involves using Raspberry Pi and various sensors (pH sensor, moisture sensor, temperature sensor) to collect real-time data, which is then processed to alert users about soil conditions.
+    \item \textbf{Used Algorithms:} The project employs algorithms implemented in Python for data analysis and control of the automated irrigation system based on sensor readings.
+    \item \textbf{Test Data:} Test data includes real-time measurements of soil pH, moisture content, and temperature, demonstrating the system's effectiveness in monitoring and managing soil health.
+\end{itemize}
