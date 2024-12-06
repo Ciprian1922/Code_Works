@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "Popa",
+        "surname": "Ciprian",
+        "email": "popaciprian@gmail.com",
+        "projects": [
+            {
+                "id": 3,
+                "name": "app_projeeeeeeect",
+                "description": "homework one has a strict deadline with strict requirements",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "name": "clean the code",
+                        "description": "everything is a mess and it must be organised",
+                        "priority": "HIGH",
+                        "status": "NOT_STARTED",
+                        "language": "Python",
+                        "_type": "DevTask"
+                    }
+                ],
+                "deadline": "2024-12-12"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "roxana",
+        "surname": "patricia",
+        "email": "r@g.com",
+        "projects": [
+            {
+                "id": 1,
+                "name": "thesis",
+                "description": "automatic plant watering system",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "name": "implementation",
+                        "description": "we need to know if plant is getting enough water",
+                        "priority": "MEDIUM",
+                        "status": "NOT_STARTED",
+                        "language": "Python",
+                        "_type": "DevTask"
+                    }
+                ],
+                "deadline": "2025-06-06"
+            }
+        ]
+    }
+]
