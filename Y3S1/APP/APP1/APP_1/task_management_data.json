@@ -7,45 +7,47 @@
         "projects": [
             {
                 "id": 3,
-                "name": "app_projeeeeeeect",
-                "description": "homework one has a strict deadline with strict requirements",
+                "name": "automatic plant watering system",
+                "description": "a system that waters the plant completely automatically",
                 "tasks": [
                     {
                         "id": 1,
-                        "name": "clean the code",
-                        "description": "everything is a mess and it must be organised",
+                        "name": "implementation on board",
+                        "description": "raspberry pi must detect if plant needs water",
                         "priority": "HIGH",
                         "status": "NOT_STARTED",
                         "language": "Python",
                         "_type": "DevTask"
                     }
                 ],
-                "deadline": "2024-12-12"
+                "deadline": "2024-12-12",
+                "status": "IN_PROGRESS"
             }
         ]
     },
     {
         "id": 2,
-        "name": "roxana",
+        "name": "Roxana",
         "surname": "patricia",
-        "email": "r@g.com",
+        "email": "roxanapatricia@gmail.com",
         "projects": [
             {
                 "id": 1,
-                "name": "thesis",
-                "description": "automatic plant watering system",
+                "name": "cat feeder",
+                "description": "cat must get food when owner is out of town",
                 "tasks": [
                     {
-                        "id": 1,
-                        "name": "implementation",
-                        "description": "we need to know if plant is getting enough water",
-                        "priority": "MEDIUM",
+                        "id": 2,
+                        "name": "implement on raspberry pi",
+                        "description": "every activity must be monitorised remotely",
+                        "priority": "HIGH",
                         "status": "NOT_STARTED",
                         "language": "Python",
                         "_type": "DevTask"
                     }
                 ],
-                "deadline": "2025-06-06"
+                "deadline": "2024-12-12",
+                "status": "IN_PROGRESS"
             }
         ]
     }

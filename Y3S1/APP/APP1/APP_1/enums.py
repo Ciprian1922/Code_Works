@@ -10,3 +10,8 @@ class Status(Enum):
     NOT_STARTED = 1
     IN_PROGRESS = 2
     COMPLETED = 3
+
+class ProjectStatus(Enum):
+    NOT_STARTED = 1
+    IN_PROGRESS = 2
+    COMPLETED = 3

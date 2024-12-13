@@ -1,0 +1,5 @@
+- combining patterns helps integrating the mediator and decorator patterns
+ for managing operations across clients and accounts
+- using decorators like cashback and life
+ insurance to enhance account functionality dynamically
+

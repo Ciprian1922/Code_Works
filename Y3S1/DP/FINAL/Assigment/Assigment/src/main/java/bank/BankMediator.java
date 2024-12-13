@@ -37,3 +37,6 @@ public class BankMediator implements Mediator {
         System.out.println("Reports generated.");
     }
 }
+
+// centralizes communication between components, handles interactions between the
+// bank, clients, and operations

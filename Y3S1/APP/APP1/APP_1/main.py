@@ -2,16 +2,16 @@ import json
 from user import User
 from project import Project
 from task import DevTask, QATask, DocTask
-from enums import Priority, Status
+from enums import Priority, Status, ProjectStatus
 from sequencer import Sequencer
 
-# In-memory storage for users
+#in-memory storage for users
 users = []
 
-# JSON file to save and load data
+#JSON file to save and load data
 DATA_FILE = "task_management_data.json"
 
-# Utility Functions
+#utility functions
 def save_data():
     """Save all users, projects, and tasks to a JSON file."""
     with open(DATA_FILE, "w") as file:
@@ -25,19 +25,19 @@ def load_data():
         with open(DATA_FILE, "r") as file:
             content = file.read().strip()  # Strip any extra whitespace
             if not content:  # Handle empty file
-                print("No previous data found, starting fresh!")
+                print("No previous data found, starting fresh...")
                 return
             data = json.loads(content)  # Parse the JSON data
             for user_data in data:
                 user = User.from_dict(user_data)
                 users.append(user)
     except FileNotFoundError:
-        print("No data file found, starting fresh!")
+        print("No data file found, starting fresh...")
     except json.JSONDecodeError:
-        print("Data file is corrupted, starting fresh!")
+        print("Data file is corrupted, starting fresh...")
 
 
-# Menu Functionality
+#menu Functionality
 def add_user():
     name = input("Enter first name: ")
     surname = input("Enter surname: ")
@@ -194,6 +194,24 @@ def edit_project():
             return
     print("Project not found.")
 
+def update_project_status():
+    list_projects()
+    project_id = int(input("Enter Project ID to update status: "))
+    for user in users:
+        project = next((p for p in user.projects if p.id == project_id), None)
+        if project:
+            print("Current Status:", project.get_status().name)
+            new_status = input("Enter new status (NOT_STARTED, IN_PROGRESS, COMPLETED): ").upper()
+            try:
+                project.set_status(ProjectStatus[new_status])
+                print(f"Project status updated to {new_status}.")
+                save_data()
+            except KeyError:
+                print("Invalid status entered.")
+            return
+    print("Project not found.")
+
+
 # Menu Options
 menus = {
     1: add_user,
@@ -208,8 +226,10 @@ menus = {
     10: list_tasks,
     11: edit_user,
     12: edit_project,
-    13: lambda: print("Exiting..."),  # Exit is now option 14
+    13: update_project_status,  # New option to update project status
+    14: lambda: (save_data(), print("Saving data and exiting..."), exit(0)),  # Save and Exit option
 }
+
 
 
 def main():
@@ -217,14 +237,14 @@ def main():
     while True:
         print("\nMenu:")
         for key, value in menus.items():
-            print(f"{key}. {value.__name__.replace('_', ' ').title()}")
+            # If the option is the lambda for exit, manually set the name to "Save and Exit"
+            if key == 14:
+                print(f"{key}. Save and Exit")
+            else:
+                print(f"{key}. {value.__name__.replace('_', ' ').title()}")
 
         try:
             choice = int(input("Enter your choice: "))
-            if choice == 13:  # Exit option
-                print("Exiting...")
-                save_data()
-                break
             func = menus.get(choice, lambda: print("Invalid option!"))
             func()
         except ValueError:
