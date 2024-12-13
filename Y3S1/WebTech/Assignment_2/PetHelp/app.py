@@ -5,7 +5,6 @@ from datetime import datetime
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 db = SQLAlchemy(app)
-app.secret_key = '1234'
 
 
 class User(db.Model):
@@ -54,11 +53,10 @@ def display_post(post_id):
             db.session.commit()
         return redirect(url_for('display_post', post_id=post_id))
 
-    # Increment reads only for GET requests and only once per session
-    if 'last_viewed_post' not in session or session['last_viewed_post'] != post_id:
+    # Increment reads only for GET requests
+    if request.method == 'GET':
         post.reads += 1
         db.session.commit()
-        session['last_viewed_post'] = post_id
 
     return render_template('post.html', post=post)
 
