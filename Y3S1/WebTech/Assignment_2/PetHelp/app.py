@@ -1,10 +1,12 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 db = SQLAlchemy(app)
+app.secret_key = '1234'
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,18 +27,48 @@ class Post(db.Model):
     reads = db.Column(db.Integer, default=0)
     image_url = db.Column(db.String(200))
 
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.Integer, db.ForeignKey(Post.id), nullable=False)
+    post = db.relationship('Post', backref=db.backref('comments', lazy=True))
+    body = db.Column(db.String(300), nullable=False)
+    likes = db.Column(db.Integer, default=0)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 @app.route('/')
 def display_all_posts():
     posts = Post.query.all()
     return render_template('posts.html', posts=posts)
 
-@app.route('/post/<int:post_id>')
+
+@app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def display_post(post_id):
-    post = Post.query.filter_by(id=post_id).first()
-    if post:
+    post = Post.query.get_or_404(post_id)
+
+    if request.method == 'POST':
+        # Handle comment submission
+        comment_body = request.form['body']
+        if comment_body:
+            new_comment = Comment(post_id=post_id, body=comment_body)
+            db.session.add(new_comment)
+            db.session.commit()
+        return redirect(url_for('display_post', post_id=post_id))
+
+    # Increment reads only for GET requests and only once per session
+    if 'last_viewed_post' not in session or session['last_viewed_post'] != post_id:
         post.reads += 1
         db.session.commit()
+        session['last_viewed_post'] = post_id
+
     return render_template('post.html', post=post)
+
+
+@app.route('/like_comment/<int:comment_id>')
+def like_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    comment.likes += 1
+    db.session.commit()
+    return redirect(url_for('display_post', post_id=comment.post_id))
 
 if __name__ == "__main__":
     app.run(debug=True)
