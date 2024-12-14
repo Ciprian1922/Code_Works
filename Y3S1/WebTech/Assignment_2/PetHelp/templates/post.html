@@ -1,29 +1,28 @@
 {% extends "base.html" %}
-
-{% block title %}{{ post.title }}{% endblock %}
-
+{% block title %}{{ post.title}}{%endblock%}
 {% block content %}
 <h1>{{ post.title }}</h1>
-<i>Posted on {{ post.posted }}</i>
-<p>{{ post.body }}</p>
-<p>Reads: {{ post.reads }}</p>
-
+<i>Posted on {{post.posted}}</i>
+{%if post.image_url%}
+    <img src="{{url_for('static',filename=post.image_url)}}"
+         alt="Image for {{post.title}}"
+         style="max-width:700px;height:auto;display:block;margin:10px auto;">
+{%endif%}
+<p>{{ post.body}}</p>
+<p>Reads: {{post.reads}}</p>
 <h2>Comments</h2>
 <ul>
     {% for comment in post.comments %}
     <li>
-        {{ comment.body }} - {{ comment.likes }} likes
-        <a href="{{ url_for('like_comment', comment_id=comment.id) }}">Like</a>
+        {{comment.body}}-{{comment.likes}} likes
+        <a href="{{url_for('like_comment',comment_id=comment.id)}}">Like</a>
     </li>
     {% endfor %}
 </ul>
-
-<h3>Add a Comment</h3>
+<h3>Comment here</h3>
 <form method="post">
     <textarea name="body" required></textarea><br>
     <button type="submit">Post Comment</button>
 </form>
-
-<!-- Back button -->
-<p><a href="{{ url_for('display_all_posts') }}">Back to All Posts</a></p>
+<p><a href="{{url_for('display_all_posts') }}">Go back....</a></p>
 {% endblock %}

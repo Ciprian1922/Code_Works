@@ -1,13 +1,11 @@
-{% extends "base.html" %}
-
-{% block title %}All Posts{% endblock %}
-
+{%extends "base.html"%}
+{%block title%}All Posts{%endblock%}
 {% block content %}
 <ul>
-    {% for post in posts %}
+    {%for post in posts%}
     <li>
-        <a href="{{ url_for('display_post', post_id=post.id) }}">{{ post.title }}</a> - {{ post.reads }} reads
+        <a href="{{url_for('display_post',post_id=post.id)}}">{{post.title}}</a>-{{post.reads}}reads
     </li>
-    {% endfor %}
+    {%endfor%}
 </ul>
-{% endblock %}
+{%endblock%}
