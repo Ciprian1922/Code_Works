@@ -16,16 +16,16 @@ class AVLTree:
         if not node:
             return Node(value)
 
-        # Prevent duplicates
+        #revent duplicates
         if value == node.value:
-            return node  # Ignore duplicate values
+            return node  #ignore duplicate values
 
         if value < node.value:
             node.left = self._insert(node.left, value)
         else:
             node.right = self._insert(node.right, value)
 
-        # Update height and balance
+        #pdate height and balance
         node.height = 1 + max(self._get_height(node.left), self._get_height(node.right))
         return self._balance(node)
 

@@ -1,0 +1,9 @@
+so the idea is to have more trees type, whenever the user generates a tree, that tree will be saved in a sqllite database
+
+maybe i can make the tree types in the main page as posts that can get views and comments, like whenever an avl treee is created the users can publish it and it will be saved there
+
+add a string of values,
+imoplement other traverse methods
+
+breadth first things traversal visualisation
+
