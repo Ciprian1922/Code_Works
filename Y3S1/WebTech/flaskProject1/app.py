@@ -113,5 +113,13 @@ def check_tree_exists():
         return jsonify({"exists": bool(result)})
     return jsonify({"exists": False})
 
+
+@app.route('/reset_tree', methods=['POST'])
+def reset_tree():
+    global avl_tree
+    avl_tree = AVLTree()  # Reset to a new AVL tree instance
+    return jsonify(status="success")
+
+
 if __name__ == '__main__':
     app.run(debug=True)

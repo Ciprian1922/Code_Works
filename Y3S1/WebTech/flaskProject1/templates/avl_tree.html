@@ -13,6 +13,7 @@
     <button onclick="deleteNode()">Delete Node</button>
     <button onclick="saveTree()">Save Tree</button>
     <button onclick="loadTrees()">Load Trees</button>
+    <button onclick="resetGraph()">Reset Graph</button>
 
     <!-- Dropdown to select tree -->
     <select id="treeDropdown"></select>
@@ -25,6 +26,14 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="{{ url_for('static', filename='js/tree_visualization.js') }}"></script>
     <script>
+        // Initialize the AVL tree data (global scope)
+        let avl_tree = {
+            nodes: [], // Array to hold the tree's nodes
+            // Method to clear/reset the tree data
+            clear: function() {
+                this.nodes = []; // Clear the nodes array
+            }
+        };
         async function addNode() {
             const value = document.getElementById("nodeValue").value;
             const response = await fetch('/add_node', {
@@ -33,8 +42,11 @@
                 body: JSON.stringify({ value: value })
             });
             const data = await response.json();
-            renderTree(data.tree);
+
+            // Ensure you are rendering the updated tree data
+            renderTree(data.tree); // Update render with the new tree data
         }
+
 
         async function deleteNode() {
             const value = document.getElementById("nodeValue").value;
@@ -117,6 +129,33 @@
                 alert(data.message);
             }
         }
+        function resetGraph() {
+            // Clear the SVG element completely (remove any existing tree)
+            d3.select("#tree").selectAll("*").remove();
+
+            // Reset the tree data on the frontend
+            avl_tree.clear(); // Clears the tree data
+
+            // Optionally, reset other tree-related states, if any
+            // For example, reset node value input field
+            document.getElementById("nodeValue").value = "";  // Clear input field
+
+            // If your backend has a state that tracks the tree, you might want to reset it there too
+            // You can call an endpoint to reset the server-side state:
+            fetch('/reset_tree', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log("Tree has been reset on the server");
+                    } else {
+                        console.log("Error resetting tree on the server");
+                    }
+                })
+                .catch(err => console.error("Error while resetting tree on the server:", err));
+
+            alert("Graph and tree data have been reset!");
+        }
+
     </script>
 </body>
 </html>

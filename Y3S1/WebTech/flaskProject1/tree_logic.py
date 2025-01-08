@@ -9,6 +9,9 @@ class AVLTree:
     def __init__(self):
         self.root = None
 
+    def clear(self):
+        self.root = None  # Resets the tree to an empty state
+
     def insert(self, value):
         self.root = self._insert(self.root, value)
 
