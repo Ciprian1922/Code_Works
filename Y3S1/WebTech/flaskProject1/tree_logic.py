@@ -114,3 +114,15 @@ class AVLTree:
             result.append({"value": node.value, "left": bool(node.left), "right": bool(node.right)})
             self._traverse(node.left, result)
             self._traverse(node.right, result)
+
+    def _build_tree_from_data(self, data):
+        if not data:
+            return None
+
+        node = Node(data['name'])
+        if 'children' in data:
+            if len(data['children']) > 0:
+                node.left = self._build_tree_from_data(data['children'][0])
+            if len(data['children']) > 1:
+                node.right = self._build_tree_from_data(data['children'][1])
+        return node

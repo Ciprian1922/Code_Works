@@ -2,22 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVL Tree Visualization</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div style="margin-bottom: 20px;">
-        <button onclick="window.location.href='/'" style="padding: 10px 20px; font-size: 16px;">Back to Home</button>
-    </div>
     <h1>AVL Tree Visualization</h1>
     <input id="nodeValue" type="number" placeholder="Enter node value">
     <button onclick="addNode()">Add Node</button>
     <button onclick="deleteNode()">Delete Node</button>
-    <button onclick="location.href='{{ url_for('index') }}'">Go Back Home</button>
+    <button onclick="saveTree()">Save Tree</button>
+    <button onclick="loadTrees()">Load Trees</button>
+
+    <!-- Dropdown to select tree -->
+    <select id="treeDropdown"></select>
+    <button id="loadTreeBtn" onclick="loadTree()">OK</button>
+
+    <button onclick="window.location.href='/'">Back to Home</button>
+
     <svg width="800" height="600" id="tree"></svg>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="{{ url_for('static', filename='js/tree_visualization.js') }}"></script>
+    <script>
+        async function addNode() {
+            const value = document.getElementById("nodeValue").value;
+            const response = await fetch('/add_node', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ value: value })
+            });
+            const data = await response.json();
+            renderTree(data.tree);
+        }
 
+        async function deleteNode() {
+            const value = document.getElementById("nodeValue").value;
+            const response = await fetch('/delete_node', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ value: value })
+            });
+            const data = await response.json();
+            renderTree(data.tree);
+        }
+
+    async function saveTree() {
+        const name = prompt("Enter a name for the tree:");
+        if (name) {
+            // Check if tree already exists
+            const response = await fetch('/check_tree_exists', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name })
+            });
+            const data = await response.json();
+
+            if (data.exists) {
+                const override = confirm("This tree already exists. Do you want to overwrite it?");
+                if (!override) {
+                    return;  // Don't save if user cancels
+                }
+            }
+
+            // Save or overwrite the tree
+            const saveResponse = await fetch('/save_tree', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name })
+            });
+
+            const saveData = await saveResponse.json();
+            if (saveData.status === "success") {
+                alert("Tree saved!");
+            } else {
+                alert(saveData.message || "An error occurred.");
+            }
+        }
+    }
+
+        async function loadTrees() {
+            const response = await fetch('/load_trees');
+            const data = await response.json();
+            const dropdown = document.getElementById("treeDropdown");
+            dropdown.innerHTML = ""; // Clear the existing options
+
+            // Create a new option for each saved tree
+            data.trees.forEach(tree => {
+                const option = document.createElement("option");
+                option.value = tree;
+                option.text = tree;
+                dropdown.add(option);
+            });
+
+            // Show the dropdown and load button
+            document.getElementById("treeDropdown").style.display = "inline-block";
+            document.getElementById("loadTreeBtn").style.display = "inline-block";
+        }
+
+        async function loadTree() {
+            const dropdown = document.getElementById("treeDropdown");
+            const selectedTree = dropdown.value;
+
+            const response = await fetch('/load_tree', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: selectedTree })
+            });
+
+            const data = await response.json();
+            if (data.status === "success") {
+                renderTree(data.tree);
+            } else {
+                alert(data.message);
+            }
+        }
+    </script>
 </body>
 </html>
