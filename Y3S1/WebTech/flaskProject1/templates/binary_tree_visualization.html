@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree Visualization</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+            background-color: #fafafa;
+            border: 2px solid #ccc;
+        }
+
+        .node {
+            cursor: pointer;
+        }
+
+        .node circle {
+            fill: #4CAF50;
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+
+        .node text {
+            font-size: 12px;
+            fill: #333;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Binary Tree Visualization</h1>
+    <svg width="800" height="600" id="binaryTree"></svg>
+
+    <script>
+        const treeData = {
+            name: "10",
+            children: [
+                {
+                    name: "5",
+                    children: [
+                        { name: "3" },
+                        { name: "7" }
+                    ]
+                },
+                {
+                    name: "15",
+                    children: [
+                        { name: "13" },
+                        { name: "17" }
+                    ]
+                }
+            ]
+        };
+
+        const margin = { top: 40, right: 90, bottom: 40, left: 90 };
+        const width = 800 - margin.left - margin.right;
+        const height = 600 - margin.top - margin.bottom;
+
+        const svg = d3.select("#binaryTree")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        const root = d3.hierarchy(treeData);
+
+        const tree = d3.tree().size([width, height]);
+
+        tree(root);
+
+        const links = svg.selectAll(".link")
+            .data(root.links())
+            .enter()
+            .append("path")
+            .attr("class", "link")
+            .attr("d", d => "M" + d.source.x + "," + d.source.y
+                + "C" + d.source.x + "," + (d.source.y + d.target.y) / 2
+                + " " + d.target.x + "," + (d.source.y + d.target.y) / 2
+                + " " + d.target.x + "," + d.target.y);
+
+        const nodes = svg.selectAll(".node")
+            .data(root.descendants())
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", d => "translate(" + d.x + "," + d.y + ")");
+
+        nodes.append("circle")
+            .attr("r", 20)
+            .style("fill", "#4CAF50");
+
+        nodes.append("text")
+            .attr("dy", -30)
+            .attr("text-anchor", "middle")
+            .text(d => d.data.name);
+    </script>
+</body>
+</html>

@@ -12,3 +12,18 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+button {
+    margin: 5px;
+}
+
+svg {
+    border: 1px solid black;
+    margin-top: 20px;
+}
