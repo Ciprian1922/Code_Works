@@ -13,10 +13,11 @@
     <input id="nodeValue" type="number" placeholder="Enter node value">
     <button onclick="addNode()">Add Node</button>
     <button onclick="deleteNode()">Delete Node</button>
-
+    <button onclick="location.href='{{ url_for('index') }}'">Go Back Home</button>
     <svg width="800" height="600" id="tree"></svg>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="{{ url_for('static', filename='js/tree_visualization.js') }}"></script>
+
 </body>
 </html>
