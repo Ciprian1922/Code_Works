@@ -14,6 +14,11 @@
             text-align: center;
         }
 
+        #controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         svg {
             display: block;
             margin: auto;
@@ -32,8 +37,8 @@
         }
 
         .node text {
-            font-size: 12px;
-            fill: #333;
+            font-size: 16px;
+            fill: white;
         }
 
         .link {
@@ -45,70 +50,176 @@
 </head>
 <body>
     <h1>Binary Tree Visualization</h1>
-    <svg width="800" height="600" id="binaryTree"></svg>
+    <div id="controls">
+        <input type="text" id="nodeValue" placeholder="Enter value">
+        <button onclick="addNode()">Add Node</button>
+        <button onclick="deleteNode()">Delete Node</button>
+        <button onclick="resetTree()">Reset Tree</button>
+        <button onclick="traverseBFS()">Traverse BFS</button>
+        <button onclick="traverseDFS()">Traverse DFS</button>
+        <button onclick="goBack()">Back</button>
+
+    </div>
+    <svg width="800" height="600" id="tree"></svg>
 
     <script>
-        const treeData = {
-            name: "10",
-            children: [
-                {
-                    name: "5",
-                    children: [
-                        { name: "3" },
-                        { name: "7" }
-                    ]
-                },
-                {
-                    name: "15",
-                    children: [
-                        { name: "13" },
-                        { name: "17" }
-                    ]
+        let treeData = null; // Start with no tree data
+
+        const treeLayout = d3.tree().size([800, 400]);
+        const svg = d3.select("#tree").append("g").attr("transform", "translate(50,50)");
+
+        function update(treeData) {
+            svg.selectAll("*").remove(); // Clear existing tree
+
+            if (!treeData) return; // If treeData is null, stop rendering
+
+            const root = d3.hierarchy(treeData, d => d.children || []);
+            treeLayout(root);
+
+            // Links
+            const links = svg.selectAll(".link").data(root.links());
+            links.enter().insert("path", "g")
+                .attr("class", "link")
+                .attr("d", d3.linkVertical()
+                    .x(d => d.x)
+                    .y(d => d.y))
+                .style("stroke", "#ccc")
+                .style("fill", "none");
+
+            // Nodes
+            const nodes = svg.selectAll(".node").data(root.descendants());
+            const enterNodes = nodes.enter().append("g")
+                .attr("class", "node")
+                .attr("transform", d => `translate(${d.x}, ${d.y})`);
+
+            enterNodes.append("circle")
+                .attr("r", 20)
+                .style("fill", "#4CAF50");
+
+            enterNodes.append("text")
+                .attr("dy", 5)
+                .attr("text-anchor", "middle")
+                .style("font-size", "16px")
+                .style("fill", "white")
+                .text(d => d.data.name);
+        }
+
+        function addNode() {
+            const value = document.getElementById("nodeValue").value;
+            if (!value) {
+                alert("Please enter a value!");
+                return;
+            }
+
+            if (!treeData) {
+                treeData = { name: value };
+            } else {
+                const queue = [treeData];
+                while (queue.length > 0) {
+                    const node = queue.shift();
+                    if (!node.children) node.children = [];
+                    if (node.children.length < 2) {
+                        node.children.push({ name: value });
+                        break;
+                    } else {
+                        queue.push(...node.children);
+                    }
                 }
-            ]
-        };
+            }
 
-        const margin = { top: 40, right: 90, bottom: 40, left: 90 };
-        const width = 800 - margin.left - margin.right;
-        const height = 600 - margin.top - margin.bottom;
+            update(treeData);
+        }
 
-        const svg = d3.select("#binaryTree")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        function deleteNode() {
+            const value = document.getElementById("nodeValue").value;
+            if (!value || !treeData) {
+                alert("Please enter a value!");
+                return;
+            }
 
-        const root = d3.hierarchy(treeData);
+            const queue = [treeData];
+            let parent = null;
+            let target = null;
 
-        const tree = d3.tree().size([width, height]);
+            while (queue.length > 0 && !target) {
+                const node = queue.shift();
+                if (node.children) {
+                    for (let i = 0; i < node.children.length; i++) {
+                        if (node.children[i].name === value) {
+                            target = node.children[i];
+                            parent = node;
+                            node.children.splice(i, 1);
+                            break;
+                        }
+                    }
+                    queue.push(...node.children);
+                }
+            }
 
-        tree(root);
+            if (!target) {
+                alert("Node not found!");
+                return;
+            }
 
-        const links = svg.selectAll(".link")
-            .data(root.links())
-            .enter()
-            .append("path")
-            .attr("class", "link")
-            .attr("d", d => "M" + d.source.x + "," + d.source.y
-                + "C" + d.source.x + "," + (d.source.y + d.target.y) / 2
-                + " " + d.target.x + "," + (d.source.y + d.target.y) / 2
-                + " " + d.target.x + "," + d.target.y);
+            if (parent) {
+                parent.children = [...(parent.children || []), ...(target.children || [])];
+            }
 
-        const nodes = svg.selectAll(".node")
-            .data(root.descendants())
-            .enter()
-            .append("g")
-            .attr("class", "node")
-            .attr("transform", d => "translate(" + d.x + "," + d.y + ")");
+            if (treeData.name === value) {
+                treeData = null; // Reset the tree if the root is deleted
+            }
 
-        nodes.append("circle")
-            .attr("r", 20)
-            .style("fill", "#4CAF50");
+            update(treeData);
+        }
 
-        nodes.append("text")
-            .attr("dy", -30)
-            .attr("text-anchor", "middle")
-            .text(d => d.data.name);
+        function resetTree() {
+            treeData = null; // Clear tree data
+            update(treeData);
+        }
+
+        function traverseBFS() {
+            if (!treeData) {
+                alert("Tree is empty!");
+                return;
+            }
+
+            const queue = [treeData];
+            const traversal = [];
+
+            while (queue.length > 0) {
+                const node = queue.shift();
+                traversal.push(node.name);
+                if (node.children) queue.push(...node.children);
+            }
+
+            alert("BFS Traversal: " + traversal.join(", "));
+        }
+
+        function traverseDFS() {
+            if (!treeData) {
+                alert("Tree is empty!");
+                return;
+            }
+
+            const stack = [treeData];
+            const traversal = [];
+
+            while (stack.length > 0) {
+                const node = stack.pop();
+                traversal.push(node.name);
+                if (node.children) stack.push(...node.children.reverse());
+            }
+
+            alert("DFS Traversal: " + traversal.join(", "));
+        }
+
+
+        function goBack() {
+            history.go(-1); // Goes one step back in the browser's history
+        }
+
+
+        update(treeData); // Initialize with no tree data
     </script>
 </body>
 </html>

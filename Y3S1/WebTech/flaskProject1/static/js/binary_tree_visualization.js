@@ -11,22 +11,30 @@ function renderTree(treeNodes) {
     const svg = d3.select("#tree");
 
     // Bind data to nodes
-    const nodes = svg.selectAll("circle")
+    const nodes = svg.selectAll("g.node")
         .data(treeNodes, d => d.value);
 
     // ENTER: Add new nodes
-    nodes.enter()
-        .append("circle")
-        .attr("id", d => `node-${d.value}`)
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y)
+    const enterNodes = nodes.enter()
+        .append("g")
+        .attr("class", "node")
+        .attr("transform", d => `translate(${d.x}, ${d.y})`);
+
+    enterNodes.append("circle")
         .attr("r", 20)
-        .style("fill", "black");
+        .style("fill", "#4CAF50");
+
+    enterNodes.append("text")
+        .attr("dy", -30)
+        .attr("text-anchor", "middle")
+        .style("font-size", "12px")
+        .text(d => d.value);
 
     // UPDATE: Update existing nodes
     nodes
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
+        .transition()
+        .duration(750)
+        .attr("transform", d => `translate(${d.x}, ${d.y})`);
 
     // EXIT: Remove old nodes
     nodes.exit().remove();
@@ -126,7 +134,7 @@ async function traverseDFS() {
 function animateTraversal(nodes, traversalType) {
     let index = 0;
 
-    d3.selectAll("circle").style("fill", "black");
+    d3.selectAll("circle").style("fill", "#4CAF50");
     d3.select(`#${traversalType}-row`).remove();
 
     const rowContainer = d3.select("body").append("div")
