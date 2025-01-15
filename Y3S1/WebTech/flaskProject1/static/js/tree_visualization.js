@@ -42,7 +42,7 @@ function renderTree(treeData) {
         .attr("text-anchor", "middle")  //center the text in the circle
         .attr("font-size", "12px")
         .attr("fill", "black")
-        .text(d => d.data.name);  //fetch the "name" property for text
+        .text(d => d.data.name);  //fetch the name for text
 }
 
 

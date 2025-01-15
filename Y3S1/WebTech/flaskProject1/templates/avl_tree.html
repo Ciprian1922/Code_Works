@@ -15,7 +15,6 @@
     <button onclick="loadTrees()">Load Trees</button>
     <button onclick="resetGraph()">Reset Graph</button>
 
-    <!-- Dropdown to select tree -->
     <select id="treeDropdown"></select>
     <button id="loadTreeBtn" onclick="loadTree()">OK</button>
 
@@ -26,12 +25,12 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="{{ url_for('static', filename='js/tree_visualization.js') }}"></script>
     <script>
-        // Initialize the AVL tree data (global scope)
+        //initialize the AVL tree data globally
         let avl_tree = {
-            nodes: [], // Array to hold the tree's nodes
-            // Method to clear/reset the tree data
+            nodes: [], //array to hold the tree's nodes
+            //method to clear/reset the tree data
             clear: function() {
-                this.nodes = []; // Clear the nodes array
+                this.nodes = []; //clear the nodes array
             }
         };
         async function addNode() {
@@ -43,8 +42,8 @@
             });
             const data = await response.json();
 
-            // Ensure you are rendering the updated tree data
-            renderTree(data.tree); // Update render with the new tree data
+            //ensure you are rendering the updated tree data
+            renderTree(data.tree); //update render with the new tree data
         }
 
 
@@ -62,7 +61,7 @@
     async function saveTree() {
         const name = prompt("Enter a name for the tree:");
         if (name) {
-            // Check if tree already exists
+            //check if tree already exists
             const response = await fetch('/check_tree_exists', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -73,11 +72,11 @@
             if (data.exists) {
                 const override = confirm("This tree already exists. Do you want to overwrite it?");
                 if (!override) {
-                    return;  // Don't save if user cancels
+                    return;  //don't save if user cancels
                 }
             }
 
-            // Save or overwrite the tree
+            //save or overwrite the tree
             const saveResponse = await fetch('/save_tree', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -99,7 +98,7 @@
             const dropdown = document.getElementById("treeDropdown");
             dropdown.innerHTML = ""; // Clear the existing options
 
-            // Create a new option for each saved tree
+            //create a new option for each saved tree
             data.trees.forEach(tree => {
                 const option = document.createElement("option");
                 option.value = tree;
@@ -107,7 +106,7 @@
                 dropdown.add(option);
             });
 
-            // Show the dropdown and load button
+            //show the dropdown and load button
             document.getElementById("treeDropdown").style.display = "inline-block";
             document.getElementById("loadTreeBtn").style.display = "inline-block";
         }
@@ -130,18 +129,14 @@
             }
         }
         function resetGraph() {
-            // Clear the SVG element completely (remove any existing tree)
+            //clear the SVG element completely (remove any existing tree)
             d3.select("#tree").selectAll("*").remove();
 
-            // Reset the tree data on the frontend
+            //reset the tree data on the frontend
             avl_tree.clear(); // Clears the tree data
 
-            // Optionally, reset other tree-related states, if any
-            // For example, reset node value input field
-            document.getElementById("nodeValue").value = "";  // Clear input field
+            document.getElementById("nodeValue").value = "";  //clear input field
 
-            // If your backend has a state that tracks the tree, you might want to reset it there too
-            // You can call an endpoint to reset the server-side state:
             fetch('/reset_tree', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {

@@ -218,21 +218,21 @@ def binary_tree_save_tree():
     data = request.get_json()
     tree_name = data.get('name')
     if tree_name:
-        # Get the tree data from the frontend (replace this with your actual tree data logic)
-        tree_data = str(binary_tree.get_tree())  # Example, you may want to adjust this
+        #get the tree data from the frontend
+        tree_data = str(binary_tree.get_tree())
 
         conn = sqlite3.connect('trees.db')
         cursor = conn.cursor()
 
-        # Check if the tree already exists
+        #check if the tree already exists
         cursor.execute('SELECT 1 FROM trees WHERE name = ?', (tree_name,))
         result = cursor.fetchone()
 
         if result:
-            # If the tree exists, update it
+            #if the tree exists, update it
             cursor.execute('UPDATE trees SET tree_data = ? WHERE name = ?', (tree_data, tree_name))
         else:
-            # Otherwise, insert it as a new tree
+            #otherwise, insert it as a new tree
             cursor.execute('INSERT INTO trees (name, tree_data) VALUES (?, ?)', (tree_name, tree_data))
 
         conn.commit()
@@ -269,7 +269,7 @@ def binary_tree_load_tree():
 
 @app.route('/binary_tree/reset_tree', methods=['POST'])
 def binary_tree_reset_tree():
-    binary_tree.clear()  # Clear the current binary tree
+    binary_tree.clear()  #clear the current binary tree
     return jsonify(status="success")
 
 if __name__ == '__main__':

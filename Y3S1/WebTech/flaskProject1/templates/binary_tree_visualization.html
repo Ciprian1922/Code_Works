@@ -69,9 +69,9 @@
         const svg = d3.select("#tree").append("g").attr("transform", "translate(50,50)");
 
         function update(treeData) {
-            svg.selectAll("*").remove(); // Clear existing tree
+            svg.selectAll("*").remove(); //clear existing tree
 
-            if (!treeData) return; // If treeData is null, stop rendering
+            if (!treeData) return; //if treeData is null, stop rendering
 
             const root = d3.hierarchy(treeData, d => d.children || []);
             treeLayout(root);
@@ -166,14 +166,14 @@
             }
 
             if (treeData.name === value) {
-                treeData = null; // Reset the tree if the root is deleted
+                treeData = null; //reset the tree if the root is deleted
             }
 
             update(treeData);
         }
 
         function resetTree() {
-            treeData = null; // Clear tree data
+            treeData = null; //clear tree data
             update(treeData);
         }
 
@@ -215,11 +215,11 @@
 
 
         function goBack() {
-            history.go(-1); // Goes one step back in the browser's history
+            history.go(-1); //goes one step back in the browser's history
         }
 
 
-        update(treeData); // Initialize with no tree data
+        update(treeData); //initialize with no tree data
     </script>
 </body>
 </html>

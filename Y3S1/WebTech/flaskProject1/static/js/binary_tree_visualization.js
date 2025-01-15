@@ -1,4 +1,4 @@
-// Binary Tree data
+//binary Tree data
 let binary_tree = {
     nodes: [],
     clear: function () {
@@ -6,16 +6,15 @@ let binary_tree = {
     },
 };
 
-// Render Binary Tree
 function renderTree(treeNodes) {
     const svg = d3.select("#tree");
 
-    // Bind data to nodes
-    const nodes = svg.selectAll("g.node")
+
+    const nodes = svg.selectAll("g.node")//bind data to nodes
         .data(treeNodes, d => d.value);
 
-    // ENTER: Add new nodes
-    const enterNodes = nodes.enter()
+
+    const enterNodes = nodes.enter()//enter,add new nodes
         .append("g")
         .attr("class", "node")
         .attr("transform", d => `translate(${d.x}, ${d.y})`);
@@ -30,14 +29,14 @@ function renderTree(treeNodes) {
         .style("font-size", "12px")
         .text(d => d.value);
 
-    // UPDATE: Update existing nodes
+
     nodes
-        .transition()
+        .transition()       //update existing nodes
         .duration(750)
         .attr("transform", d => `translate(${d.x}, ${d.y})`);
 
-    // EXIT: Remove old nodes
-    nodes.exit().remove();
+
+    nodes.exit().remove();    //remove old nodes
 }
 
 // Add Node
@@ -78,7 +77,7 @@ async function saveTree() {
     }
 }
 
-// Load Trees List
+//load tree list
 async function loadTrees() {
     const response = await fetch('/binary_tree/load_trees');
     const data = await response.json();
@@ -93,7 +92,7 @@ async function loadTrees() {
     });
 }
 
-// Load Tree by Name
+//load tree by name
 async function loadTree() {
     const name = document.getElementById("treeDropdown").value;
     const response = await fetch('/binary_tree/load_tree', {
@@ -105,14 +104,14 @@ async function loadTree() {
     renderTree(data.tree);
 }
 
-// Reset Graph
+//reset
 function resetGraph() {
     d3.select("#tree").selectAll("*").remove();
     binary_tree.clear();
     alert("Graph and tree have been reset.");
 }
 
-// Traverse BFS
+//traverse BFS
 async function traverseBFS() {
     const response = await fetch('/binary_tree/traverse_bfs', { method: 'POST' });
     const data = await response.json();
@@ -121,7 +120,7 @@ async function traverseBFS() {
     }
 }
 
-// Traverse DFS
+//traverse DFS
 async function traverseDFS() {
     const response = await fetch('/binary_tree/traverse_dfs', { method: 'POST' });
     const data = await response.json();
@@ -130,7 +129,7 @@ async function traverseDFS() {
     }
 }
 
-// Animation for Traversal
+//animation(try))
 function animateTraversal(nodes, traversalType) {
     let index = 0;
 
