@@ -214,7 +214,7 @@ public class BankGUI extends JFrame {
 
     private Client findClientByName(String name) {
         return mediator instanceof BankMediator ?
-                ((BankMediator) mediator).getBank().getClients().stream()
+                mediator.getBank().getClients().stream()
                         .filter(client -> client.getName().equalsIgnoreCase(name))
                         .findFirst()
                         .orElse(null)
