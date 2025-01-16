@@ -36,6 +36,11 @@ public class BankMediator implements Mediator {
         bank.generateReports();
         System.out.println("Reports generated.");
     }
+
+    // Added method to provide access to the Bank
+    public Bank getBank() {
+        return this.bank;
+    }
 }
 
 // centralizes communication between components, handles interactions between the

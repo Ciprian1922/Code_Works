@@ -1,0 +1,5 @@
+Client added: Popa
+Client added: Roxana
+Account added for client: Popa. Account Number: ACC1
+Account added for client: Roxana. Account Number: ACC3
+Transferred 455.0 from ACC1 to ACC3. Source balance: 4545.0, Destination balance: 6455.0

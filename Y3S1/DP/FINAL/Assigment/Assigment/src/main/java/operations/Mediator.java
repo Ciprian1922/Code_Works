@@ -1,5 +1,6 @@
 package operations;
 
+import bank.Bank;
 import bank.Client;
 
 public interface Mediator {
@@ -7,4 +8,6 @@ public interface Mediator {
     void removeClient(Client client);
     void performOperation(Command command);
     void generateReports();
+
+    Bank getBank();
 }

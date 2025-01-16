@@ -21,4 +21,8 @@ public class DailyOperationsReport {
             System.out.println(operation);
         }
     }
+
+    public List<String> getOperations() {
+        return operations;
+    }
 }

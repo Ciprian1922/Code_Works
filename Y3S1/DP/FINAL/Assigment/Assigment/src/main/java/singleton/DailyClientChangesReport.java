@@ -23,4 +23,8 @@ public class DailyClientChangesReport {
             System.out.println(change);
         }
     }
+
+    public List<String> getClientChanges() {
+        return clientChanges;
+    }
 }
