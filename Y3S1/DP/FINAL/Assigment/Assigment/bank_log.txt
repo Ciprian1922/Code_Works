@@ -1551,3 +1551,34 @@ Destination Account Balance: Before: 6000.0, After: 6777.0
 2025-01-16 04:50:59 - Transferred 777.0 from ACC1 to ACC3.
 Source Account Balance: Before: 5000.0, After: 4223.0.
 Destination Account Balance: Before: 6000.0, After: 6777.0
+
+2025-01-16 13:22:37 - Client added: Popa
+2025-01-16 13:22:51 - Client added: Ion
+2025-01-16 13:23:40 - Client added: Popa
+2025-01-16 13:23:47 - Client added: Ion
+2025-01-16 13:23:55 - Account added for client: Popa. Account Number: ACC1, Balance: 7000.0
+2025-01-16 13:24:09 - Account added for client: Ion. Account Number: ACC3, Balance: 4000.0
+2025-01-16 13:25:15 - Transferred 343.0 from ACC1 to ACC3.
+Source Account Balance: Before: 7000.0, After: 6657.0.
+Destination Account Balance: Before: 4000.0, After: 4343.0
+2025-01-16 13:25:19 - Client added: Popa
+2025-01-16 13:25:19 - Client added: Ion
+2025-01-16 13:25:19 - Account added for client: Popa. Account Number: ACC1, Balance: 7000.0
+2025-01-16 13:25:19 - Account added for client: Ion. Account Number: ACC3, Balance: 4000.0
+2025-01-16 13:25:19 - Transferred 343.0 from ACC1 to ACC3.
+Source Account Balance: Before: 7000.0, After: 6657.0.
+Destination Account Balance: Before: 4000.0, After: 4343.0
+2025-01-16 15:42:57 - Client added: Popa
+2025-01-16 15:43:03 - Client added: Ion
+2025-01-16 15:43:14 - Account added for client: Popa. Account Number: ACC1, Balance: 4000.0
+2025-01-16 15:43:32 - Account added for client: Ion. Account Number: ACC3, Balance: 5000.0
+2025-01-16 15:43:54 - Transferred 444.0 from ACC1 to ACC3.
+Source Account Balance: Before: 4000.0, After: 3556.0.
+Destination Account Balance: Before: 5000.0, After: 5444.0
+2025-01-16 15:45:06 - Client added: Popa
+2025-01-16 15:45:06 - Client added: Ion
+2025-01-16 15:45:06 - Account added for client: Popa. Account Number: ACC1, Balance: 4000.0
+2025-01-16 15:45:06 - Account added for client: Ion. Account Number: ACC3, Balance: 5000.0
+2025-01-16 15:45:06 - Transferred 444.0 from ACC1 to ACC3.
+Source Account Balance: Before: 4000.0, After: 3556.0.
+Destination Account Balance: Before: 5000.0, After: 5444.0

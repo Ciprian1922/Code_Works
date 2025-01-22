@@ -3,35 +3,33 @@ For my own convenience, I used commands in powershell to create and modify every
 they are being created in the folder directories and I also did an example with my_directory to show it how it works
 
 
+-list all directories in the artifact repository
 Invoke-WebRequest -Uri http://127.0.0.1:5000/artefacts/ -Method GET
 
-
+-display the content of the response(same command but contents only)
 (Invoke-WebRequest -Uri http://127.0.0.1:5000/artefacts/ -Method GET).Content
 
 
+==RELEVANT==
 
 
-
-add an artifact:
-
+-add an artifact  (use your path)
 curl.exe -X POST -F "file=@C:\Users\popa_\Desktop\GitHub_UVT\Code_Works\Y3S1\APP\APP_FinalProject\Assignment3\example.txt" http://127.0.0.1:5000/artefacts/my_directory/
 
 
-
-curl.exe -X GET http://127.0.0.1:5000/artefacts/          - list directories
-
-
-curl.exe -X GET http://127.0.0.1:5000/artefacts/my_directory/    - list the artifacts in the directory
+- list directories
+curl.exe -X GET http://127.0.0.1:5000/artefacts/
 
 
-curl.exe -X GET http://127.0.0.1:5000/artefacts/my_directory/example.txt -o downloaded_File_wow.txt     - fetch an artifact
+- list the artifacts in the directory
+curl.exe -X GET http://127.0.0.1:5000/artefacts/my_directory/
 
+- fetch an artifact
+curl.exe -X GET http://127.0.0.1:5000/artefacts/my_directory/example.txt -o downloaded_File_wow.txt
 
 
 -replace an artifact
 curl.exe -X PUT -F "file=@C:\Users\popa_\Desktop\GitHub_UVT\Code_Works\Y3S1\APP\APP_FinalProject\Assignment3\example2XD.txt" http://127.0.0.1:5000/artefacts/my_directory/example.txt
-
-
 
 
 -delete an specific artifact
