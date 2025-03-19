@@ -1,0 +1,70 @@
+;; define the employee list
+(defvar *employees*
+  '(("Noe Boe" "Engineer" 5 7000 10)
+    ("The Rock" "Technician" 2 3500 5)
+    ("Lady G" "Manager" 10 12000 20)
+    ("L Bron" "Analyst" 7 8500 15)
+    ("Andrew Garfield" "Assistant" 1 4500 9)))  ;; Added a junior employee for testing
+
+;; function to classify junior employees
+(defun classify-junior (employee)
+  (let ((name (first employee))
+        (experience (third employee)))
+    (when (< experience 3)
+      (format t "Employee ~a is a junior.~%" name))))
+
+;; function to classify senior employees
+(defun classify-senior (employee)
+  (let ((name (first employee))
+        (experience (third employee)))
+    (when (>= experience 6)
+      (format t "Employee ~a is a senior.~%" name))))
+
+;; function to evaluate high performance for senior employees
+(defun evaluate-high-performance-senior (employee)
+  (let ((name (first employee))
+        (experience (third employee))
+        (salary (fourth employee))
+        (tasks (fifth employee)))
+    (when (and (>= experience 6) (> salary 8000) (> tasks 12))
+      (format t "Employee ~a has excellent performance!~%" name))))
+
+;; function to evaluate low performance for senior employees
+(defun evaluate-low-performance-senior (employee)
+  (let ((name (first employee))
+        (experience (third employee))
+        (salary (fourth employee))
+        (tasks (fifth employee)))
+    (when (and (>= experience 6) (or (< salary 8000) (< tasks 10)))
+      (format t "Employee ~a needs to improve their performance.~%" name))))
+
+;; function to evaluate high performance for junior employees
+(defun evaluate-high-performance-junior (employee)
+  (let ((name (first employee))
+        (experience (third employee))
+        (salary (fourth employee))
+        (tasks (fifth employee)))
+    (when (and (< experience 3) (> salary 5000) (> tasks 8))
+      (format t "Employee ~a has excellent performance!~%" name))))
+
+;; function to evaluate low performance for junior employees
+(defun evaluate-low-performance-junior (employee)
+  (let ((name (first employee))
+        (experience (third employee))
+        (salary (fourth employee))
+        (tasks (fifth employee)))
+    (when (and (< experience 3) (or (< salary 4000) (< tasks 5)))
+      (format t "Employee ~a needs to improve their performance.~%" name))))
+
+;; function to execute all classification rules
+(defun rule-engine ()
+  (dolist (employee *employees*)
+    (classify-junior employee)
+    (classify-senior employee)
+    (evaluate-high-performance-senior employee)
+    (evaluate-low-performance-senior employee)
+    (evaluate-high-performance-junior employee)
+    (evaluate-low-performance-junior employee)))
+
+;; run the rule engine
+(rule-engine)
